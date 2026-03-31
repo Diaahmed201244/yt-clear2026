@@ -10,33 +10,12 @@
     },
     "scripts": {
         "start": "node server.js",
-        "dev": "node --watch server.js",
-        "start:3001": "PORT=3001 node server.js",
-        "dev:3001": "PORT=3001 node --watch server.js",
-        "pm2:start": "pm2 start server.js --name yt-clear --time --log-date-format 'YYYY-MM-DD HH:mm:ss' --max-memory-restart 500M",
-        "pm2:start:3001": "pm2 start server.js --name yt-clear-3001 --time --log-date-format 'YYYY-MM-DD HH:mm:ss' --max-memory-restart 500M -- --port 3001",
-        "pm2:stop": "pm2 stop yt-clear",
-        "pm2:stop:3001": "pm2 stop yt-clear-3001",
-        "pm2:restart": "pm2 restart yt-clear",
-        "pm2:restart:3001": "pm2 restart yt-clear-3001",
-        "pm2:delete": "pm2 delete yt-clear",
-        "pm2:delete:3001": "pm2 delete yt-clear-3001",
-        "pm2:logs": "pm2 logs yt-clear --lines 100",
-        "pm2:logs:3001": "pm2 logs yt-clear-3001 --lines 100",
-        "pm2:monitor": "pm2 monit",
-        "pm2:status": "pm2 status",
-        "pm2:startup": "pm2 startup && pm2 save",
-        "build": "vite build",
-        "preview": "vite preview",
-        "test": "echo \"No tests specified\" && exit 0",
-        "pm2:watch": "pm2 start server.js --name yt-clear --watch --ignore-watch='node_modules' --log-date-format 'YYYY-MM-DD HH:mm:ss' --max-memory-restart 500M",
-        "pm2:watch:3001": "pm2 start server.js --name yt-clear-3001 --watch --ignore-watch='node_modules' --log-date-format 'YYYY-MM-DD HH:mm:ss' --max-memory-restart 500M -- --port 3001"
+        "dev": "node --watch server.js"
     },
     "dependencies": {
         "@libsql/client": "^0.17.2",
         "axios": "^1.13.6",
         "bcryptjs": "^3.0.3",
-        "better-sqlite3": "^11.6.0",
         "cloudinary": "^1.41.0",
         "cookie-parser": "^1.4.7",
         "cors": "^2.8.5",
@@ -53,22 +32,5 @@
         "socket.io": "^4.8.3",
         "socket.io-client": "^4.8.3",
         "ws": "^8.19.0"
-    },
-    "devDependencies": {
-        "@capacitor/filesystem": "^8.1.2",
-        "@capacitor/toast": "^8.0.1",
-        "@capawesome/capacitor-screenshot": "^8.0.1",
-        "countries-list": "^3.3.0",
-        "firebase-admin": "^13.7.0",
-        "gsap": "^3.14.2",
-        "libphonenumber-js": "^1.12.40",
-        "matter-js": "^0.20.0",
-        "pm2": "^6.0.14",
-        "puppeteer": "^21.5.0",
-        "rollup-plugin-gzip": "^4.0.1",
-        "rollup-plugin-terser": "^7.0.2",
-        "three": "^0.183.1",
-        "twilio": "^5.12.2",
-        "vite": "^8.0.0"
     }
 }
