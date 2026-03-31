@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBGY Kids</title>
+    <link rel="stylesheet" href="pk.css">
+</head>
+<body>
+    <div class="pubgy-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="game-ui">
+            <div class="health">Health: <span id="health">100</span></div>
+            <div class="ammo">Ammo: <span id="ammo">30</span></div>
+            <div class="score">Score: <span id="score">0</span></div>
+        </div>
+        <div class="controls">
+            <button id="startBtn">Start Game</button>
+            <button id="pauseBtn">Pause</button>
+        </div>
+    </div>
+    <script src="pk.js"></script>
+</body>
+</html>

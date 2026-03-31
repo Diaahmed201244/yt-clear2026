@@ -1,0 +1,122 @@
+🧠 Full Logic & Functionalities Description
+🧍 Game Entities:
+Lady Host (Dealer):
+
+Takes money from each player (coded form).
+
+Exchanges it into gold/silver bars (based on amount paid).
+
+Distributes cards equally to all players.
+
+Announces the start, declares winner, restarts game.
+
+Players (2–6 multiplayer):
+
+Can join table with a unique code or invite link.
+
+Deposit money (coded-money) to get gold/silver bars.
+
+Take turns playing a card each round.
+
+Winner gains all bars on the table.
+
+Game Room (Table):
+
+Handles room ID, turn control, player synchronization.
+
+Chat or emote support for social interaction.
+
+Coded-Money System:
+
+Accepts player deposits (e.g., in-game credits).
+
+Exchanges them into gold bars (large bet) and silver bars (small bet).
+
+Card Game Rules (example variant):
+
+1 deck (52 cards)
+
+Highest card wins (you can add complex rules later)
+
+Players reveal one card per round.
+
+Continue until cards finish or player wins the pot.
+
+🎮 Game Features (To Be Built)
+Feature	Description
+🎨 2D Art + Animation	Elegant casino UI, card flip animation, bar shine animation
+🗣️ Voice / Dealer Sound	Dealer voice-over: “Place your bets”, “Cards are dealt”, “Player 3 wins!”
+🔄 Turn-Based Logic	Active player turn indicator, countdown timer
+🃏 Card Deck System	Shuffle, distribute, handle reveal and play
+💰 Bar Economy	Convert coded-money into gold/silver bars with animations
+🎲 Winner Logic	Winner takes all bars. Ties return bars to players
+🔒 Anti-cheat / Sync	Use backend (e.g., Supabase, Firebase, Socket.IO) for fair play
+🌐 Multiplayer Matchmaking	Random match / Private room with link / Room code
+🗨️ Chat / Reactions	Real-time chat during game
+📈 Leaderboard	Top players, number of bars won
+🧠 AI Dealer (Optional)	Lady can become AI if no real dealer
+
+⚙️ Suggested Tech Stack
+Layer	Library / Tool	Purpose
+🕹️ Frontend Game	Phaser 3 or Unity (WebGL)	Build 2D game visuals & logic
+📡 Multiplayer	Socket.IO (Node.js), Supabase Realtime	Sync players, turns, messages
+🗄️ Backend Logic	Supabase, Firebase, Cloudflare Workers	Handle logic, money, database
+🎨 Assets	Spine2D (lady animations), AI-generated art	Dealer and card animations
+🎵 Audio	HTML5 Audio / Web Audio API	Voice lines, background music
+🧠 AI Assistant	ChatGPT API or custom rules for dealer voice	AI-based dealer logic
+
+🧾 Prompt to Game Engine (Rosebud / Unity / Phaser)
+You can give the following full prompt:
+
+🎮 Prompt to Build Casino Card Game:
+
+Build a realistic multiplayer 2D casino card game that simulates real-world gameplay. The game begins with a lady dealer who:
+
+Accepts coded-money from each player.
+
+Converts it into silver or gold bars based on the amount paid.
+
+Animates the handover of bars to players.
+
+Shuffles and distributes cards equally to all players (2–6).
+
+Once the game starts:
+
+Each player takes turns playing a card.
+
+The game logic determines the winner of each round.
+
+The final winner receives all the silver/gold bars in the pot.
+
+Build Requirements:
+
+Use Phaser 3 or Unity WebGL.
+
+Add dealer animations (hand movements, voice lines).
+
+Use Socket.IO or Supabase Realtime for multiplayer sync.
+
+Add bar economy system with gold/silver visuals.
+
+Implement coded-money system (input, conversion).
+
+Game UI should mimic real casino (velvet table, card sounds, glitter).
+
+Use turn-based system with player highlights and countdown.
+
+Chat or reactions between players.
+
+Support mobile + desktop browsers.
+
+Add leaderboard and stats system.
+
+You may add AI dealer fallback, dynamic lighting, ambient casino sound, and game rules customization for realism.
+
+✅ Optional Advanced Ideas:
+Let players bet extra bars mid-game.
+
+Add bluff indicators or poker-like logic.
+
+NFT-style unique card skins or limited edition bars.
+
+Dealer becomes human if livestream or video is connected.

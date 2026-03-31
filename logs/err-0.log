@@ -1,0 +1,26 @@
+2026-03-27 16:47:18 +04:00: [DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: religion { text: 'ALTER TABLE users ADD COLUMN religion TEXT', params: [] }
+2026-03-27 16:47:18 +04:00: [DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: country { text: 'ALTER TABLE users ADD COLUMN country TEXT', params: [] }
+2026-03-27 16:47:19 +04:00: [DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: phone { text: 'ALTER TABLE users ADD COLUMN phone TEXT', params: [] }
+2026-03-27 16:50:17 +04:00: [DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: religion { text: 'ALTER TABLE users ADD COLUMN religion TEXT', params: [] }
+2026-03-27 16:50:18 +04:00: [DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: country { text: 'ALTER TABLE users ADD COLUMN country TEXT', params: [] }
+2026-03-27 16:50:18 +04:00: [DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: phone { text: 'ALTER TABLE users ADD COLUMN phone TEXT', params: [] }
+2026-03-27 17:43:15 +04:00: [DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io {
+  text: 'SELECT user_id, expires_at FROM auth_sessions WHERE token = ? OR token_hash = ?',
+  params: [
+    '23fbd46c-d2c5-4d09-a53c-b8dedd36ea2c',
+    '23fbd46c-d2c5-4d09-a53c-b8dedd36ea2c'
+  ]
+}
+2026-03-27 17:43:15 +04:00: [AUTH DB ERROR] FetchError: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io
+    at ClientRequest.<anonymous> (/Users/user/Desktop/new-yt/yt-clear/node_modules/node-fetch/lib/index.js:1501:11)
+    at ClientRequest.emit (node:events:524:28)
+    at emitErrorEvent (node:_http_client:101:11)
+    at TLSSocket.socketErrorListener (node:_http_client:504:5)
+    at TLSSocket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  type: 'system',
+  errno: 'ENOTFOUND',
+  code: 'ENOTFOUND'
+}

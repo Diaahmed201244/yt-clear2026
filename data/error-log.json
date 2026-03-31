@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2026-03-27T19:25:33.027Z",
+    "message": "(node:13722) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.\n(Use `node --trace-warnings ...` to show where the warning was created)",
+    "stack": "Error\n    at console.error (file:///Users/user/Desktop/new-yt/yt-clear/server.js:53:16)\n    at writeOut (node:internal/process/warning:60:3)\n    at process.onWarning (node:internal/process/warning:123:3)\n    at process.emit (node:events:513:28)\n    at doEmitWarning (node:internal/process/warning:89:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)"
+  },
+  {
+    "timestamp": "2026-03-27T19:25:35.086Z",
+    "message": "[DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: religion {\"text\":\"ALTER TABLE users ADD COLUMN religion TEXT\",\"params\":[]}",
+    "stack": "Error\n    at console.error (file:///Users/user/Desktop/new-yt/yt-clear/server.js:53:16)\n    at Client.query (file:///Users/user/Desktop/new-yt/yt-clear/api/config/db.js:184:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async addColumnIfNotExists (file:///Users/user/Desktop/new-yt/yt-clear/api/services/db-init.js:8:7)\n    at async applyNeonCompressionDDL (file:///Users/user/Desktop/new-yt/yt-clear/api/services/db-init.js:20:5)\n    at async Server.<anonymous> (file:///Users/user/Desktop/new-yt/yt-clear/server.js:409:5)"
+  },
+  {
+    "timestamp": "2026-03-27T19:25:35.586Z",
+    "message": "[DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: country {\"text\":\"ALTER TABLE users ADD COLUMN country TEXT\",\"params\":[]}",
+    "stack": "Error\n    at console.error (file:///Users/user/Desktop/new-yt/yt-clear/server.js:53:16)\n    at Client.query (file:///Users/user/Desktop/new-yt/yt-clear/api/config/db.js:184:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async addColumnIfNotExists (file:///Users/user/Desktop/new-yt/yt-clear/api/services/db-init.js:8:7)\n    at async applyNeonCompressionDDL (file:///Users/user/Desktop/new-yt/yt-clear/api/services/db-init.js:21:5)\n    at async Server.<anonymous> (file:///Users/user/Desktop/new-yt/yt-clear/server.js:409:5)"
+  },
+  {
+    "timestamp": "2026-03-27T19:25:36.146Z",
+    "message": "[DB] Client Error: SQLITE_UNKNOWN: SQLite error: duplicate column name: phone {\"text\":\"ALTER TABLE users ADD COLUMN phone TEXT\",\"params\":[]}",
+    "stack": "Error\n    at console.error (file:///Users/user/Desktop/new-yt/yt-clear/server.js:53:16)\n    at Client.query (file:///Users/user/Desktop/new-yt/yt-clear/api/config/db.js:184:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async addColumnIfNotExists (file:///Users/user/Desktop/new-yt/yt-clear/api/services/db-init.js:8:7)\n    at async applyNeonCompressionDDL (file:///Users/user/Desktop/new-yt/yt-clear/api/services/db-init.js:22:5)\n    at async Server.<anonymous> (file:///Users/user/Desktop/new-yt/yt-clear/server.js:409:5)"
+  }
+]

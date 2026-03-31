@@ -1,0 +1,3908 @@
+.
+├── 3way-switch-b
+│   ├── toggle-button.js
+│   ├── toggle-switch-3way.js
+│   ├── yt-section-switch.js
+│   └── yt-toggle.js
+├── BATTALOODA_FOLDER_STRUCTURE_REPORT.md
+├── FARRAGNA_API_DOCS.md
+├── PROJECT_REPORT.md
+├── PROJECT_SCAFFOLD.md
+├── TALENT_STUDIO_FOLDER_STRUCTURE_REPORT.md
+├── acc
+│   ├── acc-client.js
+│   ├── acc-integration.html
+│   ├── acc-server.js
+│   ├── asset-mirror.js
+│   ├── bridges
+│   │   ├── battalooda-bridge.js
+│   │   ├── farragna-bridge.js
+│   │   ├── pebalaash-bridge.js
+│   │   └── safecode-bridge.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── service-bridge-base.js
+│   └── transaction-gateway.js
+├── actly .md
+├── afra7
+│   ├── afra7-audio-controller.js
+│   ├── afra7-long-press.js
+│   ├── afra7-playlist-manager.js
+│   ├── afra7-popup-ui.js
+│   ├── afra7-styles.css
+│   ├── afra7-youtube-bridge.js
+│   └── songs-registry.json
+├── api
+│   ├── __tests__
+│   │   ├── clerk-middleware.failure.test.mjs
+│   │   ├── clerk-middleware.success.test.mjs
+│   │   ├── indexcb-postmessage.test.mjs
+│   │   └── layout-counter-stopwatch.test.mjs
+│   ├── admin
+│   │   ├── code-price.js
+│   │   ├── videos.js
+│   │   └── views.js
+│   ├── api
+│   │   ├── admin
+│   │   │   ├── code-price.js
+│   │   │   ├── videos.js
+│   │   │   └── views.js
+│   │   ├── cloudinary-webhook.js
+│   │   └── samma3ny
+│   │       └── middleware.js
+│   ├── cloudinary-webhook.js
+│   ├── config
+│   │   ├── db.js
+│   │   └── flags.js
+│   ├── middleware
+│   │   ├── admin.js
+│   │   ├── auth.js
+│   │   ├── clerk.js
+│   │   └── farragna-auth.js
+│   ├── modules
+│   │   ├── admin.js
+│   │   ├── balloon.js
+│   │   ├── codes.js
+│   │   ├── corsa.js
+│   │   ├── farragna.js
+│   │   ├── logicode.js
+│   │   ├── monetization.js
+│   │   ├── nostaglia.js
+│   │   ├── pebalaash.js
+│   │   ├── rewards.js
+│   │   ├── samma3ny.js
+│   │   ├── setta.js
+│   │   ├── sync.js
+│   │   ├── test.js
+│   │   └── trust.js
+│   ├── routes
+│   │   └── battalooda.js
+│   ├── samma3ny
+│   │   └── middleware.js
+│   ├── scripts
+│   ├── sql
+│   │   └── schema.sql
+│   ├── test-nostaglia.js
+│   ├── test-phase3-autosave.js
+│   ├── test-rewards-system-no-db.js
+│   ├── test-rewards-system.js
+│   ├── tests
+│   └── utils
+│       ├── audit.js
+│       └── sms-provider.js
+├── automated-sync-test.js
+├── azan-clock.html
+├── capacitor.config.json
+├── code-display-bar
+│   ├── code-generator.html
+│   ├── codebank-bridge.js
+│   └── codebank-panel.js
+├── codebank
+│   ├── Games-Centre
+│   │   ├── ASSETS_BUS_API.md
+│   │   ├── AUDIT_REPORT.md
+│   │   ├── GAME_INTEGRATION_CONTRACT.md
+│   │   ├── GAME_INTEGRATION_GUIDE.md
+│   │   ├── MODE_C_VALIDATION.md
+│   │   ├── RUNTIME_WIRING_GUIDE.md
+│   │   ├── _archive
+│   │   │   ├── billiard
+│   │   │   │   └── bi.css
+│   │   │   ├── dominos
+│   │   │   │   └── do.css
+│   │   │   └── solitaire
+│   │   │       └── so.css
+│   │   ├── assets
+│   │   │   ├── favicon.ico
+│   │   │   └── images
+│   │   │       ├── american-roulette.svg
+│   │   │       ├── billiard.jpg
+│   │   │       ├── billiard.svg
+│   │   │       ├── car-race.jpg
+│   │   │       ├── car-race.svg
+│   │   │       ├── casino-sim.jpg
+│   │   │       ├── casino-sim.svg
+│   │   │       ├── chess-nexus.jpg
+│   │   │       ├── chess-nexus.svg
+│   │   │       ├── chess.jpg
+│   │   │       ├── chess.svg
+│   │   │       ├── crypto-vegas.jpg
+│   │   │       ├── crypto-vegas.svg
+│   │   │       ├── dominos.jpg
+│   │   │       ├── dominos.svg
+│   │   │       ├── execute-all.jpg
+│   │   │       ├── execute-all.svg
+│   │   │       ├── game-chat-connect.svg
+│   │   │       ├── game-chat.jpg
+│   │   │       ├── greed-satisfaction.jpg
+│   │   │       ├── greed-satisfaction.svg
+│   │   │       ├── pubgy-kids.svg
+│   │   │       ├── pubgy.jpg
+│   │   │       ├── river-raid.jpg
+│   │   │       ├── river-raid.svg
+│   │   │       ├── roulette.jpg
+│   │   │       ├── snake-ladder.jpg
+│   │   │       ├── snake-ladder.svg
+│   │   │       ├── snake.jpg
+│   │   │       ├── snake.svg
+│   │   │       ├── solitaire.jpg
+│   │   │       ├── solitaire.svg
+│   │   │       ├── spinner.jpg
+│   │   │       ├── spinner.svg
+│   │   │       ├── tetris.jpg
+│   │   │       ├── tetris.svg
+│   │   │       ├── tic-tac-toe.jpg
+│   │   │       ├── tic-tac-toe.svg
+│   │   │       ├── trial-survival.jpg
+│   │   │       └── trial-survival.svg
+│   │   ├── build-react-games.sh
+│   │   ├── core
+│   │   │   ├── competition-engine.js
+│   │   │   ├── css
+│   │   │   │   └── dashboard.css
+│   │   │   ├── dashboard-manifest.json
+│   │   │   ├── dashboard.html
+│   │   │   ├── game-engine.js
+│   │   │   ├── game-registry.js
+│   │   │   ├── js
+│   │   │   │   ├── assets-bus-adapter.js
+│   │   │   │   ├── betting-core.js
+│   │   │   │   ├── collusion-engine.js
+│   │   │   │   ├── communication.js
+│   │   │   │   ├── competition-state.js
+│   │   │   │   ├── dashboard.js
+│   │   │   │   ├── fair-play.js
+│   │   │   │   ├── game-loader.js
+│   │   │   │   ├── game-runtime-loader.js
+│   │   │   │   ├── game-wrapper.js
+│   │   │   │   ├── leaderboard.js
+│   │   │   │   ├── lobby-manager.js
+│   │   │   │   ├── matchmaking.js
+│   │   │   │   ├── presence.js
+│   │   │   │   ├── session-manager.js
+│   │   │   │   └── transport.js
+│   │   │   ├── mode-registry.js
+│   │   │   ├── modes
+│   │   │   │   ├── multiplayer-mode.js
+│   │   │   │   ├── single-player-mode.js
+│   │   │   │   └── vs-computer-mode.js
+│   │   │   ├── service-engine.js
+│   │   │   └── state-authority.js
+│   │   ├── css
+│   │   │   ├── billiards.css
+│   │   │   ├── dominos.css
+│   │   │   ├── games.css
+│   │   │   ├── solitaire.css
+│   │   │   ├── tetris.css
+│   │   │   └── tictactoe.css
+│   │   ├── dashboard-integration.js
+│   │   ├── dashboard.css
+│   │   ├── dashboard.html
+│   │   ├── dashboard.js
+│   │   ├── games
+│   │   │   ├── american_roulette
+│   │   │   │   ├── a_r.css
+│   │   │   │   ├── a_r.html
+│   │   │   │   ├── a_r.js
+│   │   │   │   └── index.html
+│   │   │   ├── casino-sim
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   ├── Pasted-design-the-game-mechanics-flow-and-rule-logic-to-simulate-a-real-gambling-card-game-The-closest-r-1753345056844_1753345056852.txt
+│   │   │   │   │   ├── Pasted-design-the-game-mechanics-flow-and-rule-logic-to-simulate-a-real-gambling-card-game-The-closest-r-1753349117456_1753349117470.txt
+│   │   │   │   │   └── image_1753349151213.png
+│   │   │   │   ├── client
+│   │   │   │   │   ├── build-css.js
+│   │   │   │   │   ├── dist
+│   │   │   │   │   │   └── output.css
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── src
+│   │   │   │   │   │   ├── App.jsx
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── game
+│   │   │   │   │   │   │   │   ├── CommunityCards.jsx
+│   │   │   │   │   │   │   │   ├── DealerSection.jsx
+│   │   │   │   │   │   │   │   ├── GameControls.jsx
+│   │   │   │   │   │   │   │   ├── GameHistory.jsx
+│   │   │   │   │   │   │   │   ├── GameTable.jsx
+│   │   │   │   │   │   │   │   ├── PlayerPosition.jsx
+│   │   │   │   │   │   │   │   └── WinnerModal.jsx
+│   │   │   │   │   │   │   └── ui
+│   │   │   │   │   │   │       ├── accordion.jsx
+│   │   │   │   │   │   │       ├── alert-dialog.jsx
+│   │   │   │   │   │   │       ├── alert.jsx
+│   │   │   │   │   │   │       ├── aspect-ratio.jsx
+│   │   │   │   │   │   │       ├── avatar.jsx
+│   │   │   │   │   │   │       ├── badge.jsx
+│   │   │   │   │   │   │       ├── breadcrumb.jsx
+│   │   │   │   │   │   │       ├── button.jsx
+│   │   │   │   │   │   │       ├── calendar.jsx
+│   │   │   │   │   │   │       ├── card.jsx
+│   │   │   │   │   │   │       ├── carousel.jsx
+│   │   │   │   │   │   │       ├── chart.jsx
+│   │   │   │   │   │   │       ├── checkbox.jsx
+│   │   │   │   │   │   │       ├── collapsible.jsx
+│   │   │   │   │   │   │       ├── command.jsx
+│   │   │   │   │   │   │       ├── context-menu.jsx
+│   │   │   │   │   │   │       ├── dialog.jsx
+│   │   │   │   │   │   │       ├── drawer.jsx
+│   │   │   │   │   │   │       ├── dropdown-menu.jsx
+│   │   │   │   │   │   │       ├── form.jsx
+│   │   │   │   │   │   │       ├── hover-card.jsx
+│   │   │   │   │   │   │       ├── input-otp.jsx
+│   │   │   │   │   │   │       ├── input.jsx
+│   │   │   │   │   │   │       ├── label.jsx
+│   │   │   │   │   │   │       ├── menubar.jsx
+│   │   │   │   │   │   │       ├── navigation-menu.jsx
+│   │   │   │   │   │   │       ├── pagination.jsx
+│   │   │   │   │   │   │       ├── popover.jsx
+│   │   │   │   │   │   │       ├── progress.jsx
+│   │   │   │   │   │   │       ├── radio-group.jsx
+│   │   │   │   │   │   │       ├── resizable.jsx
+│   │   │   │   │   │   │       ├── scroll-area.jsx
+│   │   │   │   │   │   │       ├── select.jsx
+│   │   │   │   │   │   │       ├── separator.jsx
+│   │   │   │   │   │   │       ├── sheet.jsx
+│   │   │   │   │   │   │       ├── sidebar.jsx
+│   │   │   │   │   │   │       ├── skeleton.jsx
+│   │   │   │   │   │   │       ├── slider.jsx
+│   │   │   │   │   │   │       ├── switch.jsx
+│   │   │   │   │   │   │       ├── table.jsx
+│   │   │   │   │   │   │       ├── tabs.jsx
+│   │   │   │   │   │   │       ├── textarea.jsx
+│   │   │   │   │   │   │       ├── toast.jsx
+│   │   │   │   │   │   │       ├── toaster.jsx
+│   │   │   │   │   │   │       ├── toggle-group.jsx
+│   │   │   │   │   │   │       ├── toggle.jsx
+│   │   │   │   │   │   │       └── tooltip.jsx
+│   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   ├── use-mobile.jsx
+│   │   │   │   │   │   │   ├── use-toast.js
+│   │   │   │   │   │   │   ├── useGameState.js
+│   │   │   │   │   │   │   └── useWebSocket.js
+│   │   │   │   │   │   ├── index.css
+│   │   │   │   │   │   ├── lib
+│   │   │   │   │   │   │   ├── cardUtils.js
+│   │   │   │   │   │   │   ├── gameLogic.js
+│   │   │   │   │   │   │   ├── queryClient.js
+│   │   │   │   │   │   │   └── utils.js
+│   │   │   │   │   │   ├── main.jsx
+│   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   ├── game.jsx
+│   │   │   │   │   │   │   └── not-found.jsx
+│   │   │   │   │   │   └── react-shim.d.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   ├── tsconfig.node.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── gameLogic.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── chess-nexus-react
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── AppHeader.jsx
+│   │   │   │   │       │   ├── chess
+│   │   │   │   │       │   │   ├── AISettings.jsx
+│   │   │   │   │       │   │   ├── ChessBoard.jsx
+│   │   │   │   │       │   │   ├── FENDialog.jsx
+│   │   │   │   │       │   │   ├── GameControls.jsx
+│   │   │   │   │       │   │   ├── GameInfo.jsx
+│   │   │   │   │       │   │   ├── GameModeSelector.jsx
+│   │   │   │   │       │   │   ├── MoveHistory.jsx
+│   │   │   │   │       │   │   └── MultiplayerChat.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useChessGame.js
+│   │   │   │   │       │   ├── useStockfish.js
+│   │   │   │   │       │   └── useSupabaseRealtime.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── chess-utils.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   ├── chess.jsx
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       └── react-shim.d.js
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── crypto-vegas
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── public
+│   │   │   │   │   │   ├── fonts
+│   │   │   │   │   │   │   └── inter.json
+│   │   │   │   │   │   ├── geometries
+│   │   │   │   │   │   │   └── heart.gltf
+│   │   │   │   │   │   ├── sounds
+│   │   │   │   │   │   │   ├── background.mp3
+│   │   │   │   │   │   │   ├── hit.mp3
+│   │   │   │   │   │   │   └── success.mp3
+│   │   │   │   │   │   └── textures
+│   │   │   │   │   │       ├── asphalt.png
+│   │   │   │   │   │       ├── grass.png
+│   │   │   │   │   │       ├── sand.jpg
+│   │   │   │   │   │       ├── sky.png
+│   │   │   │   │   │       └── wood.jpg
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── auth
+│   │   │   │   │       │   │   └── AuthModal.jsx
+│   │   │   │   │       │   ├── casino
+│   │   │   │   │       │   │   ├── Balance.jsx
+│   │   │   │   │       │   │   ├── CasinoLayout.jsx
+│   │   │   │   │       │   │   ├── GameHistory.jsx
+│   │   │   │   │       │   │   └── Navigation.jsx
+│   │   │   │   │       │   ├── games
+│   │   │   │   │       │   │   ├── CrashGame.jsx
+│   │   │   │   │       │   │   ├── DiceGame.jsx
+│   │   │   │   │       │   │   └── SlotsGame.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── interface.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── neon-button.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── sonner.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   └── use-is-mobile.jsx
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── gameUtils.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   ├── stores
+│   │   │   │   │       │   │   ├── useAudio.jsx
+│   │   │   │   │       │   │   ├── useAuth.jsx
+│   │   │   │   │       │   │   ├── useCasino.jsx
+│   │   │   │   │       │   │   └── useGame.jsx
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       └── react-shim.d.js
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── css
+│   │   │   │   ├── games.css
+│   │   │   │   ├── solitaire.css
+│   │   │   │   ├── tetris.css
+│   │   │   │   └── tictactoe.css
+│   │   │   ├── execute-all
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   └── Pasted--Full-Logic-Functionalities-Description-Game-Entities-Lady-Host-Dealer-Takes-money-from--1753265162770_1753265162771.txt
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── casino
+│   │   │   │   │       │   │   ├── CardDeck.jsx
+│   │   │   │   │       │   │   ├── CasinoTable.jsx
+│   │   │   │   │       │   │   ├── ChatSystem.jsx
+│   │   │   │   │       │   │   ├── GameControls.jsx
+│   │   │   │   │       │   │   ├── LadyDealer.jsx
+│   │   │   │   │       │   │   ├── MoneyExchange.jsx
+│   │   │   │   │       │   │   ├── PlayerPosition.jsx
+│   │   │   │   │       │   │   └── PotArea.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │       │   └── useWebSocket.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── gameTypes.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   ├── soundManager.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   ├── game.jsx
+│   │   │   │   │       │   ├── home.jsx
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       └── react-shim.d.js
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── gameService.js
+│   │   │   │   │   │   └── websocketService.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── game-chat-connect
+│   │   │   │   ├── README.md
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   ├── App_1753267299181.jsx
+│   │   │   │   │   ├── CardDeck_1753267308633.jsx
+│   │   │   │   │   ├── CasinoTable_1753267308634.jsx
+│   │   │   │   │   ├── ChatSystem_1753267308634.jsx
+│   │   │   │   │   ├── ExecuteAllGame_1753267064946.zip
+│   │   │   │   │   ├── GameControls_1753267308635.jsx
+│   │   │   │   │   ├── LadyDealer_1753267308637.jsx
+│   │   │   │   │   ├── MoneyExchange_1753267308638.jsx
+│   │   │   │   │   ├── PlayerPosition_1753267308639.jsx
+│   │   │   │   │   ├── PotArea_1753267308639.jsx
+│   │   │   │   │   ├── game_1753267368916.jsx
+│   │   │   │   │   ├── home_1753267368936.jsx
+│   │   │   │   │   ├── index_1753267299184.css
+│   │   │   │   │   ├── index_1753267401742.html
+│   │   │   │   │   ├── main_1753267299185.jsx
+│   │   │   │   │   ├── not-found_1753267368940.jsx
+│   │   │   │   │   ├── use-mobile_1753267331332.jsx
+│   │   │   │   │   ├── use-toast_1753267331358.js
+│   │   │   │   │   ├── useGameState_1753267331360.js
+│   │   │   │   │   └── useWebSocket_1753267331362.js
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── casino
+│   │   │   │   │       │   │   ├── AudioCommunication.jsx
+│   │   │   │   │       │   │   ├── AudioSettingsModal.jsx
+│   │   │   │   │       │   │   ├── CasinoTable.jsx
+│   │   │   │   │       │   │   ├── ChatSystem.jsx
+│   │   │   │   │       │   │   ├── GameStartModal.jsx
+│   │   │   │   │       │   │   ├── MoneyExchange.jsx
+│   │   │   │   │       │   │   └── PotArea.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │       │   ├── useWebRTC.js
+│   │   │   │   │       │   └── useWebSocket.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── DealerAI.js
+│   │   │   │   │       │   ├── GameLogic.js
+│   │   │   │   │       │   ├── gameTypes.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   ├── soundManager.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   ├── game.jsx
+│   │   │   │   │       │   ├── home.jsx
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       └── react-shim.d.js
+│   │   │   │   ├── command.md
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── greed-satisfaction
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── BalanceAnimations.jsx
+│   │   │   │   │       │   ├── ConfettiEffect.jsx
+│   │   │   │   │       │   ├── GameBox.jsx
+│   │   │   │   │       │   ├── ParticleEffect.jsx
+│   │   │   │   │       │   ├── ShieldEffect.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useDailyLimit.js
+│   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │       │   └── useLocalStorage.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   ├── game.jsx
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       └── react-shim.d.js
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── db.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── playerService.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── js
+│   │   │   │   ├── a_r.js
+│   │   │   │   ├── billiards.js
+│   │   │   │   ├── board.js
+│   │   │   │   ├── c1.js
+│   │   │   │   ├── dashboard.js
+│   │   │   │   ├── dominos.js
+│   │   │   │   ├── game.js
+│   │   │   │   ├── pieces.js
+│   │   │   │   ├── pk.js
+│   │   │   │   ├── rr.js
+│   │   │   │   ├── s_l1.js
+│   │   │   │   ├── snake.js
+│   │   │   │   ├── solitaire.js
+│   │   │   │   ├── spinner.js
+│   │   │   │   ├── tetris.js
+│   │   │   │   ├── tictactoe.js
+│   │   │   │   └── transfer-test.js
+│   │   │   ├── react
+│   │   │   │   ├── casino-sim
+│   │   │   │   │   ├── attached_assets
+│   │   │   │   │   │   ├── Pasted-design-the-game-mechanics-flow-and-rule-logic-to-simulate-a-real-gambling-card-game-The-closest-r-1753345056844_1753345056852.txt
+│   │   │   │   │   │   ├── Pasted-design-the-game-mechanics-flow-and-rule-logic-to-simulate-a-real-gambling-card-game-The-closest-r-1753349117456_1753349117470.txt
+│   │   │   │   │   │   └── image_1753349151213.png
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── build-css.js
+│   │   │   │   │   │   ├── dist
+│   │   │   │   │   │   │   └── output.css
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   │   ├── src
+│   │   │   │   │   │   │   ├── App.jsx
+│   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   ├── game
+│   │   │   │   │   │   │   │   │   ├── CommunityCards.jsx
+│   │   │   │   │   │   │   │   │   ├── DealerSection.jsx
+│   │   │   │   │   │   │   │   │   ├── GameControls.jsx
+│   │   │   │   │   │   │   │   │   ├── GameHistory.jsx
+│   │   │   │   │   │   │   │   │   ├── GameTable.jsx
+│   │   │   │   │   │   │   │   │   ├── PlayerPosition.jsx
+│   │   │   │   │   │   │   │   │   └── WinnerModal.jsx
+│   │   │   │   │   │   │   │   └── ui
+│   │   │   │   │   │   │   │       ├── accordion.jsx
+│   │   │   │   │   │   │   │       ├── alert-dialog.jsx
+│   │   │   │   │   │   │   │       ├── alert.jsx
+│   │   │   │   │   │   │   │       ├── aspect-ratio.jsx
+│   │   │   │   │   │   │   │       ├── avatar.jsx
+│   │   │   │   │   │   │   │       ├── badge.jsx
+│   │   │   │   │   │   │   │       ├── breadcrumb.jsx
+│   │   │   │   │   │   │   │       ├── button.jsx
+│   │   │   │   │   │   │   │       ├── calendar.jsx
+│   │   │   │   │   │   │   │       ├── card.jsx
+│   │   │   │   │   │   │   │       ├── carousel.jsx
+│   │   │   │   │   │   │   │       ├── chart.jsx
+│   │   │   │   │   │   │   │       ├── checkbox.jsx
+│   │   │   │   │   │   │   │       ├── collapsible.jsx
+│   │   │   │   │   │   │   │       ├── command.jsx
+│   │   │   │   │   │   │   │       ├── context-menu.jsx
+│   │   │   │   │   │   │   │       ├── dialog.jsx
+│   │   │   │   │   │   │   │       ├── drawer.jsx
+│   │   │   │   │   │   │   │       ├── dropdown-menu.jsx
+│   │   │   │   │   │   │   │       ├── form.jsx
+│   │   │   │   │   │   │   │       ├── hover-card.jsx
+│   │   │   │   │   │   │   │       ├── input-otp.jsx
+│   │   │   │   │   │   │   │       ├── input.jsx
+│   │   │   │   │   │   │   │       ├── label.jsx
+│   │   │   │   │   │   │   │       ├── menubar.jsx
+│   │   │   │   │   │   │   │       ├── navigation-menu.jsx
+│   │   │   │   │   │   │   │       ├── pagination.jsx
+│   │   │   │   │   │   │   │       ├── popover.jsx
+│   │   │   │   │   │   │   │       ├── progress.jsx
+│   │   │   │   │   │   │   │       ├── radio-group.jsx
+│   │   │   │   │   │   │   │       ├── resizable.jsx
+│   │   │   │   │   │   │   │       ├── scroll-area.jsx
+│   │   │   │   │   │   │   │       ├── select.jsx
+│   │   │   │   │   │   │   │       ├── separator.jsx
+│   │   │   │   │   │   │   │       ├── sheet.jsx
+│   │   │   │   │   │   │   │       ├── sidebar.jsx
+│   │   │   │   │   │   │   │       ├── skeleton.jsx
+│   │   │   │   │   │   │   │       ├── slider.jsx
+│   │   │   │   │   │   │   │       ├── switch.jsx
+│   │   │   │   │   │   │   │       ├── table.jsx
+│   │   │   │   │   │   │   │       ├── tabs.jsx
+│   │   │   │   │   │   │   │       ├── textarea.jsx
+│   │   │   │   │   │   │   │       ├── toast.jsx
+│   │   │   │   │   │   │   │       ├── toaster.jsx
+│   │   │   │   │   │   │   │       ├── toggle-group.jsx
+│   │   │   │   │   │   │   │       ├── toggle.jsx
+│   │   │   │   │   │   │   │       └── tooltip.jsx
+│   │   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   │   ├── use-mobile.jsx
+│   │   │   │   │   │   │   │   ├── use-toast.js
+│   │   │   │   │   │   │   │   ├── useGameState.js
+│   │   │   │   │   │   │   │   └── useWebSocket.js
+│   │   │   │   │   │   │   ├── index.css
+│   │   │   │   │   │   │   ├── lib
+│   │   │   │   │   │   │   │   ├── cardUtils.js
+│   │   │   │   │   │   │   │   ├── gameLogic.js
+│   │   │   │   │   │   │   │   ├── queryClient.js
+│   │   │   │   │   │   │   │   └── utils.js
+│   │   │   │   │   │   │   ├── main.jsx
+│   │   │   │   │   │   │   └── pages
+│   │   │   │   │   │   │       ├── game.jsx
+│   │   │   │   │   │   │       └── not-found.jsx
+│   │   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   │   ├── tsconfig.node.json
+│   │   │   │   │   │   └── vite.config.js
+│   │   │   │   │   ├── components.json
+│   │   │   │   │   ├── drizzle.config.js
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── replit.md
+│   │   │   │   │   ├── server
+│   │   │   │   │   │   ├── gameLogic.js
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── routes.js
+│   │   │   │   │   │   ├── storage.js
+│   │   │   │   │   │   └── vite.js
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   └── schema.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── chess-nexus
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   └── src
+│   │   │   │   │   │       ├── App.jsx
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   ├── AppHeader.jsx
+│   │   │   │   │   │       │   ├── chess
+│   │   │   │   │   │       │   │   ├── AISettings.jsx
+│   │   │   │   │   │       │   │   ├── ChessBoard.jsx
+│   │   │   │   │   │       │   │   ├── FENDialog.jsx
+│   │   │   │   │   │       │   │   ├── GameControls.jsx
+│   │   │   │   │   │       │   │   ├── GameInfo.jsx
+│   │   │   │   │   │       │   │   ├── GameModeSelector.jsx
+│   │   │   │   │   │       │   │   ├── MoveHistory.jsx
+│   │   │   │   │   │       │   │   └── MultiplayerChat.jsx
+│   │   │   │   │   │       │   └── ui
+│   │   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │   │       ├── hooks
+│   │   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │   │       │   ├── useChessGame.js
+│   │   │   │   │   │       │   ├── useStockfish.js
+│   │   │   │   │   │       │   └── useSupabaseRealtime.js
+│   │   │   │   │   │       ├── index.css
+│   │   │   │   │   │       ├── lib
+│   │   │   │   │   │       │   ├── chess-utils.js
+│   │   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │   │       │   └── utils.js
+│   │   │   │   │   │       ├── main.jsx
+│   │   │   │   │   │       └── pages
+│   │   │   │   │   │           ├── chess.jsx
+│   │   │   │   │   │           └── not-found.jsx
+│   │   │   │   │   ├── components.json
+│   │   │   │   │   ├── drizzle.config.js
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── replit.md
+│   │   │   │   │   ├── server
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── routes.js
+│   │   │   │   │   │   ├── storage.js
+│   │   │   │   │   │   └── vite.js
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   └── schema.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── crypto-vegas
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   ├── public
+│   │   │   │   │   │   │   ├── fonts
+│   │   │   │   │   │   │   │   └── inter.json
+│   │   │   │   │   │   │   ├── geometries
+│   │   │   │   │   │   │   │   └── heart.gltf
+│   │   │   │   │   │   │   ├── sounds
+│   │   │   │   │   │   │   │   ├── background.mp3
+│   │   │   │   │   │   │   │   ├── hit.mp3
+│   │   │   │   │   │   │   │   └── success.mp3
+│   │   │   │   │   │   │   └── textures
+│   │   │   │   │   │   │       ├── asphalt.png
+│   │   │   │   │   │   │       ├── grass.png
+│   │   │   │   │   │   │       ├── sand.jpg
+│   │   │   │   │   │   │       ├── sky.png
+│   │   │   │   │   │   │       └── wood.jpg
+│   │   │   │   │   │   └── src
+│   │   │   │   │   │       ├── App.jsx
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   ├── auth
+│   │   │   │   │   │       │   │   └── AuthModal.jsx
+│   │   │   │   │   │       │   ├── casino
+│   │   │   │   │   │       │   │   ├── Balance.jsx
+│   │   │   │   │   │       │   │   ├── CasinoLayout.jsx
+│   │   │   │   │   │       │   │   ├── GameHistory.jsx
+│   │   │   │   │   │       │   │   └── Navigation.jsx
+│   │   │   │   │   │       │   ├── games
+│   │   │   │   │   │       │   │   ├── CrashGame.jsx
+│   │   │   │   │   │       │   │   ├── DiceGame.jsx
+│   │   │   │   │   │       │   │   └── SlotsGame.jsx
+│   │   │   │   │   │       │   └── ui
+│   │   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │   │       │       ├── interface.jsx
+│   │   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │   │       │       ├── neon-button.jsx
+│   │   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │   │       │       ├── sonner.jsx
+│   │   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │   │       ├── hooks
+│   │   │   │   │   │       │   └── use-is-mobile.jsx
+│   │   │   │   │   │       ├── index.css
+│   │   │   │   │   │       ├── lib
+│   │   │   │   │   │       │   ├── gameUtils.js
+│   │   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │   │       │   ├── stores
+│   │   │   │   │   │       │   │   ├── useAudio.jsx
+│   │   │   │   │   │       │   │   ├── useAuth.jsx
+│   │   │   │   │   │       │   │   ├── useCasino.jsx
+│   │   │   │   │   │       │   │   └── useGame.jsx
+│   │   │   │   │   │       │   └── utils.js
+│   │   │   │   │   │       ├── main.jsx
+│   │   │   │   │   │       └── pages
+│   │   │   │   │   │           └── not-found.jsx
+│   │   │   │   │   ├── drizzle.config.js
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── replit.md
+│   │   │   │   │   ├── server
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── routes.js
+│   │   │   │   │   │   ├── storage.js
+│   │   │   │   │   │   └── vite.js
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   └── schema.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── execute-all
+│   │   │   │   │   ├── attached_assets
+│   │   │   │   │   │   └── Pasted--Full-Logic-Functionalities-Description-Game-Entities-Lady-Host-Dealer-Takes-money-from--1753265162770_1753265162771.txt
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   └── src
+│   │   │   │   │   │       ├── App.jsx
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   ├── casino
+│   │   │   │   │   │       │   │   ├── CardDeck.jsx
+│   │   │   │   │   │       │   │   ├── CasinoTable.jsx
+│   │   │   │   │   │       │   │   ├── ChatSystem.jsx
+│   │   │   │   │   │       │   │   ├── GameControls.jsx
+│   │   │   │   │   │       │   │   ├── LadyDealer.jsx
+│   │   │   │   │   │       │   │   ├── MoneyExchange.jsx
+│   │   │   │   │   │       │   │   ├── PlayerPosition.jsx
+│   │   │   │   │   │       │   │   └── PotArea.jsx
+│   │   │   │   │   │       │   └── ui
+│   │   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │   │       ├── hooks
+│   │   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │   │       │   └── useWebSocket.js
+│   │   │   │   │   │       ├── index.css
+│   │   │   │   │   │       ├── lib
+│   │   │   │   │   │       │   ├── gameTypes.js
+│   │   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │   │       │   ├── soundManager.js
+│   │   │   │   │   │       │   └── utils.js
+│   │   │   │   │   │       ├── main.jsx
+│   │   │   │   │   │       └── pages
+│   │   │   │   │   │           ├── game.jsx
+│   │   │   │   │   │           ├── home.jsx
+│   │   │   │   │   │           └── not-found.jsx
+│   │   │   │   │   ├── components.json
+│   │   │   │   │   ├── drizzle.config.js
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── replit.md
+│   │   │   │   │   ├── server
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── routes.js
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── gameService.js
+│   │   │   │   │   │   │   └── websocketService.js
+│   │   │   │   │   │   ├── storage.js
+│   │   │   │   │   │   └── vite.js
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   └── schema.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── game-chat-connect
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── attached_assets
+│   │   │   │   │   │   ├── App_1753267299181.jsx
+│   │   │   │   │   │   ├── CardDeck_1753267308633.jsx
+│   │   │   │   │   │   ├── CasinoTable_1753267308634.jsx
+│   │   │   │   │   │   ├── ChatSystem_1753267308634.jsx
+│   │   │   │   │   │   ├── ExecuteAllGame_1753267064946.zip
+│   │   │   │   │   │   ├── GameControls_1753267308635.jsx
+│   │   │   │   │   │   ├── LadyDealer_1753267308637.jsx
+│   │   │   │   │   │   ├── MoneyExchange_1753267308638.jsx
+│   │   │   │   │   │   ├── PlayerPosition_1753267308639.jsx
+│   │   │   │   │   │   ├── PotArea_1753267308639.jsx
+│   │   │   │   │   │   ├── game_1753267368916.jsx
+│   │   │   │   │   │   ├── home_1753267368936.jsx
+│   │   │   │   │   │   ├── index_1753267299184.css
+│   │   │   │   │   │   ├── index_1753267401742.html
+│   │   │   │   │   │   ├── main_1753267299185.jsx
+│   │   │   │   │   │   ├── not-found_1753267368940.jsx
+│   │   │   │   │   │   ├── use-mobile_1753267331332.jsx
+│   │   │   │   │   │   ├── use-toast_1753267331358.js
+│   │   │   │   │   │   ├── useGameState_1753267331360.js
+│   │   │   │   │   │   └── useWebSocket_1753267331362.js
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   └── src
+│   │   │   │   │   │       ├── App.jsx
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   ├── casino
+│   │   │   │   │   │       │   │   ├── AudioCommunication.jsx
+│   │   │   │   │   │       │   │   ├── AudioSettingsModal.jsx
+│   │   │   │   │   │       │   │   ├── CasinoTable.jsx
+│   │   │   │   │   │       │   │   ├── ChatSystem.jsx
+│   │   │   │   │   │       │   │   ├── GameStartModal.jsx
+│   │   │   │   │   │       │   │   ├── MoneyExchange.jsx
+│   │   │   │   │   │       │   │   └── PotArea.jsx
+│   │   │   │   │   │       │   └── ui
+│   │   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │   │       ├── hooks
+│   │   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │   │       │   ├── useWebRTC.js
+│   │   │   │   │   │       │   └── useWebSocket.js
+│   │   │   │   │   │       ├── index.css
+│   │   │   │   │   │       ├── lib
+│   │   │   │   │   │       │   ├── DealerAI.js
+│   │   │   │   │   │       │   ├── GameLogic.js
+│   │   │   │   │   │       │   ├── gameTypes.js
+│   │   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │   │       │   ├── soundManager.js
+│   │   │   │   │   │       │   └── utils.js
+│   │   │   │   │   │       ├── main.jsx
+│   │   │   │   │   │       └── pages
+│   │   │   │   │   │           ├── game.jsx
+│   │   │   │   │   │           ├── home.jsx
+│   │   │   │   │   │           └── not-found.jsx
+│   │   │   │   │   ├── command.md
+│   │   │   │   │   ├── components.json
+│   │   │   │   │   ├── drizzle.config.js
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── replit.md
+│   │   │   │   │   ├── server
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── routes.js
+│   │   │   │   │   │   ├── storage.js
+│   │   │   │   │   │   └── vite.js
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   └── schema.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── greed-satisfaction
+│   │   │   │   │   ├── client
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │   │   └── src
+│   │   │   │   │   │       ├── App.jsx
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   ├── BalanceAnimations.jsx
+│   │   │   │   │   │       │   ├── ConfettiEffect.jsx
+│   │   │   │   │   │       │   ├── GameBox.jsx
+│   │   │   │   │   │       │   ├── ParticleEffect.jsx
+│   │   │   │   │   │       │   ├── ShieldEffect.jsx
+│   │   │   │   │   │       │   └── ui
+│   │   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │   │       ├── hooks
+│   │   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │   │       │   ├── useDailyLimit.js
+│   │   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │   │       │   └── useLocalStorage.js
+│   │   │   │   │   │       ├── index.css
+│   │   │   │   │   │       ├── lib
+│   │   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │   │       │   └── utils.js
+│   │   │   │   │   │       ├── main.jsx
+│   │   │   │   │   │       └── pages
+│   │   │   │   │   │           ├── game.jsx
+│   │   │   │   │   │           └── not-found.jsx
+│   │   │   │   │   ├── components.json
+│   │   │   │   │   ├── drizzle.config.js
+│   │   │   │   │   ├── package-lock.json
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── replit.md
+│   │   │   │   │   ├── server
+│   │   │   │   │   │   ├── db.js
+│   │   │   │   │   │   ├── index.js
+│   │   │   │   │   │   ├── playerService.js
+│   │   │   │   │   │   ├── routes.js
+│   │   │   │   │   │   ├── storage.js
+│   │   │   │   │   │   └── vite.js
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   └── schema.js
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   └── trial-survival
+│   │   │   │       ├── attached_assets
+│   │   │   │       │   └── Pasted-Create-a-complete-browser-based-game-called-Survive-the-Trials-inspired-by-Squid-Game-GA-1753885350535_1753885350544.txt
+│   │   │   │       ├── client
+│   │   │   │       │   ├── index.html
+│   │   │   │       │   └── src
+│   │   │   │       │       ├── App.jsx
+│   │   │   │       │       ├── components
+│   │   │   │       │       │   ├── AchievementSystem.jsx
+│   │   │   │       │       │   ├── AudioControls.jsx
+│   │   │   │       │       │   ├── ChallengeNotification.jsx
+│   │   │   │       │       │   ├── ChallengeStatus.jsx
+│   │   │   │       │       │   ├── EliminationScreen.jsx
+│   │   │   │       │       │   ├── GameHeader.jsx
+│   │   │   │       │       │   ├── GameSelection.jsx
+│   │   │   │       │       │   ├── Leaderboard.jsx
+│   │   │   │       │       │   ├── PlayerCount.jsx
+│   │   │   │       │       │   ├── PowerUpShop.jsx
+│   │   │   │       │       │   ├── VictoryScreen.jsx
+│   │   │   │       │       │   ├── games
+│   │   │   │       │       │   │   ├── GlassBridge.jsx
+│   │   │   │       │       │   │   ├── HoneycombCarve.jsx
+│   │   │   │       │       │   │   ├── Marbles.jsx
+│   │   │   │       │       │   │   ├── NightmareChase.jsx
+│   │   │   │       │       │   │   ├── RedLightGreenLight.jsx
+│   │   │   │       │       │   │   └── TugOfWar.jsx
+│   │   │   │       │       │   └── ui
+│   │   │   │       │       │       ├── accordion.jsx
+│   │   │   │       │       │       ├── alert-dialog.jsx
+│   │   │   │       │       │       ├── alert.jsx
+│   │   │   │       │       │       ├── aspect-ratio.jsx
+│   │   │   │       │       │       ├── avatar.jsx
+│   │   │   │       │       │       ├── badge.jsx
+│   │   │   │       │       │       ├── breadcrumb.jsx
+│   │   │   │       │       │       ├── button.jsx
+│   │   │   │       │       │       ├── calendar.jsx
+│   │   │   │       │       │       ├── card.jsx
+│   │   │   │       │       │       ├── carousel.jsx
+│   │   │   │       │       │       ├── chart.jsx
+│   │   │   │       │       │       ├── checkbox.jsx
+│   │   │   │       │       │       ├── collapsible.jsx
+│   │   │   │       │       │       ├── command.jsx
+│   │   │   │       │       │       ├── context-menu.jsx
+│   │   │   │       │       │       ├── dialog.jsx
+│   │   │   │       │       │       ├── drawer.jsx
+│   │   │   │       │       │       ├── dropdown-menu.jsx
+│   │   │   │       │       │       ├── form.jsx
+│   │   │   │       │       │       ├── hover-card.jsx
+│   │   │   │       │       │       ├── input-otp.jsx
+│   │   │   │       │       │       ├── input.jsx
+│   │   │   │       │       │       ├── label.jsx
+│   │   │   │       │       │       ├── menubar.jsx
+│   │   │   │       │       │       ├── navigation-menu.jsx
+│   │   │   │       │       │       ├── pagination.jsx
+│   │   │   │       │       │       ├── popover.jsx
+│   │   │   │       │       │       ├── progress.jsx
+│   │   │   │       │       │       ├── radio-group.jsx
+│   │   │   │       │       │       ├── resizable.jsx
+│   │   │   │       │       │       ├── scroll-area.jsx
+│   │   │   │       │       │       ├── select.jsx
+│   │   │   │       │       │       ├── separator.jsx
+│   │   │   │       │       │       ├── sheet.jsx
+│   │   │   │       │       │       ├── sidebar.jsx
+│   │   │   │       │       │       ├── skeleton.jsx
+│   │   │   │       │       │       ├── slider.jsx
+│   │   │   │       │       │       ├── switch.jsx
+│   │   │   │       │       │       ├── table.jsx
+│   │   │   │       │       │       ├── tabs.jsx
+│   │   │   │       │       │       ├── textarea.jsx
+│   │   │   │       │       │       ├── toast.jsx
+│   │   │   │       │       │       ├── toaster.jsx
+│   │   │   │       │       │       ├── toggle-group.jsx
+│   │   │   │       │       │       ├── toggle.jsx
+│   │   │   │       │       │       └── tooltip.jsx
+│   │   │   │       │       ├── hooks
+│   │   │   │       │       │   ├── use-mobile.jsx
+│   │   │   │       │       │   ├── use-toast.js
+│   │   │   │       │       │   └── useGameState.js
+│   │   │   │       │       ├── index.css
+│   │   │   │       │       ├── lib
+│   │   │   │       │       │   ├── audioManager.js
+│   │   │   │       │       │   ├── bossManager.js
+│   │   │   │       │       │   ├── enemyManager.js
+│   │   │   │       │       │   ├── gameEngine.js
+│   │   │   │       │       │   ├── powerUpManager.js
+│   │   │   │       │       │   ├── queryClient.js
+│   │   │   │       │       │   └── utils.js
+│   │   │   │       │       ├── main.jsx
+│   │   │   │       │       ├── pages
+│   │   │   │       │       │   ├── game.jsx
+│   │   │   │       │       │   └── not-found.jsx
+│   │   │   │       │       └── types
+│   │   │   │       │           ├── enemies.js
+│   │   │   │       │           ├── game.js
+│   │   │   │       │           └── powerups.js
+│   │   │   │       ├── components.json
+│   │   │   │       ├── drizzle.config.js
+│   │   │   │       ├── package-lock.json
+│   │   │   │       ├── postcss.config.js
+│   │   │   │       ├── replit.md
+│   │   │   │       ├── server
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   ├── routes.js
+│   │   │   │       │   ├── storage.js
+│   │   │   │       │   └── vite.js
+│   │   │   │       ├── shared
+│   │   │   │       │   └── schema.js
+│   │   │   │       ├── tailwind.config.js
+│   │   │   │       ├── tsconfig.json
+│   │   │   │       └── vite.config.js
+│   │   │   ├── snake
+│   │   │   │   └── game.js
+│   │   │   ├── trial-survival
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   └── Pasted-Create-a-complete-browser-based-game-called-Survive-the-Trials-inspired-by-Squid-Game-GA-1753885350535_1753885350544.txt
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── AchievementSystem.jsx
+│   │   │   │   │       │   ├── AudioControls.jsx
+│   │   │   │   │       │   ├── ChallengeNotification.jsx
+│   │   │   │   │       │   ├── ChallengeStatus.jsx
+│   │   │   │   │       │   ├── EliminationScreen.jsx
+│   │   │   │   │       │   ├── GameHeader.jsx
+│   │   │   │   │       │   ├── GameSelection.jsx
+│   │   │   │   │       │   ├── Leaderboard.jsx
+│   │   │   │   │       │   ├── PlayerCount.jsx
+│   │   │   │   │       │   ├── PowerUpShop.jsx
+│   │   │   │   │       │   ├── VictoryScreen.jsx
+│   │   │   │   │       │   ├── games
+│   │   │   │   │       │   │   ├── GlassBridge.jsx
+│   │   │   │   │       │   │   ├── HoneycombCarve.jsx
+│   │   │   │   │       │   │   ├── Marbles.jsx
+│   │   │   │   │       │   │   ├── NightmareChase.jsx
+│   │   │   │   │       │   │   ├── RedLightGreenLight.jsx
+│   │   │   │   │       │   │   └── TugOfWar.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   └── useGameState.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── audioManager.js
+│   │   │   │   │       │   ├── bossManager.js
+│   │   │   │   │       │   ├── enemyManager.js
+│   │   │   │   │       │   ├── gameEngine.js
+│   │   │   │   │       │   ├── powerUpManager.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   ├── game.jsx
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       ├── react-shim.d.js
+│   │   │   │   │       └── types
+│   │   │   │   │           ├── enemies.js
+│   │   │   │   │           ├── game.js
+│   │   │   │   │           └── powerups.js
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   └── vanilla
+│   │   │       ├── _shared
+│   │   │       │   ├── common-styles.css
+│   │   │       │   ├── game-base.css
+│   │   │       │   └── game-integration.js
+│   │   │       ├── american_roulette
+│   │   │       │   ├── a_r.css
+│   │   │       │   ├── a_r.html
+│   │   │       │   ├── a_r.js
+│   │   │       │   ├── index.html
+│   │   │       │   └── index.html.bak
+│   │   │       ├── billiard
+│   │   │       │   ├── bi.css
+│   │   │       │   ├── bi.html
+│   │   │       │   ├── bi.js
+│   │   │       │   ├── index.html
+│   │   │       │   └── index.html.bak
+│   │   │       ├── car_race
+│   │   │       │   ├── c_r.css
+│   │   │       │   ├── c_r.html
+│   │   │       │   ├── c_r.js
+│   │   │       │   ├── index.html
+│   │   │       │   └── index.html.bak
+│   │   │       ├── cards
+│   │   │       │   ├── cards.css
+│   │   │       │   ├── cards.js
+│   │   │       │   └── index.html
+│   │   │       ├── chess-nexus
+│   │   │       │   ├── board.js
+│   │   │       │   ├── game.js
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── pieces.js
+│   │   │       │   ├── sounds
+│   │   │       │   │   ├── capture.mp3
+│   │   │       │   │   ├── check.mp3
+│   │   │       │   │   └── move.mp3
+│   │   │       │   └── style.css
+│   │   │       ├── chess1
+│   │   │       │   ├── c1.css
+│   │   │       │   ├── c1.html
+│   │   │       │   ├── c1.js
+│   │   │       │   ├── index.html
+│   │   │       │   └── index.html.bak
+│   │   │       ├── dominos
+│   │   │       │   ├── do.css
+│   │   │       │   ├── do.html
+│   │   │       │   ├── do.js
+│   │   │       │   ├── index.html
+│   │   │       │   └── index.html.bak
+│   │   │       ├── pubgy-kids
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── pk.css
+│   │   │       │   ├── pk.html
+│   │   │       │   └── pk.js
+│   │   │       ├── river-raid
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── rr.css
+│   │   │       │   ├── rr.html
+│   │   │       │   └── rr.js
+│   │   │       ├── snake
+│   │   │       │   ├── communication
+│   │   │       │   │   └── communication-manager.js
+│   │   │       │   ├── core
+│   │   │       │   │   └── service-modes.js
+│   │   │       │   ├── index.html
+│   │   │       │   ├── snake.css
+│   │   │       │   ├── snake.html
+│   │   │       │   └── snake.js
+│   │   │       ├── snake&ladder1
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── s_l1.css
+│   │   │       │   ├── s_l1.html
+│   │   │       │   └── s_l1.js
+│   │   │       ├── solitaire
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── so.css
+│   │   │       │   ├── so.html
+│   │   │       │   └── so.js
+│   │   │       ├── spinner
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── spin.css
+│   │   │       │   ├── spin.html
+│   │   │       │   └── spin.js
+│   │   │       ├── standalone
+│   │   │       │   ├── billiards.html
+│   │   │       │   ├── dominos.html
+│   │   │       │   ├── pong.html
+│   │   │       │   ├── snake.html
+│   │   │       │   ├── solitaire.html
+│   │   │       │   ├── spinner.html
+│   │   │       │   ├── tetris.html
+│   │   │       │   └── tictactoe.html
+│   │   │       ├── tertis-classic
+│   │   │       │   ├── index.html
+│   │   │       │   ├── index.html.bak
+│   │   │       │   ├── ter.css
+│   │   │       │   ├── ter.html
+│   │   │       │   └── ter.js
+│   │   │       └── tic-tac
+│   │   │           ├── index.html
+│   │   │           ├── index.html.bak
+│   │   │           ├── tita.css
+│   │   │           ├── tita.html
+│   │   │           └── tita.js
+│   │   ├── index.html
+│   │   ├── integrations
+│   │   │   └── yt-runtime-bridge.js
+│   │   ├── js
+│   │   │   ├── billiards.js
+│   │   │   ├── dashboard.js
+│   │   │   ├── dominos.js
+│   │   │   ├── gamble.js
+│   │   │   ├── solitaire.js
+│   │   │   ├── spinner.js
+│   │   │   ├── tetris.js
+│   │   │   ├── tictactoe.js
+│   │   │   └── transfer-test.js
+│   │   ├── main.js
+│   │   ├── package-lock.json
+│   │   ├── react-games
+│   │   │   ├── CasinoSim
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   ├── Pasted-design-the-game-mechanics-flow-and-rule-logic-to-simulate-a-real-gambling-card-game-The-closest-r-1753345056844_1753345056852.txt
+│   │   │   │   │   ├── Pasted-design-the-game-mechanics-flow-and-rule-logic-to-simulate-a-real-gambling-card-game-The-closest-r-1753349117456_1753349117470.txt
+│   │   │   │   │   └── image_1753349151213.png
+│   │   │   │   ├── client
+│   │   │   │   │   ├── build-css.js
+│   │   │   │   │   ├── dist
+│   │   │   │   │   │   └── output.css
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   │   ├── postcss.config.js
+│   │   │   │   │   ├── src
+│   │   │   │   │   │   ├── App.jsx
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── game
+│   │   │   │   │   │   │   │   ├── CommunityCards.jsx
+│   │   │   │   │   │   │   │   ├── DealerSection.jsx
+│   │   │   │   │   │   │   │   ├── GameControls.jsx
+│   │   │   │   │   │   │   │   ├── GameHistory.jsx
+│   │   │   │   │   │   │   │   ├── GameTable.jsx
+│   │   │   │   │   │   │   │   ├── PlayerPosition.jsx
+│   │   │   │   │   │   │   │   └── WinnerModal.jsx
+│   │   │   │   │   │   │   └── ui
+│   │   │   │   │   │   │       ├── accordion.jsx
+│   │   │   │   │   │   │       ├── alert-dialog.jsx
+│   │   │   │   │   │   │       ├── alert.jsx
+│   │   │   │   │   │   │       ├── aspect-ratio.jsx
+│   │   │   │   │   │   │       ├── avatar.jsx
+│   │   │   │   │   │   │       ├── badge.jsx
+│   │   │   │   │   │   │       ├── breadcrumb.jsx
+│   │   │   │   │   │   │       ├── button.jsx
+│   │   │   │   │   │   │       ├── calendar.jsx
+│   │   │   │   │   │   │       ├── card.jsx
+│   │   │   │   │   │   │       ├── carousel.jsx
+│   │   │   │   │   │   │       ├── chart.jsx
+│   │   │   │   │   │   │       ├── checkbox.jsx
+│   │   │   │   │   │   │       ├── collapsible.jsx
+│   │   │   │   │   │   │       ├── command.jsx
+│   │   │   │   │   │   │       ├── context-menu.jsx
+│   │   │   │   │   │   │       ├── dialog.jsx
+│   │   │   │   │   │   │       ├── drawer.jsx
+│   │   │   │   │   │   │       ├── dropdown-menu.jsx
+│   │   │   │   │   │   │       ├── form.jsx
+│   │   │   │   │   │   │       ├── hover-card.jsx
+│   │   │   │   │   │   │       ├── input-otp.jsx
+│   │   │   │   │   │   │       ├── input.jsx
+│   │   │   │   │   │   │       ├── label.jsx
+│   │   │   │   │   │   │       ├── menubar.jsx
+│   │   │   │   │   │   │       ├── navigation-menu.jsx
+│   │   │   │   │   │   │       ├── pagination.jsx
+│   │   │   │   │   │   │       ├── popover.jsx
+│   │   │   │   │   │   │       ├── progress.jsx
+│   │   │   │   │   │   │       ├── radio-group.jsx
+│   │   │   │   │   │   │       ├── resizable.jsx
+│   │   │   │   │   │   │       ├── scroll-area.jsx
+│   │   │   │   │   │   │       ├── select.jsx
+│   │   │   │   │   │   │       ├── separator.jsx
+│   │   │   │   │   │   │       ├── sheet.jsx
+│   │   │   │   │   │   │       ├── sidebar.jsx
+│   │   │   │   │   │   │       ├── skeleton.jsx
+│   │   │   │   │   │   │       ├── slider.jsx
+│   │   │   │   │   │   │       ├── switch.jsx
+│   │   │   │   │   │   │       ├── table.jsx
+│   │   │   │   │   │   │       ├── tabs.jsx
+│   │   │   │   │   │   │       ├── textarea.jsx
+│   │   │   │   │   │   │       ├── toast.jsx
+│   │   │   │   │   │   │       ├── toaster.jsx
+│   │   │   │   │   │   │       ├── toggle-group.jsx
+│   │   │   │   │   │   │       ├── toggle.jsx
+│   │   │   │   │   │   │       └── tooltip.jsx
+│   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   ├── use-mobile.jsx
+│   │   │   │   │   │   │   ├── use-toast.js
+│   │   │   │   │   │   │   ├── useGameState.js
+│   │   │   │   │   │   │   └── useWebSocket.js
+│   │   │   │   │   │   ├── index.css
+│   │   │   │   │   │   ├── lib
+│   │   │   │   │   │   │   ├── cardUtils.js
+│   │   │   │   │   │   │   ├── gameLogic.js
+│   │   │   │   │   │   │   ├── queryClient.js
+│   │   │   │   │   │   │   └── utils.js
+│   │   │   │   │   │   ├── main.jsx
+│   │   │   │   │   │   └── pages
+│   │   │   │   │   │       ├── game.jsx
+│   │   │   │   │   │       └── not-found.jsx
+│   │   │   │   │   ├── tailwind.config.js
+│   │   │   │   │   ├── tsconfig.json
+│   │   │   │   │   ├── tsconfig.node.json
+│   │   │   │   │   └── vite.config.js
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── gameLogic.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── ChessNexus
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── AppHeader.jsx
+│   │   │   │   │       │   ├── chess
+│   │   │   │   │       │   │   ├── AISettings.jsx
+│   │   │   │   │       │   │   ├── ChessBoard.jsx
+│   │   │   │   │       │   │   ├── FENDialog.jsx
+│   │   │   │   │       │   │   ├── GameControls.jsx
+│   │   │   │   │       │   │   ├── GameInfo.jsx
+│   │   │   │   │       │   │   ├── GameModeSelector.jsx
+│   │   │   │   │       │   │   ├── MoveHistory.jsx
+│   │   │   │   │       │   │   └── MultiplayerChat.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useChessGame.js
+│   │   │   │   │       │   ├── useStockfish.js
+│   │   │   │   │       │   └── useSupabaseRealtime.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── chess-utils.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       └── pages
+│   │   │   │   │           ├── chess.jsx
+│   │   │   │   │           └── not-found.jsx
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── CryptoVegas
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── public
+│   │   │   │   │   │   ├── fonts
+│   │   │   │   │   │   │   └── inter.json
+│   │   │   │   │   │   ├── geometries
+│   │   │   │   │   │   │   └── heart.gltf
+│   │   │   │   │   │   ├── sounds
+│   │   │   │   │   │   │   ├── background.mp3
+│   │   │   │   │   │   │   ├── hit.mp3
+│   │   │   │   │   │   │   └── success.mp3
+│   │   │   │   │   │   └── textures
+│   │   │   │   │   │       ├── asphalt.png
+│   │   │   │   │   │       ├── grass.png
+│   │   │   │   │   │       ├── sand.jpg
+│   │   │   │   │   │       ├── sky.png
+│   │   │   │   │   │       └── wood.jpg
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── auth
+│   │   │   │   │       │   │   └── AuthModal.jsx
+│   │   │   │   │       │   ├── casino
+│   │   │   │   │       │   │   ├── Balance.jsx
+│   │   │   │   │       │   │   ├── CasinoLayout.jsx
+│   │   │   │   │       │   │   ├── GameHistory.jsx
+│   │   │   │   │       │   │   └── Navigation.jsx
+│   │   │   │   │       │   ├── games
+│   │   │   │   │       │   │   ├── CrashGame.jsx
+│   │   │   │   │       │   │   ├── DiceGame.jsx
+│   │   │   │   │       │   │   └── SlotsGame.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── interface.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── neon-button.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── sonner.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   └── use-is-mobile.jsx
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── gameUtils.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   ├── stores
+│   │   │   │   │       │   │   ├── useAudio.jsx
+│   │   │   │   │       │   │   ├── useAuth.jsx
+│   │   │   │   │       │   │   ├── useCasino.jsx
+│   │   │   │   │       │   │   └── useGame.jsx
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       └── pages
+│   │   │   │   │           └── not-found.jsx
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── ExecuteAllGame
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   └── Pasted--Full-Logic-Functionalities-Description-Game-Entities-Lady-Host-Dealer-Takes-money-from--1753265162770_1753265162771.txt
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── casino
+│   │   │   │   │       │   │   ├── CardDeck.jsx
+│   │   │   │   │       │   │   ├── CasinoTable.jsx
+│   │   │   │   │       │   │   ├── ChatSystem.jsx
+│   │   │   │   │       │   │   ├── GameControls.jsx
+│   │   │   │   │       │   │   ├── LadyDealer.jsx
+│   │   │   │   │       │   │   ├── MoneyExchange.jsx
+│   │   │   │   │       │   │   ├── PlayerPosition.jsx
+│   │   │   │   │       │   │   └── PotArea.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │       │   └── useWebSocket.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── gameTypes.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   ├── soundManager.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       └── pages
+│   │   │   │   │           ├── game.jsx
+│   │   │   │   │           ├── home.jsx
+│   │   │   │   │           └── not-found.jsx
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── gameService.js
+│   │   │   │   │   │   └── websocketService.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── GameChatConnect
+│   │   │   │   ├── README.md
+│   │   │   │   ├── attached_assets
+│   │   │   │   │   ├── App_1753267299181.jsx
+│   │   │   │   │   ├── CardDeck_1753267308633.jsx
+│   │   │   │   │   ├── CasinoTable_1753267308634.jsx
+│   │   │   │   │   ├── ChatSystem_1753267308634.jsx
+│   │   │   │   │   ├── ExecuteAllGame_1753267064946.zip
+│   │   │   │   │   ├── GameControls_1753267308635.jsx
+│   │   │   │   │   ├── LadyDealer_1753267308637.jsx
+│   │   │   │   │   ├── MoneyExchange_1753267308638.jsx
+│   │   │   │   │   ├── PlayerPosition_1753267308639.jsx
+│   │   │   │   │   ├── PotArea_1753267308639.jsx
+│   │   │   │   │   ├── game_1753267368916.jsx
+│   │   │   │   │   ├── home_1753267368936.jsx
+│   │   │   │   │   ├── index_1753267299184.css
+│   │   │   │   │   ├── index_1753267401742.html
+│   │   │   │   │   ├── main_1753267299185.jsx
+│   │   │   │   │   ├── not-found_1753267368940.jsx
+│   │   │   │   │   ├── use-mobile_1753267331332.jsx
+│   │   │   │   │   ├── use-toast_1753267331358.js
+│   │   │   │   │   ├── useGameState_1753267331360.js
+│   │   │   │   │   └── useWebSocket_1753267331362.js
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── casino
+│   │   │   │   │       │   │   ├── AudioCommunication.jsx
+│   │   │   │   │       │   │   ├── AudioSettingsModal.jsx
+│   │   │   │   │       │   │   ├── CasinoTable.jsx
+│   │   │   │   │       │   │   ├── ChatSystem.jsx
+│   │   │   │   │       │   │   ├── GameStartModal.jsx
+│   │   │   │   │       │   │   ├── MoneyExchange.jsx
+│   │   │   │   │       │   │   └── PotArea.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │       │   ├── useWebRTC.js
+│   │   │   │   │       │   └── useWebSocket.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── DealerAI.js
+│   │   │   │   │       │   ├── GameLogic.js
+│   │   │   │   │       │   ├── gameTypes.js
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   ├── soundManager.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       ├── pages
+│   │   │   │   │       │   ├── game.jsx
+│   │   │   │   │       │   ├── home.jsx
+│   │   │   │   │       │   └── not-found.jsx
+│   │   │   │   │       └── types.d.ts
+│   │   │   │   ├── command.md
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── pnpm-lock.yaml
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   ├── GreedSatisfaction
+│   │   │   │   ├── client
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── src
+│   │   │   │   │       ├── App.jsx
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── BalanceAnimations.jsx
+│   │   │   │   │       │   ├── ConfettiEffect.jsx
+│   │   │   │   │       │   ├── GameBox.jsx
+│   │   │   │   │       │   ├── ParticleEffect.jsx
+│   │   │   │   │       │   ├── ShieldEffect.jsx
+│   │   │   │   │       │   └── ui
+│   │   │   │   │       │       ├── accordion.jsx
+│   │   │   │   │       │       ├── alert-dialog.jsx
+│   │   │   │   │       │       ├── alert.jsx
+│   │   │   │   │       │       ├── aspect-ratio.jsx
+│   │   │   │   │       │       ├── avatar.jsx
+│   │   │   │   │       │       ├── badge.jsx
+│   │   │   │   │       │       ├── breadcrumb.jsx
+│   │   │   │   │       │       ├── button.jsx
+│   │   │   │   │       │       ├── calendar.jsx
+│   │   │   │   │       │       ├── card.jsx
+│   │   │   │   │       │       ├── carousel.jsx
+│   │   │   │   │       │       ├── chart.jsx
+│   │   │   │   │       │       ├── checkbox.jsx
+│   │   │   │   │       │       ├── collapsible.jsx
+│   │   │   │   │       │       ├── command.jsx
+│   │   │   │   │       │       ├── context-menu.jsx
+│   │   │   │   │       │       ├── dialog.jsx
+│   │   │   │   │       │       ├── drawer.jsx
+│   │   │   │   │       │       ├── dropdown-menu.jsx
+│   │   │   │   │       │       ├── form.jsx
+│   │   │   │   │       │       ├── hover-card.jsx
+│   │   │   │   │       │       ├── input-otp.jsx
+│   │   │   │   │       │       ├── input.jsx
+│   │   │   │   │       │       ├── label.jsx
+│   │   │   │   │       │       ├── menubar.jsx
+│   │   │   │   │       │       ├── navigation-menu.jsx
+│   │   │   │   │       │       ├── pagination.jsx
+│   │   │   │   │       │       ├── popover.jsx
+│   │   │   │   │       │       ├── progress.jsx
+│   │   │   │   │       │       ├── radio-group.jsx
+│   │   │   │   │       │       ├── resizable.jsx
+│   │   │   │   │       │       ├── scroll-area.jsx
+│   │   │   │   │       │       ├── select.jsx
+│   │   │   │   │       │       ├── separator.jsx
+│   │   │   │   │       │       ├── sheet.jsx
+│   │   │   │   │       │       ├── sidebar.jsx
+│   │   │   │   │       │       ├── skeleton.jsx
+│   │   │   │   │       │       ├── slider.jsx
+│   │   │   │   │       │       ├── switch.jsx
+│   │   │   │   │       │       ├── table.jsx
+│   │   │   │   │       │       ├── tabs.jsx
+│   │   │   │   │       │       ├── textarea.jsx
+│   │   │   │   │       │       ├── toast.jsx
+│   │   │   │   │       │       ├── toaster.jsx
+│   │   │   │   │       │       ├── toggle-group.jsx
+│   │   │   │   │       │       ├── toggle.jsx
+│   │   │   │   │       │       └── tooltip.jsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   ├── use-mobile.jsx
+│   │   │   │   │       │   ├── use-toast.js
+│   │   │   │   │       │   ├── useDailyLimit.js
+│   │   │   │   │       │   ├── useGameState.js
+│   │   │   │   │       │   └── useLocalStorage.js
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       ├── lib
+│   │   │   │   │       │   ├── queryClient.js
+│   │   │   │   │       │   └── utils.js
+│   │   │   │   │       ├── main.jsx
+│   │   │   │   │       └── pages
+│   │   │   │   │           ├── game.jsx
+│   │   │   │   │           └── not-found.jsx
+│   │   │   │   ├── components.json
+│   │   │   │   ├── drizzle.config.js
+│   │   │   │   ├── package-lock.json
+│   │   │   │   ├── postcss.config.js
+│   │   │   │   ├── replit.md
+│   │   │   │   ├── server
+│   │   │   │   │   ├── db.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── playerService.js
+│   │   │   │   │   ├── routes.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   └── vite.js
+│   │   │   │   ├── shared
+│   │   │   │   │   └── schema.js
+│   │   │   │   ├── tailwind.config.js
+│   │   │   │   ├── tsconfig.json
+│   │   │   │   └── vite.config.js
+│   │   │   └── TrialSurvival
+│   │   │       ├── attached_assets
+│   │   │       │   └── Pasted-Create-a-complete-browser-based-game-called-Survive-the-Trials-inspired-by-Squid-Game-GA-1753885350535_1753885350544.txt
+│   │   │       ├── client
+│   │   │       │   ├── index.html
+│   │   │       │   └── src
+│   │   │       │       ├── App.jsx
+│   │   │       │       ├── components
+│   │   │       │       │   ├── AchievementSystem.jsx
+│   │   │       │       │   ├── AudioControls.jsx
+│   │   │       │       │   ├── ChallengeNotification.jsx
+│   │   │       │       │   ├── ChallengeStatus.jsx
+│   │   │       │       │   ├── EliminationScreen.jsx
+│   │   │       │       │   ├── GameHeader.jsx
+│   │   │       │       │   ├── GameSelection.jsx
+│   │   │       │       │   ├── Leaderboard.jsx
+│   │   │       │       │   ├── PlayerCount.jsx
+│   │   │       │       │   ├── PowerUpShop.jsx
+│   │   │       │       │   ├── VictoryScreen.jsx
+│   │   │       │       │   ├── games
+│   │   │       │       │   │   ├── GlassBridge.jsx
+│   │   │       │       │   │   ├── HoneycombCarve.jsx
+│   │   │       │       │   │   ├── Marbles.jsx
+│   │   │       │       │   │   ├── NightmareChase.jsx
+│   │   │       │       │   │   ├── RedLightGreenLight.jsx
+│   │   │       │       │   │   └── TugOfWar.jsx
+│   │   │       │       │   └── ui
+│   │   │       │       │       ├── accordion.jsx
+│   │   │       │       │       ├── alert-dialog.jsx
+│   │   │       │       │       ├── alert.jsx
+│   │   │       │       │       ├── aspect-ratio.jsx
+│   │   │       │       │       ├── avatar.jsx
+│   │   │       │       │       ├── badge.jsx
+│   │   │       │       │       ├── breadcrumb.jsx
+│   │   │       │       │       ├── button.jsx
+│   │   │       │       │       ├── calendar.jsx
+│   │   │       │       │       ├── card.jsx
+│   │   │       │       │       ├── carousel.jsx
+│   │   │       │       │       ├── chart.jsx
+│   │   │       │       │       ├── checkbox.jsx
+│   │   │       │       │       ├── collapsible.jsx
+│   │   │       │       │       ├── command.jsx
+│   │   │       │       │       ├── context-menu.jsx
+│   │   │       │       │       ├── dialog.jsx
+│   │   │       │       │       ├── drawer.jsx
+│   │   │       │       │       ├── dropdown-menu.jsx
+│   │   │       │       │       ├── form.jsx
+│   │   │       │       │       ├── hover-card.jsx
+│   │   │       │       │       ├── input-otp.jsx
+│   │   │       │       │       ├── input.jsx
+│   │   │       │       │       ├── label.jsx
+│   │   │       │       │       ├── menubar.jsx
+│   │   │       │       │       ├── navigation-menu.jsx
+│   │   │       │       │       ├── pagination.jsx
+│   │   │       │       │       ├── popover.jsx
+│   │   │       │       │       ├── progress.jsx
+│   │   │       │       │       ├── radio-group.jsx
+│   │   │       │       │       ├── resizable.jsx
+│   │   │       │       │       ├── scroll-area.jsx
+│   │   │       │       │       ├── select.jsx
+│   │   │       │       │       ├── separator.jsx
+│   │   │       │       │       ├── sheet.jsx
+│   │   │       │       │       ├── sidebar.jsx
+│   │   │       │       │       ├── skeleton.jsx
+│   │   │       │       │       ├── slider.jsx
+│   │   │       │       │       ├── switch.jsx
+│   │   │       │       │       ├── table.jsx
+│   │   │       │       │       ├── tabs.jsx
+│   │   │       │       │       ├── textarea.jsx
+│   │   │       │       │       ├── toast.jsx
+│   │   │       │       │       ├── toaster.jsx
+│   │   │       │       │       ├── toggle-group.jsx
+│   │   │       │       │       ├── toggle.jsx
+│   │   │       │       │       └── tooltip.jsx
+│   │   │       │       ├── hooks
+│   │   │       │       │   ├── use-mobile.jsx
+│   │   │       │       │   ├── use-toast.js
+│   │   │       │       │   └── useGameState.js
+│   │   │       │       ├── index.css
+│   │   │       │       ├── lib
+│   │   │       │       │   ├── audioManager.js
+│   │   │       │       │   ├── bossManager.js
+│   │   │       │       │   ├── enemyManager.js
+│   │   │       │       │   ├── gameEngine.js
+│   │   │       │       │   ├── powerUpManager.js
+│   │   │       │       │   ├── queryClient.js
+│   │   │       │       │   └── utils.js
+│   │   │       │       ├── main.jsx
+│   │   │       │       ├── pages
+│   │   │       │       │   ├── game.jsx
+│   │   │       │       │   └── not-found.jsx
+│   │   │       │       └── types
+│   │   │       │           ├── enemies.js
+│   │   │       │           ├── game.js
+│   │   │       │           └── powerups.js
+│   │   │       ├── components.json
+│   │   │       ├── drizzle.config.js
+│   │   │       ├── package-lock.json
+│   │   │       ├── postcss.config.js
+│   │   │       ├── replit.md
+│   │   │       ├── server
+│   │   │       │   ├── index.js
+│   │   │       │   ├── routes.js
+│   │   │       │   ├── storage.js
+│   │   │       │   └── vite.js
+│   │   │       ├── shared
+│   │   │       │   └── schema.js
+│   │   │       ├── tailwind.config.js
+│   │   │       ├── tsconfig.json
+│   │   │       └── vite.config.js
+│   │   ├── reference
+│   │   │   └── cards
+│   │   │       ├── attached_assets
+│   │   │       │   └── Pasted--PROMPT-Islamic-Compliant-Cards-Game-Vanilla-JS-Only-IM_1769132246308.txt
+│   │   │       ├── client
+│   │   │       │   ├── anti-manipulation
+│   │   │       │   │   └── collusion-engine.js
+│   │   │       │   ├── assets
+│   │   │       │   ├── communication
+│   │   │       │   │   ├── audio-chat.js
+│   │   │       │   │   ├── communication-manager.js
+│   │   │       │   │   ├── text-chat.js
+│   │   │       │   │   ├── video-chat.js
+│   │   │       │   │   └── ws-client.js
+│   │   │       │   ├── core
+│   │   │       │   │   ├── ai-engine.js
+│   │   │       │   │   ├── game-engine.js
+│   │   │       │   │   ├── service-modes.js
+│   │   │       │   │   └── state-machine.js
+│   │   │       │   ├── index.html
+│   │   │       │   ├── main.js
+│   │   │       │   ├── persistence
+│   │   │       │   ├── public
+│   │   │       │   │   └── favicon.png
+│   │   │       │   ├── styles.css
+│   │   │       │   └── ui
+│   │   │       │       ├── game-ui.js
+│   │   │       │       ├── lobby.js
+│   │   │       │       └── results-ui.js
+│   │   │       ├── components.json
+│   │   │       ├── drizzle.config.ts
+│   │   │       ├── package-lock.json
+│   │   │       ├── package.json
+│   │   │       ├── postcss.config.js
+│   │   │       ├── script
+│   │   │       │   └── build.ts
+│   │   │       ├── server
+│   │   │       │   ├── db.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── routes.ts
+│   │   │       │   ├── static.ts
+│   │   │       │   ├── storage.ts
+│   │   │       │   └── vite.ts
+│   │   │       ├── shared
+│   │   │       │   ├── routes.ts
+│   │   │       │   └── schema.ts
+│   │   │       ├── tailwind.config.ts
+│   │   │       ├── tsconfig.json
+│   │   │       └── vite.config.ts
+│   │   ├── scripts
+│   │   │   ├── add-game-integration.sh
+│   │   │   └── integrate-games.sh
+│   │   ├── services
+│   │   │   ├── audio
+│   │   │   │   └── audio-call.js
+│   │   │   ├── signaling
+│   │   │   │   └── webrtc-signal.js
+│   │   │   ├── text-chat
+│   │   │   │   └── chat.js
+│   │   │   └── video
+│   │   │       └── video-call.js
+│   │   ├── setup-react-games.sh
+│   │   ├── test-cards-modes.html
+│   │   ├── test-dashboard.html
+│   │   ├── test-runner.html
+│   │   ├── test-suite.js
+│   │   ├── tests
+│   │   │   ├── critical-failure-tests.js
+│   │   │   └── mock-ledger.js
+│   │   └── ui
+│   │       ├── challenge-panel.js
+│   │       ├── game-loader.js
+│   │       ├── games-dashboard.js
+│   │       ├── mode-selector.js
+│   │       └── service-selector.js
+│   ├── Games-Centre.html
+│   ├── assets
+│   │   ├── index.html
+│   │   └── js
+│   │       └── safebox.js
+│   ├── azan-clock.html
+│   ├── bankode
+│   │   ├── BANKODE_COMPLETE_SUMMARY.md
+│   │   ├── BANKODE_FIX_SUMMARY.md
+│   │   ├── BANKODE_UNIFIED_CLIENT_SUMMARY.md
+│   │   ├── DEPENDENCY_FIX_SUMMARY.md
+│   │   ├── FINAL_DEPENDENCY_FIX.md
+│   │   ├── ISOLATION_GUIDE.md
+│   │   ├── README.md
+│   │   ├── assets
+│   │   │   ├── icons
+│   │   │   ├── images
+│   │   │   └── sounds
+│   │   ├── bankode-admin-dashboard.html
+│   │   ├── bankode-complete-fix.js
+│   │   ├── bankode-minimal-setup.sql
+│   │   ├── bankode-minimal.sql
+│   │   ├── bankode-schema-clean.sql
+│   │   ├── bankode-schema-compatible.sql
+│   │   ├── bankode-schema-corrected.sql
+│   │   ├── bankode-schema-final-compatible.sql
+│   │   ├── bankode-schema-final.sql
+│   │   ├── bankode-schema-safe.sql
+│   │   ├── bankode-schema.sql
+│   │   ├── bankode-validation-test.js
+│   │   ├── bankodeConfig.js
+│   │   ├── components
+│   │   │   ├── Button.js
+│   │   │   ├── Card.js
+│   │   │   ├── Modal.js
+│   │   │   └── Table.js
+│   │   ├── comprehensive-test.html
+│   │   ├── config.js
+│   │   ├── dashboard.css
+│   │   ├── dashboard.html
+│   │   ├── dashboard.js
+│   │   ├── favicon.ico
+│   │   ├── helpers.js
+│   │   ├── index.html
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── rlsManager.js
+│   │   ├── rpc.js
+│   │   ├── safe
+│   │   │   ├── bankode-safe.css
+│   │   │   └── bankode-safe.js
+│   │   ├── safeDoor3D.js
+│   │   ├── test-admin-integration.js
+│   │   ├── test-admin.html
+│   │   ├── test-balance-loader.js
+│   │   ├── test-dependency-fixes.html
+│   │   ├── test-jwt-integration.html
+│   │   ├── test-syntax.html
+│   │   ├── test-unified-client.js
+│   │   ├── unifiedStorage.js
+│   │   ├── utils
+│   │   │   ├── dependency-helpers.js
+│   │   │   ├── formatters.js
+│   │   │   ├── helpers.js
+│   │   │   ├── validators.js
+│   │   │   └── validators.js.tmp
+│   │   ├── verify-fix.js
+│   │   ├── vite.config.js
+│   │   └── wrapper.mjs
+│   ├── bankode-assetbus-bridge.js
+│   ├── battalooda
+│   │   ├── README.md
+│   │   ├── assets
+│   │   │   ├── icons
+│   │   │   └── music
+│   │   ├── css
+│   │   │   ├── battalooda.css
+│   │   │   └── studio-simplified.css
+│   │   ├── js
+│   │   │   ├── audio-engine.js
+│   │   │   ├── battalooda-core.js
+│   │   │   ├── music-library.js
+│   │   │   ├── social-features.js
+│   │   │   ├── studio
+│   │   │   │   ├── studio-engine.js
+│   │   │   │   └── studio-ui.js
+│   │   │   └── studio-bridge.js
+│   │   ├── legacy
+│   │   │   ├── battalooda-recorder-freemium.js
+│   │   │   ├── battalooda-recorder.js
+│   │   │   ├── battalooda-storage-manager.js
+│   │   │   ├── battalooda-studio.css
+│   │   │   ├── index-freemium.html
+│   │   │   └── index.html
+│   │   ├── security
+│   │   │   ├── audio-analyzer.js
+│   │   │   ├── challenge-system.js
+│   │   │   ├── mobile-sensors.js
+│   │   │   └── security-engine.js
+│   │   ├── sql
+│   │   │   └── schema.sql
+│   │   ├── studio
+│   │   │   ├── assets
+│   │   │   │   ├── SaveRecordingModal-XEgoDO8i.js
+│   │   │   │   ├── index-Dh2O5PeI.css
+│   │   │   │   ├── index-fzkQQEop.js
+│   │   │   │   ├── ui-l0sNRNKZ.js
+│   │   │   │   └── vendor-l0sNRNKZ.js
+│   │   │   ├── dist
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── SaveRecordingModal-XEgoDO8i-CvBCBVEk.js
+│   │   │   │   │   ├── index-Dh2O5PeI.css
+│   │   │   │   │   ├── index-ypvzvhwq.js
+│   │   │   │   │   ├── ui-l0sNRNKZ.js
+│   │   │   │   │   └── vendor-l0sNRNKZ.js
+│   │   │   │   ├── favicon.svg
+│   │   │   │   ├── index.html
+│   │   │   │   ├── opengraph.jpg
+│   │   │   │   └── studio-menu-patch.js
+│   │   │   ├── favicon.svg
+│   │   │   ├── index.html
+│   │   │   ├── opengraph.jpg
+│   │   │   ├── package-lock.json
+│   │   │   ├── package.json
+│   │   │   ├── public
+│   │   │   │   ├── favicon.svg
+│   │   │   │   └── opengraph.jpg
+│   │   │   ├── src
+│   │   │   │   ├── App.tsx
+│   │   │   │   ├── components
+│   │   │   │   │   └── ui
+│   │   │   │   │       ├── accordion.tsx
+│   │   │   │   │       ├── alert-dialog.tsx
+│   │   │   │   │       ├── alert.tsx
+│   │   │   │   │       ├── aspect-ratio.tsx
+│   │   │   │   │       ├── avatar.tsx
+│   │   │   │   │       ├── badge.tsx
+│   │   │   │   │       ├── breadcrumb.tsx
+│   │   │   │   │       ├── button-group.tsx
+│   │   │   │   │       ├── button.tsx
+│   │   │   │   │       ├── calendar.tsx
+│   │   │   │   │       ├── card.tsx
+│   │   │   │   │       ├── carousel.tsx
+│   │   │   │   │       ├── chart.tsx
+│   │   │   │   │       ├── checkbox.tsx
+│   │   │   │   │       ├── collapsible.tsx
+│   │   │   │   │       ├── command.tsx
+│   │   │   │   │       ├── context-menu.tsx
+│   │   │   │   │       ├── dialog.tsx
+│   │   │   │   │       ├── drawer.tsx
+│   │   │   │   │       ├── dropdown-menu.tsx
+│   │   │   │   │       ├── empty.tsx
+│   │   │   │   │       ├── field.tsx
+│   │   │   │   │       ├── form.tsx
+│   │   │   │   │       ├── hover-card.tsx
+│   │   │   │   │       ├── input-group.tsx
+│   │   │   │   │       ├── input-otp.tsx
+│   │   │   │   │       ├── input.tsx
+│   │   │   │   │       ├── item.tsx
+│   │   │   │   │       ├── kbd.tsx
+│   │   │   │   │       ├── label.tsx
+│   │   │   │   │       ├── menubar.tsx
+│   │   │   │   │       ├── navigation-menu.tsx
+│   │   │   │   │       ├── pagination.tsx
+│   │   │   │   │       ├── popover.tsx
+│   │   │   │   │       ├── progress.tsx
+│   │   │   │   │       ├── radio-group.tsx
+│   │   │   │   │       ├── resizable.tsx
+│   │   │   │   │       ├── scroll-area.tsx
+│   │   │   │   │       ├── select.tsx
+│   │   │   │   │       ├── separator.tsx
+│   │   │   │   │       ├── sheet.tsx
+│   │   │   │   │       ├── sidebar.tsx
+│   │   │   │   │       ├── skeleton.tsx
+│   │   │   │   │       ├── slider.tsx
+│   │   │   │   │       ├── sonner.tsx
+│   │   │   │   │       ├── spinner.tsx
+│   │   │   │   │       ├── switch.tsx
+│   │   │   │   │       ├── table.tsx
+│   │   │   │   │       ├── tabs.tsx
+│   │   │   │   │       ├── textarea.tsx
+│   │   │   │   │       ├── toast.tsx
+│   │   │   │   │       ├── toaster.tsx
+│   │   │   │   │       ├── toggle-group.tsx
+│   │   │   │   │       ├── toggle.tsx
+│   │   │   │   │       └── tooltip.tsx
+│   │   │   │   ├── engine
+│   │   │   │   │   ├── RecordingStore.js
+│   │   │   │   │   └── StudioEngine.js
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── use-mobile.tsx
+│   │   │   │   │   └── use-toast.ts
+│   │   │   │   ├── index.css
+│   │   │   │   ├── lib
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── main.js
+│   │   │   │   ├── main.tsx
+│   │   │   │   ├── pages
+│   │   │   │   │   └── not-found.tsx
+│   │   │   │   ├── styles
+│   │   │   │   │   └── studio.css
+│   │   │   │   └── ui
+│   │   │   │       ├── Browser.js
+│   │   │   │       ├── ChannelRack.js
+│   │   │   │       ├── Effects.js
+│   │   │   │       ├── Mixer.js
+│   │   │   │       ├── Piano.js
+│   │   │   │       ├── Playlist.js
+│   │   │   │       ├── RecordingsPanel.js
+│   │   │   │       ├── SaveRecordingModal.js
+│   │   │   │       ├── StudioUI.js
+│   │   │   │       └── Toolbar.js
+│   │   │   ├── tsconfig.json
+│   │   │   └── vite.config.ts
+│   │   └── talent-studio.html
+│   ├── battalooda-core.js
+│   ├── battalooda.html
+│   ├── codebank-usage-tracker.js
+│   ├── corsa
+│   │   ├── dashboard
+│   │   │   ├── index.html
+│   │   │   └── js
+│   │   │       └── dashboard.js
+│   │   ├── index.html
+│   │   └── index.html.bak
+│   ├── corsa.html
+│   ├── css
+│   │   ├── codebank-session-styles.css
+│   │   └── safe-asset-list.css
+│   ├── e7ki
+│   │   ├── VOICE_MESSAGES_IMPLEMENTATION_REPORT.md
+│   │   ├── VOICE_MESSAGES_README.md
+│   │   ├── VOICE_MESSAGES_SUMMARY.md
+│   │   ├── _legacy_supabase
+│   │   │   ├── config.toml
+│   │   │   ├── functions
+│   │   │   │   ├── _shared
+│   │   │   │   └── smart-worker
+│   │   │   ├── migrations
+│   │   │   │   ├── 20240101000000_initial_schema.sql
+│   │   │   │   ├── 20240101000001_rls_policies.sql
+│   │   │   │   ├── 20240101000002_message_reactions_and_replies.sql
+│   │   │   │   └── 20240101000003_voice_messages.sql
+│   │   │   └── seed
+│   │   ├── client
+│   │   │   ├── dist
+│   │   │   │   ├── favicon.png
+│   │   │   │   ├── index.css
+│   │   │   │   ├── index.html
+│   │   │   │   └── index.js
+│   │   │   ├── index.html
+│   │   │   ├── pages
+│   │   │   │   └── ChatPage.jsx
+│   │   │   ├── public
+│   │   │   │   └── favicon.png
+│   │   │   └── src
+│   │   │       ├── App.jsx
+│   │   │       ├── components
+│   │   │       │   ├── chat
+│   │   │       │   │   ├── chat-list.jsx
+│   │   │       │   │   ├── conversation-view.jsx
+│   │   │       │   │   ├── emoji-picker.jsx
+│   │   │       │   │   ├── index.js
+│   │   │       │   │   ├── message-bubble.jsx
+│   │   │       │   │   ├── message-input.jsx
+│   │   │       │   │   ├── new-chat-dialog.jsx
+│   │   │       │   │   ├── typing-indicator.jsx
+│   │   │       │   │   ├── voice-recorder.jsx
+│   │   │       │   │   └── voice-recorder.jsx.bak
+│   │   │       │   ├── theme-toggle.jsx
+│   │   │       │   └── ui
+│   │   │       │       ├── accordion.jsx
+│   │   │       │       ├── alert-dialog.jsx
+│   │   │       │       ├── alert.jsx
+│   │   │       │       ├── aspect-ratio.jsx
+│   │   │       │       ├── avatar.jsx
+│   │   │       │       ├── badge.jsx
+│   │   │       │       ├── breadcrumb.jsx
+│   │   │       │       ├── button.jsx
+│   │   │       │       ├── calendar.jsx
+│   │   │       │       ├── card.jsx
+│   │   │       │       ├── carousel.jsx
+│   │   │       │       ├── chart.jsx
+│   │   │       │       ├── checkbox.jsx
+│   │   │       │       ├── collapsible.jsx
+│   │   │       │       ├── command.jsx
+│   │   │       │       ├── context-menu.jsx
+│   │   │       │       ├── dialog.jsx
+│   │   │       │       ├── drawer.jsx
+│   │   │       │       ├── dropdown-menu.jsx
+│   │   │       │       ├── form.jsx
+│   │   │       │       ├── hover-card.jsx
+│   │   │       │       ├── input-otp.jsx
+│   │   │       │       ├── input.jsx
+│   │   │       │       ├── label.jsx
+│   │   │       │       ├── menubar.jsx
+│   │   │       │       ├── navigation-menu.jsx
+│   │   │       │       ├── pagination.jsx
+│   │   │       │       ├── popover.jsx
+│   │   │       │       ├── progress.jsx
+│   │   │       │       ├── radio-group.jsx
+│   │   │       │       ├── resizable.jsx
+│   │   │       │       ├── scroll-area.jsx
+│   │   │       │       ├── select.jsx
+│   │   │       │       ├── separator.jsx
+│   │   │       │       ├── sheet.jsx
+│   │   │       │       ├── sidebar.jsx
+│   │   │       │       ├── skeleton.jsx
+│   │   │       │       ├── slider.jsx
+│   │   │       │       ├── switch.jsx
+│   │   │       │       ├── table.jsx
+│   │   │       │       ├── tabs.jsx
+│   │   │       │       ├── textarea.jsx
+│   │   │       │       ├── toast.jsx
+│   │   │       │       ├── toaster.jsx
+│   │   │       │       ├── toggle-group.jsx
+│   │   │       │       ├── toggle.jsx
+│   │   │       │       └── tooltip.jsx
+│   │   │       ├── hooks
+│   │   │       │   ├── use-mobile.jsx
+│   │   │       │   └── use-toast.js
+│   │   │       ├── index.css
+│   │   │       ├── lib
+│   │   │       │   ├── auth-context.jsx
+│   │   │       │   ├── chat-context.jsx
+│   │   │       │   ├── indexeddb-cleaner.js
+│   │   │       │   ├── indexeddb.js
+│   │   │       │   ├── queryClient.js
+│   │   │       │   ├── theme-provider.jsx
+│   │   │       │   ├── utils.js
+│   │   │       │   └── websocket-context.jsx
+│   │   │       ├── main.jsx
+│   │   │       └── pages
+│   │   │           ├── chat.jsx
+│   │   │           ├── login.jsx
+│   │   │           └── not-found.jsx
+│   │   ├── components.json
+│   │   ├── design_guidelines.md
+│   │   ├── dist
+│   │   │   ├── assets
+│   │   │   │   ├── index-C9RO4hM2.js
+│   │   │   │   └── index-QfHQSeTL.css
+│   │   │   ├── favicon.png
+│   │   │   └── index.html
+│   │   ├── docs
+│   │   │   └── file-upload-volatility.md
+│   │   ├── drizzle.config.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.js
+│   │   ├── replit.md
+│   │   ├── script
+│   │   │   └── build.js
+│   │   ├── server
+│   │   │   ├── auth-middleware.cjs
+│   │   │   ├── database.cjs
+│   │   │   ├── fileUpload.cjs
+│   │   │   ├── index.cjs
+│   │   │   ├── routes.js
+│   │   │   ├── static.js
+│   │   │   ├── storage.js
+│   │   │   └── vite.js
+│   │   ├── shared
+│   │   │   └── schema.js
+│   │   ├── tailwind.config.js
+│   │   ├── test-voice.html
+│   │   ├── tsconfig.json
+│   │   └── vite.config.js
+│   ├── e7ki.html
+│   ├── eb3at.html
+│   ├── farragna
+│   │   ├── REAL_GUEST_UPLOAD_MODE_IMPLEMENTATION.md
+│   │   ├── UPLOAD_MODAL_LAYOUT_FIXES.md
+│   │   ├── app.js
+│   │   ├── attached_assets
+│   │   │   ├── App_1765232987761.jsx
+│   │   │   ├── Comments_1765232931079.jsx
+│   │   │   ├── Pasted--Replit-Farragna-TypeScript-React--1765233125945_1765233125947.txt
+│   │   │   ├── Pasted--TypeScript-React-YouTube-Upload-src-components-farragn_1765233337941.txt
+│   │   │   ├── ShareMenu_1765232931085.jsx
+│   │   │   ├── Stories_1765232931086.jsx
+│   │   │   ├── admin-dashboard_1765232931055.jsx
+│   │   │   ├── build_1765233054332.js
+│   │   │   ├── category-grid_1765232931076.jsx
+│   │   │   ├── engagement-buttons_1765232931080.jsx
+│   │   │   ├── favorites-modal_1765232931081.jsx
+│   │   │   ├── header_1765232931083.jsx
+│   │   │   ├── index_1765232987772.css
+│   │   │   ├── main_1765232987773.jsx
+│   │   │   ├── theme-provider_1765232931087.jsx
+│   │   │   ├── theme-toggle_1765232931088.jsx
+│   │   │   ├── upload-modal_1765232959867.jsx
+│   │   │   ├── video-feed_1765232959876.jsx
+│   │   │   ├── video-player_1765232959878.jsx
+│   │   │   └── watermark_1765232959882.jsx
+│   │   ├── client
+│   │   │   ├── index.html
+│   │   │   ├── public
+│   │   │   │   └── favicon.png
+│   │   │   └── src
+│   │   │       ├── App.jsx
+│   │   │       ├── components
+│   │   │       │   ├── admin-dashboard.jsx
+│   │   │       │   ├── category-grid.jsx
+│   │   │       │   ├── engagement-buttons.jsx
+│   │   │       │   ├── favorites-modal.jsx
+│   │   │       │   ├── header.jsx
+│   │   │       │   ├── theme-provider.jsx
+│   │   │       │   ├── theme-toggle.jsx
+│   │   │       │   ├── ui
+│   │   │       │   │   ├── accordion.jsx
+│   │   │       │   │   ├── alert-dialog.jsx
+│   │   │       │   │   ├── alert.jsx
+│   │   │       │   │   ├── aspect-ratio.jsx
+│   │   │       │   │   ├── avatar.jsx
+│   │   │       │   │   ├── badge.jsx
+│   │   │       │   │   ├── breadcrumb.jsx
+│   │   │       │   │   ├── button.jsx
+│   │   │       │   │   ├── calendar.jsx
+│   │   │       │   │   ├── card.jsx
+│   │   │       │   │   ├── carousel.jsx
+│   │   │       │   │   ├── chart.jsx
+│   │   │       │   │   ├── checkbox.jsx
+│   │   │       │   │   ├── collapsible.jsx
+│   │   │       │   │   ├── command.jsx
+│   │   │       │   │   ├── context-menu.jsx
+│   │   │       │   │   ├── dialog.jsx
+│   │   │       │   │   ├── drawer.jsx
+│   │   │       │   │   ├── dropdown-menu.jsx
+│   │   │       │   │   ├── form.jsx
+│   │   │       │   │   ├── hover-card.jsx
+│   │   │       │   │   ├── input-otp.jsx
+│   │   │       │   │   ├── input.jsx
+│   │   │       │   │   ├── label.jsx
+│   │   │       │   │   ├── menubar.jsx
+│   │   │       │   │   ├── navigation-menu.jsx
+│   │   │       │   │   ├── pagination.jsx
+│   │   │       │   │   ├── popover.jsx
+│   │   │       │   │   ├── progress.jsx
+│   │   │       │   │   ├── radio-group.jsx
+│   │   │       │   │   ├── resizable.jsx
+│   │   │       │   │   ├── scroll-area.jsx
+│   │   │       │   │   ├── select.jsx
+│   │   │       │   │   ├── separator.jsx
+│   │   │       │   │   ├── sheet.jsx
+│   │   │       │   │   ├── sidebar.jsx
+│   │   │       │   │   ├── skeleton.jsx
+│   │   │       │   │   ├── slider.jsx
+│   │   │       │   │   ├── switch.jsx
+│   │   │       │   │   ├── table.jsx
+│   │   │       │   │   ├── tabs.jsx
+│   │   │       │   │   ├── textarea.jsx
+│   │   │       │   │   ├── toast.jsx
+│   │   │       │   │   ├── toaster.jsx
+│   │   │       │   │   ├── toggle-group.jsx
+│   │   │       │   │   ├── toggle.jsx
+│   │   │       │   │   └── tooltip.jsx
+│   │   │       │   ├── upload-modal.jsx
+│   │   │       │   ├── video-feed.jsx
+│   │   │       │   ├── video-player.jsx
+│   │   │       │   └── watermark.jsx
+│   │   │       ├── hooks
+│   │   │       │   ├── use-mobile.jsx
+│   │   │       │   ├── use-toast.js
+│   │   │       │   └── useAuth.js
+│   │   │       ├── index.css
+│   │   │       ├── lib
+│   │   │       │   ├── authUtils.js
+│   │   │       │   ├── queryClient.js
+│   │   │       │   └── utils.js
+│   │   │       ├── main.jsx
+│   │   │       └── pages
+│   │   │           ├── home.jsx
+│   │   │           ├── landing.jsx
+│   │   │           └── not-found.jsx
+│   │   ├── components.json
+│   │   ├── design_guidelines.md
+│   │   ├── drizzle.config.js
+│   │   ├── iframe-compatibility.js
+│   │   ├── index.html
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.js
+│   │   ├── script
+│   │   │   └── build.js
+│   │   ├── seed-videos.js
+│   │   ├── server
+│   │   │   ├── cloudflare-stream.js
+│   │   │   ├── config.js
+│   │   │   ├── db.js
+│   │   │   ├── index.js
+│   │   │   ├── piccarboon
+│   │   │   ├── recommendation-service.js
+│   │   │   ├── routes.js
+│   │   │   ├── static.js
+│   │   │   ├── storage.js
+│   │   │   └── vite.js
+│   │   ├── shared
+│   │   │   └── schema.js
+│   │   ├── styles.css
+│   │   ├── tailwind.config.js
+│   │   ├── test-farragna.html
+│   │   ├── test-upload.mp4
+│   │   ├── test-video.mp4
+│   │   ├── test.mp4
+│   │   ├── todo-list.md
+│   │   ├── tsconfig.json
+│   │   ├── uploads
+│   │   │   ├── 1765812414355-u5h33x2cn4.mp4
+│   │   │   ├── 1765812467152-fmzcbmekx6t.mp4
+│   │   │   ├── video-1765234904544-901687121.mp4
+│   │   │   ├── video-1765791714933-807403040.mp4
+│   │   │   ├── video-1765792359939-854122369.mp4
+│   │   │   ├── video-1765792390833-873541569.mp4
+│   │   │   ├── video-1765800712205-178434629.mp4
+│   │   │   ├── video-1765801904700-322950557.mp4
+│   │   │   ├── video-1765802133757-297674084.mp4
+│   │   │   ├── video-1765805220474-496236131.mp4
+│   │   │   ├── video-1765807964778-197885180.mp4
+│   │   │   └── video-1765808859186-743370051.mp4
+│   │   └── vite.config.js
+│   ├── farragna.html
+│   ├── ffmpeg
+│   │   ├── README.md
+│   │   ├── ffmpeg-core.js
+│   │   ├── ffmpeg-loader.js
+│   │   └── ffmpeg.min.js
+│   ├── index.html
+│   ├── indexCB-styles.css
+│   ├── indexCB.html
+│   ├── js
+│   │   ├── Counter.js
+│   │   ├── advanced-cache-layer.js
+│   │   ├── advanced-error-handler.js
+│   │   ├── api-integration-framework.js
+│   │   ├── app-core.js
+│   │   ├── app-launcher.js
+│   │   ├── app-registry.js
+│   │   ├── app.js
+│   │   ├── asset-manager.js
+│   │   ├── assetSafeRenderer.js
+│   │   ├── balloon-engine-advanced.js
+│   │   ├── balloon-ui.js
+│   │   ├── balloon-visual-standalone.js
+│   │   ├── banking-processor.js
+│   │   ├── batch-storage-update.js
+│   │   ├── blockchain-integration.js
+│   │   ├── buttons.js
+│   │   ├── camera-verification.js
+│   │   ├── clerk-config.js
+│   │   ├── cloudinary-config-client.js
+│   │   ├── counter-test.html
+│   │   ├── e7ky-chat.js
+│   │   ├── email-transfer-manager.js
+│   │   ├── extra-mode.js
+│   │   ├── farragna
+│   │   │   ├── app.js
+│   │   │   ├── components
+│   │   │   ├── services
+│   │   │   └── utils
+│   │   ├── floating-app.js
+│   │   ├── gate-system.js
+│   │   ├── gsap-shim.js
+│   │   ├── guardian-3d.js
+│   │   ├── health-check.js
+│   │   ├── index.js
+│   │   ├── matter-shim.js
+│   │   ├── notification-manager.js
+│   │   ├── payment-gateway.js
+│   │   ├── pebalaash-engine.js
+│   │   ├── performance-monitor.js
+│   │   ├── prayer-alert-system.js
+│   │   ├── prayer-system.js
+│   │   ├── premium-integration.js
+│   │   ├── premium-manager.js
+│   │   ├── safe-asset-list.js
+│   │   ├── safe-code-bridge.js
+│   │   ├── safe-code-manager.js
+│   │   ├── safe-code.js
+│   │   ├── safe-list-actions.js
+│   │   ├── safe-storage.js
+│   │   ├── security-manager.js
+│   │   ├── service-manager.js
+│   │   ├── settings-manager.js
+│   │   ├── simple-transfer-manager.js
+│   │   ├── sync-test.js
+│   │   ├── tab-manager.js
+│   │   ├── transaction-monitor.js
+│   │   ├── transaction-queue.js
+│   │   ├── transaction-system.js
+│   │   ├── transactions-ui.js
+│   │   ├── transactions.js
+│   │   ├── utils.js
+│   │   ├── vanilla-shared-ui.js
+│   │   ├── wallet.js
+│   │   └── webhook-manager.js
+│   ├── nostaglia
+│   │   ├── nostaglia.css
+│   │   └── nostaglia.js
+│   ├── oneworld
+│   │   ├── README.md
+│   │   ├── app.js
+│   │   ├── database-schema.sql
+│   │   ├── index.html
+│   │   └── styles.css
+│   ├── optimized-styles.css
+│   ├── pebalaash
+│   │   ├── attached_assets
+│   │   │   └── Pasted--Extensions-CREATE-EXTENSION-IF-NOT-EXISTS-uuid-ossp-CR_1766362620497.txt
+│   │   ├── client
+│   │   │   ├── index.html
+│   │   │   ├── public
+│   │   │   │   └── favicon.png
+│   │   │   ├── requirements.md
+│   │   │   └── src
+│   │   │       ├── App.tsx
+│   │   │       ├── components
+│   │   │       │   ├── AdminDashboard.tsx
+│   │   │       │   ├── CartPanel.tsx
+│   │   │       │   ├── MarqueeSection.tsx
+│   │   │       │   ├── iceOverlay.tsx
+│   │   │       │   └── ui
+│   │   │       │       ├── accordion.tsx
+│   │   │       │       ├── alert-dialog.tsx
+│   │   │       │       ├── alert.tsx
+│   │   │       │       ├── aspect-ratio.tsx
+│   │   │       │       ├── avatar.tsx
+│   │   │       │       ├── badge.tsx
+│   │   │       │       ├── breadcrumb.tsx
+│   │   │       │       ├── button.tsx
+│   │   │       │       ├── calendar.tsx
+│   │   │       │       ├── card.tsx
+│   │   │       │       ├── carousel.tsx
+│   │   │       │       ├── chart.tsx
+│   │   │       │       ├── checkbox.tsx
+│   │   │       │       ├── collapsible.tsx
+│   │   │       │       ├── command.tsx
+│   │   │       │       ├── context-menu.tsx
+│   │   │       │       ├── dialog.tsx
+│   │   │       │       ├── drawer.tsx
+│   │   │       │       ├── dropdown-menu.tsx
+│   │   │       │       ├── form.tsx
+│   │   │       │       ├── hover-card.tsx
+│   │   │       │       ├── input-otp.tsx
+│   │   │       │       ├── input.tsx
+│   │   │       │       ├── label.tsx
+│   │   │       │       ├── menubar.tsx
+│   │   │       │       ├── navigation-menu.tsx
+│   │   │       │       ├── pagination.tsx
+│   │   │       │       ├── popover.tsx
+│   │   │       │       ├── progress.tsx
+│   │   │       │       ├── radio-group.tsx
+│   │   │       │       ├── resizable.tsx
+│   │   │       │       ├── scroll-area.tsx
+│   │   │       │       ├── select.tsx
+│   │   │       │       ├── separator.tsx
+│   │   │       │       ├── sheet.tsx
+│   │   │       │       ├── sidebar.tsx
+│   │   │       │       ├── skeleton.tsx
+│   │   │       │       ├── slider.tsx
+│   │   │       │       ├── switch.tsx
+│   │   │       │       ├── table.tsx
+│   │   │       │       ├── tabs.tsx
+│   │   │       │       ├── textarea.tsx
+│   │   │       │       ├── toast.tsx
+│   │   │       │       ├── toaster.tsx
+│   │   │       │       ├── toggle-group.tsx
+│   │   │       │       ├── toggle.tsx
+│   │   │       │       └── tooltip.tsx
+│   │   │       ├── hooks
+│   │   │       │   ├── use-admin.ts
+│   │   │       │   ├── use-auth.ts
+│   │   │       │   ├── use-checkout.ts
+│   │   │       │   ├── use-mobile.tsx
+│   │   │       │   ├── use-products.ts
+│   │   │       │   ├── use-toast.ts
+│   │   │       │   └── use-wallet.ts
+│   │   │       ├── index.css
+│   │   │       ├── lib
+│   │   │       │   ├── queryClient.ts
+│   │   │       │   └── utils.ts
+│   │   │       ├── main.tsx
+│   │   │       ├── pages
+│   │   │       │   ├── Home.tsx
+│   │   │       │   ├── Pebalaash.tsx
+│   │   │       │   └── not-found.tsx
+│   │   │       └── types
+│   │   │           └── shims.d.ts
+│   │   ├── components.json
+│   │   ├── dist
+│   │   │   ├── index.cjs
+│   │   │   └── public
+│   │   │       ├── assets
+│   │   │       │   ├── index-B5RbfeEf.css
+│   │   │       │   └── index-B7Tze-62.js
+│   │   │       ├── favicon.png
+│   │   │       └── index.html
+│   │   ├── drizzle.config.ts
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.js
+│   │   ├── script
+│   │   │   └── build.ts
+│   │   ├── server
+│   │   │   ├── db.ts
+│   │   │   ├── index.ts
+│   │   │   ├── routes.ts
+│   │   │   ├── static.ts
+│   │   │   ├── storage.ts
+│   │   │   └── vite.ts
+│   │   ├── shared
+│   │   │   ├── routes.ts
+│   │   │   └── schema.ts
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   └── vite.config.ts
+│   ├── pebalaash.html
+│   ├── qarsan
+│   │   ├── index.html
+│   │   └── qarsan-schema.sql
+│   ├── safecode
+│   │   └── index.html
+│   ├── safecode-wrapper.html
+│   ├── safecode.html
+│   ├── samma3ny
+│   │   ├── AdminDashboard.js
+│   │   ├── CRITICAL_ISSUES_RESOLUTION_REPORT.md
+│   │   ├── CSS_OPTIMIZATIONS_COMPLETE.md
+│   │   ├── DEBUGGING_SESSION_COMPLETE.md
+│   │   ├── ENHANCED_CLOUDINARY_IMPLEMENTATION.md<
+│   │   │   └── path
+│   │   ├── ERROR_ANALYSIS.md
+│   │   ├── FINAL_IMPLEMENTATION_REPORT.md
+│   │   ├── FIXED_HEIGHT_SCROLLABLE_PLAYLIST_COMPLETE.md
+│   │   ├── IMPLEMENTATION_VERIFICATION.md
+│   │   ├── PLAYLIST_ALIGNMENT_COMPLETE.md
+│   │   ├── PLAYLIST_BOTTOM_COVERAGE_FIXED.md
+│   │   ├── PLAYLIST_CONSTRAINTS_AND_PROGRESS_BAR_FIX_COMPLETE.md
+│   │   ├── PLAYLIST_HEIGHT_REFACTOR_COMPLETE.md
+│   │   ├── PLAYLIST_SPACING_OPTIMIZED.md
+│   │   ├── RECURRING_ISSUES_FIXED.md
+│   │   ├── SHARE_FUNCTIONALITY_COMPLETE.md
+│   │   ├── SONG_ITEM_HEIGHT_FIXED.md
+│   │   ├── TRACK_TITLE_CENTERING_FIXED.md
+│   │   ├── cloudinary-api.js
+│   │   ├── cloudinary-config.js
+│   │   ├── cloudinary-upload-results.json
+│   │   ├── dr.dc.png
+│   │   ├── favicon.ico
+│   │   ├── firebase-config.js
+│   │   ├── fixes.js
+│   │   ├── index.html
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── player.js
+│   │   ├── songs.json
+│   │   ├── src
+│   │   │   └── admin
+│   │   │       ├── AdminModal.js
+│   │   │       ├── App.css
+│   │   │       ├── App.js
+│   │   │       ├── PasswordModal.js
+│   │   │       ├── components
+│   │   │       │   ├── BulkUpload.css
+│   │   │       │   ├── BulkUpload.js
+│   │   │       │   ├── ShareModal.css
+│   │   │       │   ├── ShareModal.js
+│   │   │       │   ├── SongList.css
+│   │   │       │   └── SongList.js
+│   │   │       └── index.js
+│   │   ├── styles.css
+│   │   ├── test-spark-fix.js
+│   │   ├── test_audio.mp3
+│   │   ├── test_real.mp3
+│   │   └── uploads
+│   │       └── local_1763976542883_test.txt
+│   ├── samma3ny.html
+│   ├── setta
+│   │   ├── server
+│   │   │   ├── index.js
+│   │   │   ├── package-lock.json
+│   │   │   ├── package.json
+│   │   │   ├── piccarboon
+│   │   │   │   ├── anticheat.js
+│   │   │   │   ├── challenge.js
+│   │   │   │   ├── difficulty.js
+│   │   │   │   ├── economy.js
+│   │   │   │   ├── governor.js
+│   │   │   │   ├── identity.js
+│   │   │   │   ├── ledger.js
+│   │   │   │   ├── orchestrator.js
+│   │   │   │   ├── season.js
+│   │   │   │   ├── sponsors.js
+│   │   │   │   └── tiers.js
+│   │   │   └── uploads
+│   │   │       ├── images
+│   │   │       │   └── 1765824497893.jpeg
+│   │   │       └── piccarboon
+│   │   │           ├── 1765890854947.jpg
+│   │   │           ├── challenges
+│   │   │           │   └── test.jpg
+│   │   │           ├── fraud
+│   │   │           │   ├── 1765891841027-gwehalztach.json
+│   │   │           │   ├── 1765891875833-4xk8ubwlyhg.json
+│   │   │           │   ├── 1765891986350-repeqag0hvc.json
+│   │   │           │   └── 1765893406530-hf8vtnzvs6l.json
+│   │   │           ├── losers
+│   │   │           │   ├── 1765891841027-gwehalztach.json
+│   │   │           │   ├── 1765891875833-4xk8ubwlyhg.json
+│   │   │           │   ├── 1765891986350-repeqag0hvc.json
+│   │   │           │   └── 1765893406530-hf8vtnzvs6l.json
+│   │   │           ├── models
+│   │   │           ├── reference
+│   │   │           ├── scores
+│   │   │           │   └── leaderboard.json
+│   │   │           ├── sponsor
+│   │   │           ├── submissions
+│   │   │           │   ├── 1765891841027-gwehalztach.json
+│   │   │           │   ├── 1765891875833-4xk8ubwlyhg.json
+│   │   │           │   ├── 1765891986350-repeqag0hvc.json
+│   │   │           │   └── 1765893406530-hf8vtnzvs6l.json
+│   │   │           └── winners
+│   │   └── uploads
+│   │       ├── images
+│   │       └── piccarboon
+│   │           ├── challenges
+│   │           │   ├── daily.json
+│   │           │   └── test.jpg
+│   │           ├── fraud
+│   │           │   └── 1765891120966-2kqk4toquz5.json
+│   │           ├── losers
+│   │           │   └── 1765891120966-2kqk4toquz5.json
+│   │           ├── models
+│   │           ├── reference
+│   │           ├── scores
+│   │           │   ├── 1765890854969-5lwb3xh950s.json
+│   │           │   ├── leaderboard.json
+│   │           │   └── setup-sample.json
+│   │           ├── setup-sample.jpg
+│   │           ├── sponsor
+│   │           ├── submissions
+│   │           │   ├── 1765890854969-5lwb3xh950s.json
+│   │           │   └── 1765891120966-2kqk4toquz5.json
+│   │           └── winners
+│   │               └── 1765890854969-5lwb3xh950s.json
+│   ├── shots
+│   │   ├── README.md
+│   │   ├── integration-example.html
+│   │   ├── shots-db.js
+│   │   ├── shots-init-test.js
+│   │   ├── shots-integration.js
+│   │   ├── shots.css
+│   │   ├── shots.html
+│   │   └── shots.js
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── components
+│   │   │   ├── AssetsTab.jsx
+│   │   │   ├── AuthenticationModal.css
+│   │   │   ├── AuthenticationModal.jsx
+│   │   │   ├── AuthenticationTest.css
+│   │   │   ├── AuthenticationTest.jsx
+│   │   │   ├── CodeGenerator.css
+│   │   │   ├── CodeGenerator.jsx
+│   │   │   ├── FarragnaPlayer.jsx
+│   │   │   ├── FarragnaUpload.jsx
+│   │   │   ├── GameLeaderboard.jsx
+│   │   │   ├── LeaderboardTab.jsx
+│   │   │   └── WealthLeaderboard.jsx
+│   │   ├── core
+│   │   │   ├── auth
+│   │   │   └── database
+│   │   ├── e7ki
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   ├── nostaglia
+│   │   │   ├── components
+│   │   │   │   ├── AdminDashboard.css
+│   │   │   │   ├── AdminDashboard.jsx
+│   │   │   │   ├── Feed.css
+│   │   │   │   ├── Feed.jsx
+│   │   │   │   ├── Upload.css
+│   │   │   │   └── Upload.jsx
+│   │   │   └── sse.js
+│   │   ├── tabs
+│   │   │   ├── BankodeTab.jsx
+│   │   │   ├── CorsaTab.jsx
+│   │   │   ├── E7kiTab.jsx
+│   │   │   ├── FarragnaTab.jsx
+│   │   │   ├── NostagliaTab.jsx
+│   │   │   ├── SettaXtes3a.css
+│   │   │   ├── SettaXtes3a.jsx
+│   │   │   └── index.jsx
+│   │   ├── utils
+│   │   │   ├── api.js
+│   │   │   ├── authUtils.js
+│   │   │   └── sse.js
+│   │   └── wallet
+│   │       ├── email-transfer-manager.js
+│   │       ├── sync.js
+│   │       └── wallet.js
+│   ├── styles
+│   │   ├── optimized-styles.css
+│   │   └── styles.css
+│   ├── styles.css
+│   ├── tasks.md
+│   ├── uploads
+│   │   └── ec2b7342579903796b192b6291e977a2
+│   ├── videos.json
+│   └── vite.config.js
+├── core
+│   ├── ai-brain.js
+│   ├── app-lifecycle.js
+│   ├── assets
+│   │   ├── asset-events.js
+│   │   ├── asset-locker.js
+│   │   ├── asset-readonly.js
+│   │   ├── asset-transactions.js
+│   │   ├── assets-kernel.js
+│   │   └── local-assets-bus.js
+│   ├── auth
+│   │   ├── auth-events.js
+│   │   ├── auth-middleware.js
+│   │   ├── auth-service.js
+│   │   └── session-store.js
+│   ├── ledger
+│   │   ├── ledger-schema.js
+│   │   └── ledger-writer.js
+│   ├── schema
+│   │   └── setup-v2.js
+│   └── self-healing.js
+├── counter
+│   └── yt-counter.js
+├── counter-container
+├── country-data-service.js
+├── data
+│   ├── database.sqlite
+│   ├── database.sqlite-shm
+│   ├── database.sqlite-wal
+│   └── pending_codes_queue.json
+├── data.sqlite
+├── data.sqlite-shm
+├── data.sqlite-wal
+├── data.sqlite.bak.20260323_034303
+├── data.sqlite.bak.20260323_042011
+├── docs
+│   └── asset-event-contract.md
+├── e7ki-debug
+│   ├── comprehensive-audit-report.md
+│   ├── fix-authentication.js
+│   ├── fix-database-api.js
+│   ├── fix-validation-report.md
+│   ├── fix-websocket.js
+│   ├── monitoring-system.js
+│   └── test-infrastructure.js
+├── ecosystem.config.cjs
+├── event-vault
+│   └── logs
+│       └── vault-2026-01-27.log
+├── extra-mode-b
+│   ├── watch-dog-action.js
+│   ├── watch-dog.mp3
+│   ├── watch-tracker.js
+│   └── yt-extramode.js
+├── file_list.txt
+├── generate_report.sh
+├── hybrid-otp-service.js
+├── image.png
+├── index.html
+├── js
+│   ├── section-switch-popup.js
+│   └── service-manager.js
+├── kimi-console-capture
+│   ├── background.js
+│   ├── content.js
+│   ├── icons
+│   │   ├── icon128.png
+│   │   ├── icon16.png
+│   │   └── icon48.png
+│   ├── manifest.json
+│   ├── popup.html
+│   └── popup.js
+├── layout-bootstrap.js
+├── ledger
+│   ├── ledger-schema.js
+│   ├── ledger-utils.js
+│   ├── local-assets-bus.js
+│   └── local-transaction-ledger.js
+├── login.html
+├── logs
+│   ├── err.log
+│   └── out.log
+├── main.js
+├── out.log
+├── output.log
+├── package-lock.json
+├── package.json
+├── play-pause-b
+│   ├── bankode-core.js
+│   ├── bankode-core.js.backup
+│   ├── code-engine.js
+│   ├── play-pause-button.js
+│   ├── screenshot-limit.js
+│   ├── screenshot.js
+│   ├── sqlite-idb-queue.js
+│   ├── yt-play-pause-button.js
+│   └── yt-screenshot.js
+├── player
+│   └── ui-controller.js
+├── popup-identity
+├── project-structure-summary.txt
+├── project-structure-tree.txt
+├── project-structure.txt
+├── projectPhilosophy.md
+├── project_tree.txt
+├── routes
+│   └── watchdog.js
+├── screenshots
+│   └── test-fix.png
+├── scripts
+│   ├── migrate-to-turso.sh
+│   └── run-ledger-reconciliation.js
+├── server
+│   ├── battalooda-freemium-handler.js
+│   └── battalooda-upload.js
+├── server-simple.js
+├── server.js
+├── services
+│   ├── balloon
+│   │   ├── balloon.routes.js
+│   │   └── balloon.service.js
+│   ├── e7ki
+│   │   ├── dist
+│   │   │   ├── assets
+│   │   │   │   ├── main-BRxBVNlp.js
+│   │   │   │   └── main-C8SXo2St.css
+│   │   │   ├── favicon.png
+│   │   │   └── index.html
+│   │   ├── index.html
+│   │   └── styles.css
+│   ├── farragna-video-feed.js
+│   ├── transaction-engine.js
+│   ├── trust-engine
+│   │   ├── behavior-analyzer.js
+│   │   ├── trust-engine.js
+│   │   └── trust-score.store.js
+│   ├── watchdog
+│   │   └── watchdog.js
+│   └── watchdog-ai.js
+├── shared
+│   ├── asset-policy.js
+│   ├── asset-types.js
+│   ├── auth-bridge.js
+│   ├── auth-core.js
+│   ├── auth-lord.js
+│   ├── auth-proxy.js
+│   ├── auth-ready-component.js
+│   ├── authClient.js
+│   ├── balloon-engine
+│   │   ├── balloon-core.js
+│   │   ├── balloon-spawner.js
+│   │   ├── balloon-state.js
+│   │   └── balloon-validator.js
+│   ├── bankode-core.js
+│   ├── code-engine.js
+│   ├── codebank-side-panel.js
+│   ├── engines
+│   │   ├── games-engine.js
+│   │   ├── likes-engine.js
+│   │   ├── superlikes-engine.js
+│   │   └── transaction-engine.js
+│   ├── event-bus.js
+│   ├── extra-mode-engine.js
+│   ├── feature-flags.js
+│   ├── guards
+│   │   └── assets-write-guard.js
+│   ├── iframe-auth-client.js
+│   ├── initial-identity-modal.js
+│   ├── js
+│   │   ├── logger.js
+│   │   ├── monitoring.js
+│   │   ├── screenshot.js
+│   │   └── translate.js
+│   ├── jwt
+│   │   ├── rotateRefresh.js
+│   │   ├── signAccess.js
+│   │   ├── signRefresh.js
+│   │   ├── verifyAccess.js
+│   │   └── verifyRefresh.js
+│   ├── local-asset-bus.js
+│   ├── logicode
+│   │   ├── actions
+│   │   ├── logic-auth.js
+│   │   ├── logic-compression.js
+│   │   ├── logic-core.js
+│   │   ├── logic-debug.js
+│   │   ├── logic-deduction.js
+│   │   ├── logic-expiry.js
+│   │   ├── logic-rewards.js
+│   │   ├── logic-storage.js
+│   │   ├── logic-sync.js
+│   │   ├── logicode.js
+│   │   └── modules
+│   │       ├── logicode-auth.js
+│   │       ├── logicode-events.js
+│   │       ├── logicode-expiry.js
+│   │       ├── logicode-rewards.js
+│   │       ├── logicode-service-fees.js
+│   │       ├── logicode-storage.js
+│   │       ├── logicode-sync.js
+│   │       ├── logicode-utils.js
+│   │       └── logicode-wallet.js
+│   ├── middleware
+│   │   └── authGuard.js
+│   ├── neon-wallet-adapter.js
+│   ├── qarsan-core.js
+│   ├── qarsan-engine.js
+│   ├── security-middleware.js
+│   ├── service-base.js
+│   ├── service-loader.js
+│   ├── service-manager-v3.js
+│   ├── sqlite-adapter.js
+│   ├── sqlite-idb-queue.js
+│   ├── storage-adapter.js
+│   ├── storage-lord-ui-adapter.js.DISABLED
+│   ├── storage-lord.js.DISABLED
+│   ├── system-state.js
+│   ├── timer-manager.js
+│   ├── translate.js
+│   ├── ui-state-authority.js
+│   ├── utils
+│   │   ├── anti-duplicate-events.js
+│   │   └── cookie.js
+│   ├── watch-dog-guardian.js
+│   └── watchdog-core
+│       ├── dog-3d-model.glb
+│       ├── watchdog-animator.js
+│       ├── watchdog-core.js
+│       ├── watchdog-scene.js
+│       └── watchdog-states.js
+├── sound-b
+│   ├── azan-clock.js
+│   ├── azan1.mp3
+│   ├── azan10.mp3
+│   ├── azan11.mp3
+│   ├── azan2.mp3
+│   ├── azan3.mp3
+│   ├── azan4.mp3
+│   ├── azan5.mp3
+│   ├── azan6.mp3
+│   ├── azan7.mp3
+│   ├── azan8.mp3
+│   ├── azan9.mp3
+│   ├── global-prayer-communication.js
+│   ├── global-prayer-dashboard.html
+│   ├── global-prayer-debug.js
+│   ├── global-prayer-service-worker.js
+│   ├── global-prayer-system.js
+│   ├── persistent-prayer-in.html
+│   ├── prayer-alert-system.js
+│   ├── prayer-integration.js
+│   ├── sound-button.js
+│   └── yt-sound-button.js
+├── sqlite
+│   ├── sqlite
+│   │   └── sqlite-server-adapter.js
+│   └── sqlite-server-adapter.js
+├── src
+│   ├── App.jsx
+│   ├── admin
+│   │   └── admin-dashboard.js
+│   ├── api
+│   │   └── external-api.js
+│   ├── components
+│   │   └── app-grid.js
+│   ├── core
+│   │   ├── assetbus-v2.js
+│   │   ├── database-manager.js
+│   │   ├── service-manager-v2.js
+│   │   └── watch-dog-optimized.js
+│   ├── index.css
+│   ├── main.jsx
+│   ├── services
+│   ├── styles
+│   │   └── performance-optimizations.css
+│   └── utils
+│       └── performance-monitor.js
+├── styles
+│   ├── section-switch-popup.css
+│   ├── style.css
+│   ├── styles.css
+│   ├── toggle-switch-3way.css
+│   └── youtube-embed-responsive.css
+├── test-auth-system.html
+├── tests
+│   ├── auth-core-fixed.js
+│   ├── e2e-sqlite-assetbus.spec.js
+│   ├── reports
+│   │   └── assetbus-e2e-report.json
+│   ├── safe-asset-list-fixed.js
+│   └── send-codes.spec.js
+├── touch-shield
+│   └── global-touch-shield.js
+├── transaction-audit
+│   ├── auditTransactions.js
+│   ├── dbMock.js
+│   └── generateReport.js
+├── transaction-core
+│   ├── core
+│   │   ├── BankodeManager.js
+│   │   ├── EconomicRules.js
+│   │   ├── Ledger.js
+│   │   ├── TransactionManager.js
+│   │   └── UsersManager.js
+│   ├── event-vault
+│   │   ├── EventVault.js
+│   │   ├── README.md
+│   │   ├── VaultConfig.js
+│   │   ├── VaultSerializer.js
+│   │   └── VaultWriter.js
+│   ├── index.js
+│   ├── modules
+│   │   ├── BankodeToUser.js
+│   │   ├── RewardsFlow.js
+│   │   ├── UserToBankode.js
+│   │   └── UserToUser.js
+│   ├── offline-intents
+│   │   ├── IntentQueue.js
+│   │   ├── IntentSerializer.js
+│   │   ├── IntentTypes.js
+│   │   └── ReplayEngine.js
+│   ├── persistence
+│   │   ├── BalancesRepository.js
+│   │   ├── BankodeRepository.js
+│   │   ├── BaseRepository.js
+│   │   ├── EventVaultRepository.js
+│   │   ├── LedgerRepository.js
+│   │   ├── NeonClient.js
+│   │   ├── SQLiteClient.js
+│   │   └── UsersRepository.js
+│   ├── policies
+│   │   ├── BasePolicy.js
+│   │   ├── CreatorIncentivePolicy.js
+│   │   ├── GameRewardPolicy.js
+│   │   ├── LikePolicy.js
+│   │   └── StorePolicy.js
+│   └── policy-engine
+│       └── PolicyEngine.js
+├── ui
+│   └── asset-dashboard.js
+├── update-ui-controller.py
+├── uploads
+│   └── e7ki
+├── vite.config.js
+├── yt-new-clear.html
+├── yt-new.runtime.js
+├── yt-player
+│   ├── api.js
+│   ├── app-initializer.js
+│   ├── app.js
+│   ├── components.js
+│   ├── csp-compliance.js
+│   ├── index.js
+│   ├── loading-overlay.js
+│   ├── mediaService.js
+│   ├── player-state-handler.js
+│   ├── youtube-api-manager.js
+│   ├── youtube-channel.html
+│   ├── youtube-embed-responsive.css
+│   ├── yt-bootstrap.js
+│   ├── yt-player.init.js
+│   └── yt-player.js
+└── ytclear-dump.sql
+
+582 directories, 3324 files

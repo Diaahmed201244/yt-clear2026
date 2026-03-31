@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shots! - Screenshot Gallery</title>
+    <link rel="stylesheet" href="shots.css">
+</head>
+<body>
+    <div class="shots-container">
+        <header class="shots-header">
+            <h1>📸 Shots!</h1>
+            <p class="shots-subtitle">Your captured moments</p>
+            <div class="shots-stats">
+                <span class="stat-item">
+                    <strong id="total-shots">0</strong> Total Shots
+                </span>
+                <span class="stat-item">
+                    <strong id="storage-used">0</strong> MB Used
+                </span>
+            </div>
+        </header>
+
+        <main class="shots-main">
+            <div class="shots-controls">
+                <button id="refresh-shots" class="btn btn-primary">
+                    <span class="icon">🔄</span> Refresh
+                </button>
+                <button id="clear-all-shots" class="btn btn-danger">
+                    <span class="icon">🗑️</span> Clear All
+                </button>
+                <button id="export-shots" class="btn btn-success">
+                    <span class="icon">📤</span> Export
+                </button>
+            </div>
+
+            <div class="shots-gallery" id="shots-gallery">
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">📸</div>
+                    <h3>No Shots Yet!</h3>
+                    <p>Capture screenshots using the play-pause button to see them here.</p>
+                    <div class="empty-instructions">
+                        <div class="instruction">
+                            <strong>Tap:</strong> Capture screenshot
+                        </div>
+                        <div class="instruction">
+                            <strong>Long-press:</strong> View gallery
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Screenshot Viewer Modal -->
+        <div class="modal-overlay" id="viewer-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="viewer-title">Screenshot</h3>
+                    <button class="modal-close" id="viewer-close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="viewer-container">
+                        <img id="viewer-image" src="" alt="Screenshot">
+                    </div>
+                    <div class="viewer-info">
+                        <div class="shot-details">
+                            <span id="shot-timestamp">--</span>
+                            <span id="shot-size">--</span>
+                        </div>
+                        <div class="viewer-actions">
+                            <button id="download-shot" class="btn btn-primary">
+                                <span class="icon">💾</span> Download
+                            </button>
+                            <button id="delete-shot" class="btn btn-danger">
+                                <span class="icon">🗑️</span> Delete
+                            </button>
+                            <button id="share-shot" class="btn btn-secondary">
+                                <span class="icon">📤</span> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p>Loading screenshots...</p>
+        </div>
+
+        <!-- Confirmation Dialog -->
+        <div class="confirm-dialog" id="confirm-dialog">
+            <div class="confirm-content">
+                <h4 id="confirm-title">Confirm Action</h4>
+                <p id="confirm-message">Are you sure?</p>
+                <div class="confirm-actions">
+                    <button id="confirm-cancel" class="btn btn-secondary">Cancel</button>
+                    <button id="confirm-ok" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../shots/shots-db.js"></script>
+    <script src="shots.js"></script>
+</body>
+</html>

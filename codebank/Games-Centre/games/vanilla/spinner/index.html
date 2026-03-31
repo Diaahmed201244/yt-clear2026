@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinner Game</title>
+    <link rel="stylesheet" href="spin.css">
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+</head>
+<body>
+    <div class="spinner-container">
+        <div class="spinner-wheel" id="spinnerWheel">
+            <div class="spinner-arrow"></div>
+        </div>
+        <div class="game-info">
+            <div class="result">Result: <span id="result">-</span></div>
+            <div class="score">Score: <span id="score">0</span></div>
+            <button id="spinBtn">Spin</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+    <script type="module" src="spin.js"></script>
+    <script type="module" src="../_shared/game-integration.js"></script>
+</body>
+</html>

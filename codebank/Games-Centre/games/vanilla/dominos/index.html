@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominos Game</title>
+    <link rel="stylesheet" href="do.css">
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+</head>
+<body>
+    <div class="dominos-container">
+        <div class="game-board" id="gameBoard"></div>
+        <div class="player-hand" id="playerHand"></div>
+        <div class="game-info">
+            <div class="score">Score: <span id="score">0</span></div>
+            <button id="newGameBtn">New Game</button>
+            <button id="drawBtn">Draw Tile</button>
+        </div>
+    </div>
+    <script src="do.js"></script>
+    <script type="module" src="../_shared/game-integration.js"></script>
+</body>
+</html>

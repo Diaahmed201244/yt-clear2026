@@ -1,0 +1,37 @@
+div(id='outer-board')
+  div(id='board')
+    div(id='banner')
+      div
+        div(id='message')
+        div(id='new-game') Tap here to start!
+    - var n=0;
+    while n < 160
+      div(class="empty")
+        div(class="inner-tile")
+          div(class="inner-inner-tile")
+      - n++;
+  div(id='stats')
+    div(class='labels') Scores
+      div(id='score' class='frame') 0
+    div(class='labels') Level
+      div(id='level' class='frame') 1
+    div(class='labels') Lines
+      div(id='lines' class='frame') 0
+    div(id='next-piece')
+    div(id='game-over-banner' class='hidden')
+      div Game Over!
+      div(id='final-score') 0
+    button(class='btn btn-rounded' id="start-btn") Start
+    button(class='btn btn-rounded' id="pause-btn") Pause
+    button(class='btn btn-rounded' id="reset-btn") Reset
+    button(class='btn btn-rounded' id="restart-btn") Restart
+    button(class='btn btn-rounded' id="left")
+      i(class="fa fas fa-arrow-left")
+    button(class='btn btn-rounded' id="right")
+      i(class="fa fas fa-arrow-right")
+    button(class='btn btn-rounded' id="rotate")
+      i(class="fa fas fa-undo flipx")
+    button(class='btn btn-rounded' id="down")
+      i(class="fa fas fa-arrow-down")
+    button(class='btn btn-rounded' id="pause")
+      i(class="fa fas fa-pause")

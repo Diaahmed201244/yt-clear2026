@@ -1,0 +1,12 @@
+{
+  "id": "1765890854969-5lwb3xh950s",
+  "finalScore": 80,
+  "antiFraudConfidence": 100,
+  "similarity": {
+    "pose": 80,
+    "objects": 75,
+    "color": 85,
+    "depth": 90,
+    "geometry": 70
+  }
+}

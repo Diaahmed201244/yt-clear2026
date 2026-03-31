@@ -1,0 +1,966 @@
+body {
+	--grass-pixel: #68a940;
+	--river-pixel: #7c6fdb;
+	--deepsea-pixel: #50469b;
+	--coast-pixel: #274c11;
+	--coast-pixel-before: #7abfc7;
+	--coast-pixel-after: #ff9800;
+	--player-pixel: #dedf38;
+	--game-stats-background: #888;
+	--game-stats-border: #888;
+	--game-stats-span: #000;
+	--game-stats-label: #fff;
+	--boss-back: #9e2441;
+	--boss-floorboard: #d39415;
+	--boss-floorlines: #9f7012;
+}
+
+body.pilot-vinston {
+	--grass-pixel: #949494;
+	--river-pixel: #7a7a7a;
+	--deepsea-pixel: #656565;
+	--coast-pixel: #404040;
+	--coast-pixel-before: #b1b1b1;
+	--coast-pixel-after: #a3a3a3;
+	--player-pixel: #ededed;
+	--boss-back: #949494;
+	--boss-floorboard: #949494;
+	--boss-floorlines: #404040;
+}
+
+body.pilot-rosanna {
+	--grass-pixel: #091501;
+	--river-pixel: #06072d;
+	--deepsea-pixel: #04041e;
+	--coast-pixel: #060723;
+	--coast-pixel-before: transparent;
+	--coast-pixel-after: transparent;
+	--player-pixel: #ededed;
+	--game-stats-background: #000;
+	--game-stats-border: #09112d;
+	--game-stats-span: #651818;
+	--game-stats-label: #427dff;
+	--boss-back: #09112d;
+	--boss-floorboard: #651818;
+	--boss-floorlines: #060723;
+}
+
+body.pilot-betty {
+	--grass-pixel: #749460;
+	--river-pixel: #7e77ad;
+	--deepsea-pixel: #524c78;
+	--coast-pixel: #4a6f49;
+	--coast-pixel-before: #bf8c40;
+	--coast-pixel-after: #7aa09c;
+	--player-pixel: #ededed;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: monospace;
+}
+
+html,body {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+audio {
+	display: none;
+}
+
+touch-controls {
+	position: fixed;
+	bottom: -100px;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	z-index: 999;
+	transform: translateY(-100%);
+	opacity: 1;
+	visibility: initial;
+	pointer-events: initial;
+	transition: all 0.25s ease-in-out;
+}
+
+touch-controls.hidden {
+	transform: translateY(0);
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+touch-controls a {
+	display: flex;
+	flex-basis: 40%;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	color: #fff;
+	height: 100px;
+	border: 4px solid #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+    font-size: 40px;
+    background: rgba(255,255,255,0.25);
+}
+
+touch-controls a:nth-child(1),
+touch-controls a:nth-child(3) {
+	height: 100px;
+	flex-basis: 25%;
+}
+
+.end-message:after {
+	position: absolute;
+	top: 40%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 99;
+	color: #fff;
+	text-align: center;
+	font-family: monospace;
+	font-size: 100px;
+	text-transform: uppercase;
+}
+
+.crashed:after {
+	content: "plane crash";
+}
+
+pilot-choose {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.85);
+	border: 8px solid white;
+	z-index: 99;
+}
+
+pilot-choose.start-screen {
+	background-image: url('notbigmuzzy.github.io/riveraid/graphics/background/back.png');
+	background-position: center;
+	background-size: cover;
+}
+
+pilot-choose session-title h1 {
+	color: #fff;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 48px;
+	margin-bottom: 60px;
+}
+
+pilot-choose.win-screen session-title h1 {
+	font-size: 60px;
+	font-style: italic;
+	text-align: center;
+}
+
+pilot-choose pilot-chooser {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+pilot-choose pilot-chooser div {
+	display: flex;
+	flex-direction: row;
+}
+
+pilot-choose pilot-chooser .pick-a-pilot {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 220px;
+	width: 160px;
+	margin: 0 10px;
+	border: 6px solid rgba(0,0,0,0.33);
+	text-decoration: none;
+	color: #fff;
+}
+
+pilot-choose pilot-chooser .pick-a-pilot b {
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+
+pilot-choose pilot-chooser .pick-a-pilot i {
+	font-size: 14px;
+}
+
+pilot-choose pilot-chooser .pick-a-pilot img {
+	height: 60px;
+	width: auto;
+	margin-bottom: 20px;
+	filter: invert(1);
+}
+
+pilot-choose pilot-chooser #restart-game {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 20px;
+	border: 6px solid rgba(0,0,0,0.33);
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+pilot-choose pilot-chooser #restart-game:focus,
+pilot-choose pilot-chooser .pick-a-pilot:focus {
+	outline: none;
+	border: 4px solid #fff;
+}
+
+pilot-choose pilot-chooser > span {
+	color: #fff;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+game-stats {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+    justify-content: center;
+	max-width: 100%;
+	height: 128px;
+	background-color: var(--game-stats-background);
+	border: 8px solid var(--game-stats-border);
+	z-index: 2;
+}
+
+game-label {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 33.33%;
+	font-family: monospace;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+game-label span {
+	color: var(--game-stats-span);
+	text-transform: uppercase;
+}
+
+game-label label {
+	color: var(--game-stats-label);
+}
+
+progress {
+	appearance:  none;
+}
+
+progress::-webkit-progress-bar {
+	border: none;
+	background-color: #e6e6e6;
+}
+
+progress::-webkit-progress-value {
+	border: none;
+	background-color: #458202;
+}
+
+progress::-moz-progress-bar {
+	border: none;
+	background-color: #458202;
+}
+
+game-screen {
+	display: flex;
+	flex-direction: column-reverse;
+	overflow: hidden;
+	position: relative;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+game-screen screen-row:nth-last-child(-n+3) island-pixel,
+game-screen screen-row:nth-last-child(-n+3) island-pixel:before,
+game-screen screen-row:nth-last-child(-n+3) island-pixel:after {
+	background-color: var(--river-pixel);
+}
+
+game-screen screen-row:nth-last-child(-n+3) island-pixel img {
+	display: none;
+}
+
+screen-canvas {
+	display: flex;
+	flex-direction: column;	
+}
+
+screen-row {
+	display: flex;
+	flex-direction: row;
+}
+
+screen-row.regular-row + .sea-row .deepsea,
+screen-row.regular-row + .sea-row + .sea-row .deepsea,
+screen-row.regular-row + .sea-row + .sea-row + .sea-row .deepsea {
+ background-color: var(--river-pixel);
+}
+
+screen-row#row0.start-row grass-pixel {
+	background-color: var(--coast-pixel);
+}
+
+screen-row#row1.start-row grass-pixel {
+	background-color: var(--coast-pixel-after);
+}
+
+screen-row.bridge-row grass-pixel,
+screen-row.bridge-row coast-pixel {
+	background-color: var(--coast-pixel-after);
+	border-top:  5px solid var(--coast-pixel-before);
+	border-bottom:  5px solid var(--coast-pixel-before);
+}
+
+river-pixel {
+	display: block;
+	position: relative;
+	background-color: var(--river-pixel);
+}
+
+river-pixel.deepsea {
+	background-color: var(--deepsea-pixel);
+}
+
+screen-row.sea-row fuel-pixel {
+	background-color: var(--deepsea-pixel);
+}
+
+bridge-pixel {
+	display: block;
+	position: relative;
+	background-color: var(--river-pixel);
+}
+
+bridge-pixel.zeds-dead:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.25;
+	background-image: url(notbigmuzzy.github.io/riveraid/graphics/destroyed.svg);
+	background-position: center;
+	background-size: contain;
+}
+
+bridge-pixel.zeds-dead > img {
+	display: none;
+}
+
+fuel-pixel {
+	position: relative;
+	background-color: var(--river-pixel);
+}
+
+fuel-pixel img {
+	position: absolute;
+	z-index: 1;
+}
+
+fuel-pixel.zeds-dead:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.25;
+	background-image: url(notbigmuzzy.github.io/riveraid/graphics/destroyed.svg);
+	background-position: center;
+	background-size: contain;
+}
+
+fuel-pixel.zeds-dead > img {
+	display: none;
+}
+
+river-pixel.explosion {
+	background-image: url("notbigmuzzy.github.io/riveraid/graphics/destroyed.svg");
+	background-position: center;
+	background-size: contain;
+}
+
+river-pixel.plane-was-here {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+river-pixel.plane-was-here:before {
+	position: relative;
+	z-index: 1;
+	content: "";
+	height: 100%;
+	width: 5px;
+	background-color: var(--player-pixel);
+}
+
+river-pixel.plane-was-here:after {
+	position: relative;
+	z-index: 1;
+	content: "";
+	height: 100%;
+	width: 5px;
+	background-color: var(--player-pixel);
+}
+
+grass-pixel {
+	display: block;
+	background-color: var(--grass-pixel);
+}
+
+island-pixel {
+	display: block;
+	background-color: var(--grass-pixel);
+}
+
+island-pixel:first-of-type,
+island-pixel:last-of-type {
+	display: flex;
+	flex-direction: row;
+}
+
+island-pixel:first-of-type img,
+island-pixel:last-of-type img {
+	display: none;
+}
+
+island-pixel:last-of-type {
+	justify-content: flex-end;
+}
+
+island-pixel:first-of-type:before,
+island-pixel:last-of-type:after {
+	content: '';
+	width: 20%;
+	display: block;
+	height: 100%;
+	background-color: var(--coast-pixel-before);
+}
+
+island-pixel:first-of-type:after,
+island-pixel:last-of-type:before {
+	content: '';
+	width: 70%;
+	display: block;
+	height: 100%;
+	background-color: var(--coast-pixel-after);
+}
+
+forest-pixel {
+	position: relative;
+	background-color: var(--grass-pixel);
+}
+
+forest-pixel img {
+	transform: scale(1.5);
+}
+
+mountain-pixel {
+	position: relative;
+	background-color: var(--grass-pixel);
+}
+
+mountain-pixel img {
+	transform: scale(1.75);
+	margin-top: -25%;
+}
+
+coast-pixel {
+	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
+	background-color: var(--coast-pixel);
+}
+
+coast-pixel.right {
+	flex-direction: row;
+}
+
+coast-pixel.left:before,
+coast-pixel.right:before {
+	content: '';
+	width: 20%;
+	background-color: var(--coast-pixel-before);
+}
+
+coast-pixel.left:after,
+coast-pixel.right:after {
+	content: '';
+	width: 70%;
+	background-color: var(--coast-pixel-after);
+}
+
+player-pixel {
+	display: block;
+	position: relative;
+}
+
+player-pixel img {
+	width: 100%;
+	height: auto;
+}
+
+fire-pixel {
+	display: block;
+	position: relative;
+	width: 32px;
+	height: 32px;
+}
+
+fire-pixel img {
+	width: 100%;
+	height: auto;
+}
+
+enemy-pixel {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: var(--river-pixel);
+}
+
+enemy-pixel.boat {
+	position: relative;
+}
+
+enemy-pixel.boat img {
+	width: 100%;
+	height: auto;
+}
+
+enemy-pixel.chopper {
+	position: relative;
+}
+
+enemy-pixel.chopper img {
+	width: 100%;
+	height: auto;
+}
+
+enemy-pixel.baloon {
+	position: relative;
+}
+
+enemy-pixel.baloon img {
+	width: 100%;
+	height: auto;
+}
+
+enemy-pixel.zeds-dead {
+	background-image: url("notbigmuzzy.github.io/riveraid/graphics/destroyed.svg");
+	background-position: center;
+	background-size: contain;
+	position: absolute;
+	opacity: 0.25;
+}
+
+enemy-pixel.zeds-dead img {
+	display: none;
+}
+
+enemy-pixel.boss {
+	position: relative;
+	background-color: var(--boss-back);
+	z-index: 2;
+}
+
+enemy-pixel.boss img {
+	width: 100%;
+	height: auto;
+}
+
+enemy-pixel.boss i {
+	border-bottom: 5px solid #000;}
+
+enemy-pixel.boss i,
+enemy-pixel.boss i-prev {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	z-index: 2;
+	background-color: var(--boss-back);
+	background-image: linear-gradient(var(--boss-floorlines) 1px, transparent 1px), linear-gradient(to right, var(--boss-floorlines) 1px, var(--boss-floorboard) 1px);
+	background-size: 32px 4px;
+}
+
+enemy-pixel.boss.middle i:nth-child(2) {
+	left: -100%;
+}
+
+enemy-pixel.boss.middle i:nth-child(3) {
+	left: 100%;
+}
+
+enemy-pixel.boss.middle i:nth-child(4) {
+	left: -200%;
+}
+
+enemy-pixel.boss.middle i:nth-child(5) {
+	left: 200%;
+}
+
+enemy-pixel.boss.middle i:nth-child(6) {
+	left: -300%;
+}
+
+enemy-pixel.boss.middle i:nth-child(7) {
+	left: 300%;
+}
+
+enemy-pixel.boss.middle i:nth-child(8) {
+	left: -400%;
+}
+
+enemy-pixel.boss.middle i:nth-child(9) {
+	left: 400%;
+}
+
+enemy-pixel.boss i-prev {
+	top: -100%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(10) {
+	left: -400%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(11) {
+	left: -300%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(12) {
+	left: -200%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(13) {
+	left: -100%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(14) {
+	left: 0;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(15) {
+	left: 100%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(16) {
+	left: 200%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(17) {
+	left: 300%;
+}
+
+enemy-pixel.boss.middle i-prev:nth-child(18) {
+	left: 400%;
+}
+
+enemy-pixel.boss.left i:nth-child(2) {
+	left: -100%;
+	border-left: 5px solid #000;
+}
+
+enemy-pixel.boss.left i:nth-child(3) {
+	left: 100%;
+}
+
+enemy-pixel.boss.left i:nth-child(4) {
+	left: 200%;
+}
+
+enemy-pixel.boss.left i:nth-child(5) {
+	left: 300%;
+}
+
+enemy-pixel.boss.left i-prev:nth-child(6) {
+	left: -200%;
+	border-bottom: 5px solid #000;
+	border-left: 5px solid #000;
+}
+
+enemy-pixel.boss.left i-prev:nth-child(7) {
+	left: -100%;
+}
+
+enemy-pixel.boss.left i-prev:nth-child(8) {
+	left: 0;
+}
+
+enemy-pixel.boss.left i-prev:nth-child(9) {
+	left: 100%;
+}
+
+enemy-pixel.boss.left i-prev:nth-child(10) {
+	left: 200%;
+}
+
+enemy-pixel.boss.left i-prev:nth-child(11) {
+	left: 300%;
+}
+
+enemy-pixel.boss.right i:nth-child(2) {
+	left: -200%;
+}
+
+enemy-pixel.boss.right i:nth-child(3) {
+	left: -100%;
+}
+
+enemy-pixel.boss.right i:nth-child(4) {
+	left: 100%;
+	border-right: 5px solid #000;
+}
+
+enemy-pixel.boss.right i-prev:nth-child(5) {
+	left: -200%;
+}
+
+enemy-pixel.boss.right i-prev:nth-child(6) {
+	left: -100%;
+}
+
+enemy-pixel.boss.right i-prev:nth-child(7) {
+	left: 0;
+}
+
+enemy-pixel.boss.right i-prev:nth-child(8) {
+	left: 100%;
+}
+
+enemy-pixel.boss.right i-prev:nth-child(9) {
+	left: 200%;
+	border-bottom: 5px solid #000;
+	border-right: 5px solid #000;
+}
+
+enemy-pixel.mine {
+	background-color: var(--boss-back);
+}
+
+.bubbles screen-row:nth-child(n+11) {
+	opacity: 0.5;
+}
+
+.bubbles screen-row:nth-child(n+14) {
+	opacity: 0.25;
+}
+
+.bubbles screen-row:nth-child(n+17) {
+	opacity: 0.1;
+}
+
+.bubbles screen-row:nth-child(n+19) {
+	opacity: 0.05;
+}
+/*PILOT ALEXEI*/
+body.pilot-alexei game-screen {
+	flex-direction: column;
+}
+
+body.pilot-alexei screen-row {
+    position: relative;
+    top: -32px;
+}
+
+body.pilot-alexei player-pixel img {
+	transform: rotate(180deg);
+}
+
+body.pilot-alexei .boss {
+	transform: rotate(180deg);
+}
+
+body.pilot-alexei enemy-pixel.boss.right i-prev:nth-child(5) {
+    left: 200%;
+    top: 0;
+}
+
+body.pilot-alexei enemy-pixel.boss.left i-prev:nth-child(11) {
+    left: -300%;
+}
+
+body.pilot-alexei enemy-pixel.boss.left i-prev:nth-child(10) {
+    left: -300%;
+    top: 0;
+}
+
+body.pilot-alexei enemy-pixel.boss.left i:nth-child(5) {
+    left: -200%;
+}
+
+body.pilot-alexei enemy-pixel.boss.right i:nth-child(4) {
+    border-right: initial;
+}
+
+body.pilot-alexei enemy-pixel.boss.left i:nth-child(2) {
+    border-left: initial;
+}
+
+body.pilot-alexei enemy-pixel.boss.right i-prev:nth-child(9) {
+    border-bottom: initial;
+    border-right: initial;
+}
+
+body.pilot-alexei enemy-pixel.boss.left i-prev:nth-child(6) {
+    border-bottom: initial;
+    border-left: initial;
+}
+
+body.pilot-alexei enemy-pixel.boss.right i-prev:nth-child(5),
+body.pilot-alexei enemy-pixel.boss.left i-prev:nth-child(10) {
+    border-bottom: 5px solid black;
+}
+
+
+/*PILOT VINSTON*/
+body.pilot-vinston img {
+	filter: grayscale(1);
+}
+
+/*PILOT BETTY*/
+body.pilot-betty game-screen:before {
+    content: url();
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 352px;
+    background-image: url(notbigmuzzy.github.io/riveraid/graphics/background/betty-horizon.png);
+    background-position: center;
+    background-size: cover;
+}
+
+body.pilot-betty img {
+	filter: contrast(0.5);
+}
+
+body.pilot-betty screen-row:nth-child(n+11){
+	display: none;
+}
+
+body.pilot-betty screen-row:nth-child(n+15) {
+	opacity: 0.5;
+}
+
+body.pilot-betty screen-row:nth-child(n+18) {
+	opacity: 0.2;
+}
+
+body.pilot-betty.win-screen screen-row:nth-child(n+11){
+	display: flex;
+}
+
+body.pilot-betty.win-screen screen-row:nth-child(n+11) grass-pixel {
+	z-index: 1;
+}
+
+/*PILOT JACK*/
+body.pilot-jack.left player-pixel:after {
+	content: '';
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	top: 0;
+	z-index: 5;
+	transform: translateX(-99%);
+}
+
+body.pilot-jack.right player-pixel:after {
+	content: '';
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	top: 0;
+	z-index: 5;
+	transform: translateX(16px);
+}
+
+/*PILOT ROSANNA*/
+body.pilot-rosanna screen-row river-pixel,
+body.pilot-rosanna screen-row enemy-pixel {
+	background-color: var(--river-pixel);
+}
+
+body.pilot-rosanna screen-row enemy-pixel img,
+body.pilot-rosanna screen-row player-pixel img {
+	filter: invert(1);
+}
+
+body.pilot-rosanna screen-row enemy-pixel.boss img {
+	filter: invert(0);
+}
+
+body.pilot-rosanna screen-row grass-pixel,
+body.pilot-rosanna screen-row mountain-pixel,
+body.pilot-rosanna screen-row forest-pixel {
+	background-color: var(--grass-pixel);
+	opacity: 0.25;
+}
+
+body.pilot-rosanna screen-row coast-pixel {
+	background-color: var(--coast-pixel);	
+}
+
+body.pilot-rosanna player-pixel:before {
+	content: '';
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	top: 0;
+	z-index: 2;
+	transform: translateX(150px) rotate(5deg);
+}
+
+body.pilot-rosanna player-pixel:after {
+	content: '';
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	top: 0;
+	z-index: 2;
+	transform: translateX(-110%) rotate(-5deg);
+}

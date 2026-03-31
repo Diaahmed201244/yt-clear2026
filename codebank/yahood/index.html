@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahood! Mining World</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+        }
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .stats {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+        .mining-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: #00d4ff;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.2s;
+        }
+        .mining-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- ACC Bridge - MUST load first -->
+    <script src="js/yahood-acc-bridge.js"></script>
+    <script src="js/safezone-manager.js"></script>
+
+    <div class="container">
+        <div class="icon">⛏️</div>
+        <h1>Yahood!</h1>
+        <p>Mining World - 3D Exploration</p>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div id="codes-val" class="stat-value">0</div>
+                <div class="stat-label">Codes</div>
+            </div>
+            <div class="stat-box">
+                <div id="silver-val" class="stat-value">0</div>
+                <div class="stat-label">Silver</div>
+            </div>
+            <div class="stat-box">
+                <div id="gold-val" class="stat-value">0</div>
+                <div class="stat-label">Gold</div>
+            </div>
+        </div>
+
+        <button class="mining-btn" onclick="mine()">Start Mining</button>
+    </div>
+
+    <script>
+        // Update UI when balance changes
+        window.YahoodBridge.on('balanceUpdated', (balance) => {
+            document.getElementById('codes-val').textContent = balance.codes || 0;
+            document.getElementById('silver-val').textContent = balance.silver || 0;
+            document.getElementById('gold-val').textContent = balance.gold || 0;
+        });
+
+        async function mine() {
+            const btn = document.querySelector('.mining-btn');
+            btn.disabled = true;
+            btn.textContent = 'Mining...';
+            
+            // Simulate finding treasure
+            const amount = Math.floor(Math.random() * 5) + 1;
+            const result = await window.YahoodBridge.addTreasure('codes', amount, 'Found in deep mine');
+            
+            console.log('Mining result:', result);
+            
+            btn.disabled = false;
+            btn.textContent = 'Start Mining';
+            
+            // Re-request balance
+            window.YahoodBridge.requestBalance();
+        }
+    </script>
+</body>
+</html>

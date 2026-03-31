@@ -1,0 +1,32 @@
+{
+  "imageUrl": "http://localhost:5002/uploads/piccarboon/1765890854947.jpg",
+  "features": {
+    "liveFramesVariance": 0.2
+  },
+  "challenge": {
+    "pose": "standing",
+    "dominant_color": "red",
+    "required_objects": [
+      "cup"
+    ],
+    "sponsor": {
+      "name": "RedBull",
+      "cta": "Win Energy!",
+      "reward": "Free Box"
+    },
+    "creator": {
+      "id": "yt-coder",
+      "cut": 0.3
+    }
+  },
+  "similarity": {
+    "pose": 80,
+    "objects": 75,
+    "color": 85,
+    "depth": 90,
+    "geometry": 70
+  },
+  "finalScore": 80,
+  "antiFraudConfidence": 100,
+  "timestamp": "2025-12-16T13:14:14.969Z"
+}

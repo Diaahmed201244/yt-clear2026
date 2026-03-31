@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من سيفوز بالمليون؟ - CodeBank</title>
+    <link rel="stylesheet" href="css/millcode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h1>جاري تحميل اللعبة...</h1>
+            <p>نظام مكافحة الغش نشط ✓</p>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" class="game-container" style="display: none;">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="game-title">
+                <h1>من سيفوز بالمليون؟</h1>
+                <span class="subtitle">تحدي الذكاء - لا للغش</span>
+            </div>
+            
+            <!-- Anti-Cheat Status -->
+            <div class="anti-cheat-status">
+                <div class="status-indicator" id="cheat-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">نظام مكافحة الغش: نشط</span>
+                </div>
+                <div class="speed-rating" id="speed-rating">
+                    <span class="rating-label">معدل السرعة:</span>
+                    <span class="rating-value">جاهز</span>
+                </div>
+            </div>
+
+            <!-- Progress & Timer -->
+            <div class="game-info">
+                <div class="level-info">
+                    <span class="level-label">المستوى</span>
+                    <span class="level-number" id="current-level">1</span>
+                    <span class="level-total">/ 15</span>
+                </div>
+                <div class="timer-container">
+                    <div class="timer-bar" id="timer-bar"></div>
+                    <div class="timer-text" id="timer-text">15</div>
+                </div>
+                <div class="score-info">
+                    <span class="score-label">المكافأة الحالية:</span>
+                    <span class="score-value" id="current-score">0</span>
+                    <span class="score-currency">كود</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Game Board -->
+        <main class="game-board">
+            <!-- Question Display -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number" id="question-number">السؤال 1</div>
+                    <div class="question-category" id="question-category">عام</div>
+                </div>
+                <div class="question-text" id="question-text">
+                    جاري تحميل السؤال...
+                </div>
+            </div>
+
+            <!-- Answer Options -->
+            <div class="answers-container">
+                <button class="answer-btn" data-answer="A" id="answer-A">
+                    <span class="answer-letter">A</span>
+                    <span class="answer-text" id="answer-text-A"></span>
+                </button>
+                <button class="answer-btn" data-answer="B" id="answer-B">
+                    <span class="answer-letter">B</span>
+                    <span class="answer-text" id="answer-text-B"></span>
+                </button>
+                <button class="answer-btn" data-answer="C" id="answer-C">
+                    <span class="answer-letter">C</span>
+                    <span class="answer-text" id="answer-text-C"></span>
+                </button>
+                <button class="answer-btn" data-answer="D" id="answer-D">
+                    <span class="answer-letter">D</span>
+                    <span class="answer-text" id="answer-text-D"></span>
+                </button>
+            </div>
+
+            <!-- Lifelines -->
+            <div class="lifelines-container">
+                <button class="lifeline-btn" id="lifeline-5050" title="حذف إجابتين">
+                    <span class="lifeline-icon">50:50</span>
+                    <span class="lifeline-label">حذف إجابتين</span>
+                </button>
+                <button class="lifeline-btn" id="lifeline-friend" title="اتصال بصديق">
+                    <span class="lifeline-icon">📞</span>
+                    <span class="lifeline-label">اتصال بصديق</span>
+                </button>
+                <button class="lifeline-btn" id="lifeline-ai" title="مساعدة AI">
+                    <span class="lifeline-icon">🤖</span>
+                    <span class="lifeline-label">مساعدة AI</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Modal System -->
+        <div id="modal-overlay" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">عنوان النافذة</h2>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    محتوى النافذة
+                </div>
+                <div class="modal-footer" id="modal-footer">
+                    <button class="modal-btn primary" id="modal-confirm">موافق</button>
+                    <button class="modal-btn secondary" id="modal-cancel">إلغاء</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Challenge System -->
+        <div id="challenge-container" class="challenge-container" style="display: none;">
+            <div class="challenge-content">
+                <h3 id="challenge-title">تحدي التحقق</h3>
+                <div id="challenge-body" class="challenge-body"></div>
+                <div class="challenge-actions">
+                    <button class="challenge-btn" id="challenge-submit">إرسال</button>
+                    <button class="challenge-btn secondary" id="challenge-skip">تخطي</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/game-engine.js"></script>
+    <script src="js/question-loader.js"></script>
+    <script src="js/lifelines.js"></script>
+    <script src="js/rewards.js"></script>
+</body>
+</html>

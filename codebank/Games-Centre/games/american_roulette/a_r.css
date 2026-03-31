@@ -1,0 +1,259 @@
+body {
+	background: #3d0a91;
+	margin: 0 auto;
+}
+.container {
+  display: flex;
+}
+.box1, .box2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.box1 {
+  flex-basis: 100%;
+}
+.box2 {
+  flex-basis: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: 100vh;
+  }
+  .box1, .box2 {
+    flex-basis: 50%;
+    height: 50%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .container {
+    flex-direction: row;
+    height: 100%;
+  }
+  .box1 {
+    flex-basis: 30%;
+    height: 100%;
+  }
+  .box2 {
+    flex-basis: 70%;
+    height: 100%;
+  }
+}
+#rouletteWheel {
+	width: 100%;
+  height: 100%;
+	cursor: pointer;
+}
+
+.roll {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+	background: #d1cfe2;
+	z-index: 100;
+}
+
+.clear {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8);
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+	background: #dc3545;
+	color: white;
+	z-index: 100;
+}
+.roll:hover {
+	transform: translateY(-2px);
+	box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.6);
+	border: 2px solid #0dcaf0;
+}
+
+.clear:hover {
+	transform: translateY(-2px);
+	box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.6);
+	border: 2px solid #ffc107;
+}
+.roll:active {
+	transform: translateY(-2px);
+	box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.6);
+	border: 8px solid #0dcaf0;
+}
+.winners {
+	position: fixed;
+	bottom: 30px;
+	left: 20px;
+	width: 100%;
+	font-family: 'Roboto', sans-serif;
+}
+.winner2{
+	font-size: 1.5em;
+	padding-left: 20px;
+	color:#fff;
+	float: center;
+	
+}
+text {
+	user-select: none;
+	pointer-events: none;
+	font-family: 'Roboto', sans-serif;
+}
+button{
+	cursor: pointer;
+}
+.redBet {
+	background: red !important;
+	color: #fff;
+}
+.blackBet {
+	background: #000 !important;
+	color: #fff;
+}
+.red.active {
+	box-shadow: 0px 0px 3px #ffc107;
+}
+.active {
+	background: #ffc107 !important;
+	font-weight: bold;
+	
+}
+.betPlacement {
+	width: 95%;
+  height: 100%;
+}
+.placeBet:hover > rect {
+	fill: rgba(255, 215, 0, 0.3);
+}
+.placeBet.active > rect {
+	rx: 5;
+	stroke: #ffc107;
+	fill: rgba(255, 215, 0, 0.5);
+}
+.placeBet {
+	cursor: pointer;
+}
+.placeBet.circle {
+	user-select: none;
+	pointer-events: none;
+}
+.money {
+	position: fixed;
+	bottom: 10px;
+	left: 10px;
+	color: #198754;
+	font-weight: bold;
+	font-family:'Roboto', sans-serif;
+}
+.confetti {
+	position: fixed;
+	user-select: none;
+	pointer-events: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+/* .two2one ruleset removed because it was empty */
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.confetti div {
+  position: fixed;
+  animation: confetti-fall 3s linear forwards;
+  left: var(--left);
+  top: -10px;
+  width: var(--size);
+  height: var(--size);
+  background: var(--color);
+}
+
+.history {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 5px;
+  font-size: 14px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.bet-controls {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.bet-controls input {
+  width: 50px;
+  margin: 0 10px;
+}
+
+.bet-controls button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.winning {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.placeBet.winning rect {
+  fill: gold !important;
+  stroke: gold !important;
+}
+
+.placeBet.winning text {
+  fill: gold !important;
+  stroke: black !important;
+}
+
+#rouletteWheel .winning {
+  fill: gold !important;
+  stroke: black !important;
+  font-size: 7 !important;
+}

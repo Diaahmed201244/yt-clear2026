@@ -1,0 +1,16 @@
+{
+  "imageUrl": "./uploads/piccarboon/challenges/test.jpg",
+  "features": {
+    "liveFramesVariance": 0.2
+  },
+  "challenge": {
+    "pose": "sitting",
+    "required_objects": [
+      "chair"
+    ],
+    "dominant_color": "blue",
+    "head_to_chair_distance_cm": 22,
+    "camera_angle": "front"
+  },
+  "timestamp": "2025-12-16T13:33:06.350Z"
+}

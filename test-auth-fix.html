@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Fix Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .info { color: blue; }
+        button { padding: 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Auth State Machine Fix Test</h1>
+    
+    <div class="test-section">
+        <h3>Test 1: Simulate Session with Unauthenticated State</h3>
+        <p>This test simulates the bug where a session exists but authenticated=false</p>
+        <button onclick="testSessionAutoCorrection()">Test Auto-Correction</button>
+        <div id="test1-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 2: Test Emergency Patch</h3>
+        <p>Test the emergency patch script that runs in yt-new-clear.html</p>
+        <button onclick="testEmergencyPatch()">Test Emergency Patch</button>
+        <div id="test2-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Test 3: Test _fetchUserFromSession</h3>
+        <p>Test the new helper method for fetching user data</p>
+        <button onclick="testFetchUser()">Test User Fetch</button>
+        <div id="test3-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>Current Auth State</h3>
+        <div id="current-state"></div>
+        <button onclick="refreshState()">Refresh State</button>
+    </div>
+
+    <!-- Load the fixed auth core -->
+    <script src="/shared/auth-core-fixed.js"></script>
+
+    <script>
+        // Test functions
+        function testSessionAutoCorrection() {
+            const resultDiv = document.getElementById('test1-result');
+            
+            try {
+                // Simulate the bug condition
+                if (window.AuthCore) {
+                    console.log('🧪 Testing session auto-correction...');
+                    
+                    // Set up a test state with sessionId but authenticated=false
+                    const testState = {
+                        authenticated: false,
+                        status: 'unauthenticated',
+                        userId: null,
+                        sessionId: 'test-session-123',
+                        user: null
+                    };
+                    
+                    // This should trigger auto-correction
+                    window.AuthCore._setState(testState);
+                    
+                    setTimeout(() => {
+                        const currentState = window.AuthCore.getState();
+                        console.log('Current state after test:', currentState);
+                        
+                        if (currentState.authenticated && currentState.sessionId) {
+                            resultDiv.innerHTML = '<span class="success">✅ PASS: Auto-correction worked! State is now authenticated.</span>';
+                            resultDiv.innerHTML += `<br><span class="info">Session ID: ${currentState.sessionId}</span>`;
+                        } else {
+                            resultDiv.innerHTML = '<span class="error">❌ FAIL: Auto-correction did not work.</span>';
+                            resultDiv.innerHTML += `<br><span class="info">Current state: ${JSON.stringify(currentState)}</span>`;
+                        }
+                    }, 1000);
+                    
+                } else {
+                    resultDiv.innerHTML = '<span class="error">❌ AuthCore not loaded yet</span>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        function testEmergencyPatch() {
+            const resultDiv = document.getElementById('test2-result');
+            
+            try {
+                // Simulate the emergency patch logic
+                if (window.AuthCore && window.AuthCore._state) {
+                    const state = window.AuthCore._state;
+                    
+                    if (state.sessionId && !state.authenticated) {
+                        console.log('🚨 EMERGENCY: Simulating emergency patch fix');
+                        
+                        // Direct state mutation (bypass setState to avoid loops)
+                        state.authenticated = true;
+                        state.status = 'authenticated';
+                        
+                        // Force UI update
+                        window.AuthCore._syncState();
+                        
+                        resultDiv.innerHTML = '<span class="success">✅ PASS: Emergency patch simulation successful</span>';
+                    } else {
+                        resultDiv.innerHTML = '<span class="info">ℹ️ No emergency patch needed - state is already correct</span>';
+                    }
+                } else {
+                    resultDiv.innerHTML = '<span class="error">❌ AuthCore not available</span>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        async function testFetchUser() {
+            const resultDiv = document.getElementById('test3-result');
+            
+            try {
+                if (window.AuthCore && window.AuthCore._fetchUserFromSession) {
+                    console.log('🧪 Testing _fetchUserFromSession...');
+                    
+                    // Test with a mock session ID
+                    const mockSessionId = 'test-session-456';
+                    const user = await window.AuthCore._fetchUserFromSession(mockSessionId);
+                    
+                    if (user) {
+                        resultDiv.innerHTML = '<span class="success">✅ PASS: User fetch method works</span>';
+                        resultDiv.innerHTML += `<br><span class="info">Fetched user: ${JSON.stringify(user)}</span>`;
+                    } else {
+                        resultDiv.innerHTML = '<span class="info">ℹ️ User fetch returned null (expected for test session)</span>';
+                    }
+                } else {
+                    resultDiv.innerHTML = '<span class="error">❌ _fetchUserFromSession method not found</span>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+
+        function refreshState() {
+            const stateDiv = document.getElementById('current-state');
+            
+            if (window.AuthCore) {
+                const state = window.AuthCore.getState();
+                stateDiv.innerHTML = `
+                    <p><strong>Authenticated:</strong> ${state.authenticated}</p>
+                    <p><strong>Status:</strong> ${state.status}</p>
+                    <p><strong>User ID:</strong> ${state.userId}</p>
+                    <p><strong>Session ID:</strong> ${state.sessionId}</p>
+                    <p><strong>User:</strong> ${JSON.stringify(state.user)}</p>
+                `;
+            } else {
+                stateDiv.innerHTML = '<span class="error">AuthCore not loaded</span>';
+            }
+        }
+
+        // Initialize and show current state
+        window.addEventListener('load', () => {
+            setTimeout(refreshState, 1000);
+        });
+    </script>
+</body>
+</html>

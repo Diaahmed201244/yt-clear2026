@@ -1,0 +1,14 @@
+{
+  "pose": "standing",
+  "dominant_color": "red",
+  "required_objects": ["cup"],
+  "sponsor": {
+    "name": "RedBull",
+    "cta": "Win Energy!",
+    "reward": "Free Box"
+  },
+  "creator": {
+    "id": "yt-coder",
+    "cut": 0.3
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "antiFraudConfidence": 0,
+  "features": {
+    "liveFramesVariance": 0.2
+  }
+}

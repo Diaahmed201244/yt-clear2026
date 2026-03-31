@@ -1,0 +1,64 @@
+Create a complete browser-based game called **“Survive the Trials”**, inspired by Squid Game.
+
+🎮 GAME CONCEPT:
+- A survival-style challenge where the player must complete **5 dangerous mini-games**, each eliminating players.
+- The player starts with a group (can be AI players or multiplayer users).
+- One wrong move and the player is eliminated. The goal is to survive all stages.
+
+🧩 GAME STAGES:
+1. **Red Light, Green Light**
+   - A timer-based game where players can move only during “Green Light.”
+   - If they move during “Red Light,” they are eliminated.
+   - Use random timing to switch lights. Track each player’s position.
+
+2. **Honeycomb Carve**
+   - Show a shape (circle, star, umbrella, etc.) the player must trace with the mouse.
+   - If they stray outside the line, they lose.
+   - Include a “cracking” animation or progress meter.
+
+3. **Tug of War**
+   - Divide players into two teams.
+   - Players click/tap rapidly to build strength and overpower the other team.
+   - Simulate AI player effort or sync multiplayer taps.
+
+4. **Marbles**
+   - Simple logic game: guess odd/even or bet marbles.
+   - AI guesses randomly, or show player-vs-player betting choices.
+
+5. **Glass Bridge**
+   - A path of glass panels: some strong, some weak.
+   - Players must choose a path (e.g., left or right).
+   - Randomly determine which panels break.
+   - If they pick wrong — elimination!
+
+🧠 FEATURES:
+- Game starts with a set number of players (AI or real).
+- Solo Mode: Player vs AI.
+- Multiplayer Mode: Use Supabase or socket.io to track real players.
+- Eliminated players are removed from the round.
+- Track progression after each game with animations and transitions.
+- Leaderboard: track which players survived how far.
+- Tokens: start with 100 tokens, earn more by winning.
+- Add retry logic: use tokens to retry a failed game (optional).
+
+🎨 UI/UX:
+- Use HTML, CSS, and JavaScript.
+- Style the interface with a **dark, cinematic design**.
+- Use background audio for suspense (heartbeat, ticking, ambient).
+- Add animations for elimination (fade out, sound effect).
+- Use canvas or DOM-based animations for mini-games.
+
+📦 TECHNOLOGY:
+- Vanilla JavaScript, HTML, and CSS.
+- Use GSAP or Anime.js for animations.
+- For multiplayer: use Supabase Realtime or socket.io if time allows.
+- LocalStorage or Supabase for progress save / leaderboard.
+
+📁 FILES TO CREATE:
+- `index.html`: structure and layout
+- `style.css`: full styling with animations and hover effects
+- `script.js`: all logic and event handling
+- `assets/`: include optional audio, images, or textures
+- Optional: `gameState.js` to modularize logic
+
+Ensure the full game is playable in the browser and shows a “You Survived” or “Eliminated” screen based on results. Make it feel intense, immersive, and true to a survival game.

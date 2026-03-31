@@ -1,0 +1,746 @@
+[
+  {
+    "question": "ما هو عاصمة مصر؟",
+    "correct_answer": "القاهرة",
+    "incorrect_answers": ["الإسكندرية", "الجيزة", "بورسعيد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أكبر كوكب في المجموعة الشمسية؟",
+    "correct_answer": "المشتري",
+    "incorrect_answers": ["زحل", "الأرض", "المريخ"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع المصباح الكهربائي؟",
+    "correct_answer": "توماس إديسون",
+    "incorrect_answers": ["نيكولا تسلا", "ألبرت أينشتاين", "غوغلييلمو ماركوني"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هي أطول نهر في العالم؟",
+    "correct_answer": "النيل",
+    "incorrect_answers": ["الأمازون", "الميسيسيبي", "النيل"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العنصر الكيميائي الذي يرمز له بالرمز Au؟",
+    "correct_answer": "الذهب",
+    "incorrect_answers": ["الفضة", "الحديد", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "كم عدد كواكب المجموعة الشمسية؟",
+    "correct_answer": "8",
+    "incorrect_answers": ["9", "7", "10"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة مايكروسوفت؟",
+    "correct_answer": "بيل غيتس",
+    "incorrect_answers": ["ستيف جوبز", "مارك زوكربيرغ", "إيلون ماسك"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول حيوان في العالم؟",
+    "correct_answer": "الزرافة",
+    "incorrect_answers": ["الفيل", "الدinosaur", "الحوت الأزرق"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هي عاصمة فرنسا؟",
+    "correct_answer": "باريس",
+    "incorrect_answers": ["لندن", "برلين", "روما"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الأسلاك الكهربائية؟",
+    "correct_answer": "النحاس",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "الفضة"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف رواية مئة عام من العزلة؟",
+    "correct_answer": "غابرييل غارسيا ماركيز",
+    "incorrect_answers": ["بابلو نيرودا", "خورخي لويس بورخيس", "ماريو فارغاس يوسا"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع حيوان على الأرض؟",
+    "correct_answer": "الصقر",
+    "incorrect_answers": ["الأسد", "الغزال", "الحصان"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الأكبر في العالم؟",
+    "correct_answer": "المحيط الهادئ",
+    "incorrect_answers": ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن ضخ الدم في الجسم؟",
+    "correct_answer": "القلب",
+    "incorrect_answers": ["الرئة", "الكبد", "المخ"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع الهاتف؟",
+    "correct_answer": "ألكسندر جراهام بيل",
+    "incorrect_answers": ["توماس إديسون", "نيكولا تسلا", "غوغلييلمو ماركوني"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الغاز الذي نستنشقه للتنفس؟",
+    "correct_answer": "الأكسجين",
+    "incorrect_answers": ["النيتروجين", "الهيدروجين", "الكربون"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أصغر كوكب في المجموعة الشمسية؟",
+    "correct_answer": "عطارد",
+    "incorrect_answers": ["الزهرة", "المريخ", "الأرض"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الأغلى في العالم؟",
+    "correct_answer": "الذهب",
+    "incorrect_answers": ["البلاتين", "الفضة", "الروبي듐"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة أبل؟",
+    "correct_answer": "ستيف جوبز",
+    "incorrect_answers": ["بيل غيتس", "مارك زوكربيرغ", "إيلون ماسك"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الحيوان الوطني للهند؟",
+    "correct_answer": "النمر",
+    "incorrect_answers": ["الفيل", "الأسد", "القرد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول جسر في العالم؟",
+    "correct_answer": "جسر دانيانغ كونشان",
+    "incorrect_answers": ["جسر الملك فهد", "جسر البوسفور", "جسر خليج هانغتشو"],
+    "category": "general_knowledge",
+    "difficulty": "hard",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أعلى جبل في العالم؟",
+    "correct_answer": "إيفرست",
+    "incorrect_answers": ["كنغدينغاجا", "ماكالو", "كي2"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة العملات المعدنية؟",
+    "correct_answer": "النحاس",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "الفضة"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف مسرحية روميو وجولييت؟",
+    "correct_answer": "ويليام شكسبير",
+    "incorrect_answers": ["لوركا", "إييسخолос", "سوفوكليس"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع طائر في العالم؟",
+    "correct_answer": "الصقر",
+    "incorrect_answers": ["النسر", "العصفور", "البطريق"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الأصغر في العالم؟",
+    "correct_answer": "المحيط المتجمد الجنوبي",
+    "incorrect_answers": ["المحيط المتجمد الشمالي", "المحيط الهندي", "المحيط الأطلسي"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن التفكير في الجسم؟",
+    "correct_answer": "المخ",
+    "incorrect_answers": ["القلب", "الرئة", "الكبد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع الراديو؟",
+    "correct_answer": "غوغلييلمو ماركوني",
+    "incorrect_answers": ["توماس إديسون", "نيكولا تسلا", "ألكسندر جراهام بيل"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الغاز الذي يشكل معظم الغلاف الجوي؟",
+    "correct_answer": "النيتروجين",
+    "incorrect_answers": ["الأكسجين", "الهيدروجين", "الكربون"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أكبر محيط في العالم؟",
+    "correct_answer": "المحيط الهادئ",
+    "incorrect_answers": ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الحلي؟",
+    "correct_answer": "الذهب",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة فيسبوك؟",
+    "correct_answer": "مارك زوكربيرغ",
+    "incorrect_answers": ["ستيف جوبز", "بيل غيتس", "إيلون ماسك"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الحيوان الوطني لأستراليا؟",
+    "correct_answer": "الكنغر",
+    "incorrect_answers": ["الكوالا", "الإكيدنا", "النمس"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول نهر في إفريقيا؟",
+    "correct_answer": "النيل",
+    "incorrect_answers": ["الكونغو", "النيل الأبيض", "الزامبيزي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أعلى شلال في العالم؟",
+    "correct_answer": "شلال أنجيل",
+    "incorrect_answers": ["شلال فيكتوريا", "شلال نياغارا", "شلال إغواسو"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة البطاريات؟",
+    "correct_answer": "الزنك",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف مسرحية المتروك؟",
+    "correct_answer": "موليير",
+    "incorrect_answers": ["شكسبير", "إييسخолос", "سوفوكليس"],
+    "category": "general_knowledge",
+    "difficulty": "hard",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع حيوان بري؟",
+    "correct_answer": "الوشق",
+    "incorrect_answers": ["الأسد", "الغزال", "الحصان"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الذي يقع بين أمريكا وأوروبا؟",
+    "correct_answer": "المحيط الأطلسي",
+    "incorrect_answers": ["المحيط الهادئ", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن تنقية الدم في الجسم؟",
+    "correct_answer": "الكبد",
+    "incorrect_answers": ["القلب", "الرئة", "المخ"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع التلغراف؟",
+    "correct_answer": "صامويل مورس",
+    "incorrect_answers": ["توماس إديسون", "نيكولا تسلا", "ألكسندر جراهام بيل"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الغاز الذي ينتج عن عملية التمثيل الضوئي؟",
+    "correct_answer": "الأكسجين",
+    "incorrect_answers": ["النيتروجين", "الهيدروجين", "الكربون"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أكبر صحراء في العالم؟",
+    "correct_answer": "الصحراء الكبرى",
+    "incorrect_answers": ["صحراء جوبي", "صحراء سахارا", "صحراء أتاكاما"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الأسلاك الكهربائية؟",
+    "correct_answer": "النحاس",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "الفضة"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة تسلا؟",
+    "correct_answer": "إيلون ماسك",
+    "incorrect_answers": ["ستيف جوبز", "بيل غيتس", "مارك زوكربيرغ"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الحيوان الوطني للصين؟",
+    "correct_answer": "الباندا",
+    "incorrect_answers": ["النمر", "الفيل", "القرد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول نهر في آسيا؟",
+    "correct_answer": "نهر اليانغتسي",
+    "incorrect_answers": ["نهر النيل", "نهر الأمازون", "نهر الميسيسيبي"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أعلى جبل في إفريقيا؟",
+    "correct_answer": "كلمنجارو",
+    "incorrect_answers": ["إيفرست", "كنغدينغاجا", "ماكالو"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الحروف؟",
+    "correct_answer": "الرصاص",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف مسرحية العراب؟",
+    "correct_answer": "ماريو بوزو",
+    "incorrect_answers": ["شكسبير", "إييسخолос", "سوفوكليس"],
+    "category": "general_knowledge",
+    "difficulty": "hard",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع طائر بري؟",
+    "correct_answer": "النعام",
+    "incorrect_answers": ["الصقر", "النسر", "البطريق"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الذي يقع بين آسيا وأستراليا؟",
+    "correct_answer": "المحيط الهندي",
+    "incorrect_answers": ["المحيط الهادئ", "المحيط الأطلسي", "المحيط المتجمد الجنوبي"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن تنقية الهواء في الجسم؟",
+    "correct_answer": "الرئة",
+    "incorrect_answers": ["القلب", "الكبد", "المخ"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع الكاميرا؟",
+    "correct_answer": "جوزيف نيسفوري",
+    "incorrect_answers": ["توماس إديسون", "نيكولا تسلا", "ألكسندر جراهام بيل"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الغاز الذي يستخدم في بالونات الهيليوم؟",
+    "correct_answer": "الهيليوم",
+    "incorrect_answers": ["الأكسجين", "النيتروجين", "الهيدروجين"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أكبر محيط في العالم؟",
+    "correct_answer": "المحيط الهادئ",
+    "incorrect_answers": ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الحلي؟",
+    "correct_answer": "الذهب",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة أمازون؟",
+    "correct_answer": "جيف بيزوس",
+    "incorrect_answers": ["ستيف جوبز", "بيل غيتس", "مارك زوكربيرغ"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الحيوان الوطني للهند؟",
+    "correct_answer": "النمر",
+    "incorrect_answers": ["الفيل", "الأسد", "القرد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول نهر في أمريكا الجنوبية؟",
+    "correct_answer": "الأمازون",
+    "incorrect_answers": ["النيل", "الميسيسيبي", "النيل الأبيض"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أعلى جبل في أوروبا؟",
+    "correct_answer": "إلبروس",
+    "incorrect_answers": ["إيفرست", "كنغدينغاجا", "ماكالو"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الأسلاك الكهربائية؟",
+    "correct_answer": "النحاس",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "الفضة"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف مسرحية عائلة دالاس؟",
+    "correct_answer": "مارتن فلويد",
+    "incorrect_answers": ["شكسبير", "إييسخолос", "سوفوكليس"],
+    "category": "general_knowledge",
+    "difficulty": "hard",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع حيوان في الماء؟",
+    "correct_answer": "سمكة السيف",
+    "incorrect_answers": ["الدلفين", "القرش", "الحوت"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الذي يقع بين أستراليا وأمريكا؟",
+    "correct_answer": "المحيط الهادئ",
+    "incorrect_answers": ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الجنوبي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن ضخ الدم في الجسم؟",
+    "correct_answer": "القلب",
+    "incorrect_answers": ["الرئة", "الكبد", "المخ"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع المصباح الكهربائي؟",
+    "correct_answer": "توماس إديسون",
+    "incorrect_answers": ["نيكولا تسلا", "ألبرت أينشتاين", "غوغلييلمو ماركوني"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الغاز الذي نستنشقه للتنفس؟",
+    "correct_answer": "الأكسجين",
+    "incorrect_answers": ["النيتروجين", "الهيدروجين", "الكربون"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أصغر كوكب في المجموعة الشمسية؟",
+    "correct_answer": "عطارد",
+    "incorrect_answers": ["الزهرة", "المريخ", "الأرض"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الأغلى في العالم؟",
+    "correct_answer": "الذهب",
+    "incorrect_answers": ["البلاتين", "الفضة", "الروبي듐"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة أبل؟",
+    "correct_answer": "ستيف جوبز",
+    "incorrect_answers": ["بيل غيتس", "مارك زوكربيرغ", "إيلون ماسك"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الحيوان الوطني للهند؟",
+    "correct_answer": "النمر",
+    "incorrect_answers": ["الفيل", "الأسد", "القرد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول جسر في العالم؟",
+    "correct_answer": "جسر دانيانغ كونشان",
+    "incorrect_answers": ["جسر الملك فهد", "جسر البوسفور", "جسر خليج هانغتشو"],
+    "category": "general_knowledge",
+    "difficulty": "hard",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أعلى جبل في العالم؟",
+    "correct_answer": "إيفرست",
+    "incorrect_answers": ["كنغدينغاجا", "ماكالو", "كي2"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة العملات المعدنية؟",
+    "correct_answer": "النحاس",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "الفضة"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف مسرحية روميو وجولييت؟",
+    "correct_answer": "ويليام شكسبير",
+    "incorrect_answers": ["لوركا", "إييسخолос", "سوفوكليس"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع طائر في العالم؟",
+    "correct_answer": "الصقر",
+    "incorrect_answers": ["النسر", "العصفور", "البطريق"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الأصغر في العالم؟",
+    "correct_answer": "المحيط المتجمد الجنوبي",
+    "incorrect_answers": ["المحيط المتجمد الشمالي", "المحيط الهندي", "المحيط الأطلسي"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن التفكير في الجسم؟",
+    "correct_answer": "المخ",
+    "incorrect_answers": ["القلب", "الرئة", "الكبد"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع الراديو؟",
+    "correct_answer": "غوغلييلمو ماركوني",
+    "incorrect_answers": ["توماس إديسون", "نيكولا تسلا", "ألكسندر جراهام بيل"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الغاز الذي يشكل معظم الغلاف الجوي؟",
+    "correct_answer": "النيتروجين",
+    "incorrect_answers": ["الأكسجين", "الهيدروجين", "الكربون"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أكبر محيط في العالم؟",
+    "correct_answer": "المحيط الهادئ",
+    "incorrect_answers": ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة الحلي؟",
+    "correct_answer": "الذهب",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤسس شركة فيسبوك؟",
+    "correct_answer": "مارك زوكربيرغ",
+    "incorrect_answers": ["ستيف جوبز", "بيل غيتس", "إيلون ماسك"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو الحيوان الوطني لأستراليا؟",
+    "correct_answer": "الكنغر",
+    "incorrect_answers": ["الكوالا", "الإكيدنا", "النمس"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أطول نهر في إفريقيا؟",
+    "correct_answer": "النيل",
+    "incorrect_answers": ["الكونغو", "النيل الأبيض", "الزامبيزي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أعلى شلال في العالم؟",
+    "correct_answer": "شلال أنجيل",
+    "incorrect_answers": ["شلال فيكتوريا", "شلال نياغارا", "شلال إغواسو"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المعدن الذي يستخدم في صناعة البطاريات؟",
+    "correct_answer": "الزنك",
+    "incorrect_answers": ["الحديد", "الألمنيوم", "النحاس"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "من هو مؤلف مسرحية المتروك؟",
+    "correct_answer": "موليير",
+    "incorrect_answers": ["شكسبير", "إييسخолос", "سوفوكليس"],
+    "category": "general_knowledge",
+    "difficulty": "hard",
+    "type": "text"
+  },
+  {
+    "question": "ما هو أسرع حيوان بري؟",
+    "correct_answer": "الوشق",
+    "incorrect_answers": ["الأسد", "الغزال", "الحصان"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "ما هو المحيط الذي يقع بين أمريكا وأوروبا؟",
+    "correct_answer": "المحيط الأطلسي",
+    "incorrect_answers": ["المحيط الهادئ", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "category": "general_knowledge",
+    "difficulty": "easy",
+    "type": "text"
+  },
+  {
+    "question": "ما هو العضو المسؤول عن تنقية الدم في الجسم؟",
+    "correct_answer": "الكبد",
+    "incorrect_answers": ["القلب", "الرئة", "المخ"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  },
+  {
+    "question": "من هو مخترع التلغراف؟",
+    "correct_answer": "صامويل مورس",
+    "incorrect_answers": ["توماس إديسون", "نيكولا تسلا", "ألكسندر جراهام بيل"],
+    "category": "general_knowledge",
+    "difficulty": "medium",
+    "type": "text"
+  }
+]

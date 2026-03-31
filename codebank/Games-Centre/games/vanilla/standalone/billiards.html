@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billiards - Games Centre</title>
+    <link rel="stylesheet" href="/web-v1/css/games.css">
+    <link rel="stylesheet" href="/web-v1/css/billiards.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Billiards</h1>
+        <div class="score-display">Score: <span id="score">0</span></div>
+        <div class="game-area">
+            <canvas id="billiards-canvas"></canvas>
+        </div>
+        <div class="controls">
+            <button id="restart-game" class="game-btn">New Game</button>
+            <button onclick="window.location.href='../index.html'" class="back-btn">Back to Games</button>
+        </div>
+        <div class="controls-info">
+            <p>Click and drag from the cue ball to shoot</p>
+            <p>Pocket all balls to win!</p>
+        </div>
+    </div>
+    <script src="/web-v1/js/billiards.js"></script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+/* Tetris Classic Styles */
+
+:root {
+    --bg-color: #1a1a1a;
+    --board-bg: #2d2d2d;
+    --text-color: #ffffff;
+    --accent-color: #00d2ff;
+    --grid-color: #3d3d3d;
+    --tile-size: 30px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    background: #252525;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--grid-color);
+    padding-bottom: 15px;
+}
+
+.game-header h1 {
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2rem;
+}
+
+.score-board {
+    display: flex;
+    gap: 20px;
+}
+
+.score-display, .level-display, .lines-display {
+    background: #3d3d3d;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.score-display span:last-child,
+.level-display span:last-child,
+.lines-display span:last-child {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+}
+
+.game-board {
+    background-color: var(--board-bg);
+    border: 4px solid #4d4d4d;
+    border-radius: 4px;
+    position: relative;
+    width: 300px;
+    height: 600px;
+    margin: 0 auto;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.next-piece-container {
+    background: #3d3d3d;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.next-piece-container h3 {
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.next-piece {
+    width: 120px;
+    height: 120px;
+    background: #2d2d2d;
+    border: 2px solid #4d4d4d;
+    border-radius: 4px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.controls-panel {
+    background: #3d3d3d;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.controls-panel h3 {
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.control-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    background: #4d4d4d;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.control-btn:hover {
+    background: var(--accent-color);
+    color: #000;
+    transform: translateY(-2px);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.instructions {
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.5;
+}
+
+/* Game pieces styles */
+.block {
+    position: absolute;
+    width: var(--tile-size);
+    height: var(--tile-size);
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease;
+}
+
+/* Tetris piece colors */
+.block.i-piece { background-color: #00f0f0; border: 2px solid #00a0a0; }
+.block.j-piece { background-color: #0000f0; border: 2px solid #0000a0; }
+.block.l-piece { background-color: #f0a000; border: 2px solid #a07000; }
+.block.o-piece { background-color: #f0f000; border: 2px solid #a0a000; }
+.block.s-piece { background-color: #00f000; border: 2px solid #00a000; }
+.block.t-piece { background-color: #a000f0; border: 2px solid #7000a0; }
+.block.z-piece { background-color: #f00000; border: 2px solid #a00000; }
+
+.block::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* Game over banner */
+#game-over-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.banner-content {
+    background: #3d3d3d;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--accent-color);
+}
+
+.banner-content h2 {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.restart-btn {
+    background: var(--accent-color);
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.restart-btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .game-area {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .game-board {
+        width: 240px;
+        height: 480px;
+        --tile-size: 24px;
+    }
+    
+    .next-piece {
+        width: 96px;
+        height: 96px;
+    }
+    
+    .score-board {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Animation for piece movement */
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.block.moving {
+    animation: slideIn 0.1s ease-out;
+}
+
+/* Grid lines for the board */
+.game-board::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--tile-size) var(--tile-size);
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Controls for mobile */
+.mobile-controls {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+    z-index: 100;
+}
+
+.mobile-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #4d4d4d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+}

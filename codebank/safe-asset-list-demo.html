@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safe Asset List - Unified Renderer Demo</title>
+  <link rel="stylesheet" href="css/safe-asset-list.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f172a;
+      color: #eaeaea;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0 0 10px 0;
+      color: #eaeaea;
+    }
+
+    .header p {
+      margin: 0;
+      color: #94a3b8;
+    }
+
+    .safe-panel {
+      background-color: #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .safe-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .safe-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .safe-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .safe-info {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85em;
+      color: #94a3b8;
+    }
+
+    .safe-info span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .demo-controls {
+      margin-top: 20px;
+      padding: 16px;
+      background-color: #334155;
+      border-radius: 8px;
+    }
+
+    .demo-controls h3 {
+      margin: 0 0 12px 0;
+      font-size: 1em;
+      color: #eaeaea;
+    }
+
+    .demo-controls button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .demo-controls button:hover {
+      background-color: #2563eb;
+    }
+
+    .demo-controls button.silver-btn {
+      background-color: #b0bec5;
+      color: #1e293b;
+    }
+
+    .demo-controls button.silver-btn:hover {
+      background-color: #cfd8dc;
+    }
+
+    .demo-controls button.gold-btn {
+      background-color: #ffb300;
+      color: #1e293b;
+    }
+
+    .demo-controls button.gold-btn:hover {
+      background-color: #ffca28;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Safe Asset List - Unified Renderer</h1>
+      <p>Single component for Codes, Silver, and Gold assets</p>
+    </div>
+
+    <div class="safe-panel">
+      <div class="safe-header">
+        <div class="safe-title-group">
+          <h2 id="safe-title">Safe Codes</h2>
+          <div class="safe-info">
+            <span>Count: <strong id="safe-count">0</strong></span>
+            <span>Last: <strong id="safe-last">—</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="safe-tabs">
+        <button class="safe-tab-button active" data-tab="codes">Codes</button>
+        <button class="safe-tab-button" data-tab="silver">Silver</button>
+        <button class="safe-tab-button" data-tab="gold">Gold</button>
+      </div>
+
+      <div id="safe-list">
+        <!-- Asset items will be rendered here -->
+      </div>
+    </div>
+
+    <div class="demo-controls">
+      <h3>Demo Controls</h3>
+      <button onclick="addCode()">Add Code</button>
+      <button class="silver-btn" onclick="addSilver()">Add Silver</button>
+      <button class="gold-btn" onclick="addGold()">Add Gold</button>
+      <button onclick="clearAll()">Clear All</button>
+    </div>
+  </div>
+
+  <!-- Load AssetBus first -->
+  <script src="../shared/local-asset-bus.js"></script>
+
+  <!-- Load Safe Asset List -->
+  <script src="js/safe-asset-list.js"></script>
+
+  <!-- Demo Controls -->
+  <script>
+    function addCode() {
+      if (!window.AssetBus) return;
+      const code = 'CODE-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      window.AssetBus.addAsset('normal', code);
+    }
+
+    function addSilver() {
+      if (!window.AssetBus) return;
+      const code = 'SLVR-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      window.AssetBus.addAsset('silver', code);
+    }
+
+    function addGold() {
+      if (!window.AssetBus) return;
+      const code = 'GOLD-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      window.AssetBus.addAsset('gold', code);
+    }
+
+    function clearAll() {
+      if (!window.AssetBus) return;
+      const state = window.AssetBus.getState();
+      state.series = { normal: [], silver: [], gold: [] };
+      state.counts = { normal: 0, silver: 0, gold: 0 };
+      state.last = { normal: null, silver: null, gold: null };
+      if (window.safeStorage) {
+        window.safeStorage.set('codebank_assets', JSON.stringify(state));
+      }
+      window.dispatchEvent(new CustomEvent('assets:updated', { detail: state }));
+    }
+  </script>
+</body>
+</html>

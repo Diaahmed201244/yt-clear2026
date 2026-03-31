@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <link rel="stylesheet" href="c1.css">
+</head>
+<body>
+    <div class="chess-container">
+        <div class="chess-board" id="chessBoard"></div>
+        <div class="game-info">
+            <div class="current-player">Current Player: <span id="currentPlayer">White</span></div>
+            <div class="game-status" id="gameStatus">Game in progress</div>
+            <button id="newGameBtn">New Game</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+    <script src="c1.js"></script>
+</body>
+</html>

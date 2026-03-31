@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 🚨 EMERGENCY CONSOLE FLOOD PROTECTION (FIX 5) 🚨 -->
+    <script>
+        // CONSOLE FLOOD PROTECTION
+        (function() {
+            const originalWarn = console.warn;
+            const originalLog = console.log;
+            const warningCounts = new Map();
+            const MAX_REPEATS = 3;
+            
+            function isSpam(message) {
+                const spamPatterns = [
+                    'updateLogic aborted',
+                    'Scene components not fully initialized',
+                    'Loading progress:',
+                    'Dependency status:',
+                    'WatchDogAnimator',
+                    'Guardian3D',
+                    'YT-Player',
+                    'init aborted'
+                ];
+                return spamPatterns.some(p => message.includes(p));
+            }
+            
+            console.warn = function(...args) {
+                const msg = args.join(' ');
+                if (isSpam(msg)) {
+                    const count = warningCounts.get(msg) || 0;
+                    if (count >= MAX_REPEATS) return;
+                    warningCounts.set(msg, count + 1);
+                    if (count === MAX_REPEATS - 1) {
+                        originalWarn.call(console, '[CONSOLE FLOOD PROTECTION] Suppressing repeated warnings...');
+                        return;
+                    }
+                }
+                originalWarn.apply(console, args);
+            };
+            
+            // Throttle progress logs
+            let lastProgress = 0;
+            console.log = function(...args) {
+                const msg = args.join(' ');
+                if (msg.includes('Loading progress:')) {
+                    const match = msg.match(/(\d+)%/);
+                    if (match) {
+                        const progress = parseInt(match[1]);
+                        if (progress - lastProgress < 10 && progress !== 100) return; // Only log every 10%
+                        lastProgress = progress;
+                    }
+                }
+                originalLog.apply(console, args);
+            };
+        })();
+    </script>
+
+    <!-- 🚨 ERROR CAPTURE SYSTEM (from actly.md) 🚨 -->
+    <script>
+        // ERROR CAPTURE SYSTEM
+        window.allErrors = [];
+        window.originalConsoleError = console.error;
+        window.originalConsoleWarn = console.warn;
+
+        console.error = function(...args) {
+            window.allErrors.push({
+                type: 'error',
+                message: args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '),
+                stack: new Error().stack,
+                timestamp: new Date().toISOString()
+            });
+            window.originalConsoleError.apply(console, args);
+        };
+
+        console.warn = function(...args) {
+            window.allErrors.push({
+                type: 'warn',
+                message: args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '),
+                timestamp: new Date().toISOString()
+            });
+            window.originalConsoleWarn.apply(console, args);
+        };
+
+        window.addEventListener('error', (e) => {
+            window.allErrors.push({
+                type: 'uncaught',
+                message: e.message,
+                filename: e.filename,
+                lineno: e.lineno,
+                colno: e.colno,
+                timestamp: new Date().toISOString()
+            });
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            window.allErrors.push({
+                type: 'promise_rejection',
+                message: e.reason?.message || String(e.reason),
+                timestamp: new Date().toISOString()
+            });
+        });
+
+        // Capture network errors
+        const originalFetch = window.fetch;
+        window.fetch = async function(...args) {
+            try {
+                const response = await originalFetch.apply(this, args);
+                if (!response.ok) {
+                    console.error(`[Network Error] ${response.status} ${args[0]}`);
+                }
+                return response;
+            } catch (err) {
+                console.error(`[Network Error] Failed: ${args[0]}`, err.message);
+                throw err;
+            }
+        };
+
+        console.log('✅ Error and Network capture system active.');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; font-src * data: 'self'; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src * data: blob:; media-src *; frame-src *;">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>YouTube Embed App</title>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+    
+    <!-- Emergency Initialization Fix -->
+    <script>
+    // Console flood protection (FIX 4)
+    (function() {
+        const MAX_LOGS = 100;
+        let logCount = 0;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+        
+        function createLimitedLogger(original, type) {
+            return function(...args) {
+                logCount++;
+                if (logCount <= MAX_LOGS) {
+                    original.apply(console, args);
+                } else if (logCount === MAX_LOGS + 1) {
+                    original.call(console, `[CONSOLE FLOOD PROTECTION] Further ${type} messages suppressed`);
+                }
+            };
+        }
+        
+        console.warn = createLimitedLogger(originalWarn, 'warnings');
+        console.error = createLimitedLogger(originalError, 'errors');
+        
+        setInterval(() => {
+            if (logCount > MAX_LOGS) {
+                console.warn('[CONSOLE] Log limit reset, resuming output');
+            }
+            logCount = 0;
+        }, 10000);
+    })();
+
+    (function emergencyInit() {
+        console.log('[EmergencyInit] Starting...');
+        
+        // CIRCUIT BREAKER (FIX 1)
+        const MAX_RETRIES = 3;
+        const scriptKey = 'yt-player-init-failures';
+        let failures = parseInt(sessionStorage.getItem(scriptKey) || '0');
+        
+        if (failures >= MAX_RETRIES) {
+            console.error('[EmergencyInit] CIRCUIT BREAKER: Max retries reached. Stopping attempts.');
+            const container = document.getElementById('loading-overlay') || document.body;
+            container.innerHTML = `
+                <div style="padding: 40px; text-align: center; font-family: sans-serif; color: white; background: #0f0f0f; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <h2 style="color: #ff4d4d;">⚠️ Player Load Failed</h2>
+                    <p>The video player could not be loaded after ${MAX_RETRIES} attempts.</p>
+                    <button onclick="sessionStorage.removeItem('${scriptKey}'); location.reload()" 
+                            style="padding: 15px 30px; font-size: 16px; cursor: pointer; background: #00d4ff; border: none; border-radius: 5px; color: black; font-weight: bold; margin-top: 20px;">
+                        Retry Now
+                    </button>
+                </div>
+            `;
+            return;
+        }
+
+        // Fix 1: Hide loader after max 3 seconds regardless
+        setTimeout(() => {
+            const loaders = ['loading-overlay', 'loading-text', 'loading-percentage'];
+            loaders.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.style.display = 'none';
+                    el.style.opacity = '0';
+                }
+            });
+            console.log('[EmergencyInit] Loader hidden');
+        }, 3000);
+        
+        // Fix 2: Retry failed script loads
+        window.addEventListener('error', (e) => {
+            if (e.target.tagName === 'SCRIPT') {
+                const src = e.target.src;
+                console.warn('[EmergencyInit] Script failed:', src);
+                
+                // Retry with corrected path
+                if (src.includes('layout-bootstrap.js')) {
+                    const newScript = document.createElement('script');
+                    newScript.src = './layout-bootstrap.js';
+                    document.head.appendChild(newScript);
+                }
+                if (src.includes('yt-player.init.js')) {
+                    // Increment failures (FIX 1)
+                    sessionStorage.setItem(scriptKey, (failures + 1).toString());
+                    
+                    const newScript = document.createElement('script');
+                    newScript.src = './yt-player/yt-player.init.js';
+                    document.head.appendChild(newScript);
+                }
+            }
+        }, true);
+        
+        // Fix 3: Force show main content
+        setTimeout(() => {
+            const app = document.getElementById('app') || document.getElementById('main');
+            if (app) {
+                app.style.display = 'block';
+                app.style.opacity = '1';
+            }
+        }, 3500);
+    })();
+    </script>
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/youtube-embed-responsive.css">
+    <link rel="stylesheet" href="./styles/toggle-switch-3way.css">
+    <link rel="stylesheet" href="./styles/section-switch-popup.css">
+    <link rel="stylesheet" href="./codebank/css/safe-asset-list.css">
+    <link rel="stylesheet" href="./styles/yt-clear-main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- External Libraries -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@capacitor/core/dist/capacitor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/parse@6.1.1/dist/parse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako_deflate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+    <!-- App Logic -->
+    <script src="./shared/storage-adapter.js"></script>
+    <script src="./js/yt-clear-main.js" defer></script>
+</head>
+
+<body class="bg-light">
+    <!-- Initiation Overlay -->
+    <div id="loading-overlay" class="active">
+        <div class="init-container" style="width: 80%; max-width: 500px; text-align: center;">
+            <div class="percentage" id="loading-percentage" style="font-size: 48px; font-weight: 100; color: #ffffff; margin-bottom: 15px; font-variant-numeric: tabular-nums;">0%</div>
+            <div class="title" style="font-size: 24px; font-weight: 300; margin-bottom: 20px; letter-spacing: 2px; color: #00d4ff; text-transform: uppercase;">Initiating Environment</div>
+            
+            <div class="progress-bar-bg" style="width: 100%; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 4px; border: 1px solid rgba(0, 212, 255, 0.2); box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);">
+                <div class="progress-bar-fill" id="loading-progress-bar" style="height: 8px; background: linear-gradient(90deg, #00d4ff 0%, #00ff88 100%); border-radius: 10px; width: 0%; box-shadow: 0 0 10px #00d4ff, 0 0 20px #00ff88; transition: width 0.1s linear;"></div>
+            </div>
+            
+            <div class="status-text loading-text" id="loading-text" style="margin-top: 15px; font-size: 14px; color: #8b949e; height: 20px; letter-spacing: 1px;">Authenticating Session...</div>
+        </div>
+    </div>
+
+    <div class="container text-center py-5">
+        <h1 class="display-4" data-i18n="general.siteName">My YouTube Channel</h1>
+
+        <div class="video-wrapper">
+            <div id="video-container"></div>
+            <div id="global-touch-shield" class="touch-overlay" aria-hidden="true"></div>
+            
+            <div id="counter-container" class="bg-dark text-white p-3 rounded">
+                <div id="extra-switch-absolute-container">
+                    <div id="extra-switch-container">
+                        <div id="extra-switch-track" class="extra-switch-track">
+                            <div id="extra-switch-knob"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="watch-time" class="h5">
+                    <span id="counter">000:00:00.000</span>
+                    <span id="stopwatch">00:00:0</span>
+                </div>
+
+                <div id="control-buttons" class="d-flex justify-content-center gap-2">
+                    <button id="sound-button" class="btn btn-secondary" title="Toggle Sound">🔊</button>
+                </div>
+
+                <div id="toggle-switch-absolute-container">
+                    <div id="three-way-toggle" class="three-way-toggle">
+                        <div class="toggle-track">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="code-display" class="mt-3 p-2 bg-secondary text-white rounded">
+                    Waiting for code...
+                </div>
+
+                <button id="play-pause-button" class="btn btn-success">
+                    <span id="progress-text" class="pp-overlay">0%</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="sound-popup">
+            <div class="calendars">
+                <div id="gregorian-date" class="calendar"></div>
+                <div id="current-time" class="time-display"></div>
+                <div id="hijri-date" class="calendar"></div>
+            </div>
+        </div>
+
+        <div class="news-ticker">
+            <span class="news-ticker-content" data-i18n="newsTicker.content">
+                TIMUR NEWS: Breaking news and updates from around the world...
+            </span>
+        </div>
+
+        <!-- Overlays -->
+        <div id="popup-overlay">
+            <div id="popup-frame">
+                <button id="popup-close">✖</button>
+                <iframe src="" id="popup-iframe" style="display:none"></iframe>
+            </div>
+        </div>
+
+        <div id="code-popup-overlay" style="display: none;">
+            <div id="code-popup-frame">
+                <button id="code-popup-close">✖</button>
+                <iframe id="code-popup-iframe" src="./codebank/indexCB.html"></iframe>
+            </div>
+        </div>
+
+        <div id="yt-thumbnail-layer">
+            <img id="yt-thumbnail-img" src="" alt="">
+        </div>
+
+        <!-- Player & Guardian Containers (from actly.md) -->
+        <div id="video-container">
+            <div id="yt-player"></div>
+            <div id="guardian-dog-container"></div>
+        </div>
+
+        <div id="app"></div>
+    </div>
+
+    <!-- Modular Scripts -->
+    <script src="./shared/global-touch-shield.js"></script>
+    <script src="./shared/auth-core.js"></script>
+    <script type="module" src="./shared/local-asset-bus.js"></script>
+    
+    <script type="module" src="./layout-bootstrap.js"></script>
+    <script src="./shared/bankode-core.js"></script>
+    <script src="./codebank/bankode-assetbus-bridge.js"></script>
+    <script src="./codebank/js/safe-storage.js"></script>
+    <script src="./codebank/js/guardian-3d.js"></script>
+    <script src="./yt-player/yt-player.init.js"></script>
+    <script type="module" src="./main.js"></script>
+
+    <!-- Canvas for Animations -->
+    <canvas id="balloonCanvas"></canvas>
+
+    <!-- Stopwatch Modal -->
+    <div id="stopwatch-modal-overlay" aria-hidden="true" role="dialog" style="display:none">
+        <div id="stopwatch-modal-frame">
+            <button id="stopwatch-modal-close">✖</button>
+            <div id="stopwatch-modal-display">00:00:0</div>
+            <div id="stopwatch-modal-controls">
+                <label>Minutes
+                    <div class="sw-spinner">
+                        <button class="sw-spin-btn" data-target="sw-mins" data-dir="up">▲</button>
+                        <input type="number" id="sw-mins" min="0" max="59" value="05">
+                        <button class="sw-spin-btn" data-target="sw-mins" data-dir="down">▼</button>
+                    </div>
+                </label>
+                <button id="sw-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar & Engine Initialization -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const progressFill = document.getElementById('loading-progress-bar');
+        const percentageText = document.getElementById('loading-percentage');
+        const statusText = document.getElementById('loading-text');
+        const overlay = document.getElementById('loading-overlay');
+
+        const steps = [
+            { limit: 20, message: "Authenticating Session..." },
+            { limit: 45, message: "Connecting to CodeBank Assets..." },
+            { limit: 70, message: "Loading Architecture Core..." },
+            { limit: 90, message: "Initializing Media Players..." },
+            { limit: 100, message: "Ready. Launching..." }
+        ];
+
+        let progress = 0;
+        let isEngineInitiated = false;
+
+        // Visual progress driver
+        const visualTimer = setInterval(() => {
+            if (!isEngineInitiated && progress < 90) {
+                progress += Math.random() * 2; // Slow creep to 90%
+            } else if (isEngineInitiated) {
+                progress += 5; // Fast zoom to 100%
+            }
+
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(visualTimer);
+                if (progressFill) progressFill.style.width = "100%";
+                if (percentageText) percentageText.textContent = "100%";
+                if (statusText) {
+                    statusText.textContent = steps[4].message;
+                    statusText.style.color = "#00ff88";
+                }
+                
+                setTimeout(() => {
+                    if (overlay) {
+                        overlay.style.opacity = '0';
+                        overlay.style.transition = 'opacity 0.6s ease';
+                        setTimeout(() => overlay.style.display = 'none', 600);
+                    }
+                }, 300);
+                return;
+            }
+
+            if (progressFill) progressFill.style.width = progress + "%";
+            if (percentageText) percentageText.textContent = Math.floor(progress) + "%";
+
+            const currentStep = steps.find(s => progress <= s.limit);
+            if (currentStep && statusText && statusText.textContent !== currentStep.message) {
+                statusText.textContent = currentStep.message;
+            }
+        }, 50);
+
+        // Actual initiation logic hook
+        const attemptInit = () => { 
+            const ac = window.AuthCore;
+            const s = ac?._state;
+            
+            // Check auth state from AuthCore directly OR sniff local storage for a direct pass
+            const token = s?.sessionId || localStorage.getItem('session_token');
+            const hasDirectPass = token && localStorage.getItem('session_active') === "true";
+            const meetsCondition = (s?.authenticated && s?.sessionId) || hasDirectPass;
+            
+            // 🛡️ Enhanced Dependency Check (from actly.md)
+            function checkDependencies() {
+                const deps = {
+                    AuthCore: typeof window.AuthCore !== 'undefined',
+                    AssetBus: typeof window.AssetBus !== 'undefined',
+                    // التعديل: التحقق من وجود الكائن أو تجاوز الفحص إذا كنا في Local Mode
+                    YTPlayer: !!(window.YTPlayer || document.getElementById('player'))
+                };
+                console.log('[Init] Dependency status:', deps);
+                return deps.AuthCore && (deps.AssetBus || deps.YTPlayer);
+            }
+
+            if (meetsCondition && checkDependencies() && !window._initAfterLoginCalled && window.initAfterLogin) { 
+                window._initAfterLoginCalled = true; 
+                
+                // Polyfill state if AuthCore is lagging locally
+                if (ac && (!s?.authenticated)) {
+                    ac._state.authenticated = true;
+                    ac._state.status = 'authenticated';
+                    ac._state.sessionId = token;
+                }
+
+                try {
+                    console.log('✅ YT-Clear Init: Auto-initialized engine with token and dependencies');
+                    window.initAfterLogin(token, s?.user || {id: s?.userId || localStorage.getItem('user_id')}); 
+                } catch (e) {
+                    console.error('Error during initAfterLogin', e);
+                }
+
+                isEngineInitiated = true; // Signals UI to finish!
+                return true;
+            } 
+            return false;
+        }; 
+
+        if (!attemptInit()) {
+            const authPolling = setInterval(() => {
+                if (attemptInit()) clearInterval(authPolling);
+            }, 200);
+            
+            // Fallback timeout (from actly.md)
+            setTimeout(() => {
+                clearInterval(authPolling);
+                if (!isEngineInitiated) {
+                    console.warn("⚠️ Engine Initiation Timeout - Attempting Fallback Init");
+                    
+                    // Hide loader and show UI anyway
+                    const loader = document.getElementById('loading-overlay');
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.style.display = 'none', 600);
+                    }
+                    document.getElementById('app')?.style.setProperty('display', 'block');
+                    
+                    isEngineInitiated = true; 
+
+                    // Try one last blind pass if we have a token
+                    if (!window._initAfterLoginCalled && window.initAfterLogin && localStorage.getItem('session_token')) {
+                         window._initAfterLoginCalled = true; 
+                         console.log('[Init] Forced fallback init after timeout');
+                         window.initAfterLogin(localStorage.getItem('session_token'), {id: localStorage.getItem('user_id')});
+                    }
+                }
+            }, 8000); // 🚀 Slightly reduced from 12s for better UX
+        }
+    });
+    </script> 
+    
+    <!-- Emergency Force YT-Player Ready State (FIX 6) -->
+    <script>
+    // EMERGENCY: Force YT-Player ready after timeout
+    const EMERGENCY_TIMEOUT = 15000; // 15 seconds to allow 3D model loading
+    setTimeout(() => {
+        if (!window.YTPlayerReady && !window.ytPlayerForced) {
+            console.warn('[EMERGENCY] Forcing YT-Player ready state');
+            window.ytPlayerForced = true;
+            window.YTPlayerReady = true;
+            window.YTPlayer = window.YTPlayer || { isReady: true };
+            
+            // Dispatch ready event
+            window.dispatchEvent(new CustomEvent('yt-player-ready', {
+                detail: { player: window.YTPlayerInit?.player || null, forced: true }
+            }));
+            
+            // Update dependency status
+            if (window.updateDependencyStatus) {
+                window.updateDependencyStatus('YTPlayer', true);
+            }
+
+            if (window.AuthCore) {
+                console.log('🛡️ Self-Healing: Prevented unnecessary reload');
+            }
+        }
+    }, EMERGENCY_TIMEOUT);
+    </script>
+</body>
+</html>

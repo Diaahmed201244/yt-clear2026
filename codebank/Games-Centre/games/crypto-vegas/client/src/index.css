@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  :root {
+    --background: 210 40% 3%;
+    --foreground: 210 40% 98%;
+    --card: 210 40% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 210 40% 6%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 7% 97%;
+    --secondary: 210 40% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 12%;
+    --muted-foreground: 210 40% 63%;
+    --accent: 210 40% 12%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 40% 18%;
+    --input: 210 40% 18%;
+    --ring: 142 76% 36%;
+    --radius: 0.5rem;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+    font-family: 'Orbitron', 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  }
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Casino-specific styles */
+.neon-glow {
+  box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+  text-shadow: 0 0 10px #00ff88;
+}
+
+.neon-border {
+  border: 2px solid #00ff88;
+  box-shadow: 0 0 10px #00ff88, inset 0 0 10px rgba(0, 255, 136, 0.1);
+}
+
+.slot-reel {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #333;
+  border-radius: 8px;
+}
+
+.casino-card {
+  background: rgba(26, 26, 46, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.game-button {
+  background: linear-gradient(45deg, #00ff88, #00cc6a);
+  transition: all 0.3s ease;
+}
+
+.game-button:hover {
+  background: linear-gradient(45deg, #00cc6a, #00aa55);
+  transform: translateY(-2px);
+}
+
+.crash-multiplier {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 3rem;
+  text-shadow: 0 0 20px #00ff88;
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-neon {
+  0%, 100% {
+    box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+  }
+  50% {
+    box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88, 0 0 40px #00ff88;
+  }
+}
+
+.pulse-neon {
+  animation: pulse-neon 2s infinite;
+}
+
+.spinning {
+  animation: spin 0.5s linear;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .crash-multiplier {
+    font-size: 2rem;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+}

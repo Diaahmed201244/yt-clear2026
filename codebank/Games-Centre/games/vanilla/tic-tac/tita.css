@@ -1,0 +1,300 @@
+/* Modern Tic-Tac-Toe Styling */
+:root {
+    --primary-color: #ff6b35;
+    --secondary-color: #8b5cf6;
+    --accent-color: #58a6ff;
+    --bg-gradient-start: #0f0f23;
+    --bg-gradient-end: #1a1a2e;
+    --text-color: #e0e0e0;
+    --text-muted: #8b949e;
+    --card-bg: rgba(22, 27, 34, 0.8);
+    --border-color: #30363d;
+    --hover-bg: #21262d;
+    --success-color: #00ff88;
+    --error-color: #f85149;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --glow-primary: 0 0 20px rgba(255, 107, 53, 0.3);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.6s ease;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: 'Poppins', 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-board {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#table_game {
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.td_game {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    transition: all var(--transition-normal);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.td_game:hover {
+    background: rgba(255, 107, 53, 0.1);
+    transform: scale(1.05);
+}
+
+.fixed {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 3rem;
+    transition: all var(--transition-fast);
+    border-radius: 10px;
+}
+
+.fixed:hover {
+    background: rgba(255, 107, 53, 0.2);
+    transform: scale(1.1);
+}
+
+.x {
+    color: #ff6b35;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+    animation: popIn 0.3s ease;
+}
+
+.o {
+    color: #8b5cf6;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(90deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.scoreboard {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    box-shadow: var(--shadow-md);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.scoreboard table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.th_list {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.td_list {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 15px 10px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.player-score {
+    color: #ff6b35;
+}
+
+.computer-score {
+    color: #8b5cf6;
+}
+
+.tie-score {
+    color: var(--text-muted);
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+
+#restart {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    box-shadow: var(--glow-primary);
+}
+
+#restart:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+}
+
+.win-color {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 136, 0.1)) !important;
+    animation: winPulse 0.6s ease;
+}
+
+@keyframes winPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(0, 255, 136, 0.4);
+    }
+}
+
+/* modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* enable scroll if needed */
+    background-color: black; /* fallback color */
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* modal content */
+.modal-content {
+    background-color: rgb(240, 240, 240);
+    color: rgb(32, 32, 32);
+    font-size: 2em;
+    font-weight: bold;
+    /* 16 % from the top and centered */
+    margin: 16% auto;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 380px;
+    max-width: 80%;
+}
+.modal-content p {
+    margin: 0;
+    padding: 0;
+}
+
+/* close button for modal dialog */
+.close {
+    color: rgb(170, 170, 170);
+    float: right;
+    position: relative;
+    top: -25px;
+    right: -10px;
+    font-size: 34px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.win-color {
+    background-color: rgb(240, 240, 240);
+}

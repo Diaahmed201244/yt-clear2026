@@ -1,0 +1,79 @@
+design the game mechanics, flow, and rule logic to simulate a real gambling card game. The closest real-world equivalent is a simplified version of Poker or the Egyptian-style "Kotchina" gambling game.
+
+---
+
+### 🔁 Rule Adjustments:
+1. **Game Start:**
+   - Each player must place an entry stake (a "code" or virtual token) into the pot.
+   - Dealer (Lady Victoria AI) receives the stake and holds it.
+
+2. **Card Dealing:**
+   - Each player is dealt 2 cards (initial hand).
+   - A middle pot area displays shared cards (3 to 5 based on the rule set you choose).
+
+3. **Turns & Actions:**
+   - Players can only:
+     - View their hand.
+     - Fold (quit and lose the stake).
+     - Play one card per round.
+   - No complex actions like betting rounds yet unless needed.
+
+4. **Victory Logic:**
+   - At the end of a round:
+     - All hands are revealed.
+     - Dealer determines the best hand using standard poker-like rules or custom logic (e.g., highest pair, sum, etc.).
+     - Winner takes the pot.
+     - Dealer AI announces the result.
+
+---
+
+### 🤖 Dealer AI Logic:
+- Accepts and verifies stake tokens.
+- Deals cards to each player randomly.
+- Tracks player actions (played cards, folds).
+- Announces when cards are dealt, rounds start, rounds end, and who wins.
+- Distributes the pot to the winner (updates balance or code count).
+
+---
+
+### 🧩 Code Changes Required:
+- Modify or replace existing `GameControls.tsx`, `GameLogic.ts`, and `GameInfo.tsx` to:
+  - Include `JoinWithStake()`, `Fold()`, and `RevealHands()` actions.
+- Add a new component `DealerAI.ts` that manages pot, card distribution, and winner detection.
+- Use the existing WebSocket system for:
+  - Broadcasting dealt cards.
+  - Syncing turn changes.
+  - Sharing game results.
+
+---
+
+### 🎨 UI Adjustments:
+- Display pot value at all times.
+- Highlight current player turn.
+- Show card faces at reveal.
+- Use a casino-style design for chips, tokens, and dealer.
+
+---
+
+### 🧪 Suggested Additions (Optional but Recommended):
+- Add a hand-evaluation helper function.
+- Integrate code/token tracking via Supabase or local state.
+- Add animation to simulate card dealing and reveal.
+- Add a timer for each player's turn to speed up play.
+
+---
+
+### 💡 Notes:
+- Ensure modularity: dealer logic, game logic, and WebSocket sync must be clearly separated.
+- Avoid backend DB complexity for now—keep it all in-memory or local state with Supabase optional.
+- Use Tailwind CSS animations for elegance.
+
+✅ What You Get
+With this prompt, any AI agent will:
+
+Understand the structure of your current project.
+
+Know exactly which logic to replace or extend.
+
+Be guided toward building a gambling-style card game with real stakes, pot distribution, and automated dealer behavior.
+

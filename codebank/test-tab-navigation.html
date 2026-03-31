@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeBank Tab Navigation Test</title>
+</head>
+<body>
+  <div id="results"></div>
+  <iframe id="app" src="./indexCB.html" style="width:1px;height:1px;opacity:0"></iframe>
+  <script>
+    function log(t){ var r=document.getElementById('results'); var d=document.createElement('div'); d.textContent=t; r.appendChild(d); }
+    function wait(ms){ return new Promise(function(res){ setTimeout(res, ms) }) }
+    async function run(){
+      var frame=document.getElementById('app');
+      await wait(800);
+      var win=frame.contentWindow; var doc=win.document;
+      var tabs=['overview','assets','eb3at','games','history','samma3ny','farragna','oneworld','corsa','e7ki','nostaglia','pebalaash'];
+      for (var i=0;i<tabs.length;i++){
+        var id=tabs[i];
+        var btn=doc.querySelector('[data-tab="'+id+'"], [data-tab-id="'+id+'"]');
+        var panel=doc.getElementById(id+'-tab');
+        if(!btn||!panel){ log(id+': missing btn or panel'); continue }
+        btn.click();
+        await wait(150);
+        var ok=panel.classList.contains('active');
+        log(id+': '+(ok?'active':'inactive'));
+      }
+      var shotsBtn=doc.querySelector('[data-tab-id="shots"]');
+      if(shotsBtn){ shotsBtn.click(); await wait(250); var shots=doc.getElementById('main-tab-iframe'); var loaded=!!(shots&&shots.src); log('shots: '+(loaded?'loaded':'not-loaded')); }
+    }
+    run();
+  </script>
+</body>
+</html>

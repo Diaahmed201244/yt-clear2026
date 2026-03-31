@@ -1,0 +1,391 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Game-specific colors */
+  --game-bg-start: hsl(220, 30%, 18%);
+  --game-bg-end: hsl(220, 30%, 6%);
+  --box-bg-start: hsl(215, 25%, 27%);
+  --box-bg-end: hsl(215, 25%, 22%);
+  --box-border: hsl(215, 20%, 35%);
+  --box-hover: hsl(234, 89%, 74%);
+  --reward-green: hsl(142, 76%, 36%);
+  --reward-amber: hsl(43, 96%, 56%);
+  --bomb-red: hsl(0, 84%, 60%);
+  --emerald-400: hsl(158, 64%, 52%);
+  --emerald-600: hsl(158, 64%, 38%);
+  --emerald-700: hsl(158, 64%, 33%);
+  --emerald-900: hsl(158, 64%, 18%);
+  --red-400: hsl(0, 84%, 60%);
+  --red-600: hsl(0, 84%, 45%);
+  --red-700: hsl(0, 84%, 40%);
+  --red-900: hsl(0, 84%, 25%);
+  --amber-400: hsl(45, 96%, 64%);
+  --amber-600: hsl(45, 96%, 49%);
+  --amber-700: hsl(45, 96%, 44%);
+  --indigo-400: hsl(234, 89%, 74%);
+  --indigo-600: hsl(234, 89%, 54%);
+  --indigo-700: hsl(234, 89%, 49%);
+  --purple-400: hsl(270, 95%, 75%);
+  --purple-600: hsl(270, 95%, 55%);
+  --purple-700: hsl(270, 95%, 50%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .game-bg {
+    background: linear-gradient(135deg, var(--game-bg-start), var(--game-bg-end));
+  }
+  
+  .box-gradient {
+    background: linear-gradient(135deg, var(--box-bg-start), var(--box-bg-end));
+  }
+  
+  .animate-flip {
+    animation: flip 0.8s ease-in-out;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out;
+  }
+  
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-confetti {
+    animation: confetti 3s ease-out forwards;
+  }
+  
+  .animate-explosion {
+    animation: explosion 0.8s ease-out;
+  }
+  
+  .animate-slice {
+    animation: slice 0.6s ease-in-out;
+  }
+  
+  .animate-sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  .animate-curse {
+    animation: curse 1s ease-in-out;
+  }
+  
+  .animate-steal {
+    animation: steal 0.8s ease-out;
+  }
+  
+  @keyframes flip {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(90deg) scale(1.1); }
+    100% { transform: rotateY(0deg); }
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes confetti {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+  }
+  
+  @keyframes explosion {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3) rotate(5deg); box-shadow: 0 0 30px rgba(239, 68, 68, 0.8); }
+    100% { transform: scale(1) rotate(0deg); box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+  }
+  
+  @keyframes slice {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(0.2) rotate(45deg); }
+    100% { transform: scaleX(1) rotate(0deg); }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+    50% { transform: scale(1.1) rotate(180deg); filter: brightness(1.5); }
+  }
+  
+  @keyframes curse {
+    0% { transform: scale(1) rotate(0deg); filter: hue-rotate(0deg); }
+    25% { transform: scale(0.9) rotate(-5deg); filter: hue-rotate(90deg); }
+    50% { transform: scale(1.1) rotate(5deg); filter: hue-rotate(180deg); }
+    75% { transform: scale(0.95) rotate(-3deg); filter: hue-rotate(270deg); }
+    100% { transform: scale(1) rotate(0deg); filter: hue-rotate(360deg); }
+  }
+  
+  @keyframes steal {
+    0% { transform: translateX(0) scale(1); opacity: 1; }
+    50% { transform: translateX(-20px) scale(0.8); opacity: 0.5; }
+    100% { transform: translateX(0) scale(1); opacity: 1; }
+  }
+  
+  @keyframes particleMove {
+    0% { 
+      transform: translate(-50%, -50%) scale(1); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: translate(-50%, -150%) scale(0.2) rotate(360deg); 
+      opacity: 0; 
+    }
+  }
+  
+  /* Fire Animation Keyframes */
+  @keyframes fireSpread {
+    0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0.3; }
+  }
+  
+  .fire-particle {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    background: linear-gradient(to top, #ff4500 0%, #ff8c00 50%, #ffd700 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: fireFlicker 1s ease-in-out infinite alternate;
+  }
+  
+  @keyframes fireFlicker {
+    0% { transform: translateY(0) scale(1) rotate(-2deg); }
+    100% { transform: translateY(-20px) scale(0.8) rotate(2deg); opacity: 0.7; }
+  }
+  
+  /* Slice Animation Keyframes */
+  @keyframes slashEffect {
+    0% { width: 0; opacity: 1; }
+    100% { width: 300px; opacity: 0.8; }
+  }
+  
+  .split-half {
+    position: absolute;
+    top: 45%;
+    width: 100px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .split-left {
+    left: 40%;
+    transform: translateX(-50%);
+  }
+  
+  .split-right {
+    right: 40%;
+    transform: translateX(50%);
+  }
+  
+  @keyframes slideLeft {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(-150%); }
+  }
+  
+  @keyframes slideRight {
+    0% { transform: translateX(50%); }
+    50% { transform: translateX(150%); }
+    100% { transform: translateX(150%) scale(0); opacity: 0; }
+  }
+  
+  .animate-slideLeft {
+    animation: slideLeft 0.8s ease-out forwards;
+  }
+  
+  .animate-slideRight {
+    animation: slideRight 0.8s ease-out forwards;
+  }
+  
+  .animate-fadeOut {
+    animation: fadeOut 0.5s ease-out 0.3s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  /* Heal Animation Keyframes */
+  .heal-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: healFloat 1s ease-out forwards;
+  }
+  
+  @keyframes healFloat {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    50% { transform: translateY(-30px) scale(1); opacity: 1; }
+    100% { transform: translateY(-60px) scale(0.5); opacity: 0; }
+  }
+  
+  /* Shield Animation Keyframes */
+  @keyframes shieldPulse {
+    0%, 100% { 
+      transform: translate(-50%, -50%) scale(1); 
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.6), inset 0 0 30px rgba(34, 197, 94, 0.2);
+    }
+    50% { 
+      transform: translate(-50%, -50%) scale(1.05); 
+      box-shadow: 0 0 50px rgba(34, 197, 94, 0.8), inset 0 0 50px rgba(34, 197, 94, 0.4);
+    }
+  }
+  
+  .shield-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: shieldOrbit 3s linear infinite;
+  }
+  
+  @keyframes shieldOrbit {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(150px) rotate(-360deg); opacity: 0.8; }
+  }
+  
+  /* Enhanced Fire Animations */
+  @keyframes fireTrail {
+    0% { height: 0; opacity: 0; }
+    50% { height: 100px; opacity: 0.8; }
+    100% { height: 200px; opacity: 0.6; }
+  }
+  
+  /* Enhanced Slice Animations */
+  @keyframes slashTravel {
+    0% { 
+      width: 0; 
+      opacity: 1;
+      top: 60%;
+    }
+    100% { 
+      width: 400px; 
+      opacity: 0.9;
+      top: 25%;
+    }
+  }
+  
+  .animate-flash {
+    animation: flash 0.3s ease-in-out infinite;
+  }
+  
+  @keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  
+  /* Enhanced Heal Animations */
+  @keyframes healFlow {
+    0% { 
+      transform: translateY(0) scale(0); 
+      opacity: 0; 
+    }
+    50% { 
+      transform: translateY(-100px) scale(1); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: translateY(-200px) scale(0.5); 
+      opacity: 0; 
+    }
+  }
+  
+  @keyframes healGlow {
+    0% { 
+      transform: scale(1); 
+      opacity: 0.2; 
+    }
+    50% { 
+      transform: scale(1.2); 
+      opacity: 0.4; 
+    }
+    100% { 
+      transform: scale(1.4); 
+      opacity: 0; 
+    }
+  }
+  
+  .dot-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+}

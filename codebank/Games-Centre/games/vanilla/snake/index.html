@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body class="gc-game-wrapper">
+    <div class="game-container">
+        <!-- HUD -->
+        <div class="gc-hud">
+            <div class="gc-stat">
+                <div class="gc-stat-label">Score</div>
+                <div class="gc-stat-value" id="score">00</div>
+            </div>
+            <div class="gc-stat">
+                <div class="gc-stat-label">High Score</div>
+                <div class="gc-stat-value" id="highScore">00</div>
+            </div>
+        </div>
+
+        <!-- Canvas -->
+        <div id="canvas"></div>
+
+        <!-- Controls -->
+        <div class="gc-controls gc-hidden" id="controls">
+            <button id="replay" class="gc-btn gc-btn-primary">Play Again</button>
+        </div>
+
+        <!-- Instructions
+
+ -->
+        <div class="gc-instructions gc-hidden" id="instructions">
+            <h3>How to Play</h3>
+            <ul>
+                <li>Use arrow keys to control the snake</li>
+                <li>Eat the colored food to grow and earn points</li>
+                <li>Avoid hitting yourself</li>
+                <li>The snake wraps around the edges</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module" src="../_shared/game-integration.js"></script>
+    <script src="snake.js"></script>
+</body>
+
+</html>

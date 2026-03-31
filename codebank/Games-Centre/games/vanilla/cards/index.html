@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Game - Vanilla</title>
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+    <link rel="stylesheet" href="cards.css">
+    <script type="module" src="../_shared/game-integration.js"></script>
+    <script type="module" src="cards.js"></script>
+</head>
+<body>
+    <div id="game-container" class="game-container">
+        <div id="game-header" class="game-header">
+            <div class="game-title">Cards Game</div>
+            <div class="game-mode" id="game-mode">Mode: <span id="mode-display">Classic</span></div>
+            <div class="game-timer" id="game-timer">Time: <span id="time-display">00:00</span></div>
+        </div>
+        
+        <div id="game-controls" class="game-controls">
+            <button id="start-btn" class="btn-primary">Start Game</button>
+            <button id="pause-btn" class="btn-secondary" disabled>Pause</button>
+            <button id="reset-btn" class="btn-danger" disabled>Reset</button>
+            <select id="difficulty-select" class="difficulty-select">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <select id="mode-select" class="mode-select">
+                <option value="classic">Classic</option>
+                <option value="timed">Timed</option>
+                <option value="speed">Speed</option>
+            </select>
+        </div>
+
+        <div id="game-board" class="game-board" data-grid-size="4x4">
+            <!-- Cards will be generated here -->
+        </div>
+
+        <div id="game-status" class="game-status">
+            <div class="status-item">
+                <span class="status-label">Pairs Found:</span>
+                <span id="pairs-found" class="status-value">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Moves:</span>
+                <span id="moves-count" class="status-value">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Best Time:</span>
+                <span id="best-time" class="status-value">--:--</span>
+            </div>
+        </div>
+
+        <div id="game-overlay" class="game-overlay hidden">
+            <div class="overlay-content">
+                <h2 id="overlay-title">Game Over</h2>
+                <p id="overlay-message">You found all pairs!</p>
+                <div class="overlay-stats">
+                    <div>Time: <span id="final-time">00:00</span></div>
+                    <div>Moves: <span id="final-moves">0</span></div>
+                </div>
+                <div class="overlay-actions">
+                    <button id="play-again-btn" class="btn-primary">Play Again</button>
+                    <button id="close-game-btn" class="btn-secondary">Close Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

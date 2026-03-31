@@ -1,0 +1,32 @@
+{
+  "name": "yt-clear-server",
+  "version": "1.0.0",
+  "description": "YT-Clear backend — modularised Express / Node.js server",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.6.0",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "fs-extra": "^11.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "puppeteer": "^22.12.0",
+    "socket.io": "^4.7.5",
+    "ws": "^8.17.1"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,69 @@
+# Project Structure Summary
+
+## Root Directory
+`/Users/user/Desktop/yt-clear`
+
+## Main Directories
+
+### Core Application
+- `./api/` - Backend API routes and middleware
+- `./codebank/` - Main frontend application with multiple modules
+- `./core/` - Core system modules
+- `./shared/` - Shared utilities and components
+- `./services/` - Backend services (transaction engine, balloon, watchdog)
+- `./transaction-core/` - Transaction processing and event management
+- `./ledger/` - Ledger and transaction ledger management
+
+### Features
+- `./3way-switch-b/` - 3-way switch functionality
+- `./code-display-bar/` - Code display and generation features
+- `./counter/` - Counter/stopwatch functionality
+- `./extra-mode-b/` - Advanced mode features with watchdog integration
+- `./play-pause-b/` - Play/pause button functionality
+- `./sound-b/` - Prayer alert and sound system
+- `./touch-shield/` - Global touch shield
+- `./yt-player/` - YouTube player integration
+
+### Data and Storage
+- `./sqlite/` - SQLite database adapter
+- `./event-vault/` - Event vault for transaction history
+- `./transaction-audit/` - Transaction auditing
+
+### Tests
+- `./tests/` - Test files
+- `./api/__tests__/` - API tests
+
+## Configuration
+- `./.env` - Environment variables
+- `./package.json` - Project dependencies
+- `./server.js` - Main server entry point
+
+## Generated Files
+- `project-structure.txt` - Complete flat list of all project files (555KB)
+- `project-structure-tree.txt` - Hierarchical tree structure (26KB)
+
+## Total Files
+The project contains **583+ files** (excluding node_modules and other excluded directories) with various types including:
+- JavaScript/Node.js files
+- HTML files
+- CSS files
+- SQL files
+- JSON configuration files
+- Markdown documentation
+- Image assets
+- Audio files
+
+## Module Breakdown
+
+### Codebank Module (/codebank/)
+The largest module with 8+ sub-modules including:
+- `/bankode/` - Bankode banking system
+- `/e7ki/` - Voice messages and chat
+- `/farragna/` - Video sharing platform
+- `/Games-Centre/` - Gaming platform
+- `/nostaglia/` - Nostaglia social platform
+- `/pebalaash/` - Pebalaash e-commerce
+- `/samma3ny/` - Samma3ny music platform
+- `/setta/` - Setta gaming platform
+
+All modules are well-structured with client, server, and shared components.

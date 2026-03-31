@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Nexus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+</head>
+<body>
+    <!-- Firebase scripts removed - using Clerk for authentication -->
+    <!-- Multiplayer Mode Selection UI -->
+    <div id="mode-selection" class="mode-selection-overlay">
+        <div class="mode-selection-content">
+            <h2>Select Game Mode</h2>
+            <div class="mode-options">
+                <button data-mode="practice" class="btn selected">Practice</button>
+                <button data-mode="ai" class="btn">VS Computer</button>
+                <button data-mode="multiplayer" class="btn">Live Match</button>
+            </div>
+            <button id="start-selected-mode" class="btn btn-primary">Start Game</button>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <div class="game-header">
+            <div class="player-info white">
+                <span class="player-name">White Player</span>
+                <div class="captured-pieces white-captured"></div>
+                <div class="timer white-timer">05:00</div>
+            </div>
+            <div class="game-controls">
+                <button id="newGame">New Game</button>
+                <button id="undoMove">Undo</button>
+                <button id="flipBoard">Flip Board</button>
+                <button id="saveGame">Save Game</button>
+                <button id="loadGame">Load Game</button>
+            </div>
+            <div class="player-info black">
+                <span class="player-name">Black Player</span>
+                <div class="captured-pieces black-captured"></div>
+                <div class="timer black-timer">05:00</div>
+            </div>
+        </div>
+        
+        <div class="board-container">
+            <div id="chessboard"></div>
+        </div>
+        
+        <div class="game-info">
+            <div class="move-history">
+                <h3>Move History</h3>
+                <div id="moves"></div>
+            </div>
+            <div class="game-status">
+                <span id="status">White to move</span>
+            </div>
+            <div id="stats" class="stats">Wins: 0 | Losses: 0 | Draws: 0</div>
+            <button id="resign">Resign</button>
+        </div>
+    </div>
+
+    <!-- Promotion Modal -->
+    <div id="promotionModal" class="modal">
+        <div class="modal-content">
+            <h3>Choose Promotion Piece</h3>
+            <div class="promotion-options">
+                <div class="piece" data-piece="queen">♕</div>
+                <div class="piece" data-piece="rook">♖</div>
+                <div class="piece" data-piece="bishop">♗</div>
+                <div class="piece" data-piece="knight">♘</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="pieces.js"></script>
+    <script src="board.js"></script>
+    <script src="game.js"></script>
+    <script type="module" src="../_shared/game-integration.js"></script>
+</body>
+</html>

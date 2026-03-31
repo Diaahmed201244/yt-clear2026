@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="tita.css">
+</head>
+<body>
+    <div class="tic-tac-toe-container">
+        <div class="game-board" id="gameBoard">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <div class="game-info">
+            <div class="current-player">Current Player: <span id="currentPlayer">X</span></div>
+            <div class="game-status" id="gameStatus">Game in progress</div>
+            <div class="score">
+                <div>X Wins: <span id="xWins">0</span></div>
+                <div>O Wins: <span id="oWins">0</span></div>
+                <div>Draws: <span id="draws">0</span></div>
+            </div>
+            <button id="newGameBtn">New Game</button>
+            <button id="resetScoreBtn">Reset Score</button>
+        </div>
+    </div>
+    <script src="tita.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+2026-03-23 04:04:04: 🏠 [DB] Initializing Local SQLite (better-sqlite3) connection
+2026-03-23 04:04:04: 🚀 [DB] Using absolute database path: ./data/database.sqlite
+2026-03-23 04:04:04: 🚀 SEND-CODES VERSION: CLEAN V2
+2026-03-23 04:04:04: [INIT] Tables will be created on first use
+2026-03-23 04:04:04: [QARSAN] Tables auto-created on first use
+2026-03-23 04:04:04: 🚀 [SERVER] Ledger Absolutism active on http://localhost:3001
+2026-03-23 04:04:04: ✅ [SQLITE] Compression-Ready Schema Verified
+2026-03-23 04:04:04: ✅ [SQLITE] WAL mode enabled for high concurrency
+2026-03-23 04:04:04: ✅ [INIT] All systems ready
+2026-03-23 04:04:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:04:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:05:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:05:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:05:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:05:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:06:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:06:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:06:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:06:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:07:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:07:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:07:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:07:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:08:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:08:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:08:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:08:34: [WatchDogService] State sync: monitoring
+2026-03-23 04:09:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:09:04: [WatchDogService] State sync: monitoring
+2026-03-23 04:09:06: [CODE BATCHER] SIGINT received. Saving queue to disk...
+2026-03-23 04:09:09: 🏠 [DB] Initializing Local SQLite (better-sqlite3) connection
+2026-03-23 04:09:09: 🚀 [DB] Using absolute database path: ./data/database.sqlite
+2026-03-23 04:09:09: 🚀 SEND-CODES VERSION: CLEAN V2
+2026-03-23 04:09:09: [INIT] Tables will be created on first use
+2026-03-23 04:09:09: [QARSAN] Tables auto-created on first use
+2026-03-23 04:09:09: 🚀 [SERVER] Ledger Absolutism active on http://localhost:3001
+2026-03-23 04:09:09: ✅ [SQLITE] Compression-Ready Schema Verified
+2026-03-23 04:09:09: ✅ [SQLITE] WAL mode enabled for high concurrency
+2026-03-23 04:09:09: ✅ [INIT] All systems ready
+2026-03-23 04:09:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:09:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:10:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:10:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:10:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:10:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:11:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:11:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:11:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:11:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:12:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:12:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:12:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:12:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:13:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:13:09: [WatchDogService] State sync: monitoring
+2026-03-23 04:13:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:13:39: [WatchDogService] State sync: monitoring
+2026-03-23 04:14:10: [WatchDogService] State sync: monitoring
+2026-03-23 04:14:10: [WatchDogService] State sync: monitoring
+2026-03-23 04:14:40: [WatchDogService] State sync: monitoring
+2026-03-23 04:14:40: [WatchDogService] State sync: monitoring
+2026-03-23 04:15:10: [WatchDogService] State sync: monitoring
+2026-03-23 04:15:10: [WatchDogService] State sync: monitoring
+2026-03-23 04:15:40: [WatchDogService] State sync: monitoring
+2026-03-23 04:15:40: [WatchDogService] State sync: monitoring
+2026-03-23 04:15:57: [CODE BATCHER] SIGINT received. Saving queue to disk...

@@ -1,0 +1,8 @@
+🚀 [DB] Using absolute database path: postgresql://neondb_owner:npg_1KoAuybJSQ0R@ep-round-cloud-aiqm8ry2-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+🚀 SEND-CODES VERSION: CLEAN V2
+[INIT] Tables will be created on first use
+[QARSAN] Tables auto-created on first use
+[SQLITE] DB connection configured: YES
+🚀 Server running on http://127.0.0.1:3001
+✅ [SQLITE] Compression-Ready Schema Verified
+✅ [SQLITE] WAL mode enabled for high concurrency

@@ -1,0 +1,46 @@
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>1-Bit Chess</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="instructions-modal" class="modal">
+    <div class="modal-content">
+      <h1>1-BIT CHESS</h1>
+      <p>Welcome to a retro-style Commodore 64 inspired Chess game!</p>
+      <h2>Game Rules :</h2>
+      <ul>
+        <li>Play against a computer AI</li>
+        <li>Standard chess rules apply</li>
+        <li>Click to select and move pieces</li>
+        <li>Capture opponent's pieces to win</li>
+      </ul>
+      <button id="start-game-btn">Start Game</button>
+      <div class="modal-footer">
+        <a href="https://codepen.io/H-L-the-lessful" target="_blank" class="codepen-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+            <path d="M250.36 85.45l-170 106.88c-5.73 3.6-9.36 9.8-9.36 16.43v106.88c0 6.63 3.63 12.83 9.36 16.43l170 106.88c5.73 3.6 12.99 3.6 18.72 0l170-106.88c5.73-3.6 9.36-9.8 9.36-16.43V208.76c0-6.63-3.63-12.83-9.36-16.43l-170-106.88c-5.73-3.6-12.99-3.6-18.72 0zM256 0L64 160v192l192 160 192-160V160L256 0z" />
+          </svg>
+        </a>
+        <span class="code-credit">CODE by HL</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-container" class="hidden">
+    <canvas id="chessboard" width="600" height="600"></canvas>
+    <div id="game-controls">
+      <button id="new-game">New Game</button>
+      <div id="game-status">Current Player: WHITE</div>
+    </div>
+    <span class="code-credit game-credit">CODE by HL</span>
+  </div>
+  <script type="module" src="chess.js"></script>
+</body>
+
+</html>

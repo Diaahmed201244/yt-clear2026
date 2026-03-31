@@ -1,0 +1,53 @@
+/* Base styles for all vanilla games */
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: #0e0e13;
+  color: #e8e8ea;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Centered container and responsive scaling */
+#game {
+  position: relative;
+  margin: 0 auto;
+  transform-origin: center center;
+  /* Default size is provided by each game; scale to fit viewport */
+  /* Scale based on min viewport ratio to maintain aspect */
+  transform: scale(
+    min(
+      calc(100vw / 360),
+      calc(100vh / 270)
+    )
+  );
+}
+
+/* Ensure UI/HUD stays visible on top */
+#ui {
+  position: absolute;
+  z-index: 1000;
+}
+
+/* Normalize buttons and text */
+button {
+  font-family: inherit;
+  color: #e8e8ea;
+}
+
+/* Prevent scrollbars inside game */
+#game, canvas {
+  overflow: hidden;
+}
+
+/* Mobile-safe adjustments */
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+}

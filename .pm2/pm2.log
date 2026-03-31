@@ -1,0 +1,300 @@
+2026-03-18T15:23:09: PM2 log: ===============================================================================
+2026-03-18T15:23:09: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2026-03-18T15:23:09: PM2 log: Time                 : Wed Mar 18 2026 15:23:09 GMT+0400 (Gulf Standard Time)
+2026-03-18T15:23:09: PM2 log: PM2 version          : 6.0.14
+2026-03-18T15:23:09: PM2 log: Node.js version      : 20.19.4
+2026-03-18T15:23:09: PM2 log: Current arch         : x64
+2026-03-18T15:23:09: PM2 log: PM2 home             : /Users/user/Desktop/new-yt/yt-clear//.pm2
+2026-03-18T15:23:09: PM2 log: PM2 PID file         : /Users/user/Desktop/new-yt/yt-clear/.pm2/pm2.pid
+2026-03-18T15:23:09: PM2 log: RPC socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/rpc.sock
+2026-03-18T15:23:09: PM2 log: BUS socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/pub.sock
+2026-03-18T15:23:09: PM2 log: Application log path : /Users/user/Desktop/new-yt/yt-clear/.pm2/logs
+2026-03-18T15:23:09: PM2 log: Worker Interval      : 30000
+2026-03-18T15:23:09: PM2 log: Process dump file    : /Users/user/Desktop/new-yt/yt-clear/.pm2/dump.pm2
+2026-03-18T15:23:09: PM2 log: Concurrent actions   : 2
+2026-03-18T15:23:09: PM2 log: SIGTERM timeout      : 1600
+2026-03-18T15:23:09: PM2 log: Runtime Binary       : /Users/user/.nvm/versions/node/v20.19.4/bin/node
+2026-03-18T15:23:09: PM2 log: ===============================================================================
+2026-03-18T15:23:09: PM2 log: App [battalooda:0] starting in -fork mode-
+2026-03-18T15:23:09: PM2 log: App [battalooda:0] online
+2026-03-18T15:23:09: PM2 log: ===============================================================================
+2026-03-18T15:23:09: PM2 log: --- PM2 global error caught ---------------------------------------------------
+2026-03-18T15:23:09: PM2 log: Time                 : Wed Mar 18 2026 15:23:09 GMT+0400 (Gulf Standard Time)
+2026-03-18T15:23:09: PM2 error: spawn EPERM
+2026-03-18T15:23:09: PM2 error: Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12)
+2026-03-18T15:23:09: PM2 log: ===============================================================================
+2026-03-18T15:23:09: PM2 error: [PM2] Resurrecting PM2
+Be sure to have the latest version by doing `npm install pm2@latest -g` before doing this procedure.
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+    ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v20.19.4
+2026-03-18T15:29:16: PM2 log: ===============================================================================
+2026-03-18T15:29:16: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2026-03-18T15:29:16: PM2 log: Time                 : Wed Mar 18 2026 15:29:16 GMT+0400 (Gulf Standard Time)
+2026-03-18T15:29:16: PM2 log: PM2 version          : 6.0.14
+2026-03-18T15:29:16: PM2 log: Node.js version      : 20.19.4
+2026-03-18T15:29:16: PM2 log: Current arch         : x64
+2026-03-18T15:29:16: PM2 log: PM2 home             : /Users/user/Desktop/new-yt/yt-clear//.pm2
+2026-03-18T15:29:16: PM2 log: PM2 PID file         : /Users/user/Desktop/new-yt/yt-clear/.pm2/pm2.pid
+2026-03-18T15:29:16: PM2 log: RPC socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/rpc.sock
+2026-03-18T15:29:16: PM2 log: BUS socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/pub.sock
+2026-03-18T15:29:16: PM2 log: Application log path : /Users/user/Desktop/new-yt/yt-clear/.pm2/logs
+2026-03-18T15:29:16: PM2 log: Worker Interval      : 30000
+2026-03-18T15:29:16: PM2 log: Process dump file    : /Users/user/Desktop/new-yt/yt-clear/.pm2/dump.pm2
+2026-03-18T15:29:16: PM2 log: Concurrent actions   : 2
+2026-03-18T15:29:16: PM2 log: SIGTERM timeout      : 1600
+2026-03-18T15:29:16: PM2 log: Runtime Binary       : /Users/user/.nvm/versions/node/v20.19.4/bin/node
+2026-03-18T15:29:16: PM2 log: ===============================================================================
+2026-03-18T15:29:26: PM2 log: App [battalooda:0] starting in -fork mode-
+2026-03-18T15:29:26: PM2 log: App [battalooda:0] online
+2026-03-18T15:29:26: PM2 log: ===============================================================================
+2026-03-18T15:29:26: PM2 log: --- PM2 global error caught ---------------------------------------------------
+2026-03-18T15:29:26: PM2 log: Time                 : Wed Mar 18 2026 15:29:26 GMT+0400 (Gulf Standard Time)
+2026-03-18T15:29:26: PM2 error: spawn EPERM
+2026-03-18T15:29:26: PM2 error: Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12)
+2026-03-18T15:29:26: PM2 log: ===============================================================================
+2026-03-18T15:29:26: PM2 error: [PM2] Resurrecting PM2
+Be sure to have the latest version by doing `npm install pm2@latest -g` before doing this procedure.
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+    ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v20.19.4
+2026-03-18T15:41:02: PM2 log: ===============================================================================
+2026-03-18T15:41:02: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2026-03-18T15:41:02: PM2 log: Time                 : Wed Mar 18 2026 15:41:02 GMT+0400 (Gulf Standard Time)
+2026-03-18T15:41:02: PM2 log: PM2 version          : 6.0.14
+2026-03-18T15:41:02: PM2 log: Node.js version      : 20.19.4
+2026-03-18T15:41:02: PM2 log: Current arch         : x64
+2026-03-18T15:41:02: PM2 log: PM2 home             : /Users/user/Desktop/new-yt/yt-clear//.pm2
+2026-03-18T15:41:02: PM2 log: PM2 PID file         : /Users/user/Desktop/new-yt/yt-clear/.pm2/pm2.pid
+2026-03-18T15:41:02: PM2 log: RPC socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/rpc.sock
+2026-03-18T15:41:02: PM2 log: BUS socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/pub.sock
+2026-03-18T15:41:02: PM2 log: Application log path : /Users/user/Desktop/new-yt/yt-clear/.pm2/logs
+2026-03-18T15:41:02: PM2 log: Worker Interval      : 30000
+2026-03-18T15:41:02: PM2 log: Process dump file    : /Users/user/Desktop/new-yt/yt-clear/.pm2/dump.pm2
+2026-03-18T15:41:02: PM2 log: Concurrent actions   : 2
+2026-03-18T15:41:02: PM2 log: SIGTERM timeout      : 1600
+2026-03-18T15:41:02: PM2 log: Runtime Binary       : /Users/user/.nvm/versions/node/v20.19.4/bin/node
+2026-03-18T15:41:02: PM2 log: ===============================================================================
+2026-03-18T15:49:46: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T15:49:46: PM2 log: App [codebank-server:0] online
+2026-03-18T15:49:46: PM2 log: ===============================================================================
+2026-03-18T15:49:46: PM2 log: --- PM2 global error caught ---------------------------------------------------
+2026-03-18T15:49:46: PM2 log: Time                 : Wed Mar 18 2026 15:49:46 GMT+0400 (Gulf Standard Time)
+2026-03-18T15:49:46: PM2 error: spawn EPERM
+2026-03-18T15:49:46: PM2 error: Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12)
+2026-03-18T15:49:46: PM2 log: ===============================================================================
+2026-03-18T15:49:46: PM2 error: [PM2] Resurrecting PM2
+Be sure to have the latest version by doing `npm install pm2@latest -g` before doing this procedure.
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+    ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v20.19.4
+2026-03-18T16:00:05: PM2 log: ===============================================================================
+2026-03-18T16:00:05: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2026-03-18T16:00:05: PM2 log: Time                 : Wed Mar 18 2026 16:00:05 GMT+0400 (Gulf Standard Time)
+2026-03-18T16:00:05: PM2 log: PM2 version          : 6.0.14
+2026-03-18T16:00:05: PM2 log: Node.js version      : 20.19.4
+2026-03-18T16:00:05: PM2 log: Current arch         : x64
+2026-03-18T16:00:05: PM2 log: PM2 home             : /Users/user/Desktop/new-yt/yt-clear//.pm2
+2026-03-18T16:00:05: PM2 log: PM2 PID file         : /Users/user/Desktop/new-yt/yt-clear/.pm2/pm2.pid
+2026-03-18T16:00:05: PM2 log: RPC socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/rpc.sock
+2026-03-18T16:00:05: PM2 log: BUS socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/pub.sock
+2026-03-18T16:00:05: PM2 log: Application log path : /Users/user/Desktop/new-yt/yt-clear/.pm2/logs
+2026-03-18T16:00:05: PM2 log: Worker Interval      : 30000
+2026-03-18T16:00:05: PM2 log: Process dump file    : /Users/user/Desktop/new-yt/yt-clear/.pm2/dump.pm2
+2026-03-18T16:00:05: PM2 log: Concurrent actions   : 2
+2026-03-18T16:00:05: PM2 log: SIGTERM timeout      : 1600
+2026-03-18T16:00:05: PM2 log: Runtime Binary       : /Users/user/.nvm/versions/node/v20.19.4/bin/node
+2026-03-18T16:00:05: PM2 log: ===============================================================================
+2026-03-18T16:07:29: PM2 log: App [battalooda:0] starting in -fork mode-
+2026-03-18T16:07:30: PM2 log: App [battalooda:0] online
+2026-03-18T16:07:30: PM2 log: ===============================================================================
+2026-03-18T16:07:30: PM2 log: --- PM2 global error caught ---------------------------------------------------
+2026-03-18T16:07:30: PM2 log: Time                 : Wed Mar 18 2026 16:07:30 GMT+0400 (Gulf Standard Time)
+2026-03-18T16:07:30: PM2 error: spawn EPERM
+2026-03-18T16:07:30: PM2 error: Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12)
+2026-03-18T16:07:30: PM2 log: ===============================================================================
+2026-03-18T16:07:30: PM2 error: [PM2] Resurrecting PM2
+Be sure to have the latest version by doing `npm install pm2@latest -g` before doing this procedure.
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+    ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:762:9)
+    at run (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/bin.js:18:14)
+    at ps (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/ps.js:45:3)
+    at get (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/lib/stats.js:82:3)
+    at pidusage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pidusage/index.js:30:5)
+    at getMonitorData (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2/lib/God/ActionMethods.js:60:5)
+    at Server.onmessage (/Users/user/Desktop/new-yt/yt-clear/node_modules/pm2-axon-rpc/lib/server.js:104:6)
+    at RepSocket.emit (node:events:524:28)
+    at RepSocket.emit (node:domain:489:12) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v20.19.4
+2026-03-18T16:08:08: PM2 log: ===============================================================================
+2026-03-18T16:08:08: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2026-03-18T16:08:08: PM2 log: Time                 : Wed Mar 18 2026 16:08:08 GMT+0400 (Gulf Standard Time)
+2026-03-18T16:08:08: PM2 log: PM2 version          : 6.0.14
+2026-03-18T16:08:08: PM2 log: Node.js version      : 18.12.1
+2026-03-18T16:08:08: PM2 log: Current arch         : x64
+2026-03-18T16:08:08: PM2 log: PM2 home             : /Users/user/Desktop/new-yt/yt-clear/.pm2
+2026-03-18T16:08:08: PM2 log: PM2 PID file         : /Users/user/Desktop/new-yt/yt-clear/.pm2/pm2.pid
+2026-03-18T16:08:08: PM2 log: RPC socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/rpc.sock
+2026-03-18T16:08:08: PM2 log: BUS socket file      : /Users/user/Desktop/new-yt/yt-clear/.pm2/pub.sock
+2026-03-18T16:08:08: PM2 log: Application log path : /Users/user/Desktop/new-yt/yt-clear/.pm2/logs
+2026-03-18T16:08:08: PM2 log: Worker Interval      : 30000
+2026-03-18T16:08:08: PM2 log: Process dump file    : /Users/user/Desktop/new-yt/yt-clear/.pm2/dump.pm2
+2026-03-18T16:08:08: PM2 log: Concurrent actions   : 2
+2026-03-18T16:08:08: PM2 log: SIGTERM timeout      : 1600
+2026-03-18T16:08:08: PM2 log: Runtime Binary       : /usr/local/bin/node
+2026-03-18T16:08:08: PM2 log: ===============================================================================
+2026-03-18T16:08:56: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T16:08:56: PM2 log: App [codebank-server:0] online
+2026-03-18T16:20:50: PM2 log: Stopping app:codebank-server id:0
+2026-03-18T16:20:51: PM2 log: pid=17017 msg=failed to kill - retrying in 100ms
+2026-03-18T16:20:51: PM2 log: pid=17017 msg=failed to kill - retrying in 100ms
+2026-03-18T16:20:51: PM2 log: App [codebank-server:0] exited with code [0] via signal [SIGINT]
+2026-03-18T16:20:51: PM2 log: pid=17017 msg=process killed
+2026-03-18T16:20:51: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T16:20:51: PM2 log: App [codebank-server:0] online
+2026-03-18T16:48:56: PM2 log: Stopping app:codebank-server id:0
+2026-03-18T16:48:56: PM2 log: pid=18882 msg=failed to kill - retrying in 100ms
+2026-03-18T16:48:56: PM2 log: pid=18882 msg=failed to kill - retrying in 100ms
+2026-03-18T16:48:57: PM2 log: pid=18882 msg=failed to kill - retrying in 100ms
+2026-03-18T16:48:57: PM2 log: pid=18882 msg=failed to kill - retrying in 100ms
+2026-03-18T16:48:57: PM2 log: App [codebank-server:0] exited with code [0] via signal [SIGINT]
+2026-03-18T16:48:57: PM2 log: pid=18882 msg=process killed
+2026-03-18T16:48:57: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T16:48:57: PM2 log: App [codebank-server:0] online
+2026-03-18T16:50:18: PM2 log: Stopping app:codebank-server id:0
+2026-03-18T16:50:19: PM2 log: pid=22314 msg=failed to kill - retrying in 100ms
+2026-03-18T16:50:19: PM2 log: pid=22314 msg=failed to kill - retrying in 100ms
+2026-03-18T16:50:19: PM2 log: App [codebank-server:0] exited with code [0] via signal [SIGINT]
+2026-03-18T16:50:19: PM2 log: pid=22314 msg=process killed
+2026-03-18T16:50:19: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T16:50:19: PM2 log: App [codebank-server:0] online
+2026-03-18T18:55:39: PM2 log: Stopping app:codebank-server id:0
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:40: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:41: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:41: PM2 log: pid=22571 msg=failed to kill - retrying in 100ms
+2026-03-18T18:55:41: PM2 log: App [codebank-server:0] exited with code [0] via signal [SIGINT]
+2026-03-18T18:55:41: PM2 log: pid=22571 msg=process killed
+2026-03-18T18:55:41: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T18:55:41: PM2 log: App [codebank-server:0] online
+2026-03-18T19:19:53: PM2 log: Stopping app:codebank-server id:0
+2026-03-18T19:19:53: PM2 log: pid=40256 msg=failed to kill - retrying in 100ms
+2026-03-18T19:19:53: PM2 log: pid=40256 msg=failed to kill - retrying in 100ms
+2026-03-18T19:19:53: PM2 log: App [codebank-server:0] exited with code [0] via signal [SIGINT]
+2026-03-18T19:19:53: PM2 log: pid=40256 msg=process killed
+2026-03-18T19:19:53: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-18T19:19:54: PM2 log: App [codebank-server:0] online
+2026-03-19T16:54:04: PM2 error: (node:16871) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+2026-03-19T23:06:16: PM2 log: App [codebank-server:0] exited with code [0] via signal [SIGKILL]
+2026-03-19T23:06:22: PM2 log: App [codebank-server:0] starting in -fork mode-
+2026-03-19T23:06:27: PM2 log: App [codebank-server:0] online

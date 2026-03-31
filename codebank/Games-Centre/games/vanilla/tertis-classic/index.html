@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Classic</title>
+    <link rel="stylesheet" href="ter.css">
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Tetris Classic</h1>
+            <div class="score-board">
+                <div class="score-display">
+                    <span>Score:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="level-display">
+                    <span>Level:</span>
+                    <span id="level">1</span>
+                </div>
+                <div class="lines-display">
+                    <span>Lines:</span>
+                    <span id="lines">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <div class="game-board" id="board">
+                <!-- Game board will be rendered here -->
+            </div>
+            
+            <div class="side-panel">
+                <div class="next-piece-container">
+                    <h3>Next Piece</h3>
+                    <div class="next-piece" id="next-piece">
+                        <!-- Next piece preview -->
+                    </div>
+                </div>
+                
+                <div class="controls-panel">
+                    <h3>Controls</h3>
+                    <div class="control-buttons">
+                        <button id="start-btn" class="control-btn">Start</button>
+                        <button id="pause-btn" class="control-btn">Pause</button>
+                        <button id="reset-btn" class="control-btn">Reset</button>
+                    </div>
+                    <div class="instructions">
+                        <p>Arrow Keys: Move/Rotate</p>
+                        <p>Space: Hard Drop</p>
+                        <p>Down: Soft Drop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-over-banner" class="hidden">
+            <div class="banner-content">
+                <h2>Game Over</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn" class="restart-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ter.js"></script>
+    <script type="module" src="../_shared/game-integration.js"></script>
+</body>
+</html>

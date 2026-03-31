@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake & Ladder</title>
+    <link rel="stylesheet" href="s_l1.css">
+    <link rel="stylesheet" href="../_shared/common-styles.css">
+</head>
+<body>
+    <div class="snake-ladder-container">
+        <div class="game-board" id="gameBoard"></div>
+        <div class="game-info">
+            <div class="current-player">Current Player: <span id="currentPlayer">Player 1</span></div>
+            <div class="dice-result">Dice: <span id="diceResult">-</span></div>
+            <div class="high-score">High Score: <span id="highScore">0</span></div>
+            <button id="rollDiceBtn">Roll Dice</button>
+            <button id="newGameBtn">New Game</button>
+        </div>
+        <div class="players">
+            <div class="player" id="player1">Player 1: Position <span id="pos1">1</span></div>
+            <div class="player" id="player2">Player 2: Position <span id="pos2">1</span></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="s_l1.js"></script>
+    <script type="module" src="../_shared/game-integration.js"></script>
+</body>
+</html>
