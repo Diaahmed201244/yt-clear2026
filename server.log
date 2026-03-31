@@ -2160,3 +2160,8 @@
 [SMART WATCHDOG ERROR] request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io
 [DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 { text: 'SELECT id FROM users', params: [] }
 [SMART WATCHDOG ERROR] request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ENETDOWN {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '65079e2e-6145-472f-b0b7-eeab9f99f9d3' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ENETDOWN
