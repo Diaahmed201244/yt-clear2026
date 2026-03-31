@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ytclear-server
+    runtime: node
+    buildCommand: npm ci --production
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 18.17.0
