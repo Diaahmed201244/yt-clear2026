@@ -1,15 +1,6 @@
 let __LAST_LATEST_CODE__ = null;
 try { if (typeof window !== 'undefined') { if (typeof window.CODEBANK_DEBUG === 'undefined') window.CODEBANK_DEBUG = false } } catch(_){ }
 
-<<<<<<< HEAD
-=======
-// Compatibility function for bankode-assetbus-bridge.js
-window.updateCodeDisplay = function(latest) {
-  __LAST_LATEST_CODE__ = latest;
-  __applyLatest__(latest);
-};
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function __applyLatest__(latest){
   try {
     const nodes = document.querySelectorAll('#code-display');
@@ -31,20 +22,6 @@ function __applyLatest__(latest){
 
 function __rehydrateFromSnapshot__(){
   try {
-<<<<<<< HEAD
-=======
-    // 🛡️ REHYDRATION FIX: Use authoritative snapshot from AssetBus first
-    if (window.AssetBus && typeof window.AssetBus.snapshot === 'function') {
-      const snap = window.AssetBus.snapshot();
-      if (snap && snap.latest) {
-        __LAST_LATEST_CODE__ = snap.latest;
-        __applyLatest__(snap.latest);
-        return;
-      }
-    }
-    
-    // Fallback to IndexedDB snapshot
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const openDB = function(){ return new Promise(function(resolve,reject){ try{ var req=indexedDB.open('CodeBankSnapshotDB',1); req.onupgradeneeded=function(){ try{ var db=req.result; if(!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots'); }catch(_){ } }; req.onsuccess=function(){ resolve(req.result) }; req.onerror=function(){ reject(req.error) }; }catch(e){ reject(e) } }); };
     const readSnap = function(){ return openDB().then(function(db){ return new Promise(function(resolve,reject){ try{ var tx=db.transaction('snapshots','readonly'); var store=tx.objectStore('snapshots'); var req=store.get('latest'); req.onsuccess=function(){ resolve(req.result||null) }; req.onerror=function(){ reject(req.error) }; }catch(e){ reject(e) } }); }); };
     readSnap().then(function(snap){ try{ if(snap && snap.latestCode){ __LAST_LATEST_CODE__ = snap.latestCode; __applyLatest__(snap.latestCode); } }catch(_){ } });
@@ -57,11 +34,6 @@ export const CodeBankBridge = {
       if (typeof window.initCodeBankPanel === 'function') {
         window.initCodeBankPanel();
       }
-<<<<<<< HEAD
-  window.addEventListener('neon:snapshot', (e) => {
-=======
-  window.addEventListener('sqlite:snapshot', (e) => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     try {
       const d = e && e.detail || {};
       const latest = d.latest || '';
@@ -69,16 +41,6 @@ export const CodeBankBridge = {
       if (latest) { __LAST_LATEST_CODE__ = latest; __applyLatest__(latest); }
     } catch(_){ }
   });
-<<<<<<< HEAD
-=======
-  window.addEventListener('bridge:snapshot-applied', (e) => {
-    try {
-      const d = e && e.detail || {};
-      const latest = d.latestCode || d.latest;
-      if (latest) { __LAST_LATEST_CODE__ = latest; __applyLatest__(latest); }
-    } catch(_){ }
-  });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   window.addEventListener('assets:updated', (e) => {
     const d = e && e.detail || {};
     const latest = d.latest;

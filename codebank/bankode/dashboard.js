@@ -3,22 +3,6 @@ import { callRPC } from './unifiedStorage.js';
 export const getAllUsers = async () => await callRPC('bankode_get_all_users');
 
 export const getUserBalances = async (userId) => {
-<<<<<<< HEAD
-=======
-  // 🛡️ SYNC FIX: Prefer AssetBus state if available for real-time sync
-  if (window.AssetBus && typeof window.AssetBus.getState === 'function') {
-    const state = window.AssetBus.getState();
-    if (state && (state.codes_count !== undefined || state.codes?.length !== undefined)) {
-      console.log('[Dashboard] Syncing with AssetBus state');
-      return {
-        codes: state.codes_count !== undefined ? state.codes_count : (state.codes?.length || 0),
-        silver: state.silver_count !== undefined ? state.silver_count : (state.silver?.length || 0),
-        gold: state.gold_count !== undefined ? state.gold_count : (state.gold?.length || 0)
-      };
-    }
-  }
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   const data = await callRPC('bankode_get_balances', { p_user_id: userId });
   const norm = (obj) => {
     const out = { codes: 0, silver: 0, gold: 0 };

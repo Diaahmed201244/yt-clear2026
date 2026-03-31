@@ -1,10 +1,5 @@
 import { Router } from 'express'
 import { query } from '../config/db.js'
-<<<<<<< HEAD
-import { requireRole } from '../middleware/rbac.js'
-=======
-import { requireRole } from '../middleware/admin.js'
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import { spendCodes } from './rewards.js'
 
 const router = Router()
@@ -85,13 +80,6 @@ router.post('/checkout', async (req, res) => {
     await query('UPDATE products SET stock = stock - 1, sold_count = sold_count + 1 WHERE id=$1', [productId])
 
     const ord = await query(
-<<<<<<< HEAD
-      'INSERT INTO orders(user_id, product_id, customer_info, status, total_codes) VALUES ($1,$2,$3,$4,$5) RETURNING id',
-      [req.user.clerkUserId, productId, customerInfo, 'completed', product.price_codes]
-=======
-      'INSERT INTO orders(id, user_id, product_id, customer_info, status, total_codes, created_at) VALUES ($1,$2,$3,$4,$5,$6,CURRENT_TIMESTAMP) RETURNING id',
-      [crypto.randomUUID(), req.user.clerkUserId, productId, JSON.stringify(customerInfo), 'completed', product.price_codes]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     )
 
     const bal = await query('SELECT balance FROM user_rewards WHERE user_id=$1', [req.user.clerkUserId])
@@ -106,13 +94,6 @@ router.get('/admin/stats', requireRole('admin'), async (_req, res) => {
     const recent = await query(
       'SELECT o.id, o.user_id, o.product_id, o.customer_info, o.status, o.total_codes, o.created_at, p.name AS product_name FROM orders o LEFT JOIN products p ON p.id=o.product_id ORDER BY o.created_at DESC LIMIT 50'
     )
-<<<<<<< HEAD
-    const totalSold = await query('SELECT COUNT(*)::int AS count FROM orders')
-    const totalRevenue = await query('SELECT COALESCE(SUM(total_codes),0)::int AS sum FROM orders')
-=======
-    const totalSold = await query('SELECT COUNT(*) AS count FROM orders')
-    const totalRevenue = await query('SELECT COALESCE(SUM(total_codes),0) AS sum FROM orders')
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const lowStock = await query('SELECT * FROM products WHERE stock < 5')
     res.json({
       totalSold: totalSold.rows[0]?.count || 0,

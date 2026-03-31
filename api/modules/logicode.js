@@ -1,10 +1,5 @@
 import { Router } from 'express'
 import { query } from '../config/db.js'
-<<<<<<< HEAD
-import { requireRole } from '../middleware/rbac.js'
-=======
-import { requireRole } from '../middleware/admin.js'
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 const router = Router()
 
@@ -64,11 +59,6 @@ router.post('/scores', async (req, res) => {
   const { game_name, score } = req.body || {}
   const g = await query('SELECT 1 FROM games WHERE name=$1', [game_name])
   if (g.rowCount === 0) return res.status(400).json({ message: 'unknown game' })
-<<<<<<< HEAD
-  await query('INSERT INTO game_scores(user_id, game_name, score) VALUES ($1,$2,$3)', [req.user.clerkUserId, game_name, score])
-=======
-  await query('INSERT INTO game_scores(id, user_id, game_name, score, created_at) VALUES ($1,$2,$3,$4,CURRENT_TIMESTAMP)', [crypto.randomUUID(), req.user.clerkUserId, game_name, score])
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   publish(`game:${game_name}`, 'score', { user_id: req.user.clerkUserId, game_name, score })
   res.status(201).json({ ok: true })
 })

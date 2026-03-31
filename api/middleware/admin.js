@@ -3,67 +3,6 @@ import { query } from '../config/db.js'
 
 const ROLE_ORDER = { normal: 0, admin: 1, superadmin: 2 }
 
-<<<<<<< HEAD
-export function requireRole(minRole = 'admin') {
-  const min = ROLE_ORDER[minRole] ?? 1
-  return (req, res, next) => {
-    // If no user is authenticated, return 401 instead of 403
-    if (!req.user) {
-      return res.status(401).json({ ok: false, error: 'UNAUTHORIZED' })
-    }
-    
-    // For authenticated users, check roles
-    const type = req.user?.roles?.[0] || 'user'
-    const rank = ROLE_ORDER[type] ?? 0
-    if (rank < min) {
-=======
-export async function validateAdminSession(req, res, next) {
-  try {
-    const authHeader = req.headers['authorization']
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ ok: false, error: 'UNAUTHORIZED' })
-    }
-
-    const token = authHeader.slice(7) // Remove 'Bearer ' prefix
-    const session = await query('SELECT * FROM auth_sessions WHERE token = $1 AND expires_at > NOW()', [token])
-
-    if (session.rowCount === 0) {
-      return res.status(401).json({ ok: false, error: 'INVALID_SESSION' })
-    }
-
-    // Attach admin user to request
-    req.user = {
-      id: 'admin',
-      role: 'admin'
-    }
-
-    next()
-  } catch (err) {
-    console.error('[SESSION VALIDATION ERROR]', err.message)
-    return res.status(500).json({ ok: false, error: 'SESSION_VALIDATION_FAILED' })
-  }
-}
-
-export function requireRole(minRole = 'admin') {
-  const min = ROLE_ORDER[minRole] ?? 1
-  return (req, res, next) => {
-    // 🛡️ ULTRA HARDENING (OTP-JWT Model)
-    // For admin actions, we check for a valid session token (JWT equivalent)
-    const user = req.user
-    
-    if (!user) {
-      return res.status(401).json({ ok: false, error: 'UNAUTHORIZED' })
-    }
-    
-    // In our hardened model, a valid token in req.user is enough if it matches admin requirements
-    // If the token was issued via OTP, it will have a specific session record
-    const type = user.role || 'user'
-    const rank = ROLE_ORDER[type] ?? 0
-    
-    // Check if user is admin OR if this is an OTP-verified temporary session
-    if (rank < min && type !== 'admin') {
-      console.warn(`[SECURITY] Role mismatch: user=${user.id} role=${type} required=${minRole}`)
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       return res.status(403).json({ ok: false, error: 'FORBIDDEN' })
     }
     next()

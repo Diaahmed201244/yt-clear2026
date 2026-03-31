@@ -862,10 +862,6 @@ function createPlayer(videoIdOrPlaylistId) {
                     controls: 0,
                     disablekb: 1,
                     autoplay: 1,
-<<<<<<< HEAD
-=======
-                    mute: 1,
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                     modestbranding: 1,
                     rel: 0,
                     fs: 0,

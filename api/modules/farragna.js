@@ -6,93 +6,14 @@ import multer from 'multer'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
-<<<<<<< HEAD
-
-const router = Router()
-
-=======
-import { requireFarragnaAuth } from '../middleware/farragna-auth.js'
-
-// Rate limiting for uploads
-const uploadCounts = new Map()
-const MAX_UPLOADS_PER_HOUR = 5
-
-function checkUploadRateLimit(userId) {
-  const hour = Math.floor(Date.now() / 3600000)
-  const key = `${userId}_${hour}`
-  const count = uploadCounts.get(key) || 0
-  if (count >= MAX_UPLOADS_PER_HOUR) return false
-  uploadCounts.set(key, count + 1)
-  return true
-}
-
-const router = Router()
-
-// CORS middleware
-router.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3001', 'https://yourdomain.com'] // restrict to specific origins
-  const origin = req.headers.origin
-  if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin)
-  }
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-  res.header('Access-Control-Allow-Credentials', 'true')
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200)
-  } else {
-    next()
-  }
-})
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 // Configure multer
 const upload = multer({
   dest: '/tmp/',
   limits: {
-<<<<<<< HEAD
-    fileSize: 500 * 1024 * 1024, // 500MB for videos
-    files: 2000,
-    fieldSize: 500 * 1024 * 1024,
-    fields: 10
-  },
-  fileFilter: (req, file, cb) => {
-    cb(null, true)
-=======
-    fileSize: 100 * 1024 * 1024, // 100MB for videos
-    files: 2000,
-    fieldSize: 100 * 1024 * 1024,
-    fields: 10
-  },
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = ['video/mp4', 'video/quicktime', 'video/webm']
-    if (allowedTypes.includes(file.mimetype)) {
-      cb(null, true)
-    } else {
-      cb(new Error('Invalid file type'))
-    }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 })
 
 // Configure Cloudinary
-<<<<<<< HEAD
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dhpyneqgk',
-  api_key: process.env.CLOUDINARY_API_KEY || '799518422494748',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'zfSbK0-zK3tHdmCWdcCduPcxtU4'
-=======
-const cloudName = process.env.CLOUDINARY_CLOUD_NAME
-const apiKey = process.env.CLOUDINARY_API_KEY
-const apiSecret = process.env.CLOUDINARY_API_SECRET
-if (!cloudName || !apiKey || !apiSecret) {
-  throw new Error('Cloudinary credentials not configured')
-}
-cloudinary.v2.config({
-  cloud_name: cloudName,
-  api_key: apiKey,
-  api_secret: apiSecret
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 })
 
 // Helper functions
@@ -137,14 +58,6 @@ function cfAccountId() {
 }
 
 // Request a direct upload URL (no server file handling)
-<<<<<<< HEAD
-router.post('/upload/request', async (req, res) => {
-=======
-router.post('/upload/request', requireFarragnaAuth, async (req, res) => {
-  if (!checkUploadRateLimit(req.user.id)) {
-    return res.status(429).json({ success: false, error: 'Upload rate limit exceeded' })
-  }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   try {
     const id = cfAccountId()
     const url = `https://api.cloudflare.com/client/v4/accounts/${id}/stream/direct_upload`
@@ -157,17 +70,6 @@ router.post('/upload/request', requireFarragnaAuth, async (req, res) => {
 
     try {
       await query(
-<<<<<<< HEAD
-        `INSERT INTO farragna_videos (owner_id, stream_uid, status, views_count, rewards_earned, created_at)
-         VALUES ($1, $2, 'uploaded', 0, 0, now())
-         ON CONFLICT (stream_uid) DO NOTHING`,
-        [req.user.clerkUserId, stream_uid]
-=======
-        `INSERT INTO farragna_videos (id, owner_id, stream_uid, status, views_count, rewards_earned, created_at)
-         VALUES ($1, $2, $3, 'uploaded', 0, 0, CURRENT_TIMESTAMP)
-         ON CONFLICT (stream_uid) DO NOTHING`,
-        [crypto.randomUUID(), req.user.id, stream_uid]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       )
     } catch (_) {}
 
@@ -215,11 +117,6 @@ export async function webhookCloudflare(req, res) {
 router.post('/webhook/cloudflare', webhookCloudflare)
 
 // View video (only ready). Count unique view and reward owner once.
-<<<<<<< HEAD
-router.get('/:id', async (req, res) => {
-=======
-router.get('/:id', requireFarragnaAuth, async (req, res) => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -230,15 +127,6 @@ router.get('/:id', requireFarragnaAuth, async (req, res) => {
       await client.query('ROLLBACK')
       return res.status(404).json({ ok: false, error: 'NOT_READY' })
     }
-<<<<<<< HEAD
-    const exists = await client.query('SELECT 1 FROM farragna_views WHERE video_id=$1 AND viewer_id=$2', [id, req.user.clerkUserId])
-    if (!exists.rowCount) {
-      await client.query('INSERT INTO farragna_views (video_id, viewer_id, created_at) VALUES ($1,$2, now())', [id, req.user.clerkUserId])
-=======
-    const exists = await client.query('SELECT 1 FROM farragna_views WHERE video_id=$1 AND viewer_id=$2', [id, req.user.id])
-    if (!exists.rowCount) {
-      await client.query('INSERT INTO farragna_views (id, video_id, viewer_id, created_at) VALUES ($1,$2,$3, CURRENT_TIMESTAMP)', [crypto.randomUUID(), id, req.user.id])
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       await client.query('UPDATE farragna_videos SET views_count=views_count+1, rewards_earned=rewards_earned+1 WHERE id=$1', [id])
     }
     await client.query('COMMIT')
@@ -252,11 +140,6 @@ router.get('/:id', requireFarragnaAuth, async (req, res) => {
     try { await pool.query('ROLLBACK') } catch (_) {}
     res.status(500).json({ ok: false, error: 'VIEW_ERROR' })
   } finally {
-<<<<<<< HEAD
-    client.release()
-=======
-    if (typeof client.release === 'function') client.release()
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 })
 
@@ -307,70 +190,6 @@ router.get('/trending', async (_req, res) => {
   }
 })
 
-<<<<<<< HEAD
-// Bulk upload
-router.post('/upload', upload.any(), async (req, res) => {
-=======
-// Like/unlike video
-router.post('/:id/like', requireFarragnaAuth, async (req, res) => {
- const client = await pool.connect()
- try {
-   await client.query('BEGIN')
-   const videoId = req.params.id
-   const userId = req.user.id
-   const existing = await client.query('SELECT 1 FROM farragna_likes WHERE user_id=$1 AND video_id=$2', [userId, videoId])
-   if (existing.rowCount) {
-     await client.query('DELETE FROM farragna_likes WHERE user_id=$1 AND video_id=$2', [userId, videoId])
-     await client.query('UPDATE farragna_videos SET likes=likes-1 WHERE id=$1', [videoId])
-     await client.query('COMMIT')
-     return res.json({ success: true, liked: false })
-   } else {
-     await client.query('INSERT INTO farragna_likes (user_id, video_id) VALUES ($1, $2)', [userId, videoId])
-     await client.query('UPDATE farragna_videos SET likes=likes+1 WHERE id=$1', [videoId])
-     await client.query('COMMIT')
-     return res.json({ success: true, liked: true })
-   }
- } catch (e) {
-   try { await client.query('ROLLBACK') } catch (_) {}
-   res.status(500).json({ success: false, error: 'LIKE_ERROR' })
- } finally {
-   if (typeof client.release === 'function') client.release()
- }
-})
-
-// Get likes count and if user liked
-router.get('/:id/likes', requireFarragnaAuth, async (req, res) => {
- try {
-   const videoId = req.params.id
-   const userId = req.user.id
-   const countRes = await query('SELECT likes FROM farragna_videos WHERE id=$1', [videoId])
-   const likedRes = await query('SELECT 1 FROM farragna_likes WHERE user_id=$1 AND video_id=$2', [userId, videoId])
-   res.json({ success: true, count: countRes.rows[0]?.likes || 0, liked: !!likedRes.rowCount })
- } catch (e) {
-   res.status(500).json({ success: false, error: 'LIKES_ERROR' })
- }
-})
-
-// Simple upload for single video
-router.post('/upload/simple', requireFarragnaAuth, upload.single('video'), async (req, res) => {
-  try {
-    if (!req.file) return res.status(400).json({ success: false, error: 'No file uploaded' });
-
-    // For demo, return a mock URL
-    const mockUrl = `https://example.com/videos/${req.file.filename}`;
-    console.log('[Farragna] Upload success:', mockUrl);
-
-    // In real implementation, upload to Cloudinary or Cloudflare
-    res.json({ success: true, url: mockUrl });
-  } catch (e) {
-    console.error('[Farragna] Upload error:', e);
-    res.status(500).json({ success: false, error: 'Upload failed' });
-  }
-});
-
-// Bulk upload
-router.post('/upload', requireFarragnaAuth, upload.any(), async (req, res) => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   try {
     const files = req.files
     if (!files || files.length === 0) {
@@ -392,11 +211,6 @@ router.post('/upload', requireFarragnaAuth, upload.any(), async (req, res) => {
           if (fs.existsSync(file.path)) fs.unlinkSync(file.path)
           continue
         }
-<<<<<<< HEAD
-        const maxSize = 500 * 1024 * 1024
-=======
-        const maxSize = 100 * 1024 * 1024
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         if (file.size > maxSize) {
           errors.push({ file: file.originalname, error: 'File too large', message: `Maximum file size is ${Math.round(maxSize / (1024 * 1024))}MB` })
           failCount++

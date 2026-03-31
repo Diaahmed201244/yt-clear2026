@@ -508,18 +508,6 @@ if (toggleSoundFarragnaBtn) {
        // Send message to iframe
        const iframe = document.getElementById('farragna-dashboard');
        if (iframe && iframe.contentWindow) {
-<<<<<<< HEAD
-           iframe.contentWindow.postMessage({
-               type: 'globalMuteUnmute',
-               muted: !farragnaSoundOn
-           }, '*');
-=======
-           const __o = (function(){ try{ const s = iframe.getAttribute('src')||''; return new URL(s, window.location.href).origin }catch(_){ return window.location.origin } })();
-           iframe.contentWindow.postMessage({
-               type: 'globalMuteUnmute',
-               muted: !farragnaSoundOn
-           }, __o);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
        }
        console.log(`Farragna sound ${farragnaSoundOn ? 'enabled' : 'disabled'}`);
    });

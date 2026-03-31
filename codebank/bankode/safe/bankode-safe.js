@@ -353,11 +353,6 @@
       panel.className = 'password-panel';
       panel.innerHTML = `
         <h4>Enter Password</h4>
-<<<<<<< HEAD
-        <input type="password" class="password-input" placeholder="Enter password" maxlength="50">
-=======
-        <input id="safe-password-input" name="safe-password" type="password" class="password-input" placeholder="Enter password" maxlength="50">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         <div class="password-buttons">
           <button class="password-btn">Cancel</button>
           <button class="password-btn primary">Unlock</button>

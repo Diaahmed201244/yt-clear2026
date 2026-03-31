@@ -12,19 +12,6 @@ router.post('/setup-admin', async (req, res) => {
     let user
     try {
       const ins = await query(
-<<<<<<< HEAD
-        `INSERT INTO users (email, password_hash, user_type)
-         VALUES ($1,$2,'admin')
-         ON CONFLICT (email) DO UPDATE SET password_hash=EXCLUDED.password_hash
-         RETURNING id, email, user_type`,
-        [email, hash]
-=======
-        `INSERT INTO users (id, email, password_hash, user_type)
-         VALUES ($1,$2,$3,'admin')
-         ON CONFLICT (email) DO UPDATE SET password_hash=EXCLUDED.password_hash
-         RETURNING id, email, user_type`,
-        [crypto.randomUUID(), email, hash]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       )
       user = ins.rows[0]
     } catch (e) {

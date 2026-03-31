@@ -139,23 +139,6 @@ class PrayerAlertSystem {
 
     async fetchPrayerTimesFromAPI(lat, lon) {
         try {
-<<<<<<< HEAD
-            const response = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`);
-=======
-            // Check if we have internet connection
-            if (!navigator.onLine) {
-                console.log('🕌 Offline - loading prayer times from cache');
-                this.loadPrayerTimesFromCache();
-                return;
-            }
-
-            const response = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`);
-            
-            if (!response.ok) {
-                throw new Error(`API returned status ${response.status}`);
-            }
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             const data = await response.json();
             const timings = data.data.timings;
 
@@ -167,47 +150,6 @@ class PrayerAlertSystem {
                 { name: 'Isha', time: timings.Isha, fullName: 'Isha Prayer' }
             ];
 
-<<<<<<< HEAD
-            console.log('🕌 Prayer times loaded:', this.prayerTimes);
-            this.calculateNextPrayer();
-        } catch (error) {
-            console.error('Error fetching prayer times:', error);
-=======
-            // Save to cache
-            localStorage.setItem('cachedPrayerTimes', JSON.stringify(this.prayerTimes));
-            localStorage.setItem('cachedPrayerTimesDate', new Date().toDateString());
-
-            console.log('🕌 Prayer times loaded and cached:', this.prayerTimes);
-            this.calculateNextPrayer();
-        } catch (error) {
-            // Silently handle fetch errors (CORS, network, etc.)
-            console.log('🕌 Prayer API fetch failed - using cache');
-            this.loadPrayerTimesFromCache();
-        }
-    }
-
-    loadPrayerTimesFromCache() {
-        try {
-            const cachedData = localStorage.getItem('cachedPrayerTimes');
-            if (cachedData) {
-                this.prayerTimes = JSON.parse(cachedData);
-                console.log('🕌 Loaded prayer times from cache:', this.prayerTimes);
-                this.calculateNextPrayer();
-            } else {
-                console.warn('🕌 No cached prayer times available');
-                // Use default Mecca times as extreme fallback
-                this.prayerTimes = [
-                    { name: 'Fajr', time: '05:00', fullName: 'Fajr Prayer' },
-                    { name: 'Dhuhr', time: '12:20', fullName: 'Dhuhr Prayer' },
-                    { name: 'Asr', time: '15:45', fullName: 'Asr Prayer' },
-                    { name: 'Maghrib', time: '18:30', fullName: 'Maghrib Prayer' },
-                    { name: 'Isha', time: '20:00', fullName: 'Isha Prayer' }
-                ];
-                this.calculateNextPrayer();
-            }
-        } catch (e) {
-            console.error('Error loading prayer cache:', e);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
     }
 
@@ -381,11 +323,6 @@ class PrayerAlertSystem {
                     type: 'MUTE_AUDIO',
                     component: component,
                     source: 'prayer-alert'
-<<<<<<< HEAD
-                }, '*');
-=======
-                }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 console.log(`🔇 Muted ${component} for prayer`);
             } catch (error) {
                 console.warn(`Failed to mute ${component}:`, error);
@@ -403,11 +340,6 @@ class PrayerAlertSystem {
                     type: 'UNMUTE_AUDIO',
                     component: component,
                     source: 'prayer-alert'
-<<<<<<< HEAD
-                }, '*');
-=======
-                }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 console.log(`🔊 Unmuted ${component} after prayer`);
             } catch (error) {
                 console.warn(`Failed to unmute ${component}:`, error);
@@ -475,10 +407,6 @@ class PrayerAlertSystem {
     setupPrayerTimeListeners() {
         // Listen for prayer time updates from other scripts
         window.addEventListener('message', (event) => {
-<<<<<<< HEAD
-=======
-            if (event.origin !== window.location.origin) return;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             if (event.data.type === 'PRAYER_TIMES_UPDATED') {
                 console.log('🕌 Prayer times updated from external source');
                 this.prayerTimes = event.data.prayerTimes;
@@ -488,10 +416,6 @@ class PrayerAlertSystem {
 
         // Listen for toggle messages from azan-clock popup
         window.addEventListener('message', (event) => {
-<<<<<<< HEAD
-=======
-            if (event.origin !== window.location.origin) return;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             if (event.data.type === 'AUTO_PRAYER_ALERT_TOGGLE') {
                 console.log(`🕌 Auto prayer alert ${event.data.enabled ? 'enabled' : 'disabled'} from popup`);
                 this.handleAutoToggle(event.data.enabled);
@@ -538,11 +462,6 @@ class PrayerAlertSystem {
         window.postMessage({
             type: 'PRAYER_ALERT_STATUS',
             enabled: isEnabled
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         
         console.log(`🕌 Sent status to popup: ${isEnabled ? 'enabled' : 'disabled'}`);
     }
@@ -599,8 +518,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export for manual initialization if needed
-<<<<<<< HEAD
-window.PrayerAlertSystem = PrayerAlertSystem;
-=======
-window.PrayerAlertSystem = PrayerAlertSystem;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

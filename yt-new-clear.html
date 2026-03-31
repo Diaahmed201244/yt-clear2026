@@ -4,92 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>YouTube Embed App</title>
-=======
-    <!-- 🛡️ RELOAD PROTECTION (from actly.md) -->
-    <script>
-      (function() {
-        const reloadKey = 'last_reload_time';
-        const minReloadInterval = 5000; 
-        const lastReload = parseInt(localStorage.getItem(reloadKey) || '0');
-        const now = Date.now();
-        if (now - lastReload < minReloadInterval) {
-          console.error('🚨 RELOAD LOOP DETECTED - Breaking cycle');
-          localStorage.setItem('reload_loop_detected', 'true');
-          localStorage.removeItem('auth_session');
-          sessionStorage.clear();
-          document.addEventListener('DOMContentLoaded', () => {
-            document.body.innerHTML = `
-              <div style="padding: 40px; text-align: center; font-family: sans-serif; background: #0d1117; color: white; height: 100vh;">
-                <h1 style="color: #ff6b6b;">⚠️ Reload Loop Detected</h1>
-                <p>The application was reloading too quickly.</p>
-                <p>This is often caused by a ledger mismatch or auth sync error.</p>
-                <button onclick="localStorage.clear(); location.href='/login.html'" 
-                        style="padding: 12px 24px; margin-top: 20px; cursor: pointer; background: #00d4ff; border: none; border-radius: 8px; color: black; font-weight: bold;">
-                  Clear All Data & Restart
-                </button>
-              </div>
-            `;
-          });
-          throw new Error('Reload loop prevented');
-        }
-        localStorage.setItem(reloadKey, now.toString());
-      })();
-    </script>
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; font-src * data: 'self'; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src * data: blob:; media-src *; frame-src *;">
-    <title>Dr.D</title>
-    <link rel="manifest" href="/manifest.json">
-    <meta name="apple-mobile-web-app-title" content="Dr.D">
-    <meta name="theme-color" content="#1a1a2e">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/youtube-embed-responsive.css">
     <link rel="stylesheet" href="/styles/toggle-switch-3way.css">
     <link rel="stylesheet" href="/styles/section-switch-popup.css">
     <link rel="stylesheet" href="/codebank/css/safe-asset-list.css">
 
-<<<<<<< HEAD
-    <!-- External Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@capacitor/core/dist/capacitor.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/parse@6.1.1/dist/parse.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako_deflate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
-    <!-- Browser Mode Setup -->
-=======
-     <script>
-      window.addEventListener('securitypolicyviolation', function(e) {
-        try {
-          console.error('CSP VIOLATION:', {
-            blockedURI: e.blockedURI,
-            violatedDirective: e.violatedDirective,
-            originalPolicy: e.originalPolicy,
-            sourceFile: e.sourceFile,
-            lineNumber: e.lineNumber
-          });
-        } catch(_) {}
-      });
-     </script>
-
-     <!-- External Libraries -->
-     <script src="https://cdn.jsdelivr.net/npm/@capacitor/core/dist/capacitor.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <script src="https://unpkg.com/parse@6.1.1/dist/parse.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako_deflate.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
-    <!-- Browser Mode Setup -->
-    <script src="/shared/storage-adapter.js"></script>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     <script>
         console.warn("🟢 YT-Clear TRUE Browser Local Mode");
 
@@ -128,49 +48,6 @@
     </script>
 
     <style>
-<<<<<<< HEAD
-=======
-        /* 🔹 Loading Overlay Fix - Force Hidden by Default if needed */
-        #loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: #0d1117;
-            display: none; /* 🔹 Start hidden to prevent blocking if JS fails */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 3000000;
-            transition: opacity 0.5s ease-out, visibility 0.5s;
-        }
-        #loading-overlay.active {
-            display: flex;
-        }
-        #loading-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .progress-container {
-            width: 300px;
-            height: 8px;
-            background: #30363d;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-        #loading-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: #238636;
-            transition: width 0.3s ease;
-        }
-        .loading-text {
-            color: #c9d1d9;
-            font-family: sans-serif;
-            font-size: 18px;
-        }
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         /* Hide YouTube controls and block iframe interactions */
         .ytp-chrome-bottom,
         .ytp-progress-bar-container {
@@ -1153,28 +1030,6 @@
             /* Maintain aspect ratio */
         }
 
-<<<<<<< HEAD
-        /* Progress bar styles */
-        #progress-bar {
-            width: 0;
-            height: 5px;
-            background-color: #00ff00;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-=======
-        #balloonCanvas {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 999001;
-            pointer-events: none;
-            background: transparent !important;
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
 
 
@@ -1298,35 +1153,12 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.8);
-<<<<<<< HEAD
-            z-index: 9999;
-=======
-            z-index: 2000000;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             display: none;
             align-items: center;
             justify-content: center;
         }
 
         #code-popup-overlay {
-<<<<<<< HEAD
-            justify-content: center;
-            align-items: stretch;
-            opacity: 0;
-            transition: opacity 200ms ease-out;
-=======
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2147483647 !important; /* Max z-index */
-            display: none;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto !important;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
 
         #code-popup-overlay.open {
@@ -1338,12 +1170,6 @@
             display: flex;
         }
 
-<<<<<<< HEAD
-        #popup-frame,
-        #code-popup-frame {
-=======
-        #popup-frame {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             position: relative;
             width: 100vw;
             max-width: 100vw;
@@ -1354,45 +1180,10 @@
             box-shadow: none;
         }
 
-<<<<<<< HEAD
-        /* Full-page mode: frame already fills viewport */
-
-        #popup-overlay.open #popup-frame {
-            transform: translateX(0);
-        }
-
-        #popup-overlay.no-dim {
-            background: transparent;
-        }
-
-        #popup-iframe,
-=======
-        #popup-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        #code-popup-frame {
-            position: relative;
-            width: 90vw;
-            height: 90vh;
-            background: #0d1117;
-            border-radius: 12px;
-            overflow: hidden;
-            pointer-events: auto !important;
-            z-index: 2147483647 !important;
-        }
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         #code-popup-iframe {
             width: 100%;
             height: 100%;
             border: none;
-<<<<<<< HEAD
-=======
-            pointer-events: auto !important;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
 
         #popup-close,
@@ -1576,17 +1367,6 @@
         .popup-active #video-container,
         .popup-active #counter-container,
         .popup-active .news-ticker,
-<<<<<<< HEAD
-        .popup-active #app {
-            filter: blur(12px);
-            pointer-events: none;
-=======
-        .popup-active #app,
-        .popup-active #balloonCanvas,
-        .popup-active #global-touch-shield {
-            filter: blur(12px);
-            pointer-events: none !important;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             user-select: none;
         }
 
@@ -1923,33 +1703,6 @@
 </head>
 
 <body class="bg-light">
-<<<<<<< HEAD
-=======
-    <!-- 🔹 Loading Overlay (Initially Hidden, Activated by Script) -->
-    <div id="loading-overlay">
-        <div class="loading-text">جارِ التهيئة</div>
-        <div class="progress-container">
-            <div id="loading-progress-bar" style="width: 0%;"></div>
-        </div>
-        <div style="color: #8b949e; margin-top: 10px; font-size: 14px;">يتم تجهيز التطبيق، يرجى الانتظار قليلاً</div>
-        <div id="loading-percentage" style="color: #c9d1d9; margin-top: 5px;">0%</div>
-    </div>
-    
-    <script>
-        // Show loading overlay only if not already authenticated
-        (function() {
-            try {
-                // If we have a session cookie, maybe we don't need the heavy loading screen
-                const hasSession = document.cookie.indexOf('session_token') !== -1;
-                const overlay = document.getElementById('loading-overlay');
-                if (overlay && !hasSession) {
-                    overlay.classList.add('active');
-                }
-            } catch(e) {}
-        })();
-    </script>
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     <div class="container text-center py-5">
         <h1 class="display-4" data-i18n="general.siteName">My YouTube Channel</h1>
 
@@ -2026,33 +1779,6 @@
         <div id="popup-overlay">
             <div id="popup-frame">
                 <button id="popup-close">✖</button>
-<<<<<<< HEAD
-                <div id="init-login" style="padding:20px;display:flex;flex-direction:column;gap:10px;">
-                    <h3 style="margin:0;color:#fff;">Welcome</h3>
-                    <p style="margin:0;color:#9ca3af;">Please login or continue as guest</p>
-                    <label style="color:#e5e7eb;">Email
-                        <input id="login-email" type="email" placeholder="you@example.com"
-                            style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0b1220;color:#fff;">
-                    </label>
-                    <label style="color:#e5e7eb;">Password
-                        <input id="login-pass" type="password" placeholder="••••••••"
-                            style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0b1220;color:#fff;">
-                    </label>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <button id="btn-login"
-                            style="background:#2563eb;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;">Login</button>
-                        <button id="btn-signup"
-                            style="background:#10b981;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;">Signup</button>
-                        <button id="btn-guest"
-                            style="background:#6b7280;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;">Continue
-                            as Guest</button>
-                    </div>
-                    <div id="guest-note" style="color:#fca5a5;font-weight:600;">Guest mode does not save rewards or
-                        assets</div>
-                    <div id="login-msg" style="color:#fbbf24;display:none"></div>
-                </div>
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 <iframe src="" id="popup-iframe" style="display:none"></iframe>
             </div>
         </div>
@@ -2077,10 +1803,6 @@
     <!-- External Scripts -->
     <script>
         (function () {
-<<<<<<< HEAD
-=======
-            function __cbOrigin__(){ try{ var f=document.getElementById('code-popup-iframe'); if(!f) return window.location.origin; var src=f.getAttribute('src')||''; return new URL(src, window.location.href).origin; }catch(_){ return window.location.origin } }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             try {
                 if (!window.YT) window.YT = { loading: 0, loaded: 0 };
                 if (!window.YT.ready) { window.YT.ready = function (f) { try { f && f(); } catch (_) { } }; }
@@ -2093,27 +1815,6 @@
             } catch (e) { console.warn('YouTube API stub init failed', e); }
         })();
     </script>
-<<<<<<< HEAD
-=======
-
-    <script>
-        (function(){
-          try {
-            var host = location && location.hostname || '';
-            var isLocal = /^(localhost|127\.0\.0\.1)$/.test(host);
-            var params = location && location.search || '';
-            var disableSW = /([?&])disable_sw=1\b/.test(params);
-            if (isLocal || disableSW) {
-              if (navigator.serviceWorker && typeof navigator.serviceWorker.getRegistrations==='function') {
-                navigator.serviceWorker.getRegistrations().then(function(regs){
-                  try { regs.forEach(function(r){ try { r.unregister(); } catch(_){} }); } catch(_){}
-                }).catch(function(){});
-              }
-            }
-          } catch(_){}
-        })();
-    </script>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     <script>
         (function(){
             var container=null; var lastBalances={ codes:null }; var lastToastAt=0;
@@ -2130,35 +1831,6 @@
     </script>
     <script>
 (function(){
-<<<<<<< HEAD
-            async function fetchNeonCodesFirst(){
-                try {
-                    try { if (!(window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated())) return false; } catch(_){ return false }
-                    var res = await fetch('/api/neon/codes', { method: 'GET', credentials: 'include' });
-                    if (!res.ok) return false;
-                    var data = await res.json();
-                    try { window.UVLog && window.UVLog('neon-codes-fetch', { status: data && data.status, count: data && data.count }, 'yt-new-clear') } catch(_){ }
-                    try { console.log('[CodeBank] Neon sync result:', data); } catch (_) {}
-                    if (data && data.status === 'success' && Array.isArray(data.rows) && data.rows.length > 0) {
-                        var latest = (typeof data.latest==='string' ? data.latest : (data.rows[0] && data.rows[0].code) || '');
-                        var snapshot = { latest: latest, rows: data.rows };
-                        try { window.dispatchEvent(new CustomEvent('neon:snapshot', { detail: snapshot })); } catch(_){}
-                        try { window.UVLog && window.UVLog('neon:snapshot:emit', snapshot, 'yt-new-clear') } catch(_){}
-=======
-            async function fetchSqliteCodesFirst(){
-                try {
-                    // Auth check handled by fetch patch gate
-                    var res = await fetch('/api/sqlite/codes', { method: 'GET', credentials: 'include' });
-                    if (!res.ok) return false;
-                    var data = await res.json();
-                    try { window.UVLog && window.UVLog('sqlite-codes-fetch', { status: data && data.status, count: data && data.count }, 'yt-new-clear') } catch(_){ }
-                    try { console.log('[CodeBank] SQLite sync result:', data); } catch (_) {}
-                    if (data && data.status === 'success' && Array.isArray(data.rows) && data.rows.length > 0) {
-                        var latest = (typeof data.latest==='string' ? data.latest : (data.rows[0] && data.rows[0].code) || '');
-                        var snapshot = { latest: latest, rows: data.rows };
-                        try { window.dispatchEvent(new CustomEvent('sqlite:snapshot', { detail: snapshot })); } catch(_){}
-                        try { window.UVLog && window.UVLog('sqlite:snapshot:emit', snapshot, 'yt-new-clear') } catch(_){}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                         return true;
                     }
                     return false;
@@ -2185,15 +1857,6 @@
                             for (var i=0;i<attempts;i++){ if (await fn()) return true; await sleep(delay) }
                             return false;
                         }
-<<<<<<< HEAD
-                        var ok = await tryWithRetry(fetchNeonCodesFirst, 3, 1200);
-                        if (ok) return;
-                        setTimeout(async function(){ try { await tryWithRetry(fetchNeonCodesFirst, 3, 1500) } catch(_){} }, 2500);
-=======
-                        var ok = await tryWithRetry(fetchSqliteCodesFirst, 3, 1200);
-                        if (ok) return;
-                        setTimeout(async function(){ try { await tryWithRetry(fetchSqliteCodesFirst, 3, 1500) } catch(_){} }, 2500);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                     } catch(_){}
                 });
             } catch(_){}
@@ -2202,10 +1865,6 @@
     <script src="/shared_external/sync-selftest.js"></script>
     <script src="/shared/asset-types.js"></script>
     <script src="/shared/asset-policy.js" type="module"></script>
-<<<<<<< HEAD
-    <script src="/shared/local-asset-bus.js" type="module"></script>
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     <script src="/shared/engines/likes-engine.js" type="module"></script>
     <script src="/shared/engines/superlikes-engine.js" type="module"></script>
     <script src="/shared/engines/games-engine.js" type="module"></script>
@@ -2236,20 +1895,6 @@
                                 writeSnap(uiSnap);
                             } catch(_){ } }); } catch(_){ } }); } catch (_) { }
             try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_ASSETS_HANDSHAKE') { try { var snap = AssetBus.snapshot(); if (snap && ev.source) { try { var out = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out && out.count === 0) { console.warn('[UI SNAPSHOT] zero-count snapshot blocked', out); }
-<<<<<<< HEAD
-                        var authed = false; try { authed = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed = false }
-                        if (!authed) { console.warn('[SNAPSHOT BLOCKED] not authenticated'); return; }
-                        console.log('[SNAPSHOT SENT]', out);
-                        ev.source.postMessage({ type: 'CODEBANK_ASSETS_SYNC', payload: out }, window.location.origin); } catch (_) { } } } catch (_) { } } } catch (_) { } }); } catch (_) { }
-=======
-                        try { window.__CODEBANK_ALLOWED_ORIGIN__ = ev && ev.origin || __cbOrigin__(); } catch(_){ }
-                        var authed = false; try { authed = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed = false }
-                        if (!authed) { console.warn('[SNAPSHOT BLOCKED] not authenticated'); return; }
-                         console.log('[SNAPSHOT SENT]', out);
-                        // 🧠 FIX: Use ev.origin as target origin for better compatibility and to avoid YouTube mismatch
-                        var targetOrigin = (ev.origin && ev.origin !== 'null') ? ev.origin : window.location.origin;
-                        ev.source.postMessage({ type: 'CODEBANK_ASSETS_SYNC', payload: out }, targetOrigin); } catch (_) { } } } catch (_) { } } } catch (_) { } }); } catch (_) { }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_INTENT') { try { var intent = data.intent || ''; var detail = data.detail || {}; console.log('[CODEBANK INTENT]', intent, detail); if (intent === 'compress') { window.dispatchEvent(new CustomEvent('intent:compress', { detail: detail })); } else if (intent === 'convert') { window.dispatchEvent(new CustomEvent('intent:convert', { detail: detail })); } else if (intent === 'grind') { window.dispatchEvent(new CustomEvent('intent:grind', { detail: detail })); } } catch(_){} } } catch(_){} }); } catch(_){}
             try { var frame = document.getElementById('code-popup-iframe'); if (frame) { frame.addEventListener('load', function () { try { var snap = AssetBus.snapshot(); if (snap && frame.contentWindow) { try { var out2 = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out2 && out2.count === 0) { console.warn('[UI SNAPSHOT] zero-count snapshot blocked', out2); }
                         var authed2 = false; try { authed2 = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed2 = false }
@@ -2266,19 +1911,6 @@
                         var res = await fetch('/api/balances', { method: 'GET', credentials: 'include' });
                         var data = null;
                         try { data = await res.json(); } catch(_) { data = null }
-<<<<<<< HEAD
-                        try { console.log('[Neon] balances aggregation:', data); } catch(_){}
-                        try {
-                            var bal = (data && data.status==='success' && data.balances && typeof data.balances==='object') ? data.balances : null;
-                            if (bal) {
-                                try { window.UVLog && window.UVLog('balances:neon', bal, 'yt-new-clear') } catch(_){}
-=======
-                        try { console.log('[SQLite] balances aggregation:', data); } catch(_){}
-                        try {
-                            var bal = (data && data.status==='success' && data.balances && typeof data.balances==='object') ? data.balances : null;
-                            if (bal) {
-                                try { window.UVLog && window.UVLog('balances:sqlite', bal, 'yt-new-clear') } catch(_){}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                                 try { window.dispatchEvent(new CustomEvent('balances:updated', { detail: { balances: bal } })); } catch(_){}
                                 var det = {
                                     count: (typeof bal.codes==='number' ? bal.codes : undefined),
@@ -2408,68 +2040,6 @@
     </script>
 
     <!-- Modular JavaScript Files -->
-<<<<<<< HEAD
-    <!-- Modules: migrated from yt-coder to yt-clear -->
-    <script type="module" src="/yt-player/yt-player.init.js"></script>
-    <script type="module" src="/touch-shield/global-touch-shield.js"></script>
-    <script type="module" src="/layout-bootstrap.js"></script>
-    <script type="module">
-        import { initTranslations } from '/shared/js/translate.js';
-        try { initTranslations(); } catch (_) { }
-=======
-    <!-- modules: migrated from yt-coder to yt-clear -->
-    <!-- 1. Core -->
-    <script src="/shared/auth-core.js"></script>
-    
-    <!-- 2. Layout (creates video-container) -->
-    <script type="module" src="/layout-bootstrap.js"></script>
-    
-    <!-- 3. Bankode (must finish before bridge) -->
-    <script src="/shared/bankode-core.js"></script>
-    
-    <!-- 4. AssetBus & Bridge Initialization -->
-    <script type="module">
-      import { AssetBus } from '/shared/local-asset-bus.js';
-      
-      // 🛡️ Global init guard (from actly.md)
-      if (window.__assetbus_initialized) {
-          console.warn('[INIT] AssetBus multiple initialization detected and blocked.');
-      } else {
-          window.__assetbus_initialized = true;
-          console.log('[INIT] AssetBus loaded');
-          
-          // 🛡️ Signal AssetBus is ready for non-module scripts
-          window.dispatchEvent(new CustomEvent('assetbus:ready'));
-
-          // 🧠 Ensure Bridge is initialized AFTER AssetBus
-          if (window.BankodeAssetBusBridge) {
-              console.log('[INIT] Bridge detected, re-triggering parent setup');
-          }
-      }
-    </script>
-
-    <!-- 5. Bridge (regular script will now find AssetBus via deferred mode) -->
-    <script src="/codebank/bankode-assetbus-bridge.js"></script>
-    
-    <!-- 6. Safe Asset List - REMOVED from main page, only in CodeBank iframe -->
-    <script src="/codebank/js/safe-storage.js"></script>
-    <script src="/codebank/js/guardian-3d.js"></script>
-    
-    <!-- 7. YT Player -->
-    <script src="/yt-player/yt-player.init.js"></script>
-    
-    <script type="module" src="/touch-shield/global-touch-shield.js"></script>
-    <script type="module">
-        import { initTranslations } from '/shared/js/translate.js';
-        
-        // 🛡️ Global init guard (from actly.md)
-        if (window.__translations_initialized) {
-            console.warn('[INIT] Translations multiple initialization detected.');
-        } else {
-            window.__translations_initialized = true;
-            try { initTranslations(); } catch (_) { }
-        }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     </script>
     <script type="module" src="/js/section-switch-popup.js"></script>
     <script type="module" src="/3way-switch-b/yt-section-switch.js"></script>
@@ -2483,87 +2053,12 @@
     <!-- Inline orchestration removed per integration rules -->
 
     <!-- Screenshot Module removed (migrated above) -->
-<<<<<<< HEAD
-    <script>
-        (function(){
-=======
-    <script type="module" src="/main.js"></script>
-    <script>
-        (function () {
-            // 🔐 YT-Clear Auth Redirect: If not authenticated, go to login.html
-            function checkAuth() {
-                // If we're already on login page, don't check
-                if (window.location.pathname.includes('login.html')) return true;
-
-                const sessionToken = localStorage.getItem('session_token');
-                const cookieToken = document.cookie.split('; ').find(row => row.startsWith('session_token='))?.split('=')[1];
-                
-                if (!sessionToken && !cookieToken && window.USER_MODE !== 'auth') {
-                    console.warn('[AUTH] No session detected, checking if we should redirect...');
-                    
-                    // 🛡️ MODIFIED: Only redirect if we are SURE there's no session after a delay
-                    setTimeout(() => {
-                        const currentSession = localStorage.getItem('session_token') || document.cookie.includes('session_token');
-                        if (!currentSession && window.USER_MODE !== 'auth') {
-                            console.log('[AUTH] Redirecting to login.html');
-                            window.location.href = '/login.html';
-                        }
-                    }, 2000); 
-                    return false;
-                }
-                return true;
-            }
-            checkAuth();
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             try { window.__UV_TRACE__ = Array.isArray(window.__UV_TRACE__) ? window.__UV_TRACE__ : []; } catch(_){}
             function __uvlog__(type, data, source){ try { var rec = { type: String(type||''), data: data||{}, source: String(source||'unknown'), ts: Date.now() }; window.__UV_TRACE__.push(rec); console.log('[UV]', rec); } catch(_){} }
             try { window.UVLog = __uvlog__ } catch(_){}
             try { window.dumpUVTrace = function(){ try { return (window.__UV_TRACE__||[]).slice() } catch(_){ return [] } } } catch(_){}
             try { window.addEventListener('auth:ready', function(e){ try { __uvlog__('auth:ready', e&&e.detail||{}, 'auth-core') } catch(_){} }); } catch(_){}
             try { window.addEventListener('assets:updated', function(e){ try { __uvlog__('assets:updated', e&&e.detail||{}, 'assetbus') } catch(_){} }); } catch(_){}
-<<<<<<< HEAD
-            try {
-                var __origFetch__ = window.fetch;
-                window.fetch = async function(input, init){
-                    var url = (typeof input === 'string') ? input : (input && input.url) || '';
-                    var t0 = Date.now();
-                    var res = await __origFetch__(input, init);
-                    try { if (/\/api\/(neon\/codes|balances)/.test(url)) { __uvlog__('fetch', { url: url, status: res.status, ms: Date.now()-t0 }, 'fetch'); } } catch(_){}
-                    return res;
-                };
-            } catch(_){}
-        })();
-    </script>
-
-    <!-- BankCode Core -->
-    <!-- Bankode core must load before any UI/bridge code -->
-    <script src="/shared/bankode-core.js"></script>
-    <!-- Load AssetBus as ES module and expose it globally for non-module bridges -->
-    <script type="module">
-      import { AssetBus } from '/shared/local-asset-bus.js';
-      window.AssetBus = AssetBus;
-    </script>
-
-    <!-- Storage Wrapper -->
-    <script src="/codebank/js/safe-storage.js"></script>
-
-    <!-- Safe Asset List -->
-    <!-- Safe Asset List depends on AssetBus and DOM; guards handle async init -->
-    <script src="/codebank/js/safe-asset-list.js"></script>
-
-    <!-- Bankode → AssetBus Bridge (Load immediately after SafeAssetList) -->
-    <!-- Bridge attaches only after core systems exist; module avoids early global execution -->
-    <script type="module" src="/bankode-assetbus-bridge.js"></script>
-
-    <!-- SafeCode Bridge -->
-    <script src="/codebank/js/safe-code-bridge.js"></script>
-=======
-        })();
-    </script>
-
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
     <!-- CodeBank Bridge -->
     <script type="module" src="/code-display-bar/codebank-bridge.js"></script>
@@ -2572,18 +2067,6 @@
 
     
 
-<<<<<<< HEAD
-<!-- Initialize Bankode after DOM is ready and start timers after auth -->
-<script>
-document.addEventListener('DOMContentLoaded', async function(){
-  if (!window.Bankode) return;
-  try { await Bankode.init(); } catch(_){}
-=======
-<!-- Initialize Bankode timers after auth -->
-<script>
-document.addEventListener('DOMContentLoaded', async function(){
-  if (!window.Bankode) return;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   try {
     if (window.Auth && typeof window.Auth.isAuthenticated === 'function') {
       if (window.Auth.isAuthenticated()) { Bankode.startTimer(300000) } else { window.addEventListener('auth:ready', function(e){ try { var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ Bankode.startTimer(300000) } } catch(_){} }) }
@@ -2607,149 +2090,10 @@ document.addEventListener('DOMContentLoaded', async function(){
                 }
                 window.ACTIVE_ASSET_TAB = tab;
                 console.log('[UI] Switched to asset tab:', tab);
-<<<<<<< HEAD
-                renderSafeByTab(tab);
-            };
-            
-            
-            // CodeBank sync only (no SafeCode UI in this page)
-
-            function applyUpdate(detail) { try { sendSync(detail || {}); } catch(_){ } }
-
-            function goToPage(){ /* no-op in main page */ }
-            function getSnapshot(detail) {
-                const snap = AssetBus.snapshot();
-                var token = null;
-                var tEl = document.getElementById('token-amount'); if (tEl) { try { token = tEl.textContent; } catch (_) { } }
-                var sw = document.getElementById('stopwatch'); var swText = sw ? sw.textContent : null;
-                var wt = null; try { wt = parseInt(localStorage.getItem('watchTime') || '0', 10) || 0; } catch (_) { wt = 0; }
-                return Object.assign({}, snap, { tokenAmount: token, stopwatch: swText, watchTime: wt });
-            }
-            function sendSync(detail) {
-                var frame = document.getElementById('code-popup-iframe');
-                if (!frame || !frame.contentWindow) return;
-                var authed = false; try { authed = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed = false }
-                if (!authed) return;
-                var payload = getSnapshot(detail);
-                try { frame.contentWindow.postMessage({ type: 'CODEBANK_ASSETS_SYNC', payload: payload }, window.location.origin); } catch (_) { }
-            }
-            window.addEventListener('assets:updated', function (e) { try { sendSync({}); } catch(_){ } });
-            try {
-                var bc = new BroadcastChannel('codebank');
-                bc.onmessage = function (ev) { var d = ev && ev.data || {}; if (d.type === 'assets:updated') { try { sendSync({}); } catch(_){ } } };
-            } catch (_) { }
-            try {
-                window.addEventListener('codebank:opened', function () { try { sendSync({}); } catch (_) { } });
-            } catch (_) { }
-=======
-            };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         })();
     </script>
     <script>
         (function () {
-<<<<<<< HEAD
-            try { if (!window.AUTH_ALREADY_HANDLED) { document.body.classList.add('popup-active'); var ov = document.getElementById('popup-overlay'); if (ov) ov.classList.add('open'); } } catch (_) { }
-            window.USER_MODE = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) ? 'auth' : null;
-            function closeInit() { try { document.body.classList.remove('popup-active'); var ov = document.getElementById('popup-overlay'); if (ov) ov.classList.remove('open'); } catch (_) { } }
-            function sendAuthContext() { try { var frame = document.getElementById('code-popup-iframe'); if (frame && frame.contentWindow) { var u = (window.APP_AUTH && window.APP_AUTH.user) || null; frame.contentWindow.postMessage({ type: 'AUTH_CONTEXT', payload: u }, window.location.origin); } } catch (_) { } }
-            function showMsg(t) { try { var m = document.getElementById('login-msg'); if (m) { m.textContent = String(t || ''); m.style.display = t ? 'block' : 'none'; } } catch (_) { } }
-            function clearGuestState() {
-                try {
-                    Object.keys(localStorage).forEach(function (k) {
-                        if (/_PP$/.test(k)) {
-                            localStorage.removeItem(k);
-                            return;
-                        }
-                        if (k === 'codebank_assets' || k === 'codebank_rewards') {
-                            return;
-                        }
-                        if (/^asset-(silver|gold)$/i.test(k)) {
-                            return;
-                        }
-                    });
-                    var ce = document.getElementById('code-display');
-                    if (ce) ce.textContent = '';
-                } catch (_) { }
-            }
-            async function callJSON(url, data) { try { const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(data || {}) }); return await res.json(); } catch (e) { return { status: 'failed', error: String(e && e.message || e) } } }
-            function wrapFetchForPP() {
-                try {
-                    const orig = window.fetch; window.fetch = async function (input, init) {
-                        try {
-                            if (typeof input === 'string' && (/\/api\/auth\b|\/api\/neon\b/).test(input)) {
-                                init = init || {};
-                                if (!init.credentials) init.credentials = 'include';
-                            }
-                            if (window.USER_MODE === 'guest' && init && typeof init.body === 'string' && /application\/json/i.test((init.headers && init.headers['Content-Type']) || '')) { try { const data = JSON.parse(init.body); const keys = ['code', 'asset', 'assetId', 'bar', 'reward', 'event', 'transactionRef', 'name', 'title']; keys.forEach(function (k) { if (typeof data[k] === 'string') data[k] = data[k].endsWith('_PP') ? data[k] : (data[k] + '_PP'); }); init.body = JSON.stringify(data); if ((typeof input === 'string') && /\/api\/rewards|\/api\/transactions|\/api\/action/.test(input)) { try { showMsg('Login required to save rewards'); } catch (_) { } } } catch (_) { } }
-                            return orig(input, init);
-                        } catch (e) { return orig(input, init); }
-                    };
-                } catch (_) { }
-            }
-            wrapFetchForPP();
-            var btnLogin = document.getElementById('btn-login'); var btnSignup = document.getElementById('btn-signup'); var btnGuest = document.getElementById('btn-guest');
-            var email = document.getElementById('login-email'); var pass = document.getElementById('login-pass');
-            if (btnGuest) btnGuest.addEventListener('click', function () { try { showMsg('Guest mode disabled for authenticated users'); closeInit(); } catch (_) { } });
-            if (btnLogin) btnLogin.addEventListener('click', async function () { try { const e = (email && email.value || '').trim(); const p = (pass && pass.value || '').trim(); if (!e || !p) { showMsg('Email and password required'); return; } const r = await callJSON('/api/auth/login', { email: e, password: p }); if (r && r.status === 'success') { try { if (window.Auth && typeof window.Auth.refresh === 'function') { await window.Auth.refresh(); } } catch(_){} if (window.Auth && typeof window.Auth.isAuthenticated === 'function' && window.Auth.isAuthenticated()) { window.USER_MODE = 'auth'; } window.APP_AUTH = { user: { id: r.userId, email: e, token: r.token || null } }; showMsg('Logged in'); clearGuestState(); closeInit(); sendAuthContext(); } else { showMsg(r && r.error || 'Login failed'); } } catch (_) { } });
-            if (btnSignup) btnSignup.addEventListener('click', async function () { try { const e = (email && email.value || '').trim(); const p = (pass && pass.value || '').trim(); if (!e || !p) { showMsg('Email and password required'); return; } const r = await callJSON('/api/auth/signup', { email: e, username: e, password: p }); if (r && r.status === 'success') { try { if (window.Auth && typeof window.Auth.refresh === 'function') { await window.Auth.refresh(); } } catch(_){} if (window.Auth && typeof window.Auth.isAuthenticated === 'function' && window.Auth.isAuthenticated()) { window.USER_MODE = 'auth'; } window.APP_AUTH = { user: { id: r.userId, email: e, token: r.token || null } }; showMsg('Signed up'); clearGuestState(); closeInit(); sendAuthContext(); } else { showMsg(r && r.error || 'Signup failed'); } } catch (_) { } });
-            /* Dev login/logout UI removed */
-=======
-            // 🔹 Safety timeout for loading overlay
-            setTimeout(() => {
-                const loadingOv = document.getElementById('loading-overlay');
-                if (loadingOv) {
-                    loadingOv.classList.remove('active');
-                    loadingOv.classList.add('hidden');
-                    console.log("⚠️ Loading overlay hidden by safety timeout");
-                }
-            }, 3000); // Reduced to 3s for faster recovery
-
-            window.USER_MODE = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) ? 'auth' : null;
-            function closeInit() {
-                 try {
-                     document.body.classList.remove('popup-active');
-                     var ov = document.getElementById('popup-overlay');
-                     if (ov) {
-                         ov.classList.remove('open');
-                         ov.style.display = 'none'; // 🔹 Force hide
-                     }
-                     
-                     // Clear messages
-                     var msg = document.getElementById('login-msg');
-                     if (msg) msg.style.display = 'none';
-
-                     // Also trigger the full post-login init if we logged in
-                     if (window.initAfterLogin) {
-                         window.initAfterLogin();
-                     }
-                 } catch (_) { }
-             }
-            function sendAuthContext() { 
-                try { 
-                    var frame = document.getElementById('code-popup-iframe'); 
-                    if (frame && frame.contentWindow) { 
-                        var u = (window.APP_AUTH && window.APP_AUTH.user) || (window.Auth && window.Auth.getUser && window.Auth.getUser()) || null; 
-                        var authData = {
-                            type: 'AUTH_SYNC',
-                            authenticated: !!u,
-                            userId: u ? u.id : null,
-                            sessionId: (window.Auth && window.Auth.sessionId && window.Auth.sessionId()) || (window.APP_AUTH && window.APP_AUTH.sessionId) || null,
-                            user: u
-                        };
-                        
-                        // Send to main CodeBank frame
-                        frame.contentWindow.postMessage(authData, '*');
-                        console.log('[AUTH] Sent AUTH_SYNC to CodeBank frame');
-                        
-                        // Legacy support
-                        frame.contentWindow.postMessage({ type: 'AUTH_CONTEXT', payload: u }, '*'); 
-                    } 
-                } catch (_) { } 
-            }
-            window.sendAuthContext = sendAuthContext;
-            window.closeInit = closeInit;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         })();
     </script>
     <script>
@@ -2769,315 +2113,6 @@ document.addEventListener('DOMContentLoaded', async function(){
             if (!window.handleExtraModeChange) { window.handleExtraModeChange = basicHandleExtraModeChange; }
         })();
     </script>
-<<<<<<< HEAD
-=======
-    <canvas id="balloonCanvas"></canvas>
-    <script src="/node_modules/matter-js/build/matter.min.js"></script>
-    <script src="/node_modules/gsap/dist/gsap.min.js"></script>
-    <script type="importmap">
-    {
-      "imports": {
-        "matter-js": "/codebank/js/matter-shim.js",
-        "gsap": "/codebank/js/gsap-shim.js"
-      }
-    }
-    </script>
-    <script type="module" src="/codebank/js/balloon-engine-advanced.js"></script>
-    <script>
-        (function(){
-            async function ensureUser(){
-                try {
-                    const r = await fetch('/api/me', { credentials: 'include' }).then(x=>x.json());
-                    if (r && r.user && r.user.id) return r.user.id;
-                    const d = await fetch('/api/auth/dev-login', { method: 'POST', credentials: 'include' }).then(x=>x.json());
-                    return d && d.userId ? d.userId : null;
-                } catch(_){ return null }
-            }
-            async function init(){
-                const uid = await ensureUser();
-                if (!uid) return;
-                try { new window.AdvancedBalloonEngine(uid) } catch(_){}
-            }
-            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init) } else { init() }
-        })();
-    </script>
-    <script>
-        // 🔹 Login Auto-Enable Script (v2 - Robust)
-        (function () {
-            function enableLogin() {
-                const initLogin = document.querySelector('#init-login');
-                if (!initLogin) return;
-
-                // 1. Force higher z-index for the overlay
-                const ov = document.getElementById('popup-overlay');
-                if (ov) {
-                    ov.style.zIndex = '2000000';
-                    ov.style.pointerEvents = 'auto';
-                    if (ov.classList.contains('open')) {
-                        ov.style.display = 'flex';
-                    }
-                }
-
-                // 2. Explicitly disable blocking layers
-                const blockers = ['global-touch-shield', 'code-popup-overlay', 'first-open-overlay'];
-                blockers.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        el.style.pointerEvents = 'none';
-                    }
-                });
-
-                // Ensure balloonCanvas is non-interactive during login but still visible
-                const bc = document.getElementById('balloonCanvas');
-                if (bc) bc.style.pointerEvents = 'none';
-
-                // 3. Enable form fields and buttons
-                initLogin.querySelectorAll('input, button').forEach(el => {
-                    el.disabled = false;
-                    el.style.pointerEvents = 'auto';
-                    el.style.position = 'relative';
-                    el.style.zIndex = '2000001';
-                });
-                
-                // 4. Ensure container allows interaction
-                initLogin.style.pointerEvents = 'auto';
-                initLogin.style.zIndex = '2000001';
-                const frame = document.getElementById('popup-frame');
-                if (frame) {
-                    frame.style.pointerEvents = 'auto';
-                    frame.style.zIndex = '2000001';
-                }
-
-                console.log("✅ Login interaction fully restored (v2)");
-            }
-
-            // Initialization
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => setTimeout(enableLogin, 500));
-            } else {
-                setTimeout(enableLogin, 500);
-            }
-
-            // Periodic check to maintain interactivity
-            setInterval(() => {
-                const ov = document.getElementById('popup-overlay');
-                if (ov && (ov.classList.contains('open') || ov.style.display === 'flex')) {
-                    enableLogin();
-                }
-            }, 1000);
-        })();
-    </script>
-    <script>
-        // 🔹 AuthCore Ready Transition Script
-        (function () {
-            window.initAfterLogin = function() {
-                if (window.__INIT_AFTER_LOGIN_CALLED__) return;
-                window.__INIT_AFTER_LOGIN_CALLED__ = true;
-                
-                console.log("🚀 Starting post-login initialization...");
-                
-                // 🔹 إخفاء شاشة التحميل (Loading Overlay)
-                try {
-                    const loadingOv = document.getElementById('loading-overlay');
-                    if (loadingOv) {
-                        loadingOv.classList.remove('active');
-                        loadingOv.classList.add('hidden');
-                        loadingOv.style.display = 'none'; // 🔹 Force remove from layout
-                    }
-                    console.log("✅ Loading screen hidden");
-                } catch (e) { console.error("Error hiding loading screen:", e); }
-
-                // 1. إخفاء الـ login overlay وحذف فلاتر الـ blur
-                try {
-                    document.body.classList.remove('popup-active');
-                    const ov = document.getElementById('popup-overlay');
-                    if (ov) {
-                        ov.classList.remove('open');
-                        ov.style.display = 'none';
-                    }
-                    console.log("✅ Login overlay hidden");
-                } catch (e) { console.error("Error hiding login overlay:", e); }
-
-                // 2. تشغيل محرك البالونات (إذا لم يكن قد بدأ بالفعل)
-                try {
-                    // 🚫 GLOBAL LOCK: Only standalone visual engine is allowed
-                    window.__BALLOON_SYSTEM_LOCK__ = true;
-                    console.log("🛡️ Balloon system globally locked (Standalone mode only)");
-
-                    const bc = document.getElementById('balloonCanvas');
-                    if (bc) {
-                        bc.style.pointerEvents = 'none'; // 🔹 Default to none to allow clicking through
-                    }
-
-                    if (window.__YTNEW_RUNTIME__ === "browser" || true) { // Force enable for testing
-                        // محاولة جلب المستخدم من AuthCore
-                        let userId = null;
-                        if (window.Auth && window.Auth.userId) {
-                            userId = typeof window.Auth.userId === 'function' ? window.Auth.userId() : window.Auth.userId;
-                        } else if (window.APP_AUTH && window.APP_AUTH.user) {
-                            userId = window.APP_AUTH.user.id;
-                        } else {
-                            userId = 'guest_' + Math.floor(Math.random() * 1000000); // 🔹 Fallback for guests
-                        }
-
-                        if (!window.__BALLOON_ENGINE_STARTED__) {
-                            const start = () => {
-                                if (window.AdvancedBalloonEngine) {
-                                    if (window.__USE_ADVANCED_BALLOONS__) {
-                                        console.log("🎈 Starting Balloon Engine for user:", userId);
-                                        new window.AdvancedBalloonEngine(userId);
-                                        window.__BALLOON_ENGINE_STARTED__ = true;
-                                    } else {
-                                        console.warn("🚫 Advanced engine blocked (Using Standalone only)");
-                                    }
-                                } else {
-                                    console.warn("⏳ Waiting for AdvancedBalloonEngine to load...");
-                                    setTimeout(start, 500);
-                                }
-                            };
-                            start();
-                        }
-                    }
-                } catch (e) { console.warn("Balloon Engine init failed:", e); }
-
-                // 3. أي تهيئة إضافية للصفحة يمكن وضعها هنا
-                // ملاحظة: yt-new-clear تعتمد بشكل أساسي على أحداث DOM و AuthCore
-                window.dispatchEvent(new CustomEvent('yt-clear:ready'));
-                
-                // 🎈 Trigger standalone balloon system after successful login/ready
-                if (window.startBalloonSystem) {
-                    window.startBalloonSystem();
-                    console.log("🎈 Balloon system triggered after login transition");
-                }
-
-                console.log("✅ yt-new-clear transition complete");
-            };
-
-            // الربط مع Auth (auth-core.js defines window.Auth)
-            function checkAuth() {
-                if (window.Auth && (window.Auth.isAuthenticated && window.Auth.isAuthenticated())) {
-                    window.initAfterLogin();
-                    return true;
-                }
-                return false;
-            }
-
-            // الاستماع للحدث auth:ready المنبعث من AuthCore
-            window.addEventListener('auth:ready', (e) => {
-                console.log("🔑 Auth Ready Event received:", e.detail);
-                if (e.detail && e.detail.authenticated) {
-                    window.initAfterLogin();
-                    sendAuthContext();
-                }
-            });
-
-            // الاستماع للحدث auth:changed (للمزيد من الموثوقية)
-            window.addEventListener('auth:changed', (e) => {
-                console.log("🔑 Auth Changed Event received:", e.detail);
-                if (e.detail && e.detail.authenticated) {
-                    window.initAfterLogin();
-                    sendAuthContext();
-                }
-            });
-
-            // تحقق فوري
-            if (!checkAuth()) {
-                // تحقق دوري إذا لم يتم الحدث بعد
-                const authCheckInterval = setInterval(() => {
-                    if (checkAuth()) clearInterval(authCheckInterval);
-                }, 500);
-            }
-        })();
-    </script>
-    <script src="/codebank/js/balloon-visual-standalone.js"></script>
-    
-    <!-- 📲 PWA Install Handler -->
-    <script src="/js/pwa-install-handler.js"></script>
-    
-    <!-- 🚀 Global Lifecycle Controller (from actly.md) -->
-    <script src="/acc/acc-client.js"></script>
-    <script src="/acc/asset-mirror.js"></script>
-    <script src="/acc/transaction-gateway.js"></script>
-    <script src="/acc/service-bridge-base.js"></script>
-    <script src="/acc/bridges/pebalaash-bridge.js"></script>
-    <script src="/acc/bridges/farragna-bridge.js"></script>
-    <script src="/acc/bridges/battalooda-bridge.js"></script>
-    <script src="/acc/bridges/safecode-bridge.js"></script>
-    <script type="module" src="/main.js"></script>
-    
-    <!-- 🛡️ Unified UI Handler for Code Display -->
-    <script>
-    (function() {
-      const codeDisplay = document.getElementById('code-display');
-      if (!codeDisplay) return;
-
-      let lastDisplayedCode = null;
-
-      function updateUI(code, source) {
-        if (!code || code === lastDisplayedCode) return;
-        
-        console.log(`[UI SYNC] Updating #code-display from ${source}:`, code);
-        codeDisplay.textContent = code;
-        lastDisplayedCode = code;
-        
-        // Visual feedback
-        codeDisplay.classList.add('pulse');
-        setTimeout(() => codeDisplay.classList.remove('pulse'), 800);
-      }
-
-      function handleEvent(e) {
-        const d = e.detail || {};
-        let code = null;
-
-        console.log(`[UI SYNC] Event received: ${e.type}`, d);
-
-        // Try various properties where code might be
-        if (typeof d === 'string') code = d;
-        else if (d.code) code = d.code;
-        else if (d.latestCode) code = d.latestCode;
-        else if (d.latest) code = d.latest;
-        else if (Array.isArray(d.codes) && d.codes.length > 0) {
-          code = d.codes[d.codes.length - 1];
-        } else if (Array.isArray(d) && d.length > 0) {
-          code = d[d.length - 1];
-        }
-
-        if (code) {
-          const codeVal = typeof code === 'string' ? code : (code.code || code);
-          updateUI(codeVal, e.type);
-        }
-      }
-
-      // Listen to ALL possible sources of truth
-      const events = [
-        'assets:updated', 
-        'codes:updated', 
-        'bankode:code-generated', 
-        'SQLITE_CODE_SYNCED',
-        'bridge:snapshot-applied',
-        'sqlite:snapshot'
-      ];
-
-      events.forEach(evt => window.addEventListener(evt, handleEvent));
-
-      // Initial check
-      window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          if (window.AssetBus && typeof window.AssetBus.snapshot === 'function') {
-            const snap = window.AssetBus.snapshot();
-            if (snap && (snap.latest || snap.latestCode)) {
-              updateUI(snap.latest || snap.latestCode, 'initial-assetbus');
-            }
-          }
-          if (window.Bankode && window.Bankode.codes && window.Bankode.codes.length > 0) {
-            const last = window.Bankode.codes[window.Bankode.codes.length - 1];
-            updateUI(last, 'initial-bankode');
-          }
-        }, 1500);
-      });
-    })();
-    </script>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 </body>
 
 </html>
@@ -3090,22 +2125,12 @@ document.addEventListener('DOMContentLoaded', async function(){
                 <label>Minutes
                     <div class="sw-spinner">
                         <button class="sw-spin-btn" data-target="sw-mins" data-dir="up">▲</button>
-<<<<<<< HEAD
-                        <input type="number" id="sw-mins" min="0" max="59" value="05">
-=======
-                        <input type="number" id="sw-mins" name="sw-mins" min="0" max="59" value="05">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                         <button class="sw-spin-btn" data-target="sw-mins" data-dir="down">▼</button>
                     </div>
                 </label>
                 <label>Seconds
                     <div class="sw-spinner">
                         <button class="sw-spin-btn" data-target="sw-secs" data-dir="up">▲</button>
-<<<<<<< HEAD
-                        <input type="number" id="sw-secs" min="0" max="59" value="00">
-=======
-                        <input type="number" id="sw-secs" name="sw-secs" min="0" max="59" value="00">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                         <button class="sw-spin-btn" data-target="sw-secs" data-dir="down">▼</button>
                     </div>
                 </label>
@@ -3118,36 +2143,6 @@ document.addEventListener('DOMContentLoaded', async function(){
 </div>
 <!-- Auth + Neon Adapter (non-UI listeners) -->
 <script>window.__DISABLE_AUTH_FETCH__ = true;</script>
-<<<<<<< HEAD
-<script src="/shared/auth-core.js"></script>
-<script src="/shared/neon-adapter.js"></script>
-
-<!-- 🔐 Neon autosave for assets (Silver / Gold / future assets) -->
-<script>
-window.addEventListener('assets:updated', (e) => {
-  try {
-    if (!window.Neon || !e?.detail?.assets) return;
-    
-    Neon.saveSnapshot({
-      assets: e.detail.assets,
-      ts: Date.now()
-    });
-    
-    console.log('[NEON] Assets snapshot saved', e.detail.assets);
-  } catch (err) {
-    console.warn('[NEON] Assets autosave failed', err);
-  }
-=======
-<script src="/shared/sqlite-adapter.js"></script>
-
-<!-- 🔐 SQLite autosave for assets (Silver / Gold / future assets) -->
-<script>
-window.addEventListener('assets:updated', (e) => {
-  try {
-    // Rely on StorageAdapter and Server Ledger for state
-    // Manual Neon snapshots disabled to prevent console noise
-  } catch (err) {}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 });
 </script>
         

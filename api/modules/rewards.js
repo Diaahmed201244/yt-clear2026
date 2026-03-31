@@ -1,8 +1,4 @@
 import { Router } from 'express'
-<<<<<<< HEAD
-=======
-import crypto from 'crypto'
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import { query } from '../config/db.js'
 import { publishEvent } from './logicode.js'
 
@@ -14,11 +10,6 @@ async function ensureUserProfile(client, userId) {
   const base = email ? String(email).split('@')[0] : `user_${String(userId).replace(/-/g, '').slice(0, 8)}`
   const username = base || `user_${String(userId).replace(/-/g, '').slice(0, 8)}`
   await client.query(
-<<<<<<< HEAD
-    'INSERT INTO users_profiles(user_id, username, created_at) VALUES ($1, $2, NOW()) ON CONFLICT (user_id) DO UPDATE SET username = COALESCE(users_profiles.username, EXCLUDED.username)',
-=======
-    'INSERT INTO users_profiles(user_id, username, created_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (user_id) DO UPDATE SET username = COALESCE(users_profiles.username, EXCLUDED.username)',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     [userId, username]
   )
 }
@@ -53,22 +44,10 @@ export async function grantReward({ userId, amount, source, meta = {} }) {
     
     // Insert into reward_events (source of truth)
     const eventResult = await client.query(
-<<<<<<< HEAD
-      'INSERT INTO reward_events(user_id, amount, type, meta, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING id',
-      [userId, amt, source, meta]
-=======
-      'INSERT INTO reward_events(id, user_id, amount, type, meta, created_at) VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP) RETURNING id',
-      [crypto.randomUUID(), userId, amt, source, typeof meta === 'object' ? JSON.stringify(meta) : meta]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     )
     
     // Update user_rewards aggregate (atomic balance update)
     const balanceResult = await client.query(
-<<<<<<< HEAD
-      'INSERT INTO user_rewards(user_id, balance, last_updated) VALUES ($1, $2, NOW()) ON CONFLICT (user_id) DO UPDATE SET balance = user_rewards.balance + EXCLUDED.balance, last_updated = NOW() RETURNING balance',
-=======
-      'INSERT INTO user_rewards(user_id, balance, last_updated) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (user_id) DO UPDATE SET balance = user_rewards.balance + EXCLUDED.balance, last_updated = CURRENT_TIMESTAMP RETURNING balance',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       [userId, Math.floor(amt)]
     )
     
@@ -98,11 +77,6 @@ export async function grantReward({ userId, amount, source, meta = {} }) {
     await client.query('ROLLBACK')
     throw error
   } finally {
-<<<<<<< HEAD
-    client.release()
-=======
-    if (typeof client.release === 'function') client.release()
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 }
 
@@ -123,21 +97,6 @@ export async function spendCodes({ userId, amount, source, meta = {} }) {
     }
 
     const eventResult = await client.query(
-<<<<<<< HEAD
-      'INSERT INTO reward_events(user_id, amount, type, meta, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING id',
-      [userId, -Math.floor(amt), source || 'asset', meta]
-    )
-
-    const balanceResult = await client.query(
-      'UPDATE user_rewards SET balance = balance - $2, last_updated = NOW() WHERE user_id=$1 RETURNING balance',
-=======
-      'INSERT INTO reward_events(id, user_id, amount, type, meta, created_at) VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP) RETURNING id',
-      [crypto.randomUUID(), userId, -Math.floor(amt), source || 'asset', typeof meta === 'object' ? JSON.stringify(meta) : meta]
-    )
-
-    const balanceResult = await client.query(
-      'UPDATE user_rewards SET balance = balance - $2, last_updated = CURRENT_TIMESTAMP WHERE user_id=$1 RETURNING balance',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       [userId, Math.floor(amt)]
     )
 
@@ -162,11 +121,6 @@ export async function spendCodes({ userId, amount, source, meta = {} }) {
     await client.query('ROLLBACK')
     throw e
   } finally {
-<<<<<<< HEAD
-    client.release()
-=======
-    if (typeof client.release === 'function') client.release()
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 }
 

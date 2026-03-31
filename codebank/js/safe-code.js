@@ -73,31 +73,6 @@
     // Render the SafeCode component based on AssetsState
     render: function(assetsState) {
       // Always use AssetBus.snapshot() for consistency
-<<<<<<< HEAD
-      const snapshot = window.AssetBus.snapshot();
-      
-      // Determine if there are any assets (using unified structure: codes, silver, gold)
-      const hasAssets = snapshot.codes?.length > 0 || 
-                     snapshot.silver?.length > 0 || 
-                     snapshot.gold?.length > 0;
-=======
-      const snapshot = window.AssetBus && typeof window.AssetBus.snapshot === 'function' ? window.AssetBus.snapshot() : null;
-      
-      if (!snapshot) return;
-
-      // Determine if there are any assets (using unified structure: codes, silver, gold)
-      const hasAssets = (snapshot.codes?.length > 0) || 
-                     (snapshot.silver?.length > 0) || 
-                     (snapshot.gold?.length > 0) || 
-                     (snapshot.qarsan?.length > 0);
-
-      // 🛡️ ANTI-FLICKER: If the UI is already showing assets, don't clear it 
-      // with an empty snapshot unless it's authoritative or synced.
-      const listContainer = document.getElementById('safe-list');
-      const uiItems = listContainer ? listContainer.querySelectorAll('.asset-item:not(.empty-state)').length : 0;
-      
-      const isAuthoritative = snapshot.authoritative === true || snapshot.status === 'success' || snapshot.synced === true;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
       if (hasAssets) {
         this.showAll();
@@ -106,15 +81,6 @@
         if (window.SafeAssetList && typeof window.SafeAssetList.render === 'function') {
           window.SafeAssetList.render(currentTab);
         }
-<<<<<<< HEAD
-=======
-      } else if (uiItems > 0 && !isAuthoritative) {
-        console.warn('[SafeCode] Snapshot empty but UI has items. Ignoring to prevent flicker.');
-        // Request a background sync if possible
-        if (window.AssetBus && typeof window.AssetBus.sync === 'function') {
-          window.AssetBus.sync();
-        }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       } else {
         this.showEmptyState();
       }

@@ -5,11 +5,6 @@
     'use strict';
     
     // CodeBank side panel functionality
-<<<<<<< HEAD
-    function initCodeBankPanel() {
-=======
-       function initCodeBankPanel() {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         const panel = document.getElementById('codebank-panel');
         const toggleBtn = document.getElementById('codebank-toggle');
         const closeBtn = document.getElementById('codebank-close');

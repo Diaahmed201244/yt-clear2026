@@ -13,34 +13,6 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <script>
-<<<<<<< HEAD
-    window.CODEBANK_TRUSTED_USER_ID = (window.opener && window.opener.CODEBANK_TRUSTED_USER_ID) || null;
-    window.CODEBANK_TRUSTED_USER_EMAIL = (window.opener && window.opener.CODEBANK_TRUSTED_USER_EMAIL) || null;
-=======
-    window.CODEBANK_TRUSTED_USER_ID = (window.opener && window.opener.CODEBANK_TRUSTED_USER_ID) || (window.parent && window.parent.CODEBANK_TRUSTED_USER_ID) || null;
-    window.CODEBANK_TRUSTED_USER_EMAIL = (window.opener && window.opener.CODEBANK_TRUSTED_USER_EMAIL) || (window.parent && window.parent.CODEBANK_TRUSTED_USER_EMAIL) || null;
-    
-    // Inherit AssetBus from parent if in iframe
-    if (window !== window.parent && window.parent.AssetBus) {
-        window.AssetBus = window.parent.AssetBus;
-    }
-
-    // 🛡️ Prevent auto-close
-    window.onbeforeunload = function(e) {
-        console.log('[SafeCode] Blocked unload attempt');
-        return false;
-    };
-
-    // 🛡️ Signal parent when ready
-    window.addEventListener('DOMContentLoaded', function() {
-        if (window.parent !== window) {
-            setTimeout(() => {
-                console.log('[SafeCode] Signaling ready to parent');
-                window.parent.postMessage({ type: 'safe-code-ready' }, '*');
-            }, 500);
-        }
-    });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   </script>
 
   <!-- bcrypt (used by safe) -->

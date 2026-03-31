@@ -406,19 +406,6 @@ class GlobalPrayerCommunication {
 
         windows.forEach(win => {
             try {
-<<<<<<< HEAD
-=======
-                var __o = window.location.origin;
-                try {
-                    if (win && win !== window) {
-                        var __f = Array.prototype.find.call(document.querySelectorAll('iframe'), f => f && f.contentWindow === win);
-                        if (__f) {
-                            var __s = __f.getAttribute('src') || __f.src || '';
-                            __o = new URL(__s, window.location.href).origin;
-                        }
-                    }
-                } catch(_) {}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 win.postMessage(message, '*');
             } catch (error) {
                 // Cross-origin or other error
@@ -460,35 +447,6 @@ class GlobalPrayerCommunication {
 
     sendViaDirectAccess(componentName, message) {
         // Try to access component directly if it exposes global variables
-<<<<<<< HEAD
-        const possibleGlobals = [
-            `window.${componentName}`,
-            `window.${componentName}Player`,
-            `window.${componentName}Manager`,
-            `window.${componentName}Controller`
-        ];
-
-        for (const globalName of possibleGlobals) {
-            try {
-                const global = eval(globalName);
-                if (global && typeof global.handleMessage === 'function') {
-                    global.handleMessage(message);
-                    return true;
-                }
-            } catch (error) {
-                // Global not found or not accessible
-            }
-        }
-=======
-        const g1 = window && window[componentName];
-        if (g1 && typeof g1.handleMessage === 'function') { g1.handleMessage(message); return true; }
-        const g2 = window && window[componentName + 'Player'];
-        if (g2 && typeof g2.handleMessage === 'function') { g2.handleMessage(message); return true; }
-        const g3 = window && window[componentName + 'Manager'];
-        if (g3 && typeof g3.handleMessage === 'function') { g3.handleMessage(message); return true; }
-        const g4 = window && window[componentName + 'Controller'];
-        if (g4 && typeof g4.handleMessage === 'function') { g4.handleMessage(message); return true; }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
         return false;
     }
@@ -756,8 +714,3 @@ if (document.readyState === 'loading') {
         
         console.log('🌐 Global Prayer Communication Bridge initialized (DOM already ready)');
     }, 500);
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

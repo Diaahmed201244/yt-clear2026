@@ -102,11 +102,6 @@ const BulkUpload = () => {
         window.parent.postMessage({
           type: 'playlist-update',
           action: 'refresh'
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       }
     } catch (error) {
       console.error('Upload error:', error);
@@ -175,8 +170,3 @@ const BulkUpload = () => {
   );
 };
 
-<<<<<<< HEAD
-export default BulkUpload;
-=======
-export default BulkUpload;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

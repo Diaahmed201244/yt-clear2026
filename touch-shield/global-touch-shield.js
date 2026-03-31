@@ -4,38 +4,6 @@ let PROTECTION_ACTIVE = false;
 let INIT_OVERLAY_ACTIVE = false;
 let originalFetch = null;
 
-<<<<<<< HEAD
-=======
-// 🛡️ EMERGENCY SPAM PROTECTION
-(function() {
-    const originalLog = console.log;
-    const originalWarn = console.warn;
-    const originalError = console.error;
-    let messageCounts = {};
-    const SPAM_THRESHOLD = 5;
-    const SPAM_WINDOW = 5000;
-
-    function preventSpam(type, args) {
-        const key = args.join(' ').substring(0, 100);
-        const now = Date.now();
-        if (!messageCounts[key]) messageCounts[key] = { count: 0, firstSeen: now };
-        const entry = messageCounts[key];
-        if (now - entry.firstSeen > SPAM_WINDOW) { entry.count = 0; entry.firstSeen = now; }
-        entry.count++;
-        if (entry.count <= SPAM_THRESHOLD) {
-            if (type === 'log') originalLog.apply(console, args);
-            if (type === 'warn') originalWarn.apply(console, args);
-            if (type === 'error') originalError.apply(console, args);
-        } else if (entry.count === SPAM_THRESHOLD + 1) {
-            originalLog('[SHIELD SPAM PROTECTION] Suppressing duplicate messages');
-        }
-    }
-    console.log = function(...args) { preventSpam('log', args); };
-    console.warn = function(...args) { preventSpam('warn', args); };
-    console.error = function(...args) { preventSpam('error', args); };
-})();
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function ensureInitOverlay() {
   let overlay = document.getElementById('system-protection-overlay');
   if (!overlay) {
@@ -111,16 +79,6 @@ function deactivateProtection() {
   const overlay = ensureInitOverlay();
   overlay.style.display = 'none';
   PROTECTION_ACTIVE = false;
-<<<<<<< HEAD
-=======
-  
-  // 🔹 Also hide the green loading overlay from yt-new-clear.html if it exists
-  const greenOverlay = document.getElementById('loading-overlay');
-  if (greenOverlay) {
-      greenOverlay.classList.add('hidden');
-  }
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   if (!INIT_OVERLAY_ACTIVE) {
     document.body.style.pointerEvents = '';
     document.body.style.userSelect = '';
@@ -137,148 +95,6 @@ function isSevereBackendFailureStatus(status) {
   return status === 0 || (status >= 500 && status < 600);
 }
 
-<<<<<<< HEAD
-function patchFetchGuard() {
-  if (originalFetch) return;
-  originalFetch = window.fetch.bind(window);
-  window.fetch = async function(...args) {
-    let input = args[0];
-    let init = args[1] || {};
-    const url = typeof input === 'string' ? input : (input && input.url) || '';
-    if (url.startsWith('/api/')) {
-      init = { ...init, credentials: 'include' };
-      if (typeof input !== 'string' && input && input.url) { input = url; }
-      args = [input, init];
-    }
-    try {
-      const res = await originalFetch(...args);
-      if (url.startsWith('/api/')) {
-        const s = Number(res && res.status);
-        if (isSevereBackendFailureStatus(s)) {
-          window.__EXTRA_MODE_DISABLED__ = true;
-        }
-      }
-      return res;
-    } catch (e) {
-      if (url.startsWith('/api/')) {
-        window.__EXTRA_MODE_DISABLED__ = true;
-        // Whitelist auth endpoints: do not surface abort errors
-        if (url.startsWith('/api/auth/')) {
-          try { console.warn('[shield] suppressed fetch error for', url); } catch(_){}
-          return new Response(JSON.stringify({ ok:false, error:'suppressed by shield' }), {
-            status: 503,
-            headers: { 'Content-Type': 'application/json' }
-          });
-        }
-      }
-      throw e;
-    }
-  };
-}
-
-=======
-function getAuthContext() {
-  if (window.Auth && typeof window.Auth.isAuthenticated === 'function') return window.Auth;
-
-  try {
-    if (window.top && window.top.Auth && typeof window.top.Auth.isAuthenticated === 'function') {
-      return window.top.Auth;
-    }
-  } catch (e) {}
-
-  return null;
-}
-
-const AuthGate = { 
-   authReady: false, 
-   pendingRequests: [], 
-   _ready: false,
-   
-   patchFetch() { 
-     const originalFetch = window.fetch; 
-     
-     window.fetch = async (...args) => { 
-       // 🛡️ OFFLINE DETECTION: Prevent failed fetch spam
-       if (typeof navigator !== 'undefined' && !navigator.onLine) {
-         const url = typeof args[0] === 'string' ? args[0] : (args[0] && args[0].url);
-         console.warn('[Network] Offline, skipping fetch to:', url);
-         // Return a rejected promise to simulate network failure without hitting the wire
-         return Promise.reject(new TypeError('Failed to fetch (offline)'));
-       }
-
-       let [url, options] = args; 
-       options = options || {};
-       options.headers = options.headers || {};
-       options.credentials = options.credentials || 'include'; // 🛡️ ADDED: Ensure session cookie is sent (from actly.md)
-       
-       // Phase 2: Sync Auth to Fetch
-       const auth = getAuthContext();
-       if (auth && auth.isAuthenticated()) {
-         const token = auth.getToken();
-         if (token) {
-           options.headers['Authorization'] = `Bearer ${token}`;
-           // Also sync to cookie if needed for server-side
-           if (typeof document !== 'undefined') {
-             document.cookie = `session_token=${token}; path=/; SameSite=Lax`;
-           }
-         }
-       }
-       
-       // Check if this needs auth 
-       if (this._requiresAuth(url)) { 
-         if (!this.authReady) { 
-           console.log(`[AuthGate] Queuing fetch to ${url} until auth ready`); 
-           return new Promise((resolve, reject) => { 
-             this.pendingRequests.push({ args: [url, options], resolve, reject, timestamp: Date.now() }); 
-             
-             // Timeout after 10s to prevent hanging 
-             setTimeout(() => { 
-               const idx = this.pendingRequests.findIndex(r => r.args[0] === url); 
-               if (idx > -1) { 
-                 this.pendingRequests.splice(idx, 1); 
-                 reject(new Error('Auth timeout')); 
-               } 
-             }, 10000); 
-           }); 
-         } 
-       } 
-       
-       return originalFetch.apply(window, [url, options]); 
-     };
-
-     // In AuthGate init, add: 
-     setTimeout(()=>{if(!this._ready){console.warn('[AG] Timeout flush');this._flush(null)}},10000);
-   }, 
- 
-   onAuthReady() { 
-     this._ready = true;
-     this.authReady = true; 
-     console.log(`[AuthGate] Auth ready, flushing ${this.pendingRequests.length} pending requests`); 
-     
-     this._flush();
-   },
-
-   _flush(user = null) {
-     // Flush pending requests 
-     this.pendingRequests.forEach(({ args, resolve, reject }) => { 
-       window.fetch(...args).then(resolve).catch(reject); 
-     }); 
-     this.pendingRequests = []; 
-   },
- 
-   _requiresAuth(url) { 
-     const authEndpoints = ['/api/me', '/api/rewards', '/api/user']; 
-     return authEndpoints.some(endpoint => url.includes(endpoint)); 
-   } 
- }; 
- 
- // Initialize 
- AuthGate.patchFetch(); 
- 
- // Listen for auth ready 
- window.addEventListener('auth:ready', () => AuthGate.onAuthReady()); 
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function blockEvent(e) {
   if (window.shieldDisabled) return;
   if (PROTECTION_ACTIVE || INIT_OVERLAY_ACTIVE) {
@@ -288,25 +104,6 @@ function blockEvent(e) {
   }
   const counterContainer = document.getElementById('counter-container');
   if (!counterContainer) {
-<<<<<<< HEAD
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    return;
-  }
-
-  if (e.target === counterContainer || counterContainer.contains(e.target)) return;
-=======
-    // If no counter container, we don't block anything globally unless protection is active
-    return;
-  }
-
-  // 🔹 ALLOW clicks to counter container and all its children
-  if (e.target === counterContainer || counterContainer.contains(e.target)) return;
-
-  // 🔹 ALLOW clicks to any buttons, inputs, or interactive elements (fallback)
-  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.closest('button')) return;
-
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   const shield = document.getElementById(SHIELD_ID);
   if (shield) {
     const prev = shield.style.pointerEvents;
@@ -318,14 +115,6 @@ function blockEvent(e) {
     }
   }
 
-<<<<<<< HEAD
-  e.preventDefault();
-  e.stopImmediatePropagation();
-=======
-  // Only block if it's truly background/shield area
-  // e.preventDefault();
-  // e.stopImmediatePropagation();
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 function ensureShield() {
@@ -370,31 +159,6 @@ function ensureShield() {
   }
 
   // Initialization gatekeeper
-<<<<<<< HEAD
-  INIT_OVERLAY_ACTIVE = true;
-  window.__EXTRA_MODE_LOCKED__ = true;
-  const overlay = ensureInitOverlay();
-  overlay.style.display = 'flex';
-  document.body.style.pointerEvents = 'none';
-  document.body.style.userSelect = 'none';
-  const t = document.getElementById('system-protection-title');
-  const m = document.getElementById('system-protection-message');
-  if (t) t.textContent = 'جارٍ التهيئة';
-  if (m) m.textContent = 'يتم تجهيز التطبيق، يرجى الانتظار قليلًا';
-  setInitProgress('التقدم: 0%');
-=======
-  INIT_OVERLAY_ACTIVE = false; // 🔹 Disable the blue initialization overlay as requested
-  window.__EXTRA_MODE_LOCKED__ = true;
-  // const overlay = ensureInitOverlay();
-  // overlay.style.display = 'flex';
-  // document.body.style.pointerEvents = 'none';
-  // document.body.style.userSelect = 'none';
-  // const t = document.getElementById('system-protection-title');
-  // const m = document.getElementById('system-protection-message');
-  // if (t) t.textContent = 'جارٍ التهيئة';
-  // if (m) m.textContent = 'يتم تجهيز التطبيق، يرجى الانتظار قليلًا';
-  // setInitProgress('التقدم: 0%');
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
   const flags = {
     dom: true,
@@ -420,86 +184,12 @@ function ensureShield() {
   // Player ready
   window.addEventListener('yt:ready', () => { flags.player = true; updateInitProgress(); });
 
-<<<<<<< HEAD
-  // Counter ready
-  const checkCounter = () => { if (window.__COUNTER_READY__ === true) { flags.counter = true; updateInitProgress(); } else { setTimeout(checkCounter, 100); } };
-  checkCounter();
-
-  // Switches ready: set by toggle init when available, else poll
-  const checkSwitches = () => { if (window.__SWITCHES_READY__ === true) { flags.switches = true; updateInitProgress(); } else { setTimeout(checkSwitches, 100); } };
-=======
-  // Counter ready - with MAX ATTEMPTS to prevent infinite loop
-  let counterAttempts = 0;
-  const MAX_POLL_ATTEMPTS = 100; // 10 seconds total at 100ms
-  const checkCounter = () => { 
-    counterAttempts++;
-    if (window.__COUNTER_READY__ === true) { 
-      flags.counter = true; 
-      updateInitProgress(); 
-    } else if (counterAttempts < MAX_POLL_ATTEMPTS) { 
-      setTimeout(checkCounter, 100); 
-    } else {
-      console.warn('[SHIELD] Counter poll timeout');
-      flags.counter = true; // Fallback to proceed
-      updateInitProgress();
-    }
-  };
-  checkCounter();
-
-  // Switches ready - with MAX ATTEMPTS to prevent infinite loop
-  let switchesAttempts = 0;
-  const checkSwitches = () => { 
-    switchesAttempts++;
-    if (window.__SWITCHES_READY__ === true) { 
-      flags.switches = true; 
-      updateInitProgress(); 
-    } else if (switchesAttempts < MAX_POLL_ATTEMPTS) { 
-      setTimeout(checkSwitches, 100); 
-    } else {
-      console.warn('[SHIELD] Switches poll timeout');
-      flags.switches = true; // Fallback to proceed
-      updateInitProgress();
-    }
-  };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   checkSwitches();
 
   // Backend reachable
   verifyBackendReachable().then(ok => { flags.backend = !!ok; updateInitProgress(); });
 
   function updateInitProgress() {
-<<<<<<< HEAD
-    const pct = (flags.dom?15:0) + (flags.css?15:0) + (flags.player?25:0) + (flags.counter?20:0) + (flags.switches?15:0) + (flags.backend?10:0);
-    setInitProgress(`التقدم: ${pct}%`);
-    if (flags.dom && flags.css && flags.player && flags.counter && flags.switches && flags.backend) {
-      INIT_OVERLAY_ACTIVE = false;
-      deactivateProtection();
-=======
-    // 🛡️ Shield Protection: prevent re-init side effects if already started
-    if (window.__BALLOON_STARTED_AFTER_AUTH__) {
-      console.log("🛡️ Shield: preventing re-init side effects (system already active)");
-      return;
-    }
-
-    const pct = (flags.dom?15:0) + (flags.css?15:0) + (flags.player?25:0) + (flags.counter?20:0) + (flags.switches?15:0) + (flags.backend?10:0);
-    setInitProgress(`التقدم: ${pct}%`);
-
-    // 🔹 Update the green progress bar in yt-new-clear.html if it exists
-    const greenBar = document.getElementById('loading-progress-bar');
-    const greenPct = document.getElementById('loading-percentage');
-    if (greenBar) greenBar.style.width = pct + '%';
-    if (greenPct) greenPct.textContent = pct + '%';
-
-    if (flags.dom && flags.css && flags.player && flags.counter && flags.switches && flags.backend) {
-      INIT_OVERLAY_ACTIVE = false;
-      deactivateProtection();
-
-      // 🔹 Hide the green overlay too
-      const greenOverlay = document.getElementById('loading-overlay');
-      if (greenOverlay) {
-          setTimeout(() => greenOverlay.classList.add('hidden'), 500);
-      }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
   }
 
@@ -529,12 +219,6 @@ function ensureShield() {
     window.__EXTRA_MODE_DISABLED__ = true;
     // Do not show any overlay; feature-level components should handle disabled state
   });
-<<<<<<< HEAD
-
-  // Fetch guard
-  patchFetchGuard();
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 if (document.readyState === 'loading') {

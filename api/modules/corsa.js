@@ -13,11 +13,6 @@ router.post('/redeem', async (req, res) => {
     await client.query('BEGIN')
     
     // Lock and validate code
-<<<<<<< HEAD
-    const lockRes = await client.query('SELECT * FROM corsa_codes WHERE code=$1 FOR UPDATE', [code])
-=======
-    const lockRes = await client.query('SELECT * FROM corsa_codes WHERE code=$1', [code])
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (lockRes.rowCount === 0) {
       await client.query('ROLLBACK')
       return res.status(400).json({ message: 'Invalid code' })
@@ -30,31 +25,6 @@ router.post('/redeem', async (req, res) => {
     }
     
     // Mark code as redeemed
-<<<<<<< HEAD
-    await client.query('UPDATE corsa_codes SET redeemed_by=$1, redeemed_at=NOW() WHERE id=$2', [req.user.clerkUserId, row.id])
-    
-    // Record transaction
-    await client.query(
-      'INSERT INTO corsa_transactions(user_id, code_id, amount, meta, created_at) VALUES ($1, $2, $3, $4, NOW())',
-      [req.user.clerkUserId, row.id, row.value, { code }]
-    )
-    
-    await client.query(
-      'INSERT INTO transactions(user_id, type, amount, meta, created_at) VALUES ($1, $2, $3, $4, NOW())',
-      [req.user.clerkUserId, 'corsa_redeem', row.value, { code }]
-=======
-    await client.query('UPDATE corsa_codes SET redeemed_by=$1, redeemed_at=CURRENT_TIMESTAMP WHERE id=$2', [req.user.clerkUserId, row.id])
-    
-    // Record transaction
-    await client.query(
-      'INSERT INTO corsa_transactions(id, user_id, code_id, amount, meta, created_at) VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP)',
-      [crypto.randomUUID(), req.user.clerkUserId, row.id, row.value, JSON.stringify({ code })]
-    )
-    
-    await client.query(
-      'INSERT INTO transactions(id, user_id, type, amount, meta, created_at) VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP)',
-      [crypto.randomUUID(), req.user.clerkUserId, 'corsa_redeem', row.value, JSON.stringify({ code })]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     )
     
     await client.query('COMMIT')
@@ -78,11 +48,6 @@ router.post('/redeem', async (req, res) => {
     console.error('Corsa code redeem failed:', error.message)
     res.status(500).json({ message: 'Code redeem failed', error: error.message })
   } finally {
-<<<<<<< HEAD
-    client.release()
-=======
-    if (typeof client.release === 'function') client.release()
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 })
 

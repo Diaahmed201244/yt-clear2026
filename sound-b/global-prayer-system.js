@@ -453,11 +453,6 @@ class GlobalPrayerSystem {
                     component: component,
                     source: 'global-prayer',
                     reason: 'prayer-time'
-<<<<<<< HEAD
-                }, '*');
-=======
-                }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 
                 this.componentMuteStates[component] = true;
                 console.log(`🔇 Muted ${component} for global prayer`);
@@ -478,11 +473,6 @@ class GlobalPrayerSystem {
                         component: component,
                         source: 'global-prayer',
                         reason: 'prayer-ended'
-<<<<<<< HEAD
-                    }, '*');
-=======
-                    }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                     
                     delete this.componentMuteStates[component];
                     console.log(`🔊 Unmuted ${component} after global prayer`);
@@ -626,22 +616,12 @@ class GlobalPrayerSystem {
             type: 'PRAYER_TIMES_UPDATED',
             prayerTimes: this.prayerTimes,
             source: 'global-prayer-system'
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 
     broadcastPrayerAlertClosed() {
         window.postMessage({
             type: 'PRAYER_ALERT_CLOSED',
             source: 'global-prayer-system'
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 
     broadcastSystemAvailability() {
@@ -653,11 +633,6 @@ class GlobalPrayerSystem {
             supportedLanguages: Object.keys(this.prayerNames),
             supportedRegions: Object.keys(this.azanConfiguration.regional),
             source: 'global-prayer-system'
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 
     // Settings management
@@ -681,11 +656,6 @@ class GlobalPrayerSystem {
             type: 'PRAYER_SETTINGS_UPDATED',
             settings: this.currentSettings,
             source: 'global-prayer-system'
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 
     // Public API for other components
@@ -763,8 +733,3 @@ if (document.readyState === 'loading') {
         
         console.log('🌍 Global Prayer System initialized (DOM already ready)');
     }, 1000);
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

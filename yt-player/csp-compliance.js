@@ -4,10 +4,6 @@
 class CSPCompliance {
   constructor() {
     this.isInitialized = false;
-<<<<<<< HEAD
-    this.clerkSelectors = ['[data-clerk]', '[data-clerk-portal]', '[data-clerk-publishable-key]', '.clerk-', '#clerk-', '[data-clerk-loaded]'];
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     this.init();
   }
 
@@ -26,39 +22,6 @@ class CSPCompliance {
 
   cleanInlineStyles() {}
 
-<<<<<<< HEAD
-  // Detect whether a node is part of Clerk DOM or scripts
-  isClerkNode(node) {
-    try {
-      if (!node) return false;
-      if (node.tagName === 'SCRIPT') {
-        const src = node.getAttribute('src') || '';
-        if (src.includes('clerk') || node.hasAttribute('data-clerk-publishable-key')) return true;
-      }
-      // Check attributes
-      const hasDataClerk = Array.from(node.attributes || []).some(a => a.name.startsWith('data-clerk'));
-      if (hasDataClerk) return true;
-      const cls = (node.className || '').toString();
-      if (cls.includes('clerk-') || cls.includes('cl-root')) return true;
-      const id = (node.id || '').toString();
-      if (id.startsWith('clerk-') || id === 'clerk-auth-modal' || id === 'clerk-welcome-popup') return true;
-      // Check ancestors
-      let p = node.parentElement;
-      let depth = 0;
-      while (p && depth < 6) {
-        const pCls = (p.className || '').toString();
-        const pId = (p.id || '').toString();
-        const hasData = Array.from(p.attributes || []).some(a => a.name.startsWith('data-clerk'));
-        if (pCls.includes('clerk-') || pId.startsWith('clerk-') || hasData) return true;
-        p = p.parentElement;
-        depth++;
-      }
-    } catch (_) {}
-    return false;
-  }
-
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   createCSSRule(className, style) {
     // Create a style element if it doesn't exist
     let styleElement = document.getElementById('csp-styles');
@@ -76,21 +39,6 @@ class CSPCompliance {
   // Method to safely execute code without eval (for critical operations)
   executeSafeCode(code) {
     try {
-<<<<<<< HEAD
-      // Use Function constructor instead of eval for better security
-      const func = new Function(code);
-      return func();
-    } catch (error) {
-      console.error('[CSP] Error executing safe code:', error);
-=======
-      if (typeof code !== 'string') return null;
-      const t = code.trim();
-      if ((t.startsWith('{') && t.endsWith('}')) || (t.startsWith('[') && t.endsWith(']'))) {
-        return JSON.parse(t);
-      }
-      return null;
-    } catch (error) {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       return null;
     }
   }

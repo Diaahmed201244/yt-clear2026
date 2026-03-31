@@ -2165,3 +2165,27 @@
   params: [ '65079e2e-6145-472f-b0b7-eeab9f99f9d3' ]
 }
 [COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ENETDOWN
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io {
+  text: '\n' +
+    "        SELECT user_id, asset_type, SUM(CASE WHEN direction = 'credit' THEN amount ELSE -amount END) AS balance\n" +
+    '        FROM ledger GROUP BY user_id, asset_type\n' +
+    '      ',
+  params: []
+}
+[WatchDogService] Integrity check failed: FetchError: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io
+    at ClientRequest.<anonymous> (/Users/user/Desktop/new-yt/yt-clear/node_modules/node-fetch/lib/index.js:1501:11)
+    at ClientRequest.emit (node:events:513:28)
+    at TLSSocket.socketErrorListener (node:_http_client:494:9)
+    at TLSSocket.emit (node:events:513:28)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  type: 'system',
+  errno: 'ENOTFOUND',
+  code: 'ENOTFOUND'
+}
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ '857a610a-3707-4410-a538-e657f8b117df' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: getaddrinfo ENOTFOUND ytclear-prod-drd2026.aws-eu-west-1.turso.io

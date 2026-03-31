@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-
-import { SessionStore } from './session-store.js';
-import { NeonAdapter } from '../../neon/neon-server-adapter.js';
-=======
-import { SessionStore } from './session-store.js';
-import { query } from '../../api/config/db.js';
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import { authEvents, AUTH_EVENTS } from './auth-events.js';
 
 export const AuthService = {
@@ -18,11 +10,6 @@ export const AuthService = {
      */
     async loginOrRegister(username, email) {
         // 1. Find or Create User
-<<<<<<< HEAD
-        let userRes = await NeonAdapter.query(
-=======
-        let userRes = await query(
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             'SELECT * FROM users WHERE email = $1 OR username = $2',
             [email, username]
         );
@@ -30,15 +17,6 @@ export const AuthService = {
         let user;
         if (userRes.rows.length === 0) {
             // Create New
-<<<<<<< HEAD
-            const createRes = await NeonAdapter.query(
-                'INSERT INTO users (username, email) VALUES ($1, $2) RETURNING *',
-                [username, email]
-=======
-            const createRes = await query(
-                'INSERT INTO users (id, username, email) VALUES ($1, $2, $3) RETURNING *',
-                [crypto.randomUUID(), username, email]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             );
             user = createRes.rows[0];
         } else {
@@ -74,13 +52,6 @@ export const AuthService = {
         if (!session) return null;
 
         // Fetch partial user info to cache in request
-<<<<<<< HEAD
-        const userRes = await NeonAdapter.query(
-            'SELECT id, username, email, status FROM users WHERE id = $1',
-=======
-        const userRes = await query(
-            'SELECT id, username, email, user_type FROM users WHERE id = $1',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             [session.userId]
         );
 

@@ -236,40 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     if (!window.player || typeof player.isMuted !== 'function') {
-<<<<<<< HEAD
-      return;
-    }
-    if (player.isMuted()) {
-      if (typeof player.unMute === 'function') player.unMute();
-      soundButton.textContent = '';
-    } else {
-      if (typeof player.mute === 'function') player.mute();
-      soundButton.textContent = '';
-=======
-      console.warn('[Sound] YouTube player not ready or not found');
-      return;
-    }
-    
-    // 🔹 Ensure AudioContext is resumed if needed (browser policy)
-    try {
-      if (window.audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-    } catch(_) {}
-
-    if (player.isMuted()) {
-      if (typeof player.unMute === 'function') {
-        player.unMute();
-        console.log('[Sound] Player unmuted');
-      }
-      soundButton.textContent = '🔊'; // Show active icon
-    } else {
-      if (typeof player.mute === 'function') {
-        player.mute();
-        console.log('[Sound] Player muted');
-      }
-      soundButton.textContent = '🔇'; // Show muted icon
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
   });
 

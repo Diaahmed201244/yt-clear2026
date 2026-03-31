@@ -29,11 +29,6 @@ class ShotsDB {
     }
 
     // Save a screenshot
-<<<<<<< HEAD
-    async saveScreenshot(dataUrl) {
-=======
-    async saveScreenshot(dataUrl, metadata = {}) {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         if (!this.db) await this.init();
 
         const id = crypto.randomUUID();
@@ -42,12 +37,6 @@ class ShotsDB {
         const screenshot = {
             id,
             timestamp,
-<<<<<<< HEAD
-            dataUrl
-=======
-            dataUrl,
-            ...metadata
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         };
 
         return new Promise((resolve, reject) => {

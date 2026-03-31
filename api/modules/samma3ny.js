@@ -307,11 +307,6 @@ router.post('/order', async (req, res) => {
     try {
       for (const { id, position } of positions) {
         await query(
-<<<<<<< HEAD
-          'INSERT INTO samma3ny_songs (id, position, updated_at) VALUES ($1, $2, now()) ON CONFLICT (id) DO UPDATE SET position = EXCLUDED.position, updated_at = now()',
-=======
-          'INSERT INTO samma3ny_songs (id, position, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (id) DO UPDATE SET position = EXCLUDED.position, updated_at = CURRENT_TIMESTAMP',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           [id, typeof position === 'number' ? position : null]
         )
         updated++
@@ -337,11 +332,6 @@ router.post('/rename', async (req, res) => {
     if (!id || !name) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' })
     try {
       await query(
-<<<<<<< HEAD
-        'INSERT INTO samma3ny_songs (id, name, updated_at) VALUES ($1, $2, now()) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, updated_at = now()',
-=======
-        'INSERT INTO samma3ny_songs (id, name, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, updated_at = CURRENT_TIMESTAMP',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         [id, name]
       )
       return res.json({ ok: true })
@@ -366,11 +356,6 @@ router.post('/rename-bulk', async (req, res) => {
     try {
       for (const id of ids) {
         await query(
-<<<<<<< HEAD
-          'INSERT INTO samma3ny_songs (id, name, updated_at) VALUES ($1, $2, now()) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, updated_at = now()',
-=======
-          'INSERT INTO samma3ny_songs (id, name, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, updated_at = CURRENT_TIMESTAMP',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           [id, name]
         )
         updated++

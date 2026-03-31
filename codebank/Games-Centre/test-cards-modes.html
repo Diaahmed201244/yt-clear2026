@@ -111,11 +111,6 @@
             gameFrame.contentWindow.postMessage({
                 type: 'GAME_START',
                 settings: config
-<<<<<<< HEAD
-            }, '*');
-=======
-            }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             
             addResult('Configuration sent to game', 'pass');
         }
@@ -128,11 +123,6 @@
             // Send reset message
             gameFrame.contentWindow.postMessage({
                 type: 'RESET'
-<<<<<<< HEAD
-            }, '*');
-=======
-            }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
 
         // Listen for game events
@@ -177,8 +167,3 @@
         }
     </script>
 </body>
-<<<<<<< HEAD
-</html>
-=======
-</html>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

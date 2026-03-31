@@ -573,40 +573,6 @@ export class NotificationManager {
     }
 
     // Initialize push notifications
-<<<<<<< HEAD
-    async _initializePushNotifications() {
-        if (!this.enablePushNotifications || !('serviceWorker' in navigator)) {
-            return;
-        }
-
-        try {
-            this.serviceWorkerRegistration = await navigator.serviceWorker.register('/sw.js');
-            this.pushSubscription = await this.serviceWorkerRegistration.pushManager.getSubscription();
-
-            console.log('📱 Push notifications initialized');
-        } catch (error) {
-            console.error('Failed to initialize push notifications:', error);
-        }
-    }
-=======
-    async _initializePushNotifications() {
-        if (!this.enablePushNotifications || !('serviceWorker' in navigator)) {
-            return;
-        }
-        try {
-            const isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-            const disableSW = /([?&])disable_sw=1\b/.test(location.search);
-            if (isLocal || disableSW) {
-                return;
-            }
-            this.serviceWorkerRegistration = await navigator.serviceWorker.register('/sw.js');
-            this.pushSubscription = await this.serviceWorkerRegistration.pushManager.getSubscription();
-            console.log('📱 Push notifications initialized');
-        } catch (error) {
-            console.error('Failed to initialize push notifications:', error);
-        }
-    }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
     // Add to notification history
     _addToNotificationHistory(notification) {
@@ -739,8 +705,3 @@ if (typeof window !== 'undefined') {
     console.log('🚀 Notification Manager ready');
 }
 
-<<<<<<< HEAD
-export default NotificationManager;
-=======
-export default NotificationManager;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

@@ -1,9 +1,4 @@
 
-<<<<<<< HEAD
-import { NeonAdapter } from '../../neon/neon-server-adapter.js';
-=======
-import { DbAdapter } from '../../sqlite/sqlite-server-adapter.js';
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -66,27 +61,6 @@ CREATE INDEX IF NOT EXISTS idx_ledger_type ON ledger_events(event_type);
 async function runMigration() {
     console.log('🔌 Connecting to Neon...');
     try {
-<<<<<<< HEAD
-        await NeonAdapter.connect();
-        console.log('✅ Connected.');
-
-        console.log('📜 Running Schema SQL...');
-        const res = await NeonAdapter.query(SCHEMA_SQL);
-        console.log('✅ Schema applied successfully.');
-
-        // Validation query
-        const tables = await NeonAdapter.query(`
-=======
-        await DbAdapter.connect();
-        console.log('✅ Connected.');
-
-        console.log('📜 Running Schema SQL...');
-        const res = await DbAdapter.query(SCHEMA_SQL);
-        console.log('✅ Schema applied successfully.');
-
-        // Validation query
-        const tables = await DbAdapter.query(`
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             SELECT table_name 
             FROM information_schema.tables 
             WHERE table_schema = 'public' 
@@ -97,11 +71,6 @@ async function runMigration() {
     } catch (err) {
         console.error('❌ Migration Failed:', err);
     } finally {
-<<<<<<< HEAD
-        await NeonAdapter.disconnect();
-=======
-        await DbAdapter.disconnect();
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         console.log('👋 Disconnected.');
     }
 }

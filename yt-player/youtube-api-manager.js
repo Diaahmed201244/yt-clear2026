@@ -167,11 +167,6 @@ class YouTubeAPIManager {
                     iv_load_policy: 3,
                     loop: 1,
                     playsinline: 1,
-<<<<<<< HEAD
-                    origin: window.location.origin,
-=======
-                    origin: `https://www.youtube.com`,
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                     enablejsapi: 1
                 },
                 events: {

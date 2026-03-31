@@ -253,48 +253,6 @@
     }
     
     function setupNetworkMonitoring() {
-<<<<<<< HEAD
-        // Monitor fetch requests
-        const originalFetch = window.fetch;
-        window.fetch = function(...args) {
-            const start = performance.now();
-            const url = typeof args[0] === 'string' ? args[0] : args[0].url;
-            
-            log('debug', 'Network request', {
-                url,
-                method: args[1]?.method || 'GET',
-                timestamp: new Date().toISOString()
-            });
-            
-            return originalFetch.apply(this, args)
-                .then(response => {
-                    const duration = performance.now() - start;
-                    log('info', 'Network response', {
-                        url,
-                        status: response.status,
-                        duration: `${duration.toFixed(2)}ms`
-                    });
-                    return response;
-                })
-                .catch(error => {
-                    const duration = performance.now() - start;
-                    log('error', 'Network error', {
-                        url,
-                        error: error.message,
-                        duration: `${duration.toFixed(2)}ms`
-                    });
-                    throw error;
-                });
-        };
-=======
-        // Monitor fetch requests (Disabled to prevent conflicts with global fetch patch)
-        /*
-        const originalFetch = window.fetch;
-        window.fetch = function(...args) {
-            // ... (rest of the logic)
-        };
-        */
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
     
     // Logging function

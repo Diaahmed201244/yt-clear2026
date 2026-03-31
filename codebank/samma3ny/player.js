@@ -2994,11 +2994,6 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
             type: 'resize',
             height: height,
             iframeId: 'samma3ny-dashboard'
-<<<<<<< HEAD
-        }, '*');
-=======
-        }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 
     // Send height on load and resize

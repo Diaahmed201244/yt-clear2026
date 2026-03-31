@@ -225,53 +225,10 @@ class ShotsTab {
     createScreenshotCard(screenshot) {
         const card = document.createElement('div');
         card.className = 'screenshot-card';
-<<<<<<< HEAD
-        
-        const date = new Date(screenshot.timestamp);
-        const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-        const sizeStr = this.formatFileSize(screenshot.dataUrl.length);
-
-        card.innerHTML = `
-            <img src="${screenshot.dataUrl}" alt="Screenshot" class="screenshot-image" loading="lazy">
-            <div class="screenshot-info">
-                <span class="screenshot-date">${dateStr}</span>
-=======
-        card.setAttribute('data-id', screenshot.id);
-        
-        const date = new Date(screenshot.timestamp).toLocaleString();
-        const sizeStr = this.formatFileSize(screenshot.dataUrl.length);
-        const method = screenshot.method || 'web';
-        const methodLabel = method === 'youtube-composite' ? 'YouTube Capture' : 
-                          method === 'native' ? 'Native Capture' : 
-                          method === 'standard' ? 'Standard Capture' : 'Web Capture';
-
-        card.innerHTML = `
-            <img src="${screenshot.dataUrl}" alt="Shot at ${date}" class="screenshot-image" loading="lazy">
-            <div class="screenshot-info">
-                <span class="screenshot-date">${date}</span>
-                <span class="capture-badge ${method}">${methodLabel}</span>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 <span class="screenshot-size">${sizeStr}</span>
             </div>
             <div class="screenshot-actions">
                 <button class="action-btn view" onclick="shotsTab.openModal('${screenshot.id}')">
-<<<<<<< HEAD
-                    👁️ View
-                </button>
-                <button class="action-btn download" onclick="shotsTab.downloadShot('${screenshot.id}')">
-                    💾 Download
-                </button>
-                <button class="action-btn delete" onclick="shotsTab.deleteShot('${screenshot.id}')">
-                    🗑️ Delete
-=======
-                    <span class="icon">👁️</span> View
-                </button>
-                <button class="action-btn download" onclick="shotsTab.downloadShot('${screenshot.id}')">
-                    <span class="icon">💾</span> Save
-                </button>
-                <button class="action-btn delete" onclick="shotsTab.deleteShot('${screenshot.id}')">
-                    <span class="icon">🗑️</span> Delete
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                 </button>
             </div>
         `;

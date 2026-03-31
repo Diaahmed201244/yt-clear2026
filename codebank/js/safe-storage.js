@@ -25,19 +25,6 @@ const safeStorage = {
       localStorage.setItem(testKey, 'test');
       localStorage.removeItem(testKey);
       this._isLocalStorageAvailable = true;
-<<<<<<< HEAD
-      console.log('✅ localStorage is available and working');
-      return true;
-    } catch (error) {
-      this._isLocalStorageAvailable = false;
-      console.warn('⚠️ localStorage is not available, using fallback storage:', error.message);
-=======
-      // console.log('✅ localStorage is available and working');
-      return true;
-    } catch (error) {
-      this._isLocalStorageAvailable = false;
-      // console.warn('⚠️ localStorage is not available, using fallback storage:', error.message);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       return false;
     }
   },
@@ -259,8 +246,3 @@ if (typeof module !== 'undefined' && module.exports) {
 safeStorage._checkEnvironment();
 
 // Log storage status for debugging
-<<<<<<< HEAD
-console.log('📦 Safe Storage initialized:', safeStorage.getStats());
-=======
-// console.log('📦 Safe Storage initialized:', safeStorage.getStats());
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
