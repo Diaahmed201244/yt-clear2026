@@ -1980,3 +1980,103 @@
   params: [ '52d35cc0-17f7-4e81-a5f9-10cd389ea40c' ]
 }
 [COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ 'fb763bec-7330-40f9-aa2e-ffe0a328169d' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ '52d35cc0-17f7-4e81-a5f9-10cd389ea40c' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '48fe846d-7204-4f7b-b4b7-a378470902d6' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ 'd64317c1-ed96-4ac4-8a75-46cf48180e05' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ '857a610a-3707-4410-a538-e657f8b117df' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '4c80b58b-1513-424e-b12b-61cfac623187' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '46c36cee-fe3a-43a7-a323-d286ac10eee0' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '65079e2e-6145-472f-b0b7-eeab9f99f9d3' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ 'fb763bec-7330-40f9-aa2e-ffe0a328169d' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ 'd64317c1-ed96-4ac4-8a75-46cf48180e05' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ 'fb763bec-7330-40f9-aa2e-ffe0a328169d' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '65079e2e-6145-472f-b0b7-eeab9f99f9d3' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ 'd64317c1-ed96-4ac4-8a75-46cf48180e05' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ '52d35cc0-17f7-4e81-a5f9-10cd389ea40c' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ 'fb763bec-7330-40f9-aa2e-ffe0a328169d' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ 'fb763bec-7330-40f9-aa2e-ffe0a328169d' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ 'fb763bec-7330-40f9-aa2e-ffe0a328169d' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ETIMEDOUT
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ 'f36573b7-befa-4fde-8168-1455921ddb10' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: read ECONNRESET
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT codes_count FROM balances WHERE user_id=?',
+  params: [ '5210eb01-c83d-454a-8fa7-a19ad172467c' ]
+}
+[COMPRESSION ERROR] compressToSilver: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443
+[DB] Client Error: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443 {
+  text: 'SELECT silver_count FROM balances WHERE user_id=?',
+  params: [ '48fe846d-7204-4f7b-b4b7-a378470902d6' ]
+}
+[COMPRESSION ERROR] compressToGold: request to https://ytclear-prod-drd2026.aws-eu-west-1.turso.io/v2/pipeline failed, reason: connect ETIMEDOUT 34.255.61.174:443

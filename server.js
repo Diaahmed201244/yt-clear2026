@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import dotenv from 'dotenv';
-// Configure environment variables
-dotenv.config();
-
-import express from 'express';
-=======
 import 'dotenv/config';
 import path from 'path';
 import fs from 'fs-extra';
@@ -66,17 +59,10 @@ console.log("🚀 SEND-CODES VERSION: CLEAN V2");
 import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import crypto from 'crypto';
-<<<<<<< HEAD
-import path from 'path';
-import fs from 'fs-extra';
-import { fileURLToPath } from 'url';
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import fetch from 'node-fetch';
 import cloudinary from 'cloudinary';
 import multer from 'multer';
@@ -85,47 +71,6 @@ import { handleSamma3nySongs } from './api/samma3ny/middleware.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import rateLimit from 'express-rate-limit';
-<<<<<<< HEAD
-// Clerk removed: zero-auth mode
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-
-// AUTH REMOVED — CLEAN RESET
-import { AuthService } from './core/auth/auth-service.js';
-import { requireAuth, optionalAuth } from './core/auth/auth-middleware.js';
-import { AssetsKernel } from './core/assets/assets-kernel.js';
-import { AssetReadonly } from './core/assets/asset-readonly.js';
-import { assetsBus } from './ledger/local-assets-bus.js';
-
-// Development CSP middleware
-// CodeBank specific CSP middleware
-const PORT = process.env.PORT || 3001;
-
-let dbPool = null;
-async function getDb() {
-  if (dbPool) return dbPool;
-  const url = process.env.DATABASE_URL;
-  if (!url) return null;
-  try {
-    const { Pool } = await import('pg');
-    dbPool = new Pool({ connectionString: url, ssl: { rejectUnauthorized: false } });
-    return dbPool;
-  } catch (_) {
-    return null;
-  }
-}
-
-async function dbQuery(sql, params = []) {
-  const pool = await getDb();
-  if (!pool) throw new Error('DB unavailable');
-  const client = await pool.connect();
-  try { const res = await client.query(sql, params); return res; } finally { client.release(); }
-}
-=======
 import trustRouter from './api/modules/trust.js';
 // Clerk removed: zero-auth mode
 
@@ -307,7 +252,6 @@ io.use((socket, next) => {
 
 // Initialize WatchDog with the dbQuery helper
 watchdog.setDb(query);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 // AUTH REMOVED — CLEAN RESET
 
@@ -336,11 +280,6 @@ cloudinary.v2.config({
 // Middleware
 // Helmet removed
 
-<<<<<<< HEAD
-app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
-app.options('*', cors({ origin: 'http://localhost:3001', credentials: true }));
-app.use(cookieParser());
-=======
 // 🛡️ CRITICAL: CORS must be configured properly
 // Support Ngrok origins dynamically
 app.use(cors({
@@ -430,21 +369,12 @@ setInterval(() => {
     }
 }, 60000);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.use(express.json({
   verify: (req, _res, buf) => {
     req.rawBody = buf;
   },
 }));
 app.use(express.urlencoded({ extended: true }));
-<<<<<<< HEAD
-// Note: upload.any() is applied only to specific upload routes below
-
-// In-memory dev sessions
-const devSessions = new Map();
-
-function readSessionFromCookie(req) {
-=======
 // Static files will be served later to allow custom route overrides
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 // Note: upload.any() is applied only to specific upload routes below
@@ -520,14 +450,10 @@ app.get('/api/watchdog/status', requireAuth, async (req, res) => {
 });
 
 function readSessionFromCookie(req, res) {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   try {
     const token = (req.cookies && req.cookies.session_token) || null;
     if (!token) return null;
     const s = devSessions.get(token);
-<<<<<<< HEAD
-    return s || null;
-=======
     if (!s) {
       // Stale cookie – delete it
       if (res && typeof res.clearCookie === 'function') {
@@ -536,7 +462,6 @@ function readSessionFromCookie(req, res) {
       return null;
     }
     return s;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   } catch (_) {
     return null;
   }
@@ -547,147 +472,6 @@ function signJwt(userId, email) { return jwt.sign({ userId, email }, JWT_SECRET,
 function requireJwtAuth(req, res, next) { try { const h = req.headers.authorization || ''; const parts = h.split(' '); if (parts[0] !== 'Bearer' || !parts[1]) return res.status(401).json({ status: 'failed', error: 'Unauthorized' }); const decoded = jwt.verify(parts[1], JWT_SECRET); req.auth = { userId: decoded.userId, email: decoded.email }; next() } catch (e) { return res.status(401).json({ status: 'failed', error: 'Unauthorized' }) } }
 const __authUsers = new Map(); // email -> { id, email, username, password_hash }
 let __USER_SEQ = 1000;
-<<<<<<< HEAD
-async function neonFindUserByEmail(email){
-  const { Pool } = await import('pg')
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-  const client = await pool.connect()
-  try {
-    const r = await client.query('SELECT id, email, password_hash, balance FROM users WHERE email=$1', [email])
-    return r.rows[0] || null
-  } finally { client.release(); await pool.end() }
-}
-function memFindUserByEmail(email){ return __authUsers.get(email) || null }
-async function memCreateUser(email, username, password){
-  const hash = await bcrypt.hash(password, 8)
-  let id
-  if (process.env.DATABASE_URL) {
-    const { Pool } = await import('pg')
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-    const client = await pool.connect()
-    try {
-      const existing = await client.query('SELECT id FROM users WHERE email=$1', [email])
-      if (existing.rows[0]) {
-        id = existing.rows[0].id
-      } else {
-        const r = await client.query('INSERT INTO users(email, password_hash) VALUES($1,$2) RETURNING id', [email, hash])
-        id = r.rows[0].id
-        try { await client.query('INSERT INTO balances(user_id, balance) VALUES($1,$2) ON CONFLICT (user_id) DO UPDATE SET balance=$2', [id, 100]) } catch(_){ }
-      }
-      try { await client.query('INSERT INTO user_assets(user_id, asset_id) VALUES($1,$2) ON CONFLICT DO NOTHING', [id, 'init']) } catch(_){ }
-    } catch(e) {
-      try { console.error('[SIGNUP][DB]', e && e.message ? e.message : e) } catch(_){}
-      id = ++__USER_SEQ
-    } finally { client.release(); await pool.end() }
-  } else {
-    id = ++__USER_SEQ
-  }
-  __authUsers.set(email, { id, email, username: username || null, password_hash: hash })
-  if (!usersManager.getUser(id)) usersManager.addUser({ id, balance: 100, assets: [] })
-  return { id }
-}
-
-// Transaction-Core bootstrap (PolicyEngine + Managers)
-import { Ledger } from './transaction-core/core/Ledger.js'
-import { UsersManager } from './transaction-core/core/UsersManager.js'
-import { BankodeManager } from './transaction-core/core/BankodeManager.js'
-import { TransactionManager } from './transaction-core/core/TransactionManager.js'
-import { NeonClient } from './transaction-core/persistence/NeonClient.js'
-import { UsersRepository } from './transaction-core/persistence/UsersRepository.js'
-import { LedgerRepository } from './transaction-core/persistence/LedgerRepository.js'
-import { BankodeRepository } from './transaction-core/persistence/BankodeRepository.js'
-import { PolicyEngine } from './transaction-core/policy-engine/PolicyEngine.js'
-import { LikePolicy } from './transaction-core/policies/LikePolicy.js'
-import { GameRewardPolicy } from './transaction-core/policies/GameRewardPolicy.js'
-import { StorePolicy } from './transaction-core/policies/StorePolicy.js'
-import { CreatorIncentivePolicy } from './transaction-core/policies/CreatorIncentivePolicy.js'
-
-const ledger = new Ledger()
-const usersManager = new UsersManager()
-const bankodeManager = new BankodeManager()
-let transactionManager = new TransactionManager(usersManager, bankodeManager, ledger)
-
-// Optionally bind Neon repositories for atomic DB writes
-try {
-  if (process.env.DATABASE_URL) {
-    async function ensureCoreTables() {
-      const { Pool } = await import('pg')
-      const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-      const client = await pool.connect()
-      try {
-        await client.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`)
-        await client.query(`CREATE EXTENSION IF NOT EXISTS "pgcrypto";`)
-        await client.query(`CREATE TABLE IF NOT EXISTS users (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), email TEXT UNIQUE, password_hash TEXT)`)
-        await client.query(`CREATE TABLE IF NOT EXISTS user_assets (user_id UUID NOT NULL, asset_id TEXT NOT NULL, PRIMARY KEY(user_id, asset_id))`)
-        await client.query(`CREATE TABLE IF NOT EXISTS bankode (balance NUMERIC NOT NULL DEFAULT 0)`)
-        await client.query(`CREATE TABLE IF NOT EXISTS event_vault (
-          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-          event_type TEXT NOT NULL,
-          version TEXT NOT NULL DEFAULT '1.0',
-          actor_user_id UUID,
-          target_user_id UUID,
-          amount NUMERIC,
-          asset_id TEXT,
-          metadata JSONB,
-          status TEXT NOT NULL DEFAULT 'success',
-          created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-          tx_hash TEXT UNIQUE
-        )`)
-        await client.query(`CREATE TABLE IF NOT EXISTS ledger (
-          id UUID PRIMARY KEY,
-          event_type TEXT NOT NULL,
-          from_user UUID,
-          to_user UUID,
-          amount NUMERIC,
-          asset_id TEXT,
-          status TEXT,
-          timestamp TIMESTAMPTZ NOT NULL
-        )`)
-        await client.query(`CREATE TABLE IF NOT EXISTS balances (
-          user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-          balance NUMERIC NOT NULL DEFAULT 0,
-          updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
-        )`)
-        await client.query(`CREATE TABLE IF NOT EXISTS codes (
-          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-          user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-          session_id TEXT,
-          code TEXT NOT NULL,
-          suffix TEXT,
-          created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-        )`)
-        // Ensure compatibility with existing schema variants
-        await client.query(`ALTER TABLE IF EXISTS codes ADD COLUMN IF NOT EXISTS code TEXT`)
-        await client.query(`ALTER TABLE IF EXISTS codes ADD COLUMN IF NOT EXISTS suffix TEXT`)
-        await client.query(`ALTER TABLE IF EXISTS codes ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT now()`)
-        await client.query(`UPDATE codes SET code = COALESCE(code, code_value) WHERE code IS NULL AND code_value IS NOT NULL`)
-        await client.query(`UPDATE codes SET suffix = COALESCE(suffix, substring(COALESCE(code, code_value) FROM '(P[0-9])$')) WHERE COALESCE(suffix,'') = ''`)
-        const r = await client.query('SELECT COUNT(*) AS c FROM bankode')
-        if (r.rows[0].c === '0') { await client.query('INSERT INTO bankode(balance) VALUES (0)') }
-      } finally { client.release(); await pool.end() }
-    }
-    await ensureCoreTables()
-    const neon = new NeonClient()
-    const { EventVaultRepository } = await import('./transaction-core/persistence/EventVaultRepository.js')
-    const { BalancesRepository } = await import('./transaction-core/persistence/BalancesRepository.js')
-    const repos = {
-      eventVaultRepo: new EventVaultRepository(neon),
-      ledgerRepo: new LedgerRepository(neon),
-      balancesRepo: new BalancesRepository(neon),
-      usersRepo: new UsersRepository(neon),
-      bankodeRepo: new BankodeRepository(neon)
-    }
-    transactionManager = new TransactionManager(usersManager, bankodeManager, ledger, repos)
-  }
-} catch (e) { console.warn('[NEON] binding skipped:', e?.message) }
-
-// Register baseline policies
-const policyEngine = new PolicyEngine(transactionManager)
-policyEngine.register('like', new LikePolicy(transactionManager))
-policyEngine.register('gameReward', new GameRewardPolicy(transactionManager))
-policyEngine.register('storePurchase', new StorePolicy(transactionManager))
-policyEngine.register('creatorIncentive', new CreatorIncentivePolicy(transactionManager))
-=======
 async function sqliteFindUserByEmail(email){
   try {
     // Normalize email
@@ -966,7 +750,6 @@ try {
 // policyEngineInstance.register('gameReward', new GameRewardPolicy(transactionManager))
 // policyEngineInstance.register('storePurchase', new StorePolicy(transactionManager))
 // policyEngineInstance.register('creatorIncentive', new CreatorIncentivePolicy(transactionManager))
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 // DEV auth endpoints (must precede any /api catch-all)
 app.post('/api/auth/dev-login', (req, res) => {
@@ -982,24 +765,6 @@ app.post('/api/auth/dev-login', (req, res) => {
       httpOnly: true,
       path: '/',
       sameSite: 'lax',
-<<<<<<< HEAD
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
-    try { console.log('[AUTH] dev login success'); } catch(_){}
-    try {
-      if (process.env.DATABASE_URL) {
-        const insertUser = async () => {
-          const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-          await NeonAdapter.query(
-            'INSERT INTO users (id, status, created_at) VALUES ($1, $2, NOW()) ON CONFLICT (id) DO NOTHING',
-            [userId, 'active']
-          )
-        }
-        insertUser().catch(() => {})
-      }
-    } catch(_){ }
-=======
       secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
@@ -1013,7 +778,6 @@ app.post('/api/auth/dev-login', (req, res) => {
       }
       insertUser().catch((err) => { console.error('[AUTH] User insert error:', err) })
     } catch(err){ console.error('[AUTH] Login error:', err) }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     return res.status(200).json({ ok: true, userId, sessionId });
   } catch (e) {
     return res.status(500).json({ ok: false, error: 'dev login failed' });
@@ -1025,43 +789,6 @@ app.post('/api/auth/logout', (req, res) => {
     const token = req.cookies && req.cookies.session_token;
     if (token) devSessions.delete(token);
     res.clearCookie('session_token', { path: '/' });
-<<<<<<< HEAD
-    try { console.log('[AUTH] logout success'); } catch(_){}
-  } catch(_){}
-  return res.status(200).json({ ok: true });
-});
-
-app.post('/api/auth/signup', async (req, res) => {
-  try {
-    const { email, username, password } = req.body || {}
-    if (!email || !password) return res.status(400).json({ status: 'failed', error: 'Email and password required' })
-    const exists = process.env.DATABASE_URL ? await neonFindUserByEmail(email) : memFindUserByEmail(email)
-    if (exists) return res.status(400).json({ status: 'failed', error: 'User already exists' })
-    const created = await memCreateUser(email, username, password)
-    const token = signJwt(created.id, email)
-    try {
-      const sessionId = (crypto && typeof crypto.randomUUID === 'function') ? crypto.randomUUID() : Math.random().toString(36).slice(2)
-      devSessions.set(sessionId, { userId: created.id, role: 'user', sessionId })
-      res.cookie('session_token', sessionId, { httpOnly: true, path: '/', sameSite: 'lax', secure: process.env.NODE_ENV === 'production', maxAge: 7 * 24 * 60 * 60 * 1000 })
-    } catch(_){ }
-    return res.json({ status: 'success', userId: created.id, token })
-  } catch (err) {
-    console.error('Signup Error:', err)
-    return res.status(500).json({ status: 'failed', error: 'Signup failed' })
-  }
-})
-
-// Dev auth: whoami
-app.get('/api/auth/me', (req, res) => {
-  try {
-    const token = (req.cookies && req.cookies.session_token) || null;
-    if (!token) return res.json({ user: null });
-    const s = devSessions.get(token);
-    if (!s) return res.json({ user: null });
-    return res.json({ user: { id: s.userId, sessionId: s.sessionId, role: s.role } });
-  } catch (_) {
-    return res.json({ user: null });
-=======
     try { console.log('[AUTH] logout success'); } catch(err){ console.error('[AUTH] Logout success log error:', err) }
   } catch(err){ console.error('[AUTH] Logout error:', err) }
   return res.status(200).json({ ok: true });
@@ -1399,54 +1126,12 @@ app.get('/api/auth/me', requireAuth, (req, res) => {
     });
   } catch (_) {
     return res.json({ success: false, user: null });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 });
 
 // Alias: session info
 app.get('/api/me', (req, res) => {
   try {
-<<<<<<< HEAD
-    const token = (req.cookies && req.cookies.session_token) || null;
-    if (!token) return res.json({ user: null });
-    const s = devSessions.get(token);
-    if (!s) return res.json({ user: null });
-    return res.json({ user: { id: s.userId, sessionId: s.sessionId, role: s.role } });
-  } catch (_) {
-    return res.json({ user: null });
-  }
-});
-
-app.post('/api/auth/login-v2-disabled', async (req, res) => {
-  try {
-    const { email, password } = req.body || {}
-    if (!email || !password) return res.status(400).json({ status: 'failed', error: 'Email and password required' })
-    const u = process.env.DATABASE_URL ? await neonFindUserByEmail(email) : memFindUserByEmail(email)
-    if (!u) return res.status(401).json({ status: 'failed', error: 'Invalid credentials' })
-    const ok = u.password_hash ? (await bcrypt.compare(password, u.password_hash)) : true
-    if (!ok) return res.status(401).json({ status: 'failed', error: 'Invalid credentials' })
-    const token = signJwt(u.id, u.email)
-    
-    // Always set session cookie on successful login
-    const sessionId = (crypto && typeof crypto.randomUUID === 'function') ? crypto.randomUUID() : Math.random().toString(36).slice(2)
-    devSessions.set(sessionId, { userId: u.id, role: 'user', sessionId, email: u.email })
-    res.cookie('session_token', sessionId, { 
-      httpOnly: true, 
-      path: '/', 
-      sameSite: 'lax', 
-      secure: process.env.NODE_ENV === 'production', 
-      maxAge: 7 * 24 * 60 * 60 * 1000 
-    })
-    
-    console.log('[AUTH] Login success - userId:', u.id, 'sessionId:', sessionId)
-    return res.json({ status: 'success', userId: u.id, token, sessionId })
-  } catch (err) {
-    console.error('Login Error:', err)
-    return res.status(500).json({ status: 'failed', error: 'Login failed' })
-  }
-})
-
-=======
     const s = readSessionFromCookie(req, res);
     if (!s) return res.json({ success: false, user: null });
     return res.json({ 
@@ -1463,16 +1148,11 @@ app.post('/api/auth/login-v2-disabled', async (req, res) => {
   }
 });
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.get('/api/users/resolve', async (req, res) => {
   try {
     const email = (req.query.email || '').trim()
     if (!email) return res.status(400).json({ status: 'failed', error: 'Email required' })
-<<<<<<< HEAD
-    const u = process.env.DATABASE_URL ? await neonFindUserByEmail(email) : memFindUserByEmail(email)
-=======
     const u = process.env.DATABASE_URL ? await sqliteFindUserByEmail(email) : memFindUserByEmail(email)
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (!u) return res.status(404).json({ status: 'failed', error: 'User not found' })
     return res.json({ status: 'success', userId: u.id })
   } catch (e) {
@@ -1480,12 +1160,6 @@ app.get('/api/users/resolve', async (req, res) => {
   }
 })
 
-<<<<<<< HEAD
-app.get('/api/users/state', async (req, res) => {
-  try {
-    const userId = (req.query.userId || '').trim()
-    if (!userId) return res.status(400).json({ status: 'failed', error: 'UserId required' })
-=======
 app.get('/api/users/state', requireAuth, async (req, res) => {
   try {
     const userId = (req.query.userId || '').trim()
@@ -1496,7 +1170,6 @@ app.get('/api/users/state', requireAuth, async (req, res) => {
       return res.status(403).json({ status: 'failed', error: 'unauthorized_access' })
     }
     
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const user = usersManager.getUser(userId)
     if (!user) return res.json({ status: 'success', user: null })
     return res.json({ status: 'success', user })
@@ -1508,58 +1181,6 @@ app.get('/api/users/state', requireAuth, async (req, res) => {
 app.get('/api/ledger', (req, res) => { try { return res.json({ status: 'success', ledger: ledger.getAll() }) } catch(e) { return res.status(500).json({ status: 'failed', error: e.message }) } })
 app.get('/api/events', (req, res) => { try { return res.json({ status: 'success', events: (globalThis.__eventVaultMem || []) }) } catch(e) { return res.status(500).json({ status: 'failed', error: e.message }) } })
 
-<<<<<<< HEAD
-// Verification endpoints (Neon)
-app.get('/api/neon/vault', async (req, res) => {
-  try {
-    if (!process.env.DATABASE_URL) return res.status(400).json({ status: 'failed', error: 'Neon disabled' })
-    const { Pool } = await import('pg')
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-    const client = await pool.connect()
-    try {
-      const uid = (req.query.userId || '').trim()
-      if (!uid) return res.status(400).json({ status: 'failed', error: 'userId required' })
-      const r = await client.query(`SELECT * FROM event_vault WHERE actor_user_id=$1 OR target_user_id=$1 ORDER BY created_at DESC`, [uid])
-      return res.json({ status: 'success', rows: r.rows })
-    } finally { client.release(); await pool.end() }
-  } catch (e) { return res.status(500).json({ status: 'failed', error: e.message }) }
-})
-
-app.get('/api/neon/ledger', async (req, res) => {
-  try {
-    if (!process.env.DATABASE_URL) return res.status(400).json({ status: 'failed', error: 'Neon disabled' })
-    const { Pool } = await import('pg')
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-    const client = await pool.connect()
-    try {
-      const uid = (req.query.userId || '').trim()
-      if (!uid) return res.status(400).json({ status: 'failed', error: 'userId required' })
-      const r = await client.query(`SELECT * FROM ledger WHERE from_user=$1 OR to_user=$1 ORDER BY timestamp DESC`, [uid])
-      return res.json({ status: 'success', rows: r.rows })
-    } finally { client.release(); await pool.end() }
-  } catch (e) { return res.status(500).json({ status: 'failed', error: e.message }) }
-})
-
-app.get('/api/neon/balances', async (req, res) => {
-  try {
-    if (!process.env.DATABASE_URL) return res.status(400).json({ status: 'failed', error: 'Neon disabled' })
-    const { Pool } = await import('pg')
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-    const client = await pool.connect()
-    try {
-      const u1 = (req.query.user1 || '').trim()
-      const u2 = (req.query.user2 || '').trim()
-      if (!u1) return res.status(400).json({ status: 'failed', error: 'user1 required' })
-      const ids = u2 ? [u1, u2] : [u1]
-      const r = await client.query(`SELECT * FROM balances WHERE user_id = ANY($1::uuid[])`, [ids])
-      return res.json({ status: 'success', rows: r.rows })
-    } finally { client.release(); await pool.end() }
-  } catch (e) { return res.status(500).json({ status: 'failed', error: e.message }) }
-})
-
-// Legacy CodeBank codes endpoint (renamed to avoid collision)
-app.post('/api/neon/codes-legacy', async (req, res) => {
-=======
 // Verification endpoints (SQLite)
 app.get('/api/sqlite/vault', requireAuth, async (req, res) => {
   try {
@@ -1600,7 +1221,6 @@ app.get('/api/sqlite/balances', async (req, res) => {
 
 // Legacy CodeBank codes endpoint (renamed to avoid collision)
 app.post('/api/sqlite/codes-legacy', async (req, res) => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   try {
     const body = req.body || {}
     const code = body.code || ''
@@ -1610,26 +1230,16 @@ app.post('/api/sqlite/codes-legacy', async (req, res) => {
     try { const token = req.cookies && req.cookies.session_token; const s = token && devSessions.get(token); if (s && s.userId) userId = s.userId; } catch(_){}
     if (!userId) return res.status(401).json({ status: 'failed', error: 'Unauthorized' })
     // Accept and acknowledge; persistence handled elsewhere
-<<<<<<< HEAD
-    return res.json({ status: 'success', code, userId })
-  } catch (e) {
-    return res.status(500).json({ status: 'failed', error: e.message })
-=======
     return res.json({ status: 'success', code, userId });
   } catch (e) {
     return res.status(500).json({ status: 'failed', error: e.message });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   }
 })
 
 // Unified Action Endpoint
 app.post('/api/action', async (req, res) => {
   try {
-<<<<<<< HEAD
-    const s = readSessionFromCookie(req)
-=======
     const s = readSessionFromCookie(req, res)
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (!s || !s.userId) return res.status(401).json({ status: 'failed', error: 'Unauthorized' })
     req.auth = { userId: s.userId }
     const body = req.body || {}
@@ -1655,11 +1265,7 @@ app.post('/api/action', async (req, res) => {
     // Resolve recipient if toEmail provided
     let toUser = body.toUser
     if (!toUser && body.toEmail) {
-<<<<<<< HEAD
-      const u = process.env.DATABASE_URL ? await neonFindUserByEmail(body.toEmail) : memFindUserByEmail(body.toEmail)
-=======
       const u = process.env.DATABASE_URL ? await sqliteFindUserByEmail(body.toEmail) : memFindUserByEmail(body.toEmail)
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       if (!u) return res.status(404).json({ status: 'failed', error: 'User not found' })
       toUser = u.id
     }
@@ -1738,23 +1344,11 @@ app.use((req, res, next) => {
 });
 // Serve static files for all services
 // Serve CodeBank as static app
-<<<<<<< HEAD
-app.use(
-  "/codebank",
-  express.static(path.join(__dirname, "codebank"), {
-    index: false,
-    setHeaders(res) {
-      res.setHeader("X-Content-Type-Options", "nosniff");
-    },
-  })
-);
-=======
 app.use('/codebank', express.static(path.join(__dirname, 'codebank'), { 
     maxAge: '1d',
     etag: true,
     lastModified: true 
 }));
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 app.use('/uploads/images', express.static(path.join(__dirname, 'codebank', 'setta', 'server', 'uploads', 'images')))
 app.use('/uploads/piccarboon', express.static(path.join(__dirname, 'codebank', 'setta', 'server', 'uploads', 'piccarboon')))
@@ -1785,12 +1379,9 @@ app.use('/shared', express.static(path.join(__dirname, 'shared'), {
 app.use('/shared_external', express.static(path.join(__dirname, 'shared_external'), {
   maxAge: '1d', etag: true, lastModified: true
 }));
-<<<<<<< HEAD
-=======
 app.use('/acc', express.static(path.join(__dirname, 'acc'), {
   maxAge: '1d', etag: true, lastModified: true
 }));
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.use('/nostaglia', express.static(path.join(__dirname, 'services/codebank/nostaglia'), {
   maxAge: '1d', etag: true, lastModified: true
 }));
@@ -1802,12 +1393,6 @@ app.use('/src', express.static(path.join(__dirname, 'services/codebank/src'), {
 // env.js removed
 
 // Service-specific routes
-<<<<<<< HEAD
-app.get('/', (req, res) => {
-  console.log('[route] / → yt-new-clear.html');
-  res.sendFile(path.join(__dirname, 'yt-new-clear.html'));
-});
-=======
 // PWA Entry Point - Serve yt-new-clear.html directly (no auth redirect for tunnel access)
 app.get(['/', '/yt-new-clear.html'], (req, res) => {
   console.log(`[route] ${req.path} → yt-new-clear.html`);
@@ -1830,27 +1415,17 @@ app.get('/sw.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'sw.js'));
 });
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.use('/services', express.static(path.join(__dirname, 'services'), {
   maxAge: '1d',
   etag: true,
   lastModified: true
 }));
-<<<<<<< HEAD
-=======
 app.use('/api/trust', trustRouter);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 // Alias to serve yt-clear assets under /services/yt-clear/* for CodeBank base href compatibility
 app.use('/services/yt-clear', express.static(path.join(__dirname), {
   maxAge: '1d',
   etag: true,
-<<<<<<< HEAD
-  lastModified: true
-}));
-
-// Aliases for YT-Clear static assets
-=======
   lastModified: true,
   setHeaders: (res, filePath) => {
     if (filePath && filePath.endsWith('.html')) {
@@ -1865,7 +1440,6 @@ app.use('/services/yt-clear', express.static(path.join(__dirname), {
 app.use('/yt-player', express.static(path.join(__dirname, 'yt-player'), {
   maxAge: '1d', etag: true, lastModified: true
 }));
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.use('/js', express.static(path.join(__dirname, 'js'), {
   maxAge: '1d', etag: true, lastModified: true
 }));
@@ -1877,9 +1451,6 @@ app.use('/styles', express.static(path.join(__dirname, 'styles'), {
 app.use(express.static(path.join(__dirname), {
   maxAge: '1d',
   etag: true,
-<<<<<<< HEAD
-  lastModified: true
-=======
   lastModified: true,
   setHeaders: (res, filePath) => {
     if (filePath && filePath.endsWith('.html')) {
@@ -1888,7 +1459,6 @@ app.use(express.static(path.join(__dirname), {
       res.setHeader('Expires', '0');
     }
   }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }));
 
 // Service-specific routes
@@ -1898,21 +1468,6 @@ app.get('/yt-coder', (req, res) => {
   res.redirect('/');
 });
 
-<<<<<<< HEAD
-app.get('/yt-simple', (req, res) => {
-  // serving main app as fallback
-  res.sendFile(path.join(__dirname, 'yt-new-clear.html'));
-});
-
-app.get('/yt-new', (req, res) => {
-  console.log('[route] /yt-new → yt-new-clear.html');
-  res.sendFile(path.join(__dirname, 'yt-new-clear.html'));
-});
-
-// Alias route to support direct file path access
-app.get('/yt-new.html', (req, res) => {
-  console.log('[route] /yt-new.html → yt-new-clear.html');
-=======
 app.get(['/yt-simple', '/yt-new', '/yt-new.html'], (req, res) => {
   const session = readSessionFromCookie(req, res);
   if (!session || !session.userId) {
@@ -1936,7 +1491,6 @@ app.get('/yt-clear/yt-new-clear.html', (req, res) => {
     res.set('Pragma', 'no-cache');
     res.set('Expires', '0');
   } catch(_) {}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   res.sendFile(path.join(__dirname, 'yt-new-clear.html'));
 });
 
@@ -1945,35 +1499,6 @@ app.get('/yt-clear/yt-new-clear.html', (req, res) => {
 // NEW AUTHENTICATION API (NEON BACKED)
 // ------------------------------------------------------------------
 
-<<<<<<< HEAD
-app.post('/api/auth/login', async (req, res) => {
-  try {
-    const { email, password } = req.body || {}
-    if (!email || !password) return res.status(400).json({ status: 'failed', error: 'Email and password required' })
-    const u = process.env.DATABASE_URL ? await neonFindUserByEmail(email) : memFindUserByEmail(email)
-    try { console.log('[LOGIN DEBUG] userFound:', !!u, 'hasHash:', !!(u && u.password_hash)) } catch(_){}
-    if (!u) return res.status(401).json({ status: 'failed', error: 'Invalid credentials' })
-    const ok = await bcrypt.compare(password, u.password_hash)
-    try { console.log('[LOGIN DEBUG] compareResult:', !!ok) } catch(_){}
-    if (!ok) return res.status(401).json({ status: 'failed', error: 'Invalid credentials' })
-    const token = signJwt(u.id, u.email)
-    const sessionId = (crypto && typeof crypto.randomUUID === 'function') ? crypto.randomUUID() : Math.random().toString(36).slice(2)
-    devSessions.set(sessionId, { userId: u.id, role: 'user', sessionId, email: u.email })
-    res.cookie('session_token', sessionId, {
-      httpOnly: true,
-      path: '/',
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    })
-    try { console.log('[AUTH] Login success (v2) - userId:', u.id, 'sessionId:', sessionId) } catch(_){}
-    return res.json({ status: 'success', userId: u.id, token, sessionId })
-  } catch (err) {
-    console.error('Login Error:', err)
-    return res.status(500).json({ status: 'failed', error: 'Login failed' })
-  }
-})
-=======
 // ------------------------------------------------------------------
 // OFFLINE-FIRST COMPRESSION LOGIC
 // ------------------------------------------------------------------
@@ -2207,7 +1732,6 @@ app.get('/api/ledger/verify', requireAuth, async (req, res) => {
     return res.status(500).json({ error: 'internal_error' });
   }
 });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 
 // Assets API (Read Only)
@@ -2222,14 +1746,6 @@ app.get('/api/assets/balance', requireAuth, async (req, res) => {
 
 
 // YT-Clear routes
-<<<<<<< HEAD
-app.get('/yt-clear', (req, res) => {
-  console.log('[route] /yt-clear → yt-new-clear.html');
-  res.sendFile(path.join(__dirname, 'yt-new-clear.html'));
-});
-app.get('/yt-clear/yt-new-clear.html', (req, res) => {
-  console.log('[route] /yt-clear/yt-new-clear.html → yt-new-clear.html');
-=======
 app.get(['/yt-clear', '/yt-clear/yt-new-clear.html'], (req, res) => {
   const session = readSessionFromCookie(req, res);
   if (!session || !session.userId) {
@@ -2237,7 +1753,6 @@ app.get(['/yt-clear', '/yt-clear/yt-new-clear.html'], (req, res) => {
     return res.redirect('/login.html');
   }
   console.log(`[route] ${req.path} → yt-new-clear.html`);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   res.sendFile(path.join(__dirname, 'yt-new-clear.html'));
 });
 
@@ -2253,32 +1768,11 @@ app.get('/yt-new-modular/yt-new-modular.html', (req, res) => {
 
 // AUTH REMOVED — CLEAN RESET
 
-<<<<<<< HEAD
-// AUTH REMOVED — CLEAN RESET
-
-// AUTH REMOVED — CLEAN RESET
-
-// AUTH REMOVED — CLEAN RESET
-
-// AUTH REMOVED — CLEAN RESET
-
 // CodeBank routes
-// Serve CodeBank static assets first
-app.use('/codebank', express.static(path.join(__dirname, 'codebank'), {
-  maxAge: '1d',
-  etag: true,
-  lastModified: true
-}));
-
-=======
-// CodeBank routes
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 // CodeBank SPA routes - serve indexCB.html for all other routes
 app.get('/codebank/', (req, res) => {
   res.sendFile(path.join(__dirname, 'codebank/indexCB.html'));
 });
-<<<<<<< HEAD
-=======
 
 // Explicit service routes to prevent 404 errors
 app.get('/services/pebalaash/*', (req, res) => {
@@ -2289,7 +1783,6 @@ app.get('/services/battalooda/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'codebank/battalooda/index.html'));
 });
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.get('/codebank/*', (req, res) => {
   // If the request is for a static file that doesn't exist, serve indexCB.html
   const url = req.originalUrl;
@@ -2307,8 +1800,6 @@ app.use('/codebank/pebalaash', express.static(path.join(__dirname, 'codebank/peb
   lastModified: true
 }))
 
-<<<<<<< HEAD
-=======
 // Pebalaash routes - FIXED to match Samma3ny pattern
 app.use('/pebalaash', express.static(path.join(__dirname, 'codebank/pebalaash/dist/public'), {
   maxAge: '1d',
@@ -2474,7 +1965,6 @@ app.get('/shots/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'codebank/shots/index.html'));
 });
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 // Legacy placeholder endpoints removed; unified API provides real implementations
 
 // Samma3ny static files
@@ -2580,14 +2070,10 @@ app.get('/login.html', (req, res) => {
 
 // Public health/version endpoints
 app.get('/api/health', (req, res) => { res.status(404).end() });
-<<<<<<< HEAD
-app.get('/api/version', (req, res) => { res.status(404).end() });
-=======
 app.get('/api/reconcile', (req, res) => {
   // 🛡️ HOLE 7 FIX: Remove dangerous client-authoritative reconciliation
   return res.status(403).json({ status: 'failed', error: 'dangerous_operation_blocked', message: 'Client cannot send ledger values to server.' });
 });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 // Core API endpoints for yt-new integrations
 app.get('/api/user-assets', (req, res, next) => {
@@ -2604,8 +2090,6 @@ app.get('/api/users/:id', (req, res) => { res.status(404).end() })
 
 app.get('/api/user-assets', (req, res) => { res.status(404).end() })
 
-<<<<<<< HEAD
-=======
 app.get('/api/rewards/balance', requireAuth, async (req, res) => {
   try {
     const session = readSessionFromCookie(req, res);
@@ -2642,7 +2126,6 @@ app.get('/api/rewards/balance', requireAuth, async (req, res) => {
   }
 });
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 app.get('/api/rewards', (req, res) => { res.status(404).end() })
 
 app.post('/api/telemetry', (req, res) => {
@@ -2650,154 +2133,6 @@ app.post('/api/telemetry', (req, res) => {
   res.sendStatus(204)
 })
 
-<<<<<<< HEAD
-// Neon codes persistence endpoint
-app.post('/api/neon/codes', async (req, res) => {
-  try {
-    const { code, suffix } = req.body || {};
-    const session = readSessionFromCookie(req);
-    if (!session || !session.userId) return res.status(401).json({ status:'failed', error:'unauthorized' });
-    if (!code || typeof code !== 'string' || !suffix) return res.status(400).json({ status:'failed', error:'missing_fields' });
-    if (!/^P\d+$/.test(String(suffix))) return res.status(400).json({ status:'failed', error:'invalid_suffix' });
-
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'));
-    try {
-      await NeonAdapter.query('BEGIN');
-      const sqlInsertCode = 'INSERT INTO codes (id, user_id, session_id, code, suffix, created_at, generated_at, next_at) VALUES (gen_random_uuid(), $1::uuid, $2::uuid, $3::text, $4::text, NOW(), NOW(), NOW())';
-      try { console.log('[NEON SQL WRITE]', sqlInsertCode, { user: session.userId, code, suffix }) } catch(_){}
-      await NeonAdapter.query(sqlInsertCode, [session.userId, session.sessionId || null, code, suffix]);
-      const sqlUpsertBal = "INSERT INTO balances (user_id, asset, amount, updated_at) VALUES ($1::uuid, 'codebank', 1, NOW()) ON CONFLICT (user_id) DO UPDATE SET amount = balances.amount + 1, updated_at = NOW()";
-      try { console.log('[NEON SQL WRITE]', sqlUpsertBal, { user: session.userId }) } catch(_){}
-      await NeonAdapter.query(sqlUpsertBal, [session.userId]);
-      await NeonAdapter.query('COMMIT');
-      try { console.log('[NEON] code + balance updated', session.userId, code, suffix) } catch(_){}
-      return res.json({ status:'success' });
-    } catch (err) {
-      try { await NeonAdapter.query('ROLLBACK') } catch(_){}
-      try { console.error('[NEON] insert failed', err) } catch(_){}
-      if (err && err.code === '23505') { return res.status(409).json({ status:'failed', error:'duplicate' }); }
-      return res.status(500).json({ status:'failed', error:'internal_error' });
-    }
-  } catch(e) {
-    res.status(500).json({ status:'failed', error: e && e.message });
-  }
-});
-
-// Neon codes retrieval endpoint
-app.get('/api/neon/codes', async (req, res) => { 
-  try { 
-    const session = readSessionFromCookie(req);
-    if (!session || !session.userId) { 
-      return res.status(401).json({ status:'failed', error:'unauthorized' }); 
-    } 
-
-    const { NeonAdapter } = await import('./neon/neon-server-adapter.js'); 
-
-    const sqlSelectCodes = "SELECT COALESCE(code_value, code) AS code, COALESCE(meta->>'suffix', suffix) AS suffix, created_at, COUNT(*) OVER() AS total FROM codes WHERE user_id=$1 ORDER BY created_at DESC";
-    try { console.log('[NEON SQL FETCH]', sqlSelectCodes, { user: session.userId }) } catch(_){}
-    const { rows } = await NeonAdapter.query(sqlSelectCodes, [session.userId]);
-
-    try { console.log('[NEON] codes query for session user:', session.userId); } catch(_){}
-    const total = (rows && rows[0] && typeof rows[0].total==='number') ? rows[0].total : (rows ? rows.length : 0);
-    const latest = (rows && rows[0] && rows[0].code) || null;
-    return res.json({
-      status: 'success',
-      count: total,
-      latest,
-      rows: rows.map(r=>({ code: r.code, suffix: r.suffix, created_at: r.created_at }))
-    });
-
-  } catch (e) { 
-    return res.status(500).json({ 
-      status: 'failed', 
-      error: e.message 
-    }); 
-  } 
-}); 
-
-app.post('/api/send-codes', async (req, res) => {
-  try {
-    const body = req.body || {};
-    const codes = Array.isArray(body.codes) ? body.codes : [];
-    const receiverEmail = (body.receiverEmail || '').toString().trim();
-    const session = readSessionFromCookie(req);
-    if (!session || !session.userId) return res.status(401).json({ success: false, message: 'unauthorized' });
-    if (!codes.length) return res.status(400).json({ success: false, message: 'no_codes' });
-    if (!receiverEmail) return res.status(400).json({ success: false, message: 'invalid_email' });
-    if (!process.env.DATABASE_URL) return res.status(500).json({ success: false, message: 'neon_unavailable' });
-    const receiver = await neonFindUserByEmail(receiverEmail);
-    if (!receiver || !receiver.id) return res.status(404).json({ success: false, message: 'user_not_found' });
-    const fromUserId = session.userId;
-    const toUserId = receiver.id;
-    if (fromUserId === toUserId) return res.status(400).json({ success: false, message: 'self_transfer_not_allowed' });
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'));
-    const pool = await NeonAdapter.connect();
-    const client = await pool.connect();
-    try {
-      await client.query('BEGIN');
-      await client.query("SELECT pg_advisory_xact_lock((('x'||substr(md5($1||$2),1,16))::bit(64))::bigint)", [fromUserId, toUserId]);
-      const sel = await client.query('SELECT id, code FROM codes WHERE user_id=$1::uuid AND code = ANY($2::text[]) FOR UPDATE', [fromUserId, codes]);
-      if ((sel.rows || []).length !== codes.length) {
-        await client.query('ROLLBACK');
-        return res.status(400).json({ success: false, message: 'codes_not_owned' });
-      }
-      const ids = sel.rows.map(r => r.id);
-      await client.query('UPDATE codes SET user_id=$1::uuid WHERE id = ANY($2::uuid[])', [toUserId, ids]);
-      await client.query("UPDATE balances SET amount = amount - $1, updated_at = NOW() WHERE user_id=$2::uuid AND asset='codebank'", [codes.length, fromUserId]);
-      await client.query("INSERT INTO balances (user_id, asset, amount, updated_at) VALUES ($1::uuid, 'codebank', $2, NOW()) ON CONFLICT (user_id) DO UPDATE SET amount = balances.amount + EXCLUDED.amount, updated_at = NOW()", [toUserId, codes.length]);
-      await client.query('COMMIT');
-      return res.json({ success: true });
-    } catch (e) {
-      try { await client.query('ROLLBACK') } catch(_){}
-      return res.status(500).json({ success: false, message: 'tx_failed' });
-    } finally {
-      try { client.release() } catch(_){}
-    }
-  } catch (e) {
-    return res.status(500).json({ success: false, message: 'server_error' });
-  }
-});
-
-app.get('/api/neon/diag', async (req, res) => {
-  try {
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const cols = await NeonAdapter.query(
-      `SELECT column_name, table_name FROM information_schema.columns 
-       WHERE table_name IN ('users','codes','ledger','rewards','events','transactions','vault','balances')
-       ORDER BY (CASE WHEN table_name='users' THEN 0 ELSE 1 END), table_name, column_name`
-    )
-    const fks = await NeonAdapter.query(
-      `SELECT constraint_name, table_name FROM information_schema.table_constraints 
-       WHERE constraint_type='FOREIGN KEY'`
-    )
-    return res.json({ status: 'success', columns: cols.rows, foreign_keys: fks.rows })
-  } catch (e) {
-    return res.status(500).json({ status: 'failed', error: e && e.message })
-  }
-})
-
-// Neon sync diagnostic endpoint (session required)
-app.get('/api/diag/neon-sync', async (req, res) => {
-  try {
-    const s = readSessionFromCookie(req);
-    if (!s || !s.userId) {
-      return res.json({ ok: false, reason: 'no_session' });
-    }
-    if (!process.env.DATABASE_URL) {
-      return res.json({ ok: true, userId: s.userId, balanceRows: 0, balances: [], timestamp: null });
-    }
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const { rows } = await NeonAdapter.query(
-      'SELECT asset, amount, updated_at FROM balances WHERE user_id=$1 ORDER BY asset ASC',
-      [s.userId]
-    )
-    let ts = null;
-    try {
-      const r2 = await NeonAdapter.query('SELECT MAX(updated_at) AS ts FROM balances WHERE user_id=$1', [s.userId]);
-      ts = (r2 && r2.rows && r2.rows[0] && r2.rows[0].ts) || null;
-    } catch(_) {}
-    return res.json({ ok: true, userId: s.userId, balanceRows: rows.length, balances: rows, timestamp: ts });
-=======
 app.post('/api/balloon/pop', async (req, res) => {
   try {
     const body = req.body || {}
@@ -3961,46 +3296,21 @@ app.get('/api/diag/neon-sync', async (req, res) => {
       return res.json({ ok: false, reason: 'no_session' });
     }
     return res.json({ ok: true, userId: s.userId, message: 'balances view deprecated - use watchdog' });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   } catch (e) {
     return res.status(500).json({ ok: false, error: e && e.message })
   }
 })
 
 // Neon codes diagnostic endpoint (session required)
-<<<<<<< HEAD
-app.get('/api/diag/neon-codes', async (req, res) => {
-  try {
-    const s = readSessionFromCookie(req);
-=======
 app.get('/api/diag/sqlite-codes', async (req, res) => {
   try {
     const s = readSessionFromCookie(req, res);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (!s || !s.userId) {
       return res.json({ ok: false, reason: 'no_session' });
     }
     if (!process.env.DATABASE_URL) {
       return res.json({ ok: true, count: 0, latest: null, codes: [] });
     }
-<<<<<<< HEAD
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const { rows } = await NeonAdapter.query(
-      'SELECT code_value, created_at FROM codes WHERE user_id=$1 ORDER BY created_at DESC LIMIT 20',
-      [s.userId]
-    )
-    const latest = rows && rows[0] ? rows[0].code_value : null;
-    return res.json({ ok: true, count: rows.length, latest, codes: rows })
-  } catch (e) {
-    return res.status(500).json({ ok: false, error: e && e.message })
-  }
-})
-
-// Rewards transfer (codes) — atomic Neon transaction
-app.post('/api/rewards/transfer', async (req, res) => {
-  try {
-    const session = readSessionFromCookie(req);
-=======
     const { rows } = await query(
       'SELECT code, created_at FROM codes WHERE user_id=$1 ORDER BY created_at DESC LIMIT 20',
       [s.userId]
@@ -4016,7 +3326,6 @@ app.post('/api/rewards/transfer', async (req, res) => {
 app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (req, res) => {
   try {
     const session = readSessionFromCookie(req, res);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (!session || !session.userId) {
       return res.status(401).json({ error: 'unauthorized' });
     }
@@ -4037,11 +3346,6 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
       return res.status(400).json({ error: 'unsupported_asset' });
     }
 
-<<<<<<< HEAD
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const pool = await NeonAdapter.connect();
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const client = await pool.connect();
 
     const MAX_RETRIES = 3;
@@ -4050,18 +3354,11 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
       attempt++;
       try {
         await client.query('BEGIN');
-<<<<<<< HEAD
-        await client.query("SELECT pg_advisory_xact_lock((('x'||substr(md5($1||$2),1,16))::bit(64))::bigint)", [fromUserId, toUserId]);
-
-        const lockRes = await client.query(
-          "SELECT amount FROM balances WHERE user_id=$1::uuid AND asset='codebank' FOR UPDATE",
-=======
         // SQLite doesn't need advisory locks as it's single-write
       // await client.query("SELECT pg_advisory_xact_lock((('x'||substr(md5($1||$2),1,16))::bit(64))::bigint)", [fromUserId, toUserId]);
 
         const lockRes = await client.query(
           "SELECT COALESCE(SUM(CASE WHEN direction='credit' THEN amount ELSE -amount END),0) AS amount FROM ledger WHERE user_id=$1 AND asset_type='codes'",
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           [fromUserId]
         );
         try { console.log('[TRANSFER] lock sender amount =', (lockRes.rows[0] && Number(lockRes.rows[0].amount)) || 0) } catch(_){ }
@@ -4071,45 +3368,26 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
           return res.status(400).json({ error: 'insufficient_balance' });
         }
 
-<<<<<<< HEAD
-        await client.query(
-          "UPDATE balances SET amount = amount - $1, updated_at = NOW() WHERE user_id=$2::uuid AND asset='codebank'",
-          [amount, fromUserId]
-=======
         const txId2 = crypto.randomUUID();
         await client.query(
           "INSERT INTO ledger (id, tx_id, user_id, direction, asset_type, amount, reference) VALUES ($1, $2, $3, 'debit', 'codes', $4, 'reward_transfer')",
           [crypto.randomUUID(), txId2, fromUserId, amount]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         );
         try { console.log('[TRANSFER] deducted', amount, 'from', fromUserId) } catch(_){ }
 
         await client.query(
-<<<<<<< HEAD
-          "INSERT INTO balances (user_id, asset, amount, updated_at) VALUES ($1::uuid, 'codebank', $2, NOW()) ON CONFLICT (user_id) DO UPDATE SET amount = balances.amount + EXCLUDED.amount, updated_at = NOW()",
-          [toUserId, amount]
-=======
           "INSERT INTO ledger (id, tx_id, user_id, direction, asset_type, amount, reference) VALUES ($1, $2, $3, 'credit', 'codes', $4, 'reward_transfer')",
           [crypto.randomUUID(), txId2, toUserId, amount]
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         );
         try { console.log('[TRANSFER] credited', amount, 'to', toUserId) } catch(_){ }
 
         const finalBal = await client.query(
-<<<<<<< HEAD
-          "SELECT amount FROM balances WHERE user_id=$1::uuid AND asset='codebank'",
-=======
           "SELECT COALESCE(SUM(CASE WHEN direction='credit' THEN amount ELSE -amount END),0) AS amount FROM ledger WHERE user_id=$1 AND asset_type='codes'",
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           [fromUserId]
         );
         try { console.log('[TRANSFER] final sender amount =', (finalBal.rows[0] && Number(finalBal.rows[0].amount)) || 0) } catch(_){ }
         const finalBalB = await client.query(
-<<<<<<< HEAD
-          "SELECT amount FROM balances WHERE user_id=$1::uuid AND asset='codebank'",
-=======
           "SELECT COALESCE(SUM(CASE WHEN direction='credit' THEN amount ELSE -amount END),0) AS amount FROM ledger WHERE user_id=$1 AND asset_type='codes'",
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           [toUserId]
         );
         try { console.log('[TRANSFER] commit sender->receiver', { from: fromUserId, to: toUserId, amount, sender_final: (finalBal.rows[0] && Number(finalBal.rows[0].amount)) || 0, receiver_final: (finalBalB.rows[0] && Number(finalBalB.rows[0].amount)) || 0, attempt }) } catch(_){}
@@ -4140,33 +3418,6 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
   }
 });
 
-<<<<<<< HEAD
-// Balances endpoint (session-only)
-app.get('/api/balances', async (req, res) => {
-  try {
-    try { console.error('RUNNING PATCHED SNAPSHOT LOGIC v1 (server balances gate)') } catch(_){ }
-    const token = (req.cookies && req.cookies.session_token) || null;
-    const s = token ? devSessions.get(token) : null;
-    if (!s || !s.userId) return res.status(401).json({ status: 'failed', error: 'unauthorized' });
-    if (!process.env.DATABASE_URL) return res.json({ status: 'success', balances: {} });
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const { rows } = await NeonAdapter.query(
-      'SELECT asset, SUM(amount)::int AS total FROM balances WHERE user_id=$1 GROUP BY asset ORDER BY asset ASC',
-      [s.userId]
-    )
-    const balances = {};
-    for (const r of rows) {
-      const key = r.asset === 'codebank' ? 'codes' : r.asset;
-      balances[key] = typeof r.total === 'number' ? r.total : 0;
-    }
-    return res.json({ status: 'success', balances })
-  } catch (e) {
-    return res.status(500).json({ status: 'failed', error: e && e.message })
-  }
-})
-
-app.get('/api/games', async (req, res) => {
-=======
 // Events inbox for the current user (last 24h or unseen)
 app.get('/api/events/inbox', async (req, res) => {
   try {
@@ -4236,24 +3487,12 @@ app.get('/api/balances', requireAuth, async (req, res) => {
 });
 
 app.get('/api/games', requireAuth, async (req, res) => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   try {
     let userId = req.query.userId || null
     if (!userId) {
       const email = (req.query?.email || '').toString().trim()
       if (email) {
         try {
-<<<<<<< HEAD
-          const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-          const found = await NeonAdapter.query('SELECT id FROM users WHERE email=$1 LIMIT 1', [email])
-          userId = found?.rows?.[0]?.id || null
-        } catch (_) { userId = null }
-      }
-    }
-
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const { rows } = await NeonAdapter.query(
-=======
           const found = await query('SELECT id FROM users WHERE email=$1 LIMIT 1', [email])
           userId = found?.rows?.[0]?.id || null
         } catch (err) { 
@@ -4274,7 +3513,6 @@ app.get('/api/games', requireAuth, async (req, res) => {
     }
 
     const { rows } = await query(
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       'SELECT id, game_name, score FROM games WHERE user_id=$1 ORDER BY score DESC',
       [userId]
     )
@@ -4290,12 +3528,7 @@ app.post('/api/transactions', async (req, res) => {
     if (!sender_id || !receiver_id || !asset_name || typeof amount !== 'number') {
       return res.status(400).json({ message: 'Invalid payload' })
     }
-<<<<<<< HEAD
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    const { rows } = await NeonAdapter.query(
-=======
     const { rows } = await query(
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       'INSERT INTO transactions (sender_id, receiver_id, asset_name, amount) VALUES ($1,$2,$3,$4) RETURNING id',
       [sender_id, receiver_id, asset_name, amount]
     )
@@ -5110,22 +4343,6 @@ app.post('/screenshot/capture-youtube', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-// Global crash protection handlers
-process.on('uncaughtException', (err) => {
-  console.error('UNCAUGHT EXCEPTION:', err);
-});
-
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('UNHANDLED REJECTION:', reason);
-});
-
-// Start server
-app.listen(PORT, '127.0.0.1', () => {
-  console.log(`Server running on http://127.0.0.1:${PORT}`);
-});
-
-=======
 // Global crash protection handlers with enhanced logging
 process.on('uncaughtException', (err) => {
   console.error('💥 [CRITICAL] UNCAUGHT EXCEPTION DETECTED:');
@@ -5223,7 +4440,6 @@ server.once('listening', async () => {
 
 server.listen(PORT);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 // Graceful shutdown
 process.on('SIGTERM', async () => {
   console.log('🛑 Shutting down server gracefully...');
@@ -5240,133 +4456,6 @@ process.on('SIGINT', async () => {
   }
   process.exit(0);
 });
-<<<<<<< HEAD
-/* // Unified API (Neon + JWT)
-let apiRouter;
-try {
-  const mod = await import('./services/api/server.js');
-  apiRouter = mod.default || mod;
-} catch (e) {
-  console.warn('[server] API router not available, skipping /api routes');
-  apiRouter = express.Router();
-}
-app.use('/api', apiRouter); */
-try {
-  const settaMod = await import('./services/api/modules/setta.js');
-  const settaRouter = settaMod.default || settaMod.router || settaMod;
-  app.use('/api/setta', settaRouter);
-  console.log('✅ Mounted /api/setta routes');
-} catch (e) {
-  console.warn('⚠️ Failed to mount /api/setta:', e && e.message);
-}
-
-// AUTH REMOVED — CLEAN RESET
-import 'dotenv/config';
-// Neon DB environment check
-const HAS_DB = !!(process.env.NEON_DATABASE_URL || process.env.DATABASE_URL);
-try {
-  console.log('[NEON] DB connection configured: ' + (HAS_DB ? 'YES' : 'NO'));
-} catch (_) {}
-if (!HAS_DB) {
-  console.error('[NEON] Missing DATABASE_URL or NEON_DATABASE_URL. Set DB URL and restart.');
-  process.exit(1);
-}
-
-// Apply Neon DDL (UUID generation + tables/constraints) per instructions
-(async function applyNeonDDL(){
-  const statements = [
-    'CREATE EXTENSION IF NOT EXISTS "pgcrypto"',
-    'CREATE EXTENSION IF NOT EXISTS "pgcrypto"',
-    'CREATE TABLE IF NOT EXISTS users (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'CREATE TABLE IF NOT EXISTS codes (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'CREATE TABLE IF NOT EXISTS ledger (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'CREATE TABLE IF NOT EXISTS rewards (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'CREATE TABLE IF NOT EXISTS events (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT NOT NULL, created_at TIMESTAMP DEFAULT now(), updated_at TIMESTAMP DEFAULT now())',
-    'CREATE TABLE IF NOT EXISTS transactions (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'CREATE TABLE IF NOT EXISTS vault (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'CREATE TABLE IF NOT EXISTS balances (id UUID PRIMARY KEY DEFAULT gen_random_uuid())',
-    'ALTER TABLE users ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE users ADD COLUMN IF NOT EXISTS email VARCHAR(255) UNIQUE',
-    'ALTER TABLE users ADD COLUMN IF NOT EXISTS name VARCHAR(255)',
-    'ALTER TABLE users ADD COLUMN IF NOT EXISTS password_hash VARCHAR(255)',
-    'ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE users ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS user_id UUID',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS session_id UUID',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS code TEXT',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS suffix TEXT',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS code_value VARCHAR(255)',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS generated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS next_at TIMESTAMPTZ NOT NULL DEFAULT NOW()',
-    "ALTER TABLE codes ADD COLUMN IF NOT EXISTS meta JSONB DEFAULT '{}'::jsonb",
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE codes ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'CREATE INDEX IF NOT EXISTS idx_codes_user_id ON codes(user_id)',
-    'CREATE UNIQUE INDEX IF NOT EXISTS uniq_codes_user_code ON codes(user_id, code) WHERE code IS NOT NULL',
-    'CREATE UNIQUE INDEX IF NOT EXISTS uniq_codes_user_code_value ON codes(user_id, code_value) WHERE code_value IS NOT NULL',
-    'ALTER TABLE ledger ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE ledger ADD COLUMN IF NOT EXISTS user_id UUID',
-    'ALTER TABLE ledger ADD COLUMN IF NOT EXISTS amount NUMERIC DEFAULT 0',
-    'ALTER TABLE ledger ADD COLUMN IF NOT EXISTS type VARCHAR(50)',
-    'ALTER TABLE ledger ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE rewards ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE rewards ADD COLUMN IF NOT EXISTS sender_id UUID',
-    'ALTER TABLE rewards ADD COLUMN IF NOT EXISTS receiver_id UUID',
-    'ALTER TABLE rewards ADD COLUMN IF NOT EXISTS amount NUMERIC DEFAULT 0',
-    'ALTER TABLE rewards ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE events ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE events ADD COLUMN IF NOT EXISTS user_id UUID',
-    'ALTER TABLE events ADD COLUMN IF NOT EXISTS type VARCHAR(50)',
-    "ALTER TABLE events ADD COLUMN IF NOT EXISTS meta JSONB DEFAULT '{}'::jsonb",
-    'ALTER TABLE events ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE transactions ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE transactions ADD COLUMN IF NOT EXISTS sender_id UUID',
-    'ALTER TABLE transactions ADD COLUMN IF NOT EXISTS receiver_id UUID',
-    'ALTER TABLE transactions ADD COLUMN IF NOT EXISTS amount NUMERIC DEFAULT 0',
-    'ALTER TABLE transactions ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE vault ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE vault ADD COLUMN IF NOT EXISTS user_id UUID',
-    'ALTER TABLE vault ADD COLUMN IF NOT EXISTS balance NUMERIC DEFAULT 0',
-    'ALTER TABLE vault ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'ALTER TABLE balances ADD COLUMN IF NOT EXISTS id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
-    'ALTER TABLE balances ADD COLUMN IF NOT EXISTS user_id UUID',
-    'ALTER TABLE balances ADD COLUMN IF NOT EXISTS asset VARCHAR(50)',
-    'ALTER TABLE balances ADD COLUMN IF NOT EXISTS amount NUMERIC DEFAULT 0',
-    'ALTER TABLE balances ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()',
-    'CREATE UNIQUE INDEX IF NOT EXISTS uniq_balances_user_asset ON balances(user_id, asset)',
-  ];
-  const doBlocks = [
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_codes_user') THEN ALTER TABLE codes ADD CONSTRAINT fk_codes_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_ledger_user') THEN ALTER TABLE ledger ADD CONSTRAINT fk_ledger_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_rewards_sender') THEN ALTER TABLE rewards ADD CONSTRAINT fk_rewards_sender FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE; ALTER TABLE rewards ADD CONSTRAINT fk_rewards_receiver FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_events_user') THEN ALTER TABLE events ADD CONSTRAINT fk_events_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_transactions_sender') THEN ALTER TABLE transactions ADD CONSTRAINT fk_transactions_sender FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE; ALTER TABLE transactions ADD CONSTRAINT fk_transactions_receiver FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_vault_user') THEN ALTER TABLE vault ADD CONSTRAINT fk_vault_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-    "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE constraint_name='fk_balances_user') THEN ALTER TABLE balances ADD CONSTRAINT fk_balances_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE; END IF; END$$;",
-  ];
-  try{
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    for (const sql of statements) {
-      try { await NeonAdapter.query(sql) } catch (e) { console.warn('[NEON] DDL stmt failed:', sql, e && e.message) }
-    }
-    for (const block of doBlocks) {
-      try { await NeonAdapter.query(block) } catch (e) { console.warn('[NEON] DDL DO failed:', e && e.message) }
-    }
-    console.log('[NEON] DDL applied successfully')
-  }catch(e){ console.warn('[NEON] DDL apply failed:', e && e.message) }
-})();
-
-(async function applyUsersSmallFix(){
-  try{
-    const { NeonAdapter } = await import(path.join(__dirname, 'neon/neon-server-adapter.js'))
-    await NeonAdapter.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS email VARCHAR(255), ADD COLUMN IF NOT EXISTS name VARCHAR(255), ADD COLUMN IF NOT EXISTS password_hash VARCHAR(255)')
-    await NeonAdapter.query('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)')
-    console.log('[NEON] users columns ensured')
-  }catch(e){ console.warn('[NEON] users fix failed:', e && e.message) }
-})();
-=======
 // Consolidated API Router
 const apiRouter = express.Router();
 
@@ -5737,4 +4826,3 @@ app.get('/api/rewards/balance', requireAuth, (req, res) => {
 app.get('/api/ledger/verify', requireAuth, (req, res) => {
     res.json({ success: true, verified: true, status: 'locked' });
 });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
