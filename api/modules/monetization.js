@@ -8,24 +8,14 @@ async function ensureMonetizationTable() {
   try {
     await query(`
       CREATE TABLE IF NOT EXISTS monetization_windows (
-<<<<<<< HEAD
-        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-=======
         id TEXT PRIMARY KEY,
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         start_date DATE NOT NULL,
         end_date DATE NOT NULL,
         total_rewards BIGINT NOT NULL DEFAULT 0,
         top_1_percent_threshold BIGINT NOT NULL DEFAULT 0,
-<<<<<<< HEAD
-        achieved BOOLEAN DEFAULT false,
-        created_at TIMESTAMPTZ DEFAULT NOW(),
-        updated_at TIMESTAMPTZ DEFAULT NOW()
-=======
         achieved BOOLEAN DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       )
     `)
     
@@ -67,26 +57,6 @@ export async function calculateMonthlyMonetizationWindow() {
     
     const totalRewards = parseInt(totalRewardsResult.rows[0]?.total_rewards || '0')
     
-    // Calculate top 1% threshold
-<<<<<<< HEAD
-    const percentileResult = await query(`
-      SELECT PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY monthly_total) as threshold
-      FROM (
-        SELECT user_id, SUM(amount) as monthly_total
-        FROM reward_events 
-        WHERE created_at >= $1 AND created_at <= $2
-        GROUP BY user_id
-      ) user_totals
-    `, [startOfMonth, endOfMonth])
-    
-    const threshold = parseInt(percentileResult.rows[0]?.threshold || '0')
-    
-    // Insert monetization window
-    await query(`
-      INSERT INTO monetization_windows (start_date, end_date, total_rewards, top_1_percent_threshold)
-      VALUES ($1, $2, $3, $4)
-    `, [startOfMonth, endOfMonth, totalRewards, threshold])
-=======
     // SQLite doesn't have PERCENTILE_CONT - using a simpler approach for now
     const totalsResult = await query(`
       SELECT SUM(amount) as monthly_total
@@ -105,7 +75,6 @@ export async function calculateMonthlyMonetizationWindow() {
       INSERT INTO monetization_windows (id, start_date, end_date, total_rewards, top_1_percent_threshold)
       VALUES ($1, $2, $3, $4, $5)
     `, [crypto.randomUUID(), startOfMonth, endOfMonth, totalRewards, threshold])
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     
     console.log(`Monetization window created for ${startOfMonth.toISOString()} - ${endOfMonth.toISOString()}`)
     console.log(`Total rewards: ${totalRewards}, Top 1% threshold: ${threshold}`)
