@@ -2,10 +2,18 @@ services:
   - type: web
     name: ytclear-server
     runtime: node
-    buildCommand: npm ci --production
+    region: frankfurt
+    buildCommand: |
+      echo "Node version: $(node -v)"
+      echo "NPM version: $(npm -v)"
+      npm ci --production
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: NODE_VERSION
-        value: 18.17.0
+        value: 20.11.0
+      - key: NPM_CONFIG_TIMEOUT
+        value: "300000"
+      - key: NPM_CONFIG_REGISTRY
+        value: "https://registry.npmjs.org/"
