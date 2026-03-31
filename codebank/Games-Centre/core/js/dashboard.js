@@ -106,11 +106,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const soundToggle = document.getElementById('ytSoundToggle');
   soundToggle.onclick = () => {
     if (window.parent !== window) {
-<<<<<<< HEAD
       window.parent.postMessage({ type: 'toggleSound' }, '*');
-=======
       window.parent.postMessage({ type: 'toggleSound' }, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
     soundToggle.textContent = soundToggle.textContent === '🔊' ? '🔇' : '🔊';
   };

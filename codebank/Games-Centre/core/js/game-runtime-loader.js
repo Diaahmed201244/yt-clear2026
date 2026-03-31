@@ -141,13 +141,10 @@ export class GameRuntimeLoader {
      */
     postMessageToGame(message) {
         if (this.gameFrame && this.gameFrame.contentWindow) {
-<<<<<<< HEAD
             this.gameFrame.contentWindow.postMessage(message, '*');
-=======
             var __o;
             try { var __s = this.gameFrame.getAttribute('src') || this.gameFrame.src || ''; __o = new URL(__s, window.location.href).origin } catch(_) { __o = window.location.origin }
             this.gameFrame.contentWindow.postMessage(message, __o);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
     }
 

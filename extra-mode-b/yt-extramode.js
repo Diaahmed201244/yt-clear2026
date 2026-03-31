@@ -72,12 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
     setupTabVisibilityDetection();
 
     // Monitor Extra Mode state changes
-<<<<<<< HEAD
     setInterval(updateExtraModeDisplay, 1000);
     
     // Monitor for continuous watching (check every 5 seconds)
     setInterval(checkContinuousWatching, 5000);
-=======
     if (window.TimerManager) {
         window.TimerManager.setInterval(updateExtraModeDisplay, 1000);
     } else {
@@ -90,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         setInterval(checkContinuousWatching, 5000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
     // Initial state update
     updateExtraModeDisplay();
@@ -319,8 +316,6 @@ function resetSwitchToCenter() {
  * Activate Extra Mode
  */
 async function activateExtraMode(mode) {
-<<<<<<< HEAD
-=======
     // 🛡️ WATCH-DOG DEATH CHECK
     if (window.__DOG_IS_DEAD__ || localStorage.getItem('__DOG_IS_DEAD__') === 'true') {
         console.warn('[Extra Mode] Blocked: Watch-Dog is dead.');
@@ -332,7 +327,6 @@ async function activateExtraMode(mode) {
         return;
     }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (window.SystemProtection?.isProtectionActive() || window.__EXTRA_MODE_LOCKED__ === true) {
         return;
     }
@@ -528,25 +522,19 @@ function updateExtraModeUI(isActive) {
 function startExtraTimer() {
     if (!extraTimerInterval && extraModeActive) {
         console.log('Starting Extra Mode timer');
-<<<<<<< HEAD
         extraTimerInterval = setInterval(() => {
-=======
         const timerFn = () => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             extraWatchTime += 100;
             console.log(`Extra Mode timer: ${formatTime(extraWatchTime)}`);
             updateExtraProgress();
             checkForRewards();
-<<<<<<< HEAD
         }, 100);
-=======
         };
         if (window.TimerManager) {
             extraTimerInterval = window.TimerManager.setInterval(timerFn, 100);
         } else {
             extraTimerInterval = setInterval(timerFn, 100);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     } else {
         console.log('Extra timer not started:', { 
             hasInterval: !!extraTimerInterval, 
@@ -560,15 +548,12 @@ function startExtraTimer() {
  */
 function stopExtraTimer() {
     if (extraTimerInterval) {
-<<<<<<< HEAD
         clearInterval(extraTimerInterval);
-=======
         if (window.TimerManager) {
             window.TimerManager.clearInterval(extraTimerInterval);
         } else {
             clearInterval(extraTimerInterval);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         extraTimerInterval = null;
     }
 }
@@ -774,11 +759,9 @@ function showRewardFailedMessage() {
     notification.classList.remove('hidden');
     
     // Hide after 3 seconds
-<<<<<<< HEAD
     setTimeout(() => {
         hideRewardNotification();
     }, 3000);
-=======
     if (window.TimerManager) {
         window.TimerManager.setTimeout(() => {
             hideRewardNotification();
@@ -788,7 +771,6 @@ function showRewardFailedMessage() {
             hideRewardNotification();
         }, 3000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 /**
@@ -816,11 +798,9 @@ function removeUnclaimedReward(rewardId) {
         hideRewardNotification();
         
         // Show expiration message
-<<<<<<< HEAD
         setTimeout(() => {
             showExpiredRewardNotification(reward);
         }, 500);
-=======
         const showExpiredFn = () => {
             showExpiredRewardNotification(reward);
         };
@@ -829,7 +809,6 @@ function removeUnclaimedReward(rewardId) {
         } else {
             setTimeout(showExpiredFn, 500);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 
     // Reset progress and allow next cycle
@@ -862,11 +841,9 @@ function showSuccessClaimNotification(reward) {
     delete notification.dataset.rewardId;
     
     // Hide after 3 seconds
-<<<<<<< HEAD
     setTimeout(() => {
         hideRewardNotification();
     }, 3000);
-=======
     if (window.TimerManager) {
         window.TimerManager.setTimeout(() => {
             hideRewardNotification();
@@ -876,7 +853,6 @@ function showSuccessClaimNotification(reward) {
             hideRewardNotification();
         }, 3000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 /**
@@ -893,11 +869,9 @@ function showFailedClaimNotification(reward) {
     description.textContent = `Failed to save your ${reward.name}. Please try again.`;
     
     // Hide after 3 seconds
-<<<<<<< HEAD
     setTimeout(() => {
         hideRewardNotification();
     }, 3000);
-=======
     if (window.TimerManager) {
         window.TimerManager.setTimeout(() => {
             hideRewardNotification();
@@ -907,7 +881,6 @@ function showFailedClaimNotification(reward) {
             hideRewardNotification();
         }, 3000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
  
@@ -956,10 +929,8 @@ function showNoInternetMessage() {
         toast.textContent = msg;
         if (!existing) document.body.appendChild(toast);
         requestAnimationFrame(() => { toast.style.opacity = '1'; });
-<<<<<<< HEAD
         clearTimeout(showNoInternetMessage._t);
         showNoInternetMessage._t = setTimeout(() => { toast.style.opacity = '0'; }, 2000);
-=======
         if (window.TimerManager) {
             window.TimerManager.clearTimeout(showNoInternetMessage._t);
             showNoInternetMessage._t = window.TimerManager.setTimeout(() => { toast.style.opacity = '0'; }, 2000);
@@ -967,7 +938,6 @@ function showNoInternetMessage() {
             clearTimeout(showNoInternetMessage._t);
             showNoInternetMessage._t = setTimeout(() => { toast.style.opacity = '0'; }, 2000);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     } catch(_) { alert(msg); }
 }
 
@@ -1043,11 +1013,8 @@ function handleUnload() {
  * CLAIMING -> DONE (after SLVR is generated)
  * DONE -> IDLE (after cleanup)
  */
-<<<<<<< HEAD
 function claimReward(reward) {
-=======
 async function claimReward(reward) {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     // STATE CHECK: Only allow claiming if state is READY
     if (rewardState !== 'READY') {
         console.warn('[Reward] Cannot claim - state is not READY:', rewardState);
@@ -1071,7 +1038,6 @@ async function claimReward(reward) {
         // STEP 2: Stop watchdog (MUST happen before reward is applied)
         stopWatchDog();
         
-<<<<<<< HEAD
         // STEP 3: Generate SLVR code
         const type = reward.type;
         const code = type === 'silver' ? generateAsset('silver') : generateAsset('gold');
@@ -1082,7 +1048,6 @@ async function claimReward(reward) {
         
         // STEP 4: Apply reward (SLVR generation MUST happen before UI cleanup)
         window.AssetBus.addAsset(type, code);
-=======
         // STEP 3: Claim the reward via API
         const response = await fetch('/api/rewards/claim', {
             method: 'POST',
@@ -1094,7 +1059,6 @@ async function claimReward(reward) {
             throw new Error('Claiming API call failed');
         }
         
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         reward.claimed = true;
         reward.claimedAt = Date.now();
         
@@ -1102,17 +1066,13 @@ async function claimReward(reward) {
         try { if (reward._expiryTimer) { clearTimeout(reward._expiryTimer); } } catch(_) {}
         
         // Set reward lock
-<<<<<<< HEAD
         setRewardLock(`reward_lock:extra:${type}`);
-=======
         setRewardLock(`reward_lock:extra:${reward.type}`);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         
         // STATE TRANSITION: CLAIMING -> DONE
         rewardState = 'DONE';
         console.log('[Reward] State: CLAIMING -> DONE');
         
-<<<<<<< HEAD
         // STEP 5: Show success message
         showRewardSuccess(code);
         
@@ -1129,7 +1089,6 @@ async function claimReward(reward) {
             activeReward = null;
             console.log('[Reward] State: DONE -> IDLE (cleanup complete)');
         }, 3000); // Show success for 3 seconds before cleanup
-=======
         // STEP 4: Show success message
         showRewardSuccess(reward.type.toUpperCase());
         
@@ -1143,7 +1102,6 @@ async function claimReward(reward) {
         } else {
             setTimeout(cleanupFn, 3000);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         
         return true;
     } catch (e) {
@@ -1231,7 +1189,6 @@ function showRewardMessage(type, code = null) {
     
     // Auto-expire reward message after 60s if not claimed
     if (!code) {
-<<<<<<< HEAD
         try {
             if (activeReward) {
                 activeReward._expiryTimer = setTimeout(() => {
@@ -1249,7 +1206,6 @@ function showRewardMessage(type, code = null) {
                 resetExtraProgress();
                 deactivateExtraMode();
             }, 60000);
-=======
         const expireFn = () => {
             if (!activeReward || activeReward.claimed) return;
             console.warn('[Reward] expired without claim');
@@ -1271,7 +1227,6 @@ function showRewardMessage(type, code = null) {
             } else {
                 setTimeout(expireFn, 60000);
             }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
     }
 }
@@ -1392,13 +1347,11 @@ function scheduleNextChallenge() {
     
     console.log(`Next challenge scheduled in ${formatTime(randomDelay)}`);
     
-<<<<<<< HEAD
     challengeInterval = setTimeout(() => {
         if (extraModeActive && !challengeActive) {
             startChallenge();
         }
     }, randomDelay);
-=======
     const challengeFn = () => {
         if (extraModeActive && !challengeActive) {
             startChallenge();
@@ -1409,7 +1362,6 @@ function scheduleNextChallenge() {
     } else {
         challengeInterval = setTimeout(challengeFn, randomDelay);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 /**
@@ -1439,13 +1391,11 @@ function startChallenge() {
     }
     
     // Set timeout for challenge failure (1 minute)
-<<<<<<< HEAD
     challengeTimeout = setTimeout(() => {
         if (challengeActive) {
             failChallenge();
         }
     }, 60000); // 1 minute
-=======
     const failFn = () => {
         if (challengeActive) {
             failChallenge();
@@ -1456,7 +1406,6 @@ function startChallenge() {
     } else {
         challengeTimeout = setTimeout(failFn, 60000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 /**
@@ -1485,11 +1434,9 @@ function startChallengeCountdown() {
     if (!codeDisplay) return;
     
     let secondsLeft = 60;
-<<<<<<< HEAD
     const countdownInterval = setInterval(() => {
         if (!challengeActive) {
             clearInterval(countdownInterval);
-=======
     const countFn = () => {
         if (!challengeActive) {
             if (window.TimerManager) {
@@ -1497,7 +1444,6 @@ function startChallengeCountdown() {
             } else {
                 clearInterval(countdownInterval);
             }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             return;
         }
         
@@ -1505,11 +1451,9 @@ function startChallengeCountdown() {
         codeDisplay.textContent = `${__safeTranslate('extraMode.challengePress')} (${secondsLeft} seconds)`;
         
         if (secondsLeft <= 0) {
-<<<<<<< HEAD
             clearInterval(countdownInterval);
         }
     }, 1000);
-=======
             if (window.TimerManager) {
                 window.TimerManager.clearInterval(countdownInterval);
             } else {
@@ -1523,7 +1467,6 @@ function startChallengeCountdown() {
     } else {
         countdownInterval = setInterval(countFn, 1000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 /**
@@ -1537,15 +1480,12 @@ function completeChallenge() {
     
     // Clear timeout
     if (challengeTimeout) {
-<<<<<<< HEAD
         clearTimeout(challengeTimeout);
-=======
         if (window.TimerManager) {
             window.TimerManager.clearTimeout(challengeTimeout);
         } else {
             clearTimeout(challengeTimeout);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         challengeTimeout = null;
     }
     
@@ -1587,11 +1527,9 @@ function failChallenge() {
     showChallengeFailureMessage();
     
     // Deactivate Extra Mode after a brief delay
-<<<<<<< HEAD
     setTimeout(() => {
         deactivateExtraMode();
     }, 2000);
-=======
     if (window.TimerManager) {
         window.TimerManager.setTimeout(() => {
             deactivateExtraMode();
@@ -1601,7 +1539,6 @@ function failChallenge() {
             deactivateExtraMode();
         }, 2000);
     }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 /**
@@ -1629,12 +1566,10 @@ function showChallengeSuccessMessage() {
         codeDisplay.textContent = __safeTranslate('extraMode.challengePassed');
         codeDisplay.style.color = '#00ff00';
         
-<<<<<<< HEAD
         setTimeout(() => {
             codeDisplay.textContent = originalText;
             codeDisplay.style.color = '';
         }, 3000);
-=======
         const successFn = () => {
             codeDisplay.textContent = originalText;
             codeDisplay.style.color = '';
@@ -1644,7 +1579,6 @@ function showChallengeSuccessMessage() {
         } else {
             setTimeout(successFn, 3000);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
 }
 
@@ -1669,28 +1603,22 @@ function stopChallengeSystem() {
     
     // Clear intervals and timeouts
     if (challengeInterval) {
-<<<<<<< HEAD
         clearTimeout(challengeInterval);
-=======
         if (window.TimerManager) {
             window.TimerManager.clearTimeout(challengeInterval);
         } else {
             clearTimeout(challengeInterval);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         challengeInterval = null;
     }
     
     if (challengeTimeout) {
-<<<<<<< HEAD
         clearTimeout(challengeTimeout);
-=======
         if (window.TimerManager) {
             window.TimerManager.clearTimeout(challengeTimeout);
         } else {
             clearTimeout(challengeTimeout);
         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         challengeTimeout = null;
     }
     

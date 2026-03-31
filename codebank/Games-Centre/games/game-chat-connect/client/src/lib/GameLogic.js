@@ -1,7 +1,5 @@
 "use strict";
-// ==========================
 // FULL LOGIC FOR GAMBLING DECK GAME
-// ==========================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createDeck = createDeck;
 exports.evaluateSimpleHand = evaluateSimpleHand;

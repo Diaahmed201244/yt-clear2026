@@ -218,13 +218,10 @@ export class GameWrapper {
 
     _postToGame(msg) {
         if (this.iframe && this.iframe.contentWindow) {
-<<<<<<< HEAD
             this.iframe.contentWindow.postMessage(msg, '*');
-=======
             var __o;
             try { var __s = this.iframe.getAttribute('src') || this.iframe.src || ''; __o = new URL(__s, window.location.href).origin } catch(_) { __o = window.location.origin }
             this.iframe.contentWindow.postMessage(msg, __o);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
     }
 

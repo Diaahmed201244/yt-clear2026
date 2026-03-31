@@ -959,9 +959,7 @@ class ChessGame {
 if (document.fullscreenElement) {
     document.exitFullscreen();
   }
-});// ========================================
 // Game Integration - Auto-added
-// ========================================
 (function() {
     const gameIntegration = window.gameIntegration;
     if (!gameIntegration) {

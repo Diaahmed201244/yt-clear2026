@@ -101,11 +101,8 @@ class GameIntegration {
      */
     _postToParent(msg) {
         if (this.isInIframe && window.parent) {
-<<<<<<< HEAD
             window.parent.postMessage(msg, '*');
-=======
             window.parent.postMessage(msg, window.location.origin);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
     }
 

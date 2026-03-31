@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-<<<<<<< HEAD
   if (ytSoundToggle) {
     ytSoundToggle.addEventListener('click', () => {
       // Notify parent window about sound toggle
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial render
   filterGames();
 });
-=======
   if (ytSoundToggle) {
     ytSoundToggle.addEventListener('click', () => {
       // Notify parent window about sound toggle
@@ -103,4 +101,3 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial render
   filterGames();
 });
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

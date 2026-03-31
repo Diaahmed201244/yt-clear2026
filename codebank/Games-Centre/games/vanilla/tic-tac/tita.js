@@ -32,9 +32,7 @@ gameplay experience is fairly decent.
 
 */
 
-//==================================
 // EVENT BINDINGS
-//==================================
 
 // Bind Esc key to closing the modal dialog
 document.onkeypress = function (evt) {
@@ -53,9 +51,7 @@ window.onclick = function (evt) {
     }
 };
 
-//==================================
 // HELPER FUNCTIONS
-//==================================
 function sumArray(array) {
     var sum = 0,
         i = 0;
@@ -112,18 +108,14 @@ var moves = 0,
     difficulty = 1,
     myGrid = null;
 
-//==================================
 // GRID OBJECT
-//==================================
 
 // Grid constructor
-//=================
 function Grid() {
     this.cells = new Array(9);
 }
 
 // Grid methods
-//=============
 
 // Get free cells in an array.
 // Returns an array of indices in the original Grid.cells array, not the values
@@ -266,9 +258,7 @@ Grid.prototype.reset = function () {
     return true;
 };
 
-//==================================
 // MAIN FUNCTIONS
-//==================================
 
 // executed when the page loads
 function initialize() {
@@ -651,9 +641,7 @@ function endGame(who) {
     }
     setTimeout(restartGame, 800);
 }
-// ========================================
 // Game Integration - Auto-added
-// ========================================
 (function() {
     const gameIntegration = window.gameIntegration;
     if (!gameIntegration) {

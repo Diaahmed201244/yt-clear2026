@@ -40,11 +40,8 @@ class ChessGame {
             gameState.board.forEach((row, i) => {
                 row.forEach((square, j) => {
                     if (square.piece) {
-<<<<<<< HEAD
                         const PieceClass = eval(square.piece.type);
-=======
                         const PieceClass = ({ Pawn, Rook, Knight, Bishop, Queen, King }[square.piece.type]);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                         const piece = new PieceClass(square.piece.color);
                         piece.hasMoved = square.piece.hasMoved;
                         if (piece instanceof Pawn) {

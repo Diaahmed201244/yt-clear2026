@@ -458,9 +458,7 @@ window.camera = camera;
 window.controls = controls;
 window.anim = anim;
 
-// ========================================
 // Game Integration - Auto-added
-// ========================================
 (function() {
     const gameIntegration = window.gameIntegration;
     if (!gameIntegration) {

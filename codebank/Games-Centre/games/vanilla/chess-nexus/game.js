@@ -37,12 +37,10 @@ class ChessGame {
             const gameState = JSON.parse(savedGame);
             
             // Restore board state
-<<<<<<< HEAD
             gameState.board.forEach((row, i) => {
                 row.forEach((square, j) => {
                     if (square.piece) {
                         const PieceClass = eval(square.piece.type);
-=======
             const PieceClasses = { Pawn, Rook, Knight, Bishop, Queen, King };
             gameState.board.forEach((row, i) => {
                 row.forEach((square, j) => {
@@ -52,7 +50,6 @@ class ChessGame {
                             console.error('[Chess] Unknown piece type:', square.piece.type);
                             return;
                         }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                         const piece = new PieceClass(square.piece.color);
                         piece.hasMoved = square.piece.hasMoved;
                         if (piece instanceof Pawn) {

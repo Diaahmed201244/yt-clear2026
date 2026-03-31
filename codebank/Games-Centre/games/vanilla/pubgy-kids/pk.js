@@ -124,9 +124,7 @@ livingEnnemies().forEach(ennemy => {
 
 });
 
-// ========================================
 // Game Integration - Auto-added
-// ========================================
 (function() {
     const gameIntegration = window.gameIntegration;
     if (!gameIntegration) {

@@ -193,9 +193,7 @@ wheel.addEventListener("click", spinWheel);
 // Initialize history display
 updateHistory();
 updateMoney();
-// ========================================
 // Game Integration - Auto-added
-// ========================================
 (function() {
     const gameIntegration = window.gameIntegration;
     if (!gameIntegration) {

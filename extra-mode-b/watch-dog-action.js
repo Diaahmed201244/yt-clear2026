@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Watch-dog prayer time logic for Extra Mode
 
 
@@ -9,7 +8,6 @@ let watchDogAudioInst = null;
 // Fetch real local prayer times using Aladhan API
 function fetchPrayerTimes() {
   // Get user's location
-=======
 // Action Layer: Watch-dog prayer time logic for Extra Mode
 // Path: /extra-mode-b/watch-dog-action.js
 
@@ -26,7 +24,6 @@ let watchDogTimerId = null;
 
 // Fetch real local prayer times using Aladhan API
 function fetchPrayerTimes() {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       const lat = position.coords.latitude;
@@ -48,7 +45,6 @@ function fetchPrayerTimes() {
               { name: 'Maghrib', time: t.Maghrib },
               { name: 'Isha', time: t.Isha }
             ];
-<<<<<<< HEAD
             console.log('Fetched prayer times:', PRAYER_TIMES);
           }
         })
@@ -62,7 +58,6 @@ function fetchPrayerTimes() {
 }
 
 // Fetch prayer times on load
-=======
             console.log('[ActionLayer] Fetched prayer times:', PRAYER_TIMES);
           }
         })
@@ -74,7 +69,6 @@ function fetchPrayerTimes() {
 }
 
 // Initial fetch
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 fetchPrayerTimes();
 
 // Returns true if current time is within 30 min before/after any prayer
@@ -82,10 +76,7 @@ function isWithinPrayerWindow() {
   const now = new Date();
   const nowMinutes = now.getHours() * 60 + now.getMinutes();
   for (const prayer of PRAYER_TIMES) {
-<<<<<<< HEAD
     // Prayer time may be in "HH:mm" or "HH:mm (24h)" format
-=======
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     let timeStr = prayer.time.split(' ')[0];
     const [h, m] = timeStr.split(':').map(Number);
     const prayerMinutes = h * 60 + m;
@@ -96,7 +87,6 @@ function isWithinPrayerWindow() {
   return false;
 }
 
-<<<<<<< HEAD
 // Watch-dog activation logic
 function setWatchDogActive(active) {
   window.watchDogActive = active;
@@ -113,7 +103,6 @@ function setWatchDogActive(active) {
 }
 
 // Call this when Extra Mode is toggled
-=======
 /**
  * Triggers the watchdog state through the Adapter singleton
  * @param {boolean} active 
@@ -154,7 +143,6 @@ function setWatchDogActive(active) {
 }
 
 // Handle Extra Mode changes
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function handleExtraModeChange(isActive) {
   if (isActive) {
     if (isWithinPrayerWindow()) {
@@ -167,7 +155,6 @@ function handleExtraModeChange(isActive) {
   }
 }
 
-<<<<<<< HEAD
 // Optionally, check every minute to re-activate after prayer window
 setInterval(() => {
   if (window.extraModeActive) {
@@ -246,7 +233,6 @@ function scheduleNextWatchDog(){
 
 // Expose for testing
 window.getRandomWatchDogIntervalMs = getRandomWatchDogIntervalMs;
-=======
 // Periodic check using TimerManager
 if (window.TimerManager) {
   window.TimerManager.setInterval(() => {
@@ -266,4 +252,3 @@ if (window.TimerManager) {
 // Global exports
 window.handleExtraModeChange = handleExtraModeChange;
 window.isWithinPrayerWindow = isWithinPrayerWindow;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
