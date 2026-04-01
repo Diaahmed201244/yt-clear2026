@@ -6,6 +6,8 @@ import multer from 'multer'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
+
+const router = Router()
 // Configure multer
 const upload = multer({
   dest: '/tmp/',
