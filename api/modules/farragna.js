@@ -119,6 +119,7 @@ export async function webhookCloudflare(req, res) {
 router.post('/webhook/cloudflare', webhookCloudflare)
 
 // View video (only ready). Count unique view and reward owner once.
+router.get('/view/:id', async (req, res) => {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -129,19 +130,31 @@ router.post('/webhook/cloudflare', webhookCloudflare)
       await client.query('ROLLBACK')
       return res.status(404).json({ ok: false, error: 'NOT_READY' })
     }
-      await client.query('UPDATE farragna_videos SET views_count=views_count+1, rewards_earned=rewards_earned+1 WHERE id=$1', [id])
-    }
-    await client.query('COMMIT')
-
+    
+    // Check if user has already viewed this video
+    const userId = req.user?.clerkUserId || 'anonymous'
+    const exists = await client.query(
+      'SELECT id FROM farragna_views WHERE video_id=$1 AND user_id=$2',
+      [id, userId]
+    )
+    
     if (!exists.rowCount) {
+      await client.query('UPDATE farragna_videos SET views_count=views_count+1, rewards_earned=rewards_earned+1 WHERE id=$1', [id])
+      await client.query(
+        'INSERT INTO farragna_views (video_id, user_id) VALUES ($1, $2)',
+        [id, userId]
+      )
+      
       try { await grantReward({ userId: v.owner_id, amount: 1, source: 'watch', meta: { video_id: id } }) } catch (_) {}
     }
-
+    
+    await client.query('COMMIT')
     res.json({ ok: true, id: v.id, playback_url: v.playback_url, status: v.status })
   } catch (e) {
-    try { await pool.query('ROLLBACK') } catch (_) {}
+    try { await client.query('ROLLBACK') } catch (_) {}
     res.status(500).json({ ok: false, error: 'VIEW_ERROR' })
   } finally {
+    client.release()
   }
 })
 
