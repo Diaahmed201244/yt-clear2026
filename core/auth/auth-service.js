@@ -56,6 +56,8 @@ export const AuthService = {
         if (!session) return null;
 
         // Fetch partial user info to cache in request
+        const userRes = await query(
+            'SELECT id, username, email FROM users WHERE id = $1',
             [session.userId]
         );
 
