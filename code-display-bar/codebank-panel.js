@@ -5,6 +5,7 @@
     'use strict';
     
     // CodeBank side panel functionality
+    function initCodeBankPanel() {
         const panel = document.getElementById('codebank-panel');
         const toggleBtn = document.getElementById('codebank-toggle');
         const closeBtn = document.getElementById('codebank-close');

@@ -29,19 +29,21 @@ function __rehydrateFromSnapshot__(){
 }
 
 export const CodeBankBridge = {
-  init() {
+    init() {
     try {
       if (typeof window.initCodeBankPanel === 'function') {
         window.initCodeBankPanel();
       }
-    try {
-      const d = e && e.detail || {};
-      const latest = d.latest || '';
-      if (!latest && __LAST_LATEST_CODE__) return;
-      if (latest) { __LAST_LATEST_CODE__ = latest; __applyLatest__(latest); }
-    } catch(_){ }
-  });
-  window.addEventListener('assets:updated', (e) => {
+    } catch(_) {}
+    window.addEventListener('assets:latest', (e) => {
+      try {
+        const d = e && e.detail || {};
+        const latest = d.latest || '';
+        if (!latest && __LAST_LATEST_CODE__) return;
+        if (latest) { __LAST_LATEST_CODE__ = latest; __applyLatest__(latest); }
+      } catch(_){ }
+    });
+    window.addEventListener('assets:updated', (e) => {
     const d = e && e.detail || {};
     const latest = d.latest;
     const count = d.count;
