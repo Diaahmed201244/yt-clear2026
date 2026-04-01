@@ -156,16 +156,16 @@ const schemaStatements = [
 
   // ── Tracks which events from event_store have been applied (idempotency) ──
   `CREATE TABLE IF NOT EXISTS applied_events (
-    event_id INT PRIMARY KEY,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    event_id BIGINT PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`,
 
   // ── Append-only event store for CQRS / event-sourcing pipeline ──
   `CREATE TABLE IF NOT EXISTS event_store (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id BIGSERIAL PRIMARY KEY,
     event_type TEXT NOT NULL,
     payload TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`,
 
   // ── Materialised balance projection per (user, asset_type) pair ──
@@ -173,7 +173,7 @@ const schemaStatements = [
     user_id TEXT NOT NULL,
     asset_type TEXT NOT NULL,
     amount INT DEFAULT 0,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, asset_type)
   )`,
 

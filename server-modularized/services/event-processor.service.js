@@ -64,7 +64,7 @@ export async function startEventProcessor() {
 
               // Idempotency guard
               await client.query(
-                'INSERT OR IGNORE INTO applied_events(event_id) VALUES ($1)',
+                'INSERT INTO applied_events(event_id) VALUES ($1) ON CONFLICT DO NOTHING',
                 [ev.id]
               );
               const check = await client.query(
@@ -158,12 +158,14 @@ export async function startEventProcessor() {
           } catch (_) {
             // Non-fatal — will retry next loop
           }
-        } catch (_) {
-          await new Promise((r) => setTimeout(r, 300));
+        } catch (err) {
+          console.error('[EVENT-PROCESSOR] loop error:', err?.message || err);
+          await new Promise((r) => setTimeout(r, 5000)); // wait 5s, not 300ms
         }
       }
     })();
-  } catch (_) {
+  } catch (err) {
+    console.error('[EVENT-PROCESSOR] startup error:', err?.message || err);
     // Startup failure is non-fatal — event processing simply won't run
   }
 }
