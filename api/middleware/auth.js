@@ -3,6 +3,21 @@ import { query } from '../config/db.js';
 
 export const devSessions = new Map();
 
+export const requireRole = (role) => {
+  return (req, res, next) => {
+    if (!req.user) {
+      return res.status(401).json({ ok: false, error: 'unauthorized', message: 'No user context' });
+    }
+    
+    // Check if user has the required role
+    if (req.user.role !== role && req.user.role !== 'admin') {
+      return res.status(403).json({ ok: false, error: 'forbidden', message: `Requires ${role} role` });
+    }
+    
+    next();
+  };
+};
+
 export const requireAuth = async (req, res, next) => {
   try {
     let token = (req.cookies && req.cookies.session_token) || null;
