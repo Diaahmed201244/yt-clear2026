@@ -18,6 +18,14 @@ export const requireRole = (role) => {
   };
 };
 
+// Gate validation middleware (placeholder for now)
+export const requireGateValid = () => {
+  return (req, res, next) => {
+    // For now, just pass through - this can be enhanced later
+    next();
+  };
+};
+
 export const requireAuth = async (req, res, next) => {
   try {
     let token = (req.cookies && req.cookies.session_token) || null;
