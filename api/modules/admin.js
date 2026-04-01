@@ -1,7 +1,18 @@
 import { Router } from 'express'
 import bcrypt from 'bcryptjs'
+import rateLimit from 'express-rate-limit'
+import { requireRole } from '../middleware/auth.js'
 
 const router = Router()
+
+// Rate limiting for admin routes
+const adminLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { ok: false, error: 'ADMIN_RATE_LIMIT_EXCEEDED' },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
 
 router.use(adminLimiter)
 
