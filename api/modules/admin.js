@@ -5,8 +5,6 @@ const router = Router()
 
 router.use(adminLimiter)
 
-})
-
 // View audit logs with filters and pagination
 router.get('/audit', requireRole('admin'), async (req, res) => {
   const { action, actor, from, to, page = 1, page_size = 50 } = req.query || {}
@@ -85,7 +83,6 @@ router.use((err, _req, res, _next) => {
   res.status(500).json({ ok: false, error: 'ADMIN_INTERNAL_ERROR' })
 })
 
-export default router
 // Bankode Gate verify (ADMIN+)
 router.post('/bankode/verify', requireRole('admin'), async (req, res) => {
   const { password } = req.body || {}
@@ -168,3 +165,5 @@ router.delete('/farragna/:id', requireGateValid(), requireRole('admin'), async (
     res.status(500).json({ ok: false, error: 'ADMIN_FARRAGNA_DELETE_FAILED' })
   }
 })
+
+export default router

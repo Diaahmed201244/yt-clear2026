@@ -3,7 +3,7 @@ import { Router } from 'express'
 const router = Router()
 
 // Configuration
-}
+const RATE_LIMIT_SECONDS = 60
 
 // Rate limiting storage (in-memory for now, should use Redis in production)
 const rateLimitStore = new Map()
@@ -41,6 +41,9 @@ router.post('/save', async (req, res) => {
       return res.status(429).json({ ok: false, error: 'RATE_LIMIT_EXCEEDED' })
     }
 
+    // Check for duplicate code
+    const duplicateCheck = await query(
+      'SELECT id FROM codes WHERE code = $1',
       [code]
     )
     
@@ -48,6 +51,23 @@ router.post('/save', async (req, res) => {
       return res.status(409).json({ ok: false, error: 'DUPLICATE_CODE' })
     }
 
+    // Save the code
+    const result = await query(
+      'INSERT INTO codes (user_id, code, source, metadata) VALUES ($1, $2, $3, $4) RETURNING id',
+      [identity.userId, code, source, JSON.stringify(metadata || {})]
+    )
+    
+    const savedCode = result.rows[0]
+
+    await auditLog({
+      actor_user_id: identity.userId,
+      actor_role: 'user',
+      action: 'CODE_SAVED',
+      target_type: 'code',
+      target_id: savedCode.id,
+      metadata: {
+        source,
+        code_length: code.length
       },
       ip_address: req.ip,
       user_agent: req.get('User-Agent')
@@ -64,6 +84,9 @@ router.post('/save', async (req, res) => {
 
 // Legacy endpoints for backward compatibility (can be removed later)
 router.get('/last', async (req, res) => {
+  try {
+    const r = await query(
+      'SELECT * FROM codes WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1',
       [identity.userId]
     )
     if (!r.rows[0]) return res.status(404).end()
@@ -82,6 +105,11 @@ router.post('/generate', async (req, res) => {
 
   try {
     const code = generateCode()
+    
+    // Save the generated code
+    const result = await query(
+      'INSERT INTO codes (user_id, code, source) VALUES ($1, $2, $3) RETURNING id, created_at, expires_at',
+      [identity.userId, code, 'legacy']
     )
 
     const savedCode = result.rows[0]
@@ -111,6 +139,12 @@ router.post('/generate', async (req, res) => {
   }
 })
 
+// Send codes to another user
+router.post('/send', async (req, res) => {
+  const { codes, receiverEmail } = req.body
+  
+  try {
+    // Check if sender is trying to send to themselves
     const senderResult = await query(
       'SELECT email FROM users WHERE id = $1',
       [identity.userId]
@@ -134,6 +168,7 @@ router.post('/generate', async (req, res) => {
     const codesToSend = []
     for (const code of codes) {
       const codeResult = await query(
+        'SELECT * FROM codes WHERE code = $1 AND user_id = $2',
         [code, identity.userId]
       )
       
@@ -175,6 +210,9 @@ router.post('/generate', async (req, res) => {
       sentCodesCount: codesToSend.length,
       receiverEmail: receiverEmail
     })
+  } catch (error) {
+    console.error('[CODE SEND] Error:', error)
+    res.status(500).json({ success: false, message: 'INTERNAL_SERVER_ERROR' })
   }
 })
 
