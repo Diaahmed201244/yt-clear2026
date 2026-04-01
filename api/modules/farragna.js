@@ -14,7 +14,6 @@ const upload = multer({
 })
 
 // Configure Cloudinary
-})
 
 // Helper functions
 function extractMetadataFromFilename(filename) {
