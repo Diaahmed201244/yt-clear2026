@@ -25,6 +25,9 @@ router.post('/redeem', async (req, res) => {
     }
     
     // Mark code as redeemed
+    await client.query(
+      'UPDATE corsa_codes SET redeemed_at = NOW() WHERE id = $1',
+      [row.id]
     )
     
     await client.query('COMMIT')
