@@ -10,6 +10,7 @@ export const AuthService = {
      */
     async loginOrRegister(username, email) {
         // 1. Find or Create User
+        const userRes = await query(
             'SELECT * FROM users WHERE email = $1 OR username = $2',
             [email, username]
         );
