@@ -24,5 +24,6 @@ export async function query(text, params) {
   }
 }
 
-// Export pool
+// Export pool and db (alias for pool)
 export { pool };
+export const db = pool;
