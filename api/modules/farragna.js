@@ -57,6 +57,7 @@ function cfAccountId() {
 }
 
 // Request a direct upload URL (no server file handling)
+router.post('/direct-upload', async (req, res) => {
   try {
     const id = cfAccountId()
     const url = `https://api.cloudflare.com/client/v4/accounts/${id}/stream/direct_upload`
@@ -69,6 +70,8 @@ function cfAccountId() {
 
     try {
       await query(
+        'INSERT INTO farragna_videos (id, owner_id, stream_uid, status) VALUES ($1, $2, $3, $4)',
+        [crypto.randomUUID(), req.user?.clerkUserId || 'anonymous', stream_uid, 'pending']
       )
     } catch (_) {}
 
