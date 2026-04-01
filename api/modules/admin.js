@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import bcrypt from 'bcryptjs'
 import rateLimit from 'express-rate-limit'
-import { requireRole } from '../middleware/auth.js'
+import { requireRole, requireGateValid } from '../middleware/auth.js'
 
 const router = Router()
 
