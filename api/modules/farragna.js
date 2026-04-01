@@ -205,6 +205,8 @@ router.get('/trending', async (_req, res) => {
   }
 })
 
+// Bulk upload endpoint
+router.post('/upload', upload.any(), async (req, res) => {
   try {
     const files = req.files
     if (!files || files.length === 0) {
@@ -215,6 +217,8 @@ router.get('/trending', async (_req, res) => {
     const errors = []
     let successCount = 0
     let failCount = 0
+    const maxSize = 500 * 1024 * 1024 // 500MB limit
+    
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileIndex = i + 1
