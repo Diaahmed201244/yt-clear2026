@@ -227,13 +227,15 @@ export async function applyNeonCompressionDDL() {
   try {
     for (const sql of schemaStatements) {
       try {
-        await query(sql);
+        await querySilent(sql);
       } catch (e) {
-        console.warn('[DB DDL] stmt failed:', e.message);
+        // Silent wrapper already handles logging
       }
     }
-    console.log('✅ [DB] Schema Verified on startup');
+    if (LOG_LEVEL !== 'error') {
+      console.log('✅ [DB] Schema Verified on startup');
+    }
   } catch (e) {
-    console.warn('[DB DDL] apply failed:', e.message);
+    // Silent wrapper already handles logging
   }
 }

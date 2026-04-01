@@ -31,6 +31,23 @@ const __sseClients = new Map();
  * @param {string} userId
  * @param {object} payload — will be JSON-stringified into the `data:` field
  */
+let sseErrorCount = 0;
+let lastSSEErrorTime = 0;
+
+function logSSEError(msg) {
+  const now = Date.now();
+  if (now - lastSSEErrorTime > 60000) { // Reset every minute
+    sseErrorCount = 0;
+    lastSSEErrorTime = now;
+  }
+  sseErrorCount++;
+  if (sseErrorCount <= 3) {
+    console.error('[SSE]', msg);
+  } else if (sseErrorCount === 4) {
+    console.error('[SSE] ... suppressing further errors');
+  }
+}
+
 function emitSSE(userId, payload) {
   try {
     const set = __sseClients.get(String(userId));
@@ -40,11 +57,11 @@ function emitSSE(userId, payload) {
       try {
         res.write(data);
       } catch (err) {
-        console.error('[SSE] Write error:', err);
+        logSSEError(`Write error: ${err.message}`);
       }
     }
   } catch (err) {
-    console.error('[SSE] Broadcast error:', err);
+    logSSEError(`Broadcast error: ${err.message}`);
   }
 }
 
@@ -61,7 +78,7 @@ function broadcastSSE(event, data) {
       try {
         res.write(frame);
       } catch (err) {
-        console.error('[SSE] Broadcast write error:', err);
+        logSSEError(`Broadcast write error: ${err.message}`);
       }
     }
   }
@@ -84,7 +101,7 @@ function addClient(uid, res, req) {
     try {
       res.write(':\n\n');
     } catch (err) {
-      console.error('[SSE] Keep-alive error:', err);
+      logSSEError(`Keep-alive error: ${err.message}`);
     }
   }, 15_000);
 
@@ -94,7 +111,7 @@ function addClient(uid, res, req) {
       clearInterval(keep);
       __sseClients.get(id)?.delete(res);
     } catch (err) {
-      console.error('[SSE] Close cleanup error:', err);
+      logSSEError(`Close cleanup error: ${err.message}`);
     }
   });
 }
