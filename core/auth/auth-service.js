@@ -18,6 +18,9 @@ export const AuthService = {
         let user;
         if (userRes.rows.length === 0) {
             // Create New
+            const createRes = await query(
+                'INSERT INTO users (username, email) VALUES ($1, $2) RETURNING *',
+                [username, email]
             );
             user = createRes.rows[0];
         } else {
