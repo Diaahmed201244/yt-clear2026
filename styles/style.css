@@ -200,8 +200,6 @@ body {
     align-items: center;
     background-color: #000; /* Set background color to black */
     color: #fff; /* Set text color to white for better contrast */
-<<<<<<< HEAD
-=======
     position: relative;
     overflow: hidden; /* Hide anything that overflows the bounds */
 }
@@ -233,7 +231,6 @@ body {
     z-index: 10;
     background: transparent;
     pointer-events: auto;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }
 
 #counter-container {

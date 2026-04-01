@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -38,7 +37,6 @@ const ScrollBar = React.forwardRef((_a, ref) => {
 });
 exports.ScrollBar = ScrollBar;
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
-=======
 import * as React from "react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { cn } from "@/lib/utils";
@@ -76,4 +74,3 @@ const ScrollBar = React.forwardRef(({ className, orientation = "vertical", ...pr
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
 export { ScrollArea, ScrollBar };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

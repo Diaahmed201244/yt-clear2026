@@ -19,7 +19,7 @@ export const adminLimiter = rateLimit({
 
 export function requireGateValid() {
   return async (req, res, next) => {
-    try {
+    try { 
       // If no user is authenticated, return 401 instead of 403
       if (!req.user) return res.status(401).json({ ok: false, error: 'UNAUTHORIZED' })
       

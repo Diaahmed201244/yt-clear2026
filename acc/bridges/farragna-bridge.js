@@ -62,7 +62,7 @@ class FarragnaBridge extends ServiceBridgeBase {
             return;
         }
 
-        try {
+        try { 
             const result = await this.requestTransaction('like', cost, 'silver', {
                 contentId,
                 contentOwnerId,
@@ -119,7 +119,7 @@ class FarragnaBridge extends ServiceBridgeBase {
             return;
         }
 
-        try {
+        try { 
             const result = await this.requestTransaction('like', amount, 'silver', {
                 contentId,
                 customMessage: message,

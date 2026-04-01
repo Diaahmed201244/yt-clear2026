@@ -9,9 +9,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
 ;(function(){
   'use strict';
   
-  // ============================================
   // SECTION 1: SINGLETON GUARD & RELOAD LOOP GUARD
-  // ============================================
   
   if (typeof window !== 'undefined') {
     // Safe reload function
@@ -52,18 +50,16 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     sessionStorage.setItem('__last_reload__', now.toString());
 
     if (window.__AUTH_CORE_LOADED__) { 
-      try { console.error('[AuthCore] Duplicate load detected. Skipping initialization.'); } catch(_){}; 
+      try {  console.error('[AuthCore] Duplicate load detected. Skipping initialization.'); } catch(_){}; 
       return; 
     }
     window.__AUTH_CORE_LOADED__ = true;
   }
 
-  // ============================================
   // SECTION 2: UTILITY FUNCTIONS
-  // ============================================
   
   function getCookie(name){
-    try {
+    try { 
       const m = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
       return m ? decodeURIComponent(m[2]) : null;
     } catch(_) { return null }
@@ -76,9 +72,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     });
   }
 
-  // ============================================
   // SECTION 3: AUTHCORE STATE MANAGEMENT
-  // ============================================
 
   const DEBUG_MODE = window.AUTH_DEBUG !== undefined ? window.AUTH_DEBUG : true;
   function authLog(...args) {
@@ -130,7 +124,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
           
           // Try to recover user data from storage if missing (from actly.md)
           if (!newState.user) {
-            try {
+            try { 
               const stored = localStorage.getItem('auth_user') || localStorage.getItem('user_data');
               if (stored) {
                 newState.user = JSON.parse(stored);
@@ -317,7 +311,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     },
 
     async _fetchUserFromSession(sessionId) {
-        try {
+        try { 
             const response = await fetch(`${window.API_BASE}/api/auth/session`, {
                 method: 'GET',
                 headers: {
@@ -338,7 +332,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     },
 
     async _fetchMeAndApply(){
-      try {
+      try { 
         const headers = { 'Accept': 'application/json' };
         if (this._sessionId) {
           headers['Authorization'] = `Bearer ${this._sessionId}`;
@@ -351,7 +345,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
         
         let payload = null;
         if (r && r.ok) { 
-          try { payload = await r.json(); } catch(_) { payload = null } 
+          try {  payload = await r.json(); } catch(_) { payload = null } 
         }
         
         const u = payload && payload.user || null;
@@ -374,7 +368,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
         }
         
         if (this._status === 'authenticated') { 
-          try { Object.freeze(this._state); } catch(_){}; 
+          try {  Object.freeze(this._state); } catch(_){}; 
           this._locked = true; 
         }
       } catch(_) {
@@ -384,7 +378,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
       
       this._syncAuthState();
       
-      try { 
+      try {  
         window.dispatchEvent(new CustomEvent('auth:ready', { 
           detail: { 
             authenticated: this._authenticated, 
@@ -401,7 +395,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
       if (this._initPromise) return this._initPromise;
       
       this._initPromise = (async () => {
-        try {
+        try { 
           if (window.__AUTH_INIT_DONE__) return;
           window.__AUTH_INIT_DONE__ = true;
 
@@ -409,7 +403,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
           this._status = 'loading';
 
           // Try to recover from IDB first
-          try {
+          try { 
             const DB_NAME = 'AuthDB';
             const DB_VERSION = 2;
             const request = indexedDB.open(DB_NAME, DB_VERSION);
@@ -452,7 +446,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
 
           // IFRAME AUTH INHERITANCE: Check if parent has Auth
           if (window.self !== window.top) {
-            try {
+            try { 
               if (window.top && window.top.Auth && typeof window.top.Auth.isAuthenticated === 'function') {
                 console.log('[AuthCore] Iframe detected parent Auth, inheriting state');
                 const parentAuth = window.top.Auth;
@@ -496,7 +490,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
           }
 
           if (cachedUserStr && this._sessionId) {
-            try {
+            try { 
               const cachedUser = JSON.parse(cachedUserStr);
               const cachedSessionId = localStorage.getItem('__cached_session_id__');
               
@@ -547,7 +541,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
             window.__resolveAuthReady && window.__resolveAuthReady(false);
             this._syncAuthState();
             
-            try { 
+            try {  
               window.dispatchEvent(new CustomEvent('auth:ready', { 
                 detail: { authenticated: false, status: 'unauthenticated', userId: null, sessionId: null, user: null } 
               })); 
@@ -575,25 +569,25 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     getState(){ return { ...this._state } },
 
     async refresh(){
-      try { console.log('[AuthCore] refresh() start'); } catch(_){};
+      try {  console.log('[AuthCore] refresh() start'); } catch(_){};
       if (this._locked) { 
-        try { console.log('[AuthCore] refresh() skipped: state locked'); } catch(_){}; 
+        try {  console.log('[AuthCore] refresh() skipped: state locked'); } catch(_){}; 
         return; 
       }
       
       const beforeStatus = this._status;
       await this._fetchMeAndApply();
       
-      try { console.log('[AuthCore] refresh() done', { from: beforeStatus, to: this._status }); } catch(_){}
+      try {  console.log('[AuthCore] refresh() done', { from: beforeStatus, to: this._status }); } catch(_){}
       
       if (beforeStatus !== this._status) {
-        try { console.log('[AuthCore] auth:changed →', { 
+        try {  console.log('[AuthCore] auth:changed →', { 
           authenticated: this.isAuthenticated(), 
           status: this._status,
           userId: this._userId 
         }); } catch(_){}
         
-        try { 
+        try {  
           window.dispatchEvent(new CustomEvent('auth:changed', { 
             detail: { 
               authenticated: this.isAuthenticated(), 
@@ -721,11 +715,9 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     }
   };
 
-  // ============================================
   // SECTION 4: GLOBAL AUTH INTERFACE
-  // ============================================
 
-  try { 
+  try {  
     if (window.self === window.top) {
       // Global Auth interface
       window.Auth = {
@@ -772,9 +764,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     }
   } catch(_) {}
 
-  // ============================================
   // SECTION 5: POSTMESSAGE AUTH BRIDGE
-  // ============================================
 
   const AuthBridge = {
     // Configure these for your deployment
@@ -825,7 +815,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
       
       // Check for wildcard subdomains (if configured)
       // WARNING: Only use for trusted domains
-      try {
+      try { 
         const url = new URL(origin);
         const hostname = url.hostname;
         
@@ -929,7 +919,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
       });
       
       // Send response
-      try {
+      try { 
         source.postMessage(authState, origin);
         
         if (this.config.debug) {
@@ -980,7 +970,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     
     broadcast: function(message) {
       this.connections.forEach((conn, requestId) => {
-        try {
+        try { 
           // Check if connection is stale (no ping for 5 minutes)
           if (Date.now() - conn.lastPing > 5 * 60 * 1000) {
             this.connections.delete(requestId);
@@ -1026,16 +1016,14 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     window.AuthBridge = AuthBridge;
   }
 
-  // ============================================
   // SECTION 6: GLOBAL PROMISE & INIT
-  // ============================================
 
   window.authReadyPromise = new Promise((resolve) => {
     window.__resolveAuthReady = resolve;
   });
 
   // Initialize AuthCore
-  try { 
+  try {  
     AuthCore.init();
   } catch(e){
     console.error('[AuthCore] Initialization error:', e);
@@ -1073,11 +1061,9 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     }
   }, 5000); // 5 second timeout
 
-  // ============================================
   // SECTION 7: LEGACY BRIDGE (usersManager)
-  // ============================================
   
-  try {
+  try { 
     if (!window.usersManager) {
       window.usersManager = {
         addUser: async (userData) => {
@@ -1102,9 +1088,7 @@ console.log('[AuthCore] API_BASE set to:', window.API_BASE);
     console.warn('[AuthCore] Could not initialize usersManager bridge:', e.message);
   }
 
-  // ============================================
   // SECTION 8: AUTH STATE AUTO-CORRECTION PATCH (from actly.md)
-  // ============================================
 
   (function() {
     'use strict';

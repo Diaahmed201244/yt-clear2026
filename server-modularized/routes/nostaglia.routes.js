@@ -48,7 +48,7 @@ export const nostagliaStore = {
  * Sends an immediate `hello` event on connection.
  */
 router.get('/nostaglia/stream', (req, res) => {
-  try {
+  try { 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
@@ -60,7 +60,7 @@ router.get('/nostaglia/stream', (req, res) => {
     // Register client — auto-cleanup on close handled by service
     addNostagliaClient(res, req);
   } catch (err) {
-    try {
+    try { 
       res.status(500).end();
     } catch (_) {}
   }

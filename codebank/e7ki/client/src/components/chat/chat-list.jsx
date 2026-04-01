@@ -8,10 +8,7 @@ import { formatDistanceToNow } from "date-fns";
 import { Image, Mic, Video, FileText, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
-<<<<<<< HEAD
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function getInitials(name) {
     return name
         .split(" ")
@@ -20,7 +17,6 @@ function getInitials(name) {
         .toUpperCase()
         .slice(0, 2);
 }
-<<<<<<< HEAD
 function getMessagePreview(message) {
     switch (message.type) {
         case "image":
@@ -73,7 +69,6 @@ function EmptyState() {
 export function ChatList() {
     const { chats, activeChat, setActiveChat, isLoading } = useChat();
     const parentRef = useRef(null);
-=======
 
 function getMessagePreview(message) {
     switch (message.type) {
@@ -145,14 +140,12 @@ export function ChatList() {
     const { chats, activeChat, setActiveChat, isLoading } = useChat();
     const parentRef = useRef(null);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const rowVirtualizer = useVirtualizer({
         count: chats.length,
         getScrollElement: () => parentRef.current,
         estimateSize: () => 76,
         overscan: 10,
     });
-<<<<<<< HEAD
     if (isLoading) {
         return <ChatListSkeleton />;
     }
@@ -206,7 +199,6 @@ export function ChatList() {
         </div>
       </div>
     </ScrollArea>);
-=======
 
     if (isLoading) {
         return <ChatListSkeleton />;
@@ -291,5 +283,4 @@ export function ChatList() {
             </div>
         </ScrollArea>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

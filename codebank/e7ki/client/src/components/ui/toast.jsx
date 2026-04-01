@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -69,7 +68,6 @@ const ToastDescription = React.forwardRef((_a, ref) => {
 });
 exports.ToastDescription = ToastDescription;
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
-=======
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva } from "class-variance-authority";
@@ -170,4 +168,3 @@ export {
     ToastClose,
     ToastAction,
 };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

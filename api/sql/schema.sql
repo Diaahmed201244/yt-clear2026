@@ -80,32 +80,26 @@ CREATE TABLE IF NOT EXISTS transactions (
 CREATE TABLE IF NOT EXISTS farragna_videos (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   owner_id UUID REFERENCES users(id) ON DELETE SET NULL,
-<<<<<<< HEAD
   cloud_public_id TEXT,
   url TEXT NOT NULL,
-=======
   stream_uid TEXT,
   status TEXT DEFAULT 'processing',
   cloud_public_id TEXT,
   url TEXT NOT NULL,
   playback_url TEXT,
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   thumbnail_url TEXT,
   caption TEXT,
   category TEXT,
   duration INTEGER,
-<<<<<<< HEAD
   bytes BIGINT,
   likes INTEGER DEFAULT 0,
   comments_count INTEGER DEFAULT 0,
-=======
   size BIGINT,
   bytes BIGINT,
   views_count INTEGER DEFAULT 0,
   likes INTEGER DEFAULT 0,
   comments_count INTEGER DEFAULT 0,
   rewards_earned INTEGER DEFAULT 0,
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 CREATE TABLE IF NOT EXISTS farragna_comments (
@@ -115,8 +109,6 @@ CREATE TABLE IF NOT EXISTS farragna_comments (
   content TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
-<<<<<<< HEAD
-=======
 CREATE TABLE IF NOT EXISTS farragna_likes (
   user_id UUID REFERENCES users(id) ON DELETE CASCADE,
   video_id UUID REFERENCES farragna_videos(id) ON DELETE CASCADE,
@@ -143,7 +135,6 @@ CREATE TABLE IF NOT EXISTS farragna_search_history (
   type TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 -- Shots (photos)
 CREATE TABLE IF NOT EXISTS shots (
@@ -161,10 +152,7 @@ CREATE TABLE IF NOT EXISTS shots_photos (
   cloud_public_id TEXT,
   url TEXT NOT NULL,
   caption TEXT,
-<<<<<<< HEAD
-=======
   likes INTEGER DEFAULT 0,
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -281,10 +269,7 @@ ALTER TABLE IF EXISTS setta_transactions ADD COLUMN IF NOT EXISTS user_id UUID;
 CREATE INDEX IF NOT EXISTS idx_transactions_user ON transactions(user_id);
 CREATE INDEX IF NOT EXISTS idx_setta_tx_user ON setta_transactions(user_id);
 CREATE INDEX IF NOT EXISTS idx_videos_owner ON farragna_videos(owner_id);
-<<<<<<< HEAD
-=======
 CREATE INDEX IF NOT EXISTS idx_farragna_status ON farragna_videos(status);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 CREATE INDEX IF NOT EXISTS idx_shots_owner ON shots(owner_id);
 CREATE INDEX IF NOT EXISTS idx_messages_chat ON messages(chat_id);
 CREATE INDEX IF NOT EXISTS idx_reactions_message ON e7ki_message_reactions(message_id);

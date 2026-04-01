@@ -5,7 +5,7 @@ import { requireAuth } from '../middleware/auth.js';
 const router = express.Router();
 
 router.get('/ledger', requireAuth, async (req, res) => {
-  try {
+  try { 
     const uid = (req.query.userId || '').trim();
     if (!uid) return res.status(400).json({ status: 'failed', error: 'userId required' });
     if (req.user.id !== uid && req.user.role !== 'admin') return res.status(403).json({ status: 'failed', error: 'unauthorized_access' });
@@ -17,7 +17,7 @@ router.get('/ledger', requireAuth, async (req, res) => {
 });
 
 router.get('/vault', requireAuth, async (req, res) => {
-  try {
+  try { 
     const uid = (req.query.userId || '').trim();
     if (!uid) return res.status(400).json({ status: 'failed', error: 'userId required' });
     if (req.user.id !== uid && req.user.role !== 'admin') return res.status(403).json({ status: 'failed', error: 'unauthorized_access' });

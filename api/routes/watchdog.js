@@ -9,7 +9,7 @@ router.use('/', watchdogRoutes);
 
 // Status route
 router.get('/status', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const { getWatchDogState, updateDogStateByTime } = await import('../../shared/watch-dog-guardian.js');
     const info = await updateDogStateByTime(userId);

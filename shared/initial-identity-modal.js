@@ -3,7 +3,7 @@
 
 class InitialIdentityModal {
     constructor() {
-        try { if (window.__AUTH_OVERLAY_DISABLED__ === true) return; } catch(_){}
+        try {  if (window.__AUTH_OVERLAY_DISABLED__ === true) return; } catch(_){}
         this.modal = null;
         this.form = null;
         this.isVisible = false;
@@ -21,7 +21,7 @@ class InitialIdentityModal {
     }
 
     async checkSetupCompleted() {
-        try {
+        try { 
             // Check unifiedStorage first
             if (window.unifiedStorage) {
                 const completed = await window.unifiedStorage.cacheGet('identitySetupCompleted');
@@ -275,7 +275,7 @@ class InitialIdentityModal {
         const submitBtn = document.getElementById('submit-btn');
         const originalText = submitBtn.textContent;
 
-        try {
+        try { 
             submitBtn.textContent = 'Creating Account...';
             submitBtn.disabled = true;
 
@@ -332,8 +332,8 @@ class InitialIdentityModal {
             this.hide();
 
             // Dispatch success events (canonical + legacy)
-            try { window.dispatchEvent(new CustomEvent('identity:completed', { detail: { user: result.user, jwt: result.jwt } })); } catch(_){}
-            try { window.dispatchEvent(new CustomEvent('identity:setup:completed', { detail: { user: result.user, jwt: result.jwt } })); } catch(_){}
+            try {  window.dispatchEvent(new CustomEvent('identity:completed', { detail: { user: result.user, jwt: result.jwt } })); } catch(_){}
+            try {  window.dispatchEvent(new CustomEvent('identity:setup:completed', { detail: { user: result.user, jwt: result.jwt } })); } catch(_){}
 
             console.log('✅ Identity setup completed successfully');
 
@@ -350,7 +350,7 @@ class InitialIdentityModal {
         if (this.modal) {
             this.modal.style.display = 'flex';
             this.isVisible = true;
-            try { if (window.UIState) window.UIState.lock('identity'); } catch(_){}
+            try {  if (window.UIState) window.UIState.lock('identity'); } catch(_){}
         }
     }
 
@@ -358,7 +358,7 @@ class InitialIdentityModal {
         if (this.modal) {
             this.modal.style.display = 'none';
             this.isVisible = false;
-            try { if (window.UIState) window.UIState.unlock('identity'); } catch(_){}
+            try {  if (window.UIState) window.UIState.unlock('identity'); } catch(_){}
         }
     }
 }

@@ -320,7 +320,7 @@
     }
     
     function saveLogToStorage(logEntry) {
-        try {
+        try { 
             const logs = JSON.parse(localStorage.getItem('globalPrayerDebugLogs') || '[]');
             logs.push(logEntry);
             

@@ -4,32 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Paperclip, Image, Video, FileText, Mic, X, Smile, Send } from "lucide-react";
-<<<<<<< HEAD
 import { VoiceRecorder, EmojiPicker } from "@/components/chat";
 export function MessageInput({ replyTo, onCancelReply }) {
     const { sendTextMessage, sendFileMessage, setTyping } = useChat();
-=======
 import { VoiceRecorder } from "./voice-recorder";
 import { EmojiPicker } from "./emoji-picker";
 
 export function MessageInput({ replyTo, onCancelReply }) {
     const { sendMessage, setTyping, activeChat } = useChat();
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const [message, setMessage] = useState("");
     const [isRecording, setIsRecording] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [showAttachMenu, setShowAttachMenu] = useState(false);
-<<<<<<< HEAD
-=======
     const [isUploading, setIsUploading] = useState(false);
     
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const inputRef = useRef(null);
     const typingTimeoutRef = useRef(null);
     const fileInputRef = useRef(null);
     const imageInputRef = useRef(null);
     const videoInputRef = useRef(null);
-<<<<<<< HEAD
     const handleSend = useCallback(() => {
         if (!message.trim())
             return;
@@ -41,7 +34,6 @@ export function MessageInput({ replyTo, onCancelReply }) {
             clearTimeout(typingTimeoutRef.current);
         }
     }, [message, replyTo?.id, sendTextMessage, onCancelReply, setTyping]);
-=======
 
     const handleSend = useCallback(() => {
         if (!message.trim() || !activeChat) return;
@@ -56,14 +48,12 @@ export function MessageInput({ replyTo, onCancelReply }) {
         }
     }, [message, replyTo?.id, sendMessage, onCancelReply, setTyping, activeChat]);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const handleKeyDown = (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             handleSend();
         }
     };
-<<<<<<< HEAD
     const handleChange = (e) => {
         setMessage(e.target.value);
         setTyping(true);
@@ -80,7 +70,6 @@ export function MessageInput({ replyTo, onCancelReply }) {
             Array.from(files).forEach((file) => {
                 sendFileMessage(file, type);
             });
-=======
 
     const handleChange = (e) => {
         setMessage(e.target.value);
@@ -124,12 +113,10 @@ export function MessageInput({ replyTo, onCancelReply }) {
             } finally {
                 setIsUploading(false);
             }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         }
         e.target.value = "";
         setShowAttachMenu(false);
     };
-<<<<<<< HEAD
     const handleDragOver = (e) => {
         e.preventDefault();
         setIsDragging(true);
@@ -151,20 +138,16 @@ export function MessageInput({ replyTo, onCancelReply }) {
             sendFileMessage(file, type);
         });
     };
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const handleEmojiSelect = (emoji) => {
         setMessage((prev) => prev + emoji);
         inputRef.current?.focus();
     };
-<<<<<<< HEAD
     const handleVoiceRecorded = (blob) => {
         const file = new File([blob], "voice-message.webm", { type: "audio/webm" });
         sendFileMessage(file, "voice");
         setIsRecording(false);
     };
-=======
 
     const handleVoiceRecorded = async (blob) => {
         if (!activeChat) return;
@@ -196,7 +179,6 @@ export function MessageInput({ replyTo, onCancelReply }) {
         }
     };
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     useEffect(() => {
         const textarea = inputRef.current;
         if (textarea) {
@@ -204,7 +186,6 @@ export function MessageInput({ replyTo, onCancelReply }) {
             textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
         }
     }, [message]);
-<<<<<<< HEAD
     if (isRecording) {
         return (<VoiceRecorder onCancel={() => setIsRecording(false)} onSend={handleVoiceRecorded}/>);
     }
@@ -281,7 +262,6 @@ export function MessageInput({ replyTo, onCancelReply }) {
       <input ref={videoInputRef} type="file" accept="video/*" className="hidden" onChange={(e) => handleFileChange(e, "video")}/>
       <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar" multiple className="hidden" onChange={(e) => handleFileChange(e, "file")}/>
     </div>);
-=======
 
     if (isRecording) {
         return <VoiceRecorder onCancel={() => setIsRecording(false)} onSend={handleVoiceRecorded} />;
@@ -386,5 +366,4 @@ export function MessageInput({ replyTo, onCancelReply }) {
             </div>
         </div>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

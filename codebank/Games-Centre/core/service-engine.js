@@ -233,7 +233,7 @@ class AudioService {
     this.gameId = gameId;
     this.playerId = playerId;
 
-    try {
+    try { 
       // Get local audio stream
       this.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       this.connected = true;
@@ -293,7 +293,7 @@ class VideoService {
     this.gameId = gameId;
     this.playerId = playerId;
 
-    try {
+    try { 
       // Get local video stream
       this.localStream = await navigator.mediaDevices.getUserMedia({
         video: true,

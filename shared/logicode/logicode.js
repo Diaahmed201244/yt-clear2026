@@ -42,7 +42,7 @@ export async function init() {
   await Storage.init()
   await Auth.init()
   if (window && window.supabase) { Auth.setClient(window.supabase); Sync.setClient(window.supabase); Fees.setClient(window.supabase) }
-  try {
+  try { 
     const a = !!(window && window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated())
     if (!a) { Expiry.start(); Sync.start() } else { if (typeof Expiry.stop==='function') Expiry.stop() }
   } catch(_) { Expiry.start(); Sync.start() }

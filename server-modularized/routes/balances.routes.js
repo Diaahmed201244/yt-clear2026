@@ -32,7 +32,7 @@ const router = Router();
 // ---------------------------------------------------------------------------
 
 router.get('/balances', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const r = await query(
       'SELECT codes_count, silver_count, gold_count FROM balances WHERE user_id=$1',
@@ -67,7 +67,7 @@ router.get('/balances', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/rewards/balance', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
 
     if (process.env.DATABASE_URL) {
@@ -111,7 +111,7 @@ router.get('/rewards/balance', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/ledger/verify', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const result = await query(
       'SELECT COALESCE(codes_count, 0) AS codes, COALESCE(silver_count, 0) AS silver, COALESCE(gold_count, 0) AS gold FROM users WHERE id = $1',
@@ -137,7 +137,7 @@ router.get('/ledger/verify', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/assets/balance', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
 
     const result = await query(
@@ -161,7 +161,7 @@ router.get('/assets/balance', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/mint', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const amount = 5;
     const codes = [];
@@ -206,7 +206,7 @@ router.post('/mint', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/rewards/claim', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const { type } = req.body;
 

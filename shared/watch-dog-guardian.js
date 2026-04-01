@@ -18,7 +18,7 @@ import crypto from 'crypto';
  * Get Watch-Dog state from database
  */
 async function getWatchDogState(userId) {
-  try {
+  try { 
     const result = await dbQuery(
       `SELECT last_fed_at, dog_state, is_frozen, frozen_reason 
        FROM watchdog_state 
@@ -52,7 +52,7 @@ async function getWatchDogState(userId) {
  * Update Watch-Dog state
  */
 async function updateWatchDogState(userId, updates) {
-  try {
+  try { 
     const setClauses = [];
     const params = [userId];
     let paramIndex = 2;
@@ -96,7 +96,7 @@ async function updateWatchDogState(userId, updates) {
  * @param {object} accEvent - Event from ACC (type, assetType, amount, balanceAfter)
  */
 async function observeACCEvent(userId, accEvent) {
-  try {
+  try { 
     const { type, assetType, amount, balanceAfter, service } = accEvent;
 
     // Anomaly: balance went negative
@@ -136,7 +136,7 @@ async function observeACCEvent(userId, accEvent) {
  * 🔍 Observe dog state by time (called periodically, no balance changes)
  */
 async function updateDogStateByTime(userId) {
-  try {
+  try { 
     const state = await getWatchDogState(userId);
 
     if (!state.lastFedAt) {
@@ -182,7 +182,7 @@ async function updateDogStateByTime(userId) {
  * @param {string|null} idempotencyKey
  */
 async function recordWatchDogFeed(userId, idempotencyKey = null) {
-  try {
+  try { 
     if (idempotencyKey) {
       const existing = await dbQuery(
         `SELECT id FROM audit_log 
@@ -221,9 +221,9 @@ async function recordWatchDogFeed(userId, idempotencyKey = null) {
 async function freezeAccount(userId, reason) {
   console.error(`[WATCHDOG] 🔒 FREEZING ACCOUNT ${userId} reason: ${reason}`);
 
-  try {
+  try { 
     const client = await pool.connect();
-    try {
+    try { 
       await client.query('BEGIN');
 
       await client.query(
@@ -244,7 +244,7 @@ async function freezeAccount(userId, reason) {
       await client.query('COMMIT');
       console.error(`[WATCHDOG] 🔒 Account ${userId} FROZEN`);
     } catch (err) {
-      try { await client.query('ROLLBACK') } catch (_) {}
+      try {  await client.query('ROLLBACK') } catch (_) {}
       console.error('[WATCHDOG] freezeAccount error:', err);
     } finally {
       if (typeof client.release === 'function') client.release();
@@ -275,7 +275,7 @@ async function canUserOperate(userId) {
  * Write to audit log
  */
 async function logAudit(type, payload) {
-  try {
+  try { 
     await dbQuery(
       `INSERT INTO audit_log (type, payload) VALUES ($1, $2)`,
       [type, JSON.stringify(payload)]
@@ -292,7 +292,7 @@ async function logAudit(type, payload) {
 async function runFullSystemObservation() {
   console.log('[WATCHDOG] Starting full system observation...');
 
-  try {
+  try { 
     const result = await dbQuery('SELECT id FROM users');
     const users = result.rows.map(r => r.id);
 

@@ -107,7 +107,7 @@ function initializeCodeDisplayLongPress() {
 
 // CodeBank Dashboard Integration
 function openCodeBankPanel() {
-  try { window.AUTH_ALREADY_HANDLED = true; } catch(_) {}
+  try {  window.AUTH_ALREADY_HANDLED = true; } catch(_) {}
   const overlay = document.getElementById('code-popup-overlay');
   const iframe = document.getElementById('code-popup-iframe');
   if (!overlay || !iframe) return;
@@ -142,10 +142,10 @@ function showErrorMessage(message) {
 
 // Function to update the monthly screenshot indicator
 function updateScreenshotIndicator() {
-  try {
+  try { 
     const raw = localStorage.getItem("user_screenshots");
     const data = (function(){
-      try { return raw ? JSON.parse(raw) : { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() }; }
+      try {  return raw ? JSON.parse(raw) : { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() }; }
       catch(_) { return { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() }; }
     })();
 

@@ -171,9 +171,7 @@
       }
     },
 
-    // ============================================
     // CLOUD UPLOAD (Only when sharing)
-    // ============================================
 
     async saveToCloud() {
       if (!this.currentRecording) {
@@ -226,9 +224,7 @@
       }
     },
 
-    // ============================================
     // RECORDING LIST UI
-    // ============================================
 
     async loadRecordingList() {
       const listEl = document.getElementById('recordings-list');
@@ -288,9 +284,7 @@
       }
     },
 
-    // ============================================
     // UI HELPERS
-    // ============================================
 
     startDurationTimer() {
       const timerEl = document.getElementById('recording-timer');

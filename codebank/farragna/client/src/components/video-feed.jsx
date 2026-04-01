@@ -84,10 +84,7 @@ export function VideoFeed({ videos, onEngagement, onToggleFavorite, favorites = 
         scrollToIndex(currentIndex + 1);
       } else if (e.key === " ") {
         e.preventDefault();
-<<<<<<< HEAD
-=======
         window.dispatchEvent(new CustomEvent("feed-play-pause-toggle"));
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       } else if (e.key === "m") {
         setIsMuted((prev) => !prev);
       }

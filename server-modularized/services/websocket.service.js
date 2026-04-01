@@ -31,7 +31,7 @@ import jwt from 'jsonwebtoken';
 export async function setupWebSocket(server) {
   // --- Raw WebSocket (ws) ---
   let wss = null;
-  try {
+  try { 
     const { WebSocketServer } = await import('ws');
     wss = new WebSocketServer({ server });
     const wsClients = new Map(); // userId → ws
@@ -40,7 +40,7 @@ export async function setupWebSocket(server) {
       console.log('[WS] Client connected');
 
       ws.on('message', (msg) => {
-        try {
+        try { 
           const data = JSON.parse(msg.toString());
           if (data && data.type === 'AUTH' && data.userId) {
             ws.userId = String(data.userId);
@@ -73,7 +73,7 @@ export async function setupWebSocket(server) {
   io.use((socket, next) => {
     const token = socket.handshake.auth.token;
     if (!token) return next(new Error('Authentication required'));
-    try {
+    try { 
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       socket.user = decoded;
       next();

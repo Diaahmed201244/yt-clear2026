@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext(undefined);
@@ -105,7 +104,6 @@ export function useAuth() {
   }
   return context;
 }
-=======
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
@@ -334,4 +332,3 @@ export const useAuth = () => {
   if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

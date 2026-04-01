@@ -49,12 +49,12 @@ function logSSEError(msg) {
 }
 
 function emitSSE(userId, payload) {
-  try {
+  try { 
     const set = __sseClients.get(String(userId));
     if (!set) return;
     const data = `data: ${JSON.stringify(payload)}\n\n`;
     for (const res of set) {
-      try {
+      try { 
         res.write(data);
       } catch (err) {
         logSSEError(`Write error: ${err.message}`);
@@ -75,7 +75,7 @@ function broadcastSSE(event, data) {
   const frame = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
   for (const [, set] of __sseClients) {
     for (const res of set) {
-      try {
+      try { 
         res.write(frame);
       } catch (err) {
         logSSEError(`Broadcast write error: ${err.message}`);
@@ -98,7 +98,7 @@ function addClient(uid, res, req) {
 
   // Keep-alive heartbeat every 15 s
   const keep = setInterval(() => {
-    try {
+    try { 
       res.write(':\n\n');
     } catch (err) {
       logSSEError(`Keep-alive error: ${err.message}`);
@@ -107,7 +107,7 @@ function addClient(uid, res, req) {
 
   // BUG FIX: Always clean up on connection close
   req.on('close', () => {
-    try {
+    try { 
       clearInterval(keep);
       __sseClients.get(id)?.delete(res);
     } catch (err) {
@@ -141,7 +141,7 @@ const nostagliaClients = new Set();
 function nostagliaBroadcast(event, payload) {
   const data = `event: ${event}\ndata: ${JSON.stringify(payload)}\n\n`;
   for (const res of nostagliaClients) {
-    try {
+    try { 
       res.write(data);
     } catch (_) {
       // Stale connection — will be cleaned up on close

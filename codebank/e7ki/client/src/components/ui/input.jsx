@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -22,7 +21,6 @@ const Input = React.forwardRef((_a, ref) => {
 });
 exports.Input = Input;
 Input.displayName = "Input";
-=======
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -42,4 +40,3 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
 Input.displayName = "Input";
 
 export { Input };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

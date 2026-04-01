@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       includeContext: document.getElementById('includeContext').checked
     };
 
-    try {
+    try { 
       const response = await chrome.tabs.sendMessage(tab.id, {
         action: 'getReport',
         options
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const report = await getReport();
     if (!report) return;
 
-    try {
+    try { 
       await navigator.clipboard.writeText(report.formattedForKimi);
       showStatus('✅ Copied! Paste into Kimi chat now', 'success');
     } catch (err) {

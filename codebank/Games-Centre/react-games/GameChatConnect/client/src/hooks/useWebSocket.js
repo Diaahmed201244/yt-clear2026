@@ -14,7 +14,7 @@ export function useWebSocket(onMessage) {
         if (ws.current?.readyState === WebSocket.CONNECTING || ws.current?.readyState === WebSocket.OPEN) {
             return;
         }
-        try {
+        try { 
             const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
             let wsHost = window.location.host;
             if (import.meta.env.DEV) {
@@ -44,7 +44,7 @@ export function useWebSocket(onMessage) {
                 setIsConnected(false);
             };
             ws.current.onmessage = (event) => {
-                try {
+                try { 
                     const message = JSON.parse(event.data);
                     setLastMessage(message);
                     onMessageRef.current?.(message);
@@ -68,7 +68,7 @@ export function useWebSocket(onMessage) {
     }, [connect]);
     const send = useCallback((message) => {
         if (ws.current?.readyState === WebSocket.OPEN) {
-            try {
+            try { 
                 ws.current.send(JSON.stringify(message));
             }
             catch (error) {

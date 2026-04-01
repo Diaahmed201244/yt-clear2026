@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -24,7 +23,6 @@ const Label = React.forwardRef((_a, ref) => {
 });
 exports.Label = Label;
 Label.displayName = LabelPrimitive.Root.displayName;
-=======
 import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva } from "class-variance-authority";
@@ -46,4 +44,3 @@ const Label = React.forwardRef(({ className, ...props }, ref) => {
 Label.displayName = LabelPrimitive.Root.displayName;
 
 export { Label };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

@@ -104,7 +104,7 @@ class DatabaseManager {
     
     const batch = this.writeQueue.splice(0, this.batchSize);
     
-    try {
+    try { 
       await this.executeBatch(batch);
       
       // Resolve all promises
@@ -151,7 +151,7 @@ class DatabaseManager {
     // Execute in transaction
     await this.beginTransaction();
     
-    try {
+    try { 
       for (const group of grouped) {
         switch (group.type) {
           case 'INSERT':
@@ -267,7 +267,7 @@ class DatabaseManager {
     let lastError;
     
     for (let i = 0; i < this.maxRetries; i++) {
-      try {
+      try { 
         return await this.executeSql(sql, params);
       } catch (error) {
         lastError = error;

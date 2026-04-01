@@ -509,7 +509,7 @@
         }
 
         function injectBridgeToIframe(iframe, serviceName) {
-            try {
+            try { 
                 const iframeWindow = iframe.contentWindow;
                 
                 // Send initial assets
@@ -539,7 +539,7 @@
         async function handleIframeRequest(data, serviceName) {
             const { type, payload } = data;
             
-            try {
+            try { 
                 let result;
                 
                 switch (type) {

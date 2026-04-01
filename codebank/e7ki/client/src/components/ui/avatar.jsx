@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
@@ -37,7 +36,6 @@ const AvatarFallback = React.forwardRef((_a, ref) => {
 });
 exports.AvatarFallback = AvatarFallback;
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
-=======
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cn } from "@/lib/utils";
@@ -79,4 +77,3 @@ const AvatarFallback = React.forwardRef(({ className, ...props }, ref) => {
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export { Avatar, AvatarImage, AvatarFallback };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

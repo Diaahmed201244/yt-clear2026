@@ -12,7 +12,7 @@ export const accDb = createClient({
 });
 
 export async function initAccTables() {
-    try {
+    try { 
         await accDb.execute(`
             CREATE TABLE IF NOT EXISTS user_assets (
                 user_id TEXT PRIMARY KEY,
@@ -32,7 +32,7 @@ export async function initAccTables() {
             `ALTER TABLE user_assets ADD COLUMN last_sync TIMESTAMP DEFAULT CURRENT_TIMESTAMP`
         ];
         for (const sql of migrations) {
-            try { await accDb.execute(sql); } catch (_) { /* column already exists */ }
+            try {  await accDb.execute(sql); } catch (_) { /* column already exists */ }
         }
 
         console.log('🏛️ [ACC] Database tables initialized');

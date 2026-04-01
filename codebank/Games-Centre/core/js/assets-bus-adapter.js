@@ -150,7 +150,7 @@ class MockAssetsBus {
     async settleBet(options) {
         const { betId, lockReferences, winnerId, winAmount, asset } = options;
 
-        try {
+        try { 
             // Verify all locks exist
             for (const lock of lockReferences) {
                 if (!this.locks.has(lock.lockId)) {

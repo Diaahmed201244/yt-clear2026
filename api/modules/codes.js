@@ -35,7 +35,7 @@ router.post('/save', async (req, res) => {
     return res.status(400).json({ ok: false, error: 'INVALID_SOURCE' })
   }
 
-  try {
+  try { 
     // Check rate limiting
     if (!checkRateLimit(identity.userId)) {
       return res.status(429).json({ ok: false, error: 'RATE_LIMIT_EXCEEDED' })
@@ -84,7 +84,7 @@ router.post('/save', async (req, res) => {
 
 // Legacy endpoints for backward compatibility (can be removed later)
 router.get('/last', async (req, res) => {
-  try {
+  try { 
     const r = await query(
       'SELECT * FROM codes WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1',
       [identity.userId]
@@ -103,7 +103,7 @@ router.post('/generate', async (req, res) => {
     return res.status(429).json({ ok: false, error: 'RATE_LIMIT_EXCEEDED' })
   }
 
-  try {
+  try { 
     const code = generateCode()
     
     // Save the generated code
@@ -143,7 +143,7 @@ router.post('/generate', async (req, res) => {
 router.post('/send', async (req, res) => {
   const { codes, receiverEmail } = req.body
   
-  try {
+  try { 
     // Check if sender is trying to send to themselves
     const senderResult = await query(
       'SELECT email FROM users WHERE id = $1',

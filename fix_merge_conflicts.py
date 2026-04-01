@@ -9,13 +9,9 @@ from pathlib import Path
 def remove_merge_conflicts(content):
     """Remove Git merge conflict markers, keeping HEAD version"""
     # Remove complete conflict blocks
-    pattern = r'<<<<<<< HEAD\n.*?=======(\n.*?)?>>>>>>> [a-f0-9]+.*?(\n|$)'
     cleaned = re.sub(pattern, '', content, flags=re.DOTALL)
     
     # Clean up any orphaned markers
-    cleaned = re.sub(r'<<<<<<< HEAD\n?', '', cleaned)
-    cleaned = re.sub(r'=======(\n.*?)?>>>>>>> [a-f0-9]+.*?(\n|$)', '', cleaned, flags=re.DOTALL)
-    cleaned = re.sub(r'>>>>>>> [a-f0-9]+.*?(\n|$)', '', cleaned)
     
     return cleaned
 
@@ -39,10 +35,8 @@ def main():
                 with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
                     content = f.read()
                 
-                if '<<<<<<< HEAD' not in content:
                     continue
                 
-                conflict_count = content.count('<<<<<<< HEAD')
                 cleaned = remove_merge_conflicts(content)
                 
                 with open(filepath, 'w', encoding='utf-8') as f:

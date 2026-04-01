@@ -341,9 +341,7 @@ export function updateStats(stats) {
     }
 }
 
-// =====================================================
 // YAHOOD! SERVICE BRIDGE (from actly.md)
-// =====================================================
 
 function setupYahoodBridge(iframe) {
     window.addEventListener('message', (e) => {

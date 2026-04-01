@@ -67,7 +67,7 @@ export class WatchDogScene {
     const WATCHDOG_LOAD_TIMEOUT = 30000; // 30 seconds max
     let timeoutId = null;
     
-    try {
+    try { 
       const gltf = await new Promise((resolve, reject) => {
         // Set timeout for loading
         timeoutId = setTimeout(() => {

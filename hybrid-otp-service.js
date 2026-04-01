@@ -13,7 +13,7 @@ let firebaseApp;
 let auth = null;
 
 if (process.env.FIREBASE_ENABLED === "true") {
-  try {
+  try { 
     const projectId = process.env.FIREBASE_PROJECT_ID;
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
     let privateKey = process.env.FIREBASE_PRIVATE_KEY;
@@ -71,7 +71,7 @@ const otpStore = new Map();
 export async function sendHybridOTP({ email, phone, countryCode }) {
   console.log('🔥 sendHybridOTP starting:', { email, phone, countryCode });
   
-  try {
+  try { 
     if (!email || !phone || !countryCode) {
       return { success: false, error: 'Email, phone, and country code are required' };
     }
@@ -126,7 +126,7 @@ export async function sendHybridOTP({ email, phone, countryCode }) {
  * @param {string} channel - 'email' or 'phone'
  */
 export async function verifyHybridOTP(sessionId, otp, channel = 'email') {
-  try {
+  try { 
     const stored = otpStore.get(sessionId);
     
     if (!stored) {
@@ -216,10 +216,9 @@ export async function resendOTP(sessionId, channel) {
   return { success: false, error: 'Invalid channel' };
 }
 
-// ==================== PRIVATE FUNCTIONS ====================
 
 async function sendFirebaseSMSOTP(phoneNumber) {
-  try {
+  try { 
     if (!auth) {
       console.warn('[FirebaseSMS] Firebase not initialized, skipping SMS');
       return { success: false, error: 'Firebase not initialized' };
@@ -246,7 +245,7 @@ async function sendFirebaseSMSOTP(phoneNumber) {
 }
 
 async function verifyFirebaseOTP(phoneNumber, otp) {
-  try {
+  try { 
     // In production, this would verify through Firebase
     // For now, we'll use the stored OTP for simplicity
     // You can implement Firebase ID token verification here
@@ -259,7 +258,7 @@ async function verifyFirebaseOTP(phoneNumber, otp) {
 }
 
 async function sendEmailOTP(email, otp) {
-  try {
+  try { 
     await emailTransporter.sendMail({
       from: `"YT-Clear Security" <${process.env.EMAIL_USER}>`,
       to: email,

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -51,7 +50,6 @@ const CardFooter = React.forwardRef((_a, ref) => {
 });
 exports.CardFooter = CardFooter;
 CardFooter.displayName = "CardFooter";
-=======
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -90,4 +88,3 @@ const CardFooter = React.forwardRef(({ className, ...props }, ref) => (
 CardFooter.displayName = "CardFooter";
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

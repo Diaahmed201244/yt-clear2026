@@ -5,7 +5,7 @@ const router = express.Router();
 const balloonClicks = new Map();
 
 router.post('/pop', requireAuth, async (req, res) => {
-  try {
+  try { 
     const { points, timestamp } = req.body || {};
     const userId = req.user.id;
     const p = Number(points || 0);

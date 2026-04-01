@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThemeToggle = ThemeToggle;
@@ -11,7 +10,6 @@ function ThemeToggle() {
       {theme === "dark" ? (<lucide_react_1.Sun className="h-4 w-4"/>) : (<lucide_react_1.Moon className="h-4 w-4"/>)}
       <span className="sr-only">Toggle theme</span>
     </button_1.Button>);
-=======
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/lib/theme-provider";
@@ -24,5 +22,4 @@ export function ThemeToggle() {
             <span className="sr-only">Toggle theme</span>
         </Button>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

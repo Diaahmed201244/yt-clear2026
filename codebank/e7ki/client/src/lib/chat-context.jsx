@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -59,7 +58,6 @@ function ChatProvider({ children, currentUser }) {
                     });
                     if (response.ok) {
                         const messagesData = yield response.json();
-=======
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useWebSocket } from "./websocket-context";
 import { useAuth } from "./auth-context";
@@ -119,7 +117,6 @@ export function ChatProvider({ children, currentUser }) {
                     });
                     if (response.ok) {
                         const messagesData = await response.json();
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                         setMessages(messagesData.map(msg => ({
                             id: msg.id,
                             chatId: msg.chat_id,
@@ -127,20 +124,16 @@ export function ChatProvider({ children, currentUser }) {
                             senderName: msg.sender_username || 'Unknown',
                             type: msg.type,
                             content: msg.content,
-<<<<<<< HEAD
                             reactions: [], // TODO: fetch reactions
                             status: 'read',
-=======
                             reactions: [],
                             status: msg.status || 'read',
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                             timestamp: new Date(msg.created_at).getTime(),
                         })));
                     }
                 } catch (error) {
                     console.error('Failed to fetch messages:', error);
                 }
-<<<<<<< HEAD
             });
             loadMessages();
             // Polling every 2 seconds
@@ -251,7 +244,6 @@ export function ChatProvider({ children, currentUser }) {
                         timestamp: new Date(msg.created_at).getTime(),
                     })));
                 }
-=======
             };
             loadMessages();
         } else {
@@ -361,12 +353,10 @@ export function ChatProvider({ children, currentUser }) {
                 };
                 setMessages(prev => [...prev, formattedMsg]);
                 return formattedMsg;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             }
         } catch (error) {
             console.error('Failed to send message:', error);
         }
-<<<<<<< HEAD
     }), [activeChat, getAuthHeaders]);
     const sendFileMessage = (0, react_1.useCallback)((file, type) => __awaiter(this, void 0, void 0, function* () {
         if (!activeChat)
@@ -527,7 +517,6 @@ function useChat() {
     const context = (0, react_1.useContext)(ChatContext);
     if (context === undefined) {
         throw new Error("useChat must be used within a ChatProvider");
-=======
     };
 
     const createNewChat = async (participant) => {
@@ -588,7 +577,6 @@ export function useChat() {
     const context = useContext(ChatContext);
     if (context === undefined) {
         throw new Error('useChat must be used within a ChatProvider');
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     }
     return context;
 }

@@ -171,7 +171,7 @@ class GlobalPrayerSystem {
     }
 
     async loadPrayerTimes() {
-        try {
+        try { 
             const { latitude, longitude } = await this.getCurrentLocation();
             await this.fetchPrayerTimesFromAPI(latitude, longitude);
         } catch (error) {
@@ -213,7 +213,7 @@ class GlobalPrayerSystem {
     }
 
     async fetchPrayerTimesFromAPI(lat, lon) {
-        try {
+        try { 
             const response = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=${this.currentSettings.prayerMethod}`);
             const data = await response.json();
             const timings = data.data.timings;
@@ -344,7 +344,7 @@ class GlobalPrayerSystem {
     }
 
     playGlobalAzan(azanFile, prayerKey) {
-        try {
+        try { 
             this.stopAzan();
 
             this.prayerAudio = new Audio(azanFile);
@@ -447,7 +447,7 @@ class GlobalPrayerSystem {
         const components = ['games', 'samma3ny', 'farragna', 'oneworld', 'e7ki', 'community', 'youtube', 'music'];
         
         components.forEach(component => {
-            try {
+            try { 
                 window.postMessage({
                     type: 'MUTE_AUDIO',
                     component: component,
@@ -466,7 +466,7 @@ class GlobalPrayerSystem {
         const components = ['games', 'samma3ny', 'farragna', 'oneworld', 'e7ki', 'community', 'youtube', 'music'];
         
         components.forEach(component => {
-            try {
+            try { 
                 if (this.componentMuteStates[component]) {
                     window.postMessage({
                         type: 'UNMUTE_AUDIO',

@@ -14,7 +14,7 @@ window.addEventListener('message', function(event){
     const d = event && event.data || {};
     if (d && d.type === 'CODEBANK_ASSETS_SYNC' && d.payload) {
       const p = d.payload;
-      try { console.log('[INDEXCB SYNC APPLY]', p); } catch(_){}
+      try {  console.log('[INDEXCB SYNC APPLY]', p); } catch(_){}
       window.__INDEXCB_ASSETS__ = p;
       const codesCountEl = document.getElementById('codes-count');
       if (codesCountEl) {
@@ -28,7 +28,7 @@ window.addEventListener('message', function(event){
       }
       const latestEl = document.getElementById('latest-code');
       if (latestEl && p.latestCode) latestEl.textContent = p.latestCode;
-      try { } catch(_){ }
+      try {  } catch(_){ }
     }
   }catch(_){}
 });
@@ -806,20 +806,20 @@ transform: scale(1) translateY(0);
     
     <script>
       (function(){
-        try { window.startCodeGeneration = function(){} } catch(_){}
-        try { window.addAzanClockButton = function(){} } catch(_){}
-        try { window.openAzanClock = function(){} } catch(_){}
-        try { window.initYouTubePlayer = function(){} } catch(_){}
+        try {  window.startCodeGeneration = function(){} } catch(_){}
+        try {  window.addAzanClockButton = function(){} } catch(_){}
+        try {  window.openAzanClock = function(){} } catch(_){}
+        try {  window.initYouTubePlayer = function(){} } catch(_){}
       })();
     </script>
 
     <!-- Fetch wrapper: normalize Samma3ny API endpoints and provide graceful fallback on network/CORS/404 failures -->
     <script>
     (function(){
-      try {
+      try { 
         const originalFetch = window.fetch.bind(window);
         window.fetch = async function(input, init){
-          try {
+          try { 
             // Normalize input to URL string for checks
             let url = typeof input === 'string' ? input : (input && input.url) || '';
 
@@ -916,7 +916,7 @@ transform: scale(1) translateY(0);
     <script>
     // Lightweight global showToast for indexCB page (used by inline handlers)
     window.showToast = function(message, type = 'info', duration = 3500) {
-        try {
+        try { 
             const container = document.getElementById('toast-container') || (function(){ const d=document.createElement('div'); d.id='toast-container'; document.body.appendChild(d); return d; })();
             const t = document.createElement('div');
             t.className = `toast toast-${type}`;
@@ -2026,12 +2026,12 @@ transform: scale(1) translateY(0);
         const body = document.body;
         function applyTheme(isDark){
             if (isDark) body.classList.remove('light-theme'); else body.classList.add('light-theme');
-            try { if (window.unifiedStorage && window.unifiedStorage.cacheSet) window.unifiedStorage.cacheSet('theme_dark', isDark ? '1' : '0'); } catch(_){ }
+            try {  if (window.unifiedStorage && window.unifiedStorage.cacheSet) window.unifiedStorage.cacheSet('theme_dark', isDark ? '1' : '0'); } catch(_){ }
             themeToggle.checked = isDark;
         }
         if (themeToggle){
             let pref = '1';
-            try { if (window.unifiedStorage && window.unifiedStorage.cacheGet) pref = window.unifiedStorage.cacheGet('theme_dark') || '1'; } catch(_){ }
+            try {  if (window.unifiedStorage && window.unifiedStorage.cacheGet) pref = window.unifiedStorage.cacheGet('theme_dark') || '1'; } catch(_){ }
             applyTheme(pref !== '0');
             themeToggle.addEventListener('change', ()=> applyTheme(themeToggle.checked));
         }
@@ -2040,9 +2040,9 @@ transform: scale(1) translateY(0);
         const langSelect = document.getElementById('language-select');
         if (langSelect){
             let saved = 'en';
-            try { if (window.unifiedStorage && window.unifiedStorage.cacheGet) saved = window.unifiedStorage.cacheGet('lang') || 'en'; } catch(_){ }
+            try {  if (window.unifiedStorage && window.unifiedStorage.cacheGet) saved = window.unifiedStorage.cacheGet('lang') || 'en'; } catch(_){ }
             langSelect.value = saved;
-            langSelect.addEventListener('change', ()=>{ try { if (window.unifiedStorage && window.unifiedStorage.cacheSet) window.unifiedStorage.cacheSet('lang', langSelect.value); } catch(_){} location.reload(); });
+            langSelect.addEventListener('change', ()=>{ try {  if (window.unifiedStorage && window.unifiedStorage.cacheSet) window.unifiedStorage.cacheSet('lang', langSelect.value); } catch(_){} location.reload(); });
         }
 
         
@@ -2104,7 +2104,7 @@ transform: scale(1) translateY(0);
             // Navigation controls
             if (gamesBackBtn && gamesIframe) {
                 gamesBackBtn.addEventListener('click', () => {
-                    try {
+                    try { 
                         gamesIframe.contentWindow.history.back();
                     } catch (e) {
                         console.log('Cannot navigate back:', e);
@@ -2114,7 +2114,7 @@ transform: scale(1) translateY(0);
 
             if (gamesForwardBtn && gamesIframe) {
                 gamesForwardBtn.addEventListener('click', () => {
-                    try {
+                    try { 
                         gamesIframe.contentWindow.history.forward();
                     } catch (e) {
                         console.log('Cannot navigate forward:', e);
@@ -2370,7 +2370,7 @@ transform: scale(1) translateY(0);
 
     
     <script type="module">
-        try { document.getElementById('cgtrigger-tab-btn').style.display = 'none'; document.getElementById('cgtrigger-tab').style.display = 'none'; } catch(_){ }
+        try {  document.getElementById('cgtrigger-tab-btn').style.display = 'none'; document.getElementById('cgtrigger-tab').style.display = 'none'; } catch(_){ }
         window.loadCGTriggers = async function() { return []; };
     </script>
 <!-- Live-server code removed in cleanup phase -->
@@ -2388,7 +2388,7 @@ window.initYouTubePlayer = function() {
     }
 
     // Create YouTube player
-    try {
+    try { 
         window.youtubePlayer = new YT.Player('youtube-player', {
             height: '400',
             width: '100%',
@@ -2421,7 +2421,7 @@ window.initYouTubePlayer = function() {
 };
 
 window.generateCode = function() {
-    try {
+    try { 
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let code = '';
 
@@ -2474,7 +2474,7 @@ window.generateCode = function() {
                     console.log('Farragna tab loaded successfully');
 
                     
-                        try {
+                        try { 
                             // Check if the display button exists in the new tab
                             const displayBtn = win.document.querySelector('.player-display-btn');
                             if (displayBtn) {
@@ -2502,7 +2502,7 @@ window.generateCode = function() {
                                 this.classList.add('active');
 
                                     // Send message to parent window
-                                    try {
+                                    try { 
                                         window.opener.postMessage({
                                             type: 'farragna:status',
                                             status: 'playing',
@@ -2535,7 +2535,7 @@ window.generateCode = function() {
         function openTab(type) {
             console.log(`Attempting to open ${type} tab...`);
 
-            try {
+            try { 
                 // Check if tab type is valid
                 if (!tabConfig[type]) {
                     throw new Error(`Invalid tab type: ${type}`);
@@ -2566,7 +2566,7 @@ window.generateCode = function() {
                         console.log(`${type} tab fully loaded`);
 
                         // Verify DOM is accessible
-                        try {
+                        try { 
                             if (!tabReferences[type].document) {
                                 throw new Error('Cannot access document in new tab');
                             }
@@ -2588,11 +2588,11 @@ window.generateCode = function() {
                 } else {
                     // If tab exists, focus it
                     console.log(`${type} tab already exists, focusing it`);
-                    try {
+                    try { 
                         tabReferences[type].focus();
 
                         // Check if we can still access the tab content
-                        try {
+                        try { 
                             if (tabReferences[type].document) {
                                 console.log(`${type} tab successfully focused`);
                             }
@@ -2635,7 +2635,7 @@ window.generateCode = function() {
 
         // Cross-tab communication setup with enhanced error handling
         window.addEventListener('message', function(event) {
-            try {
+            try { 
                 // Verify origin for security
                 const eventOrigin = new URL(event.origin).hostname;
                 const currentOrigin = window.location.hostname;
@@ -2682,7 +2682,7 @@ window.generateCode = function() {
                         // Handle tab close request
                         if (event.data.tabName && tabReferences[event.data.tabName]) {
                             console.log(`Closing ${event.data.tabName} tab by request`);
-                            try {
+                            try { 
                                 tabReferences[event.data.tabName].close();
                             } catch (closeErr) {
                                 console.error(`Error closing ${event.data.tabName} tab:`, closeErr);
@@ -2699,7 +2699,7 @@ window.generateCode = function() {
                         break;
 
       case 'CODEBANK_ASSETS_SYNC':
-        try { if (typeof window.__renderSafeList__ === 'function') window.__renderSafeList__(); } catch(_){ }
+        try {  if (typeof window.__renderSafeList__ === 'function') window.__renderSafeList__(); } catch(_){ }
         break;
 
                     default:
@@ -2967,7 +2967,7 @@ window.generateCode = function() {
         if (iframeId) {
             const iframe = document.getElementById(iframeId);
             if (iframe && iframe.contentWindow) {
-                try {
+                try { 
                     iframe.contentWindow.postMessage({
                         type: shouldMute ? 'MUTE_AUDIO' : 'UNMUTE_AUDIO'
                     }, '*');
@@ -3180,7 +3180,7 @@ window.generateCode = function() {
            if (shotsIframe && !shotsIframe.src) {
              shotsIframe.onload = () => {
                if (loading) loading.style.display = 'none';
-               try { shotsIframe.contentWindow.postMessage({ type: 'shots-init' }, '*'); } catch(e) {}
+               try {  shotsIframe.contentWindow.postMessage({ type: 'shots-init' }, '*'); } catch(e) {}
              };
              shotsIframe.src = '/codebank/shots/shots.html';
            }
@@ -3205,9 +3205,9 @@ window.generateCode = function() {
       if (shotsIframe) {
         shotsIframe.onload = () => {
           if (loading) loading.style.display = 'none';
-          try { shotsIframe.contentWindow.postMessage({ type: 'shots-init' }, '*'); } catch(e) {}
+          try {  shotsIframe.contentWindow.postMessage({ type: 'shots-init' }, '*'); } catch(e) {}
         };
-        try { shotsIframe.src = '/codebank/shots/shots.html'; } catch(_){ }
+        try {  shotsIframe.src = '/codebank/shots/shots.html'; } catch(_){ }
         setTimeout(()=>{ try{ if (!shotsIframe.src) shotsIframe.src = 'shots/shots.html'; }catch(_){ } }, 1500);
       }
     });
@@ -3370,7 +3370,7 @@ window.generateCode = function() {
         const email = emailInput.value.trim();
         if(!email) return alert("Please enter a valid email");
 
-        try {
+        try { 
           const res = await fetch('/api/send-codes', {
             method: 'POST',
             headers:{'Content-Type':'application/json'},
@@ -3383,22 +3383,22 @@ window.generateCode = function() {
               const item = document.querySelector(`.code-item[data-code="${code}"]`);
               item && item.remove();
             });
-            try {
+            try { 
               if (window.__INDEXCB_ASSETS__ && Array.isArray(window.__INDEXCB_ASSETS__.codesList)) {
                 window.__INDEXCB_ASSETS__.codesList = window.__INDEXCB_ASSETS__.codesList.filter(x => !codes.includes(x));
               }
               const currentTab = window.__SAFE_TAB__ || 'normal';
               if (currentTab !== 'normal') {
-                let extrasRaw = null; try { extrasRaw = window.safeStorage ? window.safeStorage.get('safe_extras') : localStorage.getItem('safe_extras'); } catch(_){ extrasRaw = null }
+                let extrasRaw = null; try {  extrasRaw = window.safeStorage ? window.safeStorage.get('safe_extras') : localStorage.getItem('safe_extras'); } catch(_){ extrasRaw = null }
                 const extras = extrasRaw ? JSON.parse(extrasRaw) : [];
                 const updated = extras.filter(x => !(x && x.type === currentTab && codes.includes(x.code)));
-                try { if (window.safeStorage) window.safeStorage.set('safe_extras', JSON.stringify(updated)); else localStorage.setItem('safe_extras', JSON.stringify(updated)); } catch(_){ }
+                try {  if (window.safeStorage) window.safeStorage.set('safe_extras', JSON.stringify(updated)); else localStorage.setItem('safe_extras', JSON.stringify(updated)); } catch(_){ }
               }
               const nextTab = (window.__SAFE_TAB__ === 'normal') ? 'codes' : (window.__SAFE_TAB__ || 'codes');
               if (typeof window.switchAssetTab === 'function') window.switchAssetTab(nextTab);
-              try { if (window.parent && window.parent !== window) { window.parent.postMessage({ type: 'CODEBANK_ASSETS_HANDSHAKE' }, '*'); setTimeout(() => { try { window.parent.postMessage({ type: 'CODEBANK_ASSETS_HANDSHAKE' }, '*'); } catch(_){ } }, 250); } } catch(_){ }
+              try {  if (window.parent && window.parent !== window) { window.parent.postMessage({ type: 'CODEBANK_ASSETS_HANDSHAKE' }, '*'); setTimeout(() => { try {  window.parent.postMessage({ type: 'CODEBANK_ASSETS_HANDSHAKE' }, '*'); } catch(_){ } }, 250); } } catch(_){ }
             } catch(_){ }
-            try {
+            try { 
               const currentTab = window.__SAFE_TAB__ || 'normal';
               if (currentTab === 'normal') {
                 const snapRes = await fetch('/api/neon/codes');
@@ -3409,7 +3409,7 @@ window.generateCode = function() {
                   if (window.safeCodeManager && typeof window.safeCodeManager.renderSafeCodes === 'function') window.safeCodeManager.renderSafeCodes();
                 }
               } else {
-                let extrasRaw = null; try { extrasRaw = window.safeStorage ? window.safeStorage.get('safe_extras') : localStorage.getItem('safe_extras'); } catch(_){ extrasRaw = null }
+                let extrasRaw = null; try {  extrasRaw = window.safeStorage ? window.safeStorage.get('safe_extras') : localStorage.getItem('safe_extras'); } catch(_){ extrasRaw = null }
                 const extras = extrasRaw ? JSON.parse(extrasRaw) : [];
                 const filtered = extras.filter(x => x && x.type === currentTab).map(x => x.code);
                 window.__CODEBANK_CODES_PAGE__ = 0;
@@ -3480,14 +3480,14 @@ window.generateCode = function() {
 
     // Initialize gate system on page load
     document.addEventListener('DOMContentLoaded', () => {
-      try { if (typeof check1000HoursGate === 'function') { check1000HoursGate(); } } catch(_){ }
+      try {  if (typeof check1000HoursGate === 'function') { check1000HoursGate(); } } catch(_){ }
     });
 
     document.addEventListener('DOMContentLoaded', async () => {
-        try {
+        try { 
             let savedHours = 0;
             if (window.unifiedStorage && window.unifiedStorage.cacheGet) {
-                try {
+                try { 
                     savedHours = await window.unifiedStorage.cacheGet('totalWatchHours');
                 } catch (e) {
                     console.warn('Failed to read totalWatchHours from unifiedStorage', e);

@@ -15,9 +15,7 @@ GAMES_MISSING_INTEGRATION=(
 )
 
 # Game integration template
-INTEGRATION_TEMPLATE='// ========================================
 // Game Integration - Auto-added
-// ========================================
 (function() {
     const gameIntegration = window.gameIntegration;
     if (!gameIntegration) {

@@ -106,7 +106,7 @@ class AssetsCentralCore {
     setupRoutes() {
         // Get Assets (Mirror Request)
         this.app.get('/acc/assets/:userId', async (req, res) => {
-            try {
+            try { 
                 const { userId } = req.params;
                 const assets = await this.getAssets(userId);
                 res.json({
@@ -123,7 +123,7 @@ class AssetsCentralCore {
 
         // Transaction Request
         this.app.post('/acc/transaction', async (req, res) => {
-            try {
+            try { 
                 const { userId, type, assetType, amount, service, description, metadata } = req.body;
                 
                 const result = await this.processTransaction({
@@ -145,7 +145,7 @@ class AssetsCentralCore {
 
         // Batch Transaction (for games)
         this.app.post('/acc/batch-transaction', async (req, res) => {
-            try {
+            try { 
                 const { userId, transactions } = req.body;
                 const results = [];
                 
@@ -166,7 +166,7 @@ class AssetsCentralCore {
 
         // Sync Request from SafeCode
         this.app.post('/acc/sync', async (req, res) => {
-            try {
+            try { 
                 const { userId, assets, source } = req.body;
                 const result = await this.syncAssets(userId, assets, source);
                 res.json(result);
@@ -191,7 +191,7 @@ class AssetsCentralCore {
             console.log('[ACC] New WebSocket connection');
             
             ws.on('message', async (message) => {
-                try {
+                try { 
                     const data = JSON.parse(message);
                     await this.handleWebSocketMessage(ws, data);
                 } catch (error) {
@@ -418,7 +418,7 @@ class AssetsCentralCore {
             if (this.transactionQueue.length > 0 && !this.processingQueue) {
                 this.processingQueue = true;
                 const tx = this.transactionQueue.shift();
-                try {
+                try { 
                     await this.processTransaction(tx);
                 } catch (error) {
                     console.error('[ACC] Queued transaction failed:', error);

@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     gameContainer.style.display = 'flex';
     gamesGrid.style.display = 'none';
     gameFrame.onload = () => {
-      try {
+      try { 
         const doc = gameFrame.contentDocument || gameFrame.contentWindow.document;
         const link = doc.createElement('link');
         link.rel = 'stylesheet';

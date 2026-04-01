@@ -7,7 +7,7 @@
 async function initializeGamesCentre() {
   console.log('[GamesCentre] Starting initialization...');
 
-  try {
+  try { 
     // Import the runtime bridge
     const YTRuntimeBridge = (await import('./integrations/yt-runtime-bridge.js')).default;
     const bridge = new YTRuntimeBridge();
@@ -64,7 +64,7 @@ async function initializeGamesCentre() {
 async function initializeUI(gameEngine) {
   console.log('[GamesCentre] Initializing UI components...');
 
-  try {
+  try { 
     // Import UI components
     const GamesDashboard = (await import('./ui/games-dashboard.js')).default;
     const ModeSelector = (await import('./ui/mode-selector.js')).default;
@@ -155,7 +155,7 @@ function setupUIEventListeners(dashboard, modeSelector, serviceSelector, challen
 async function runTestSuite() {
   console.log('[GamesCentre] Running test suite...');
 
-  try {
+  try { 
     const TestSuite = (await import('./test-suite.js')).default;
     const testSuite = new TestSuite();
 
@@ -180,7 +180,7 @@ async function runTestSuite() {
 async function demonstrateSystem(gameEngine) {
   console.log('[GamesCentre] Demonstrating system capabilities...');
 
-  try {
+  try { 
     // Demonstrate game registration
     console.log('[GamesCentre] Demonstrating game registration...');
     const games = gameEngine.gameRegistry.getAllGames();
@@ -236,7 +236,7 @@ async function demonstrateSystem(gameEngine) {
 
 // Export main function
 export async function startGamesCentre() {
-  try {
+  try { 
     // Initialize the system
     const system = await initializeGamesCentre();
 
@@ -256,7 +256,7 @@ export async function startGamesCentre() {
 // Auto-start if running in browser
 if (typeof window !== 'undefined') {
   window.addEventListener('DOMContentLoaded', async () => {
-    try {
+    try { 
       // Add some basic styling for the demo
       const style = document.createElement('style');
       style.textContent = `

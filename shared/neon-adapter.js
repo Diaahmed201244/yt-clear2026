@@ -1,25 +1,25 @@
 ;(function(){
   function awaitAuthReady(){
     return new Promise(function(resolve){
-      try {
+      try { 
         if (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) { resolve(); return }
-        function h(e){ try { var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ try{ window.removeEventListener('auth:ready', h) }catch(_){}; resolve(); } } catch(_){} }
-        try { window.addEventListener('auth:ready', h) } catch(_) { resolve() }
+        function h(e){ try {  var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ try{ window.removeEventListener('auth:ready', h) }catch(_){}; resolve(); } } catch(_){} }
+        try {  window.addEventListener('auth:ready', h) } catch(_) { resolve() }
       } catch(_) { resolve() }
     })
   }
 
   async function getNeonCodes(){
-    try {
+    try { 
       await awaitAuthReady();
       const res = await fetch('/api/neon/codes', { method:'GET', credentials:'include' });
-      if (!res.ok) { try { console.warn('[NEON] request failed', res.status) } catch(_){}; try { return await res.json() } catch(_) { return { status:'failed', error:String(res.status) } } }
-      try { return await res.json() } catch(_) { return { status:'failed', error:'parse' } }
+      if (!res.ok) { try {  console.warn('[NEON] request failed', res.status) } catch(_){}; try {  return await res.json() } catch(_) { return { status:'failed', error:String(res.status) } } }
+      try {  return await res.json() } catch(_) { return { status:'failed', error:'parse' } }
     } catch(e){ return { status:'failed', error:e && e.message } }
   }
 
   async function writeCodeToNeon({ code, ts }){
-    try {
+    try { 
       if (!code || typeof code !== 'string') return { ok:false, error:'bad_code' };
       try{ window.__neonInFlightCodes = window.__neonInFlightCodes || new Set(); if (window.__neonInFlightCodes.has(code)) return { ok:true, skipped:true } }catch(_){}
       const online = typeof navigator !== 'undefined' && navigator.onLine === true;
@@ -27,12 +27,12 @@
       if (/PP$/.test(code)) { console.log('[NEON BLOCKED] reason=PP'); return { ok:false, error:'pp_code' }; }
       await awaitAuthReady();
       const uid = (window.Auth && typeof window.Auth.userId==='function') ? window.Auth.userId() : null;
-      if (!uid) { try { console.warn('[NEON BLOCKED] reason=no_user') } catch(_){}; return { ok:false, error:'no_user' } }
+      if (!uid) { try {  console.warn('[NEON BLOCKED] reason=no_user') } catch(_){}; return { ok:false, error:'no_user' } }
       const sufMatch = code.match(/P[0-9]$/);
       if (!sufMatch) return { ok:false, error:'bad_suffix' };
       const suffix = sufMatch[0];
       const payload = { code, ts: ts||Date.now(), suffix };
-      try { console.log('Inserting code:', { userId: uid, code, meta: { suffix } }) } catch(_){}
+      try {  console.log('Inserting code:', { userId: uid, code, meta: { suffix } }) } catch(_){}
       try{ window.__neonInFlightCodes.add(code) }catch(_){}
       const res = await fetch('/api/neon/codes', {
         method: 'POST',
@@ -41,21 +41,21 @@
         body: JSON.stringify(payload)
       });
       if (!res.ok) {
-        let j=null; try { j=await res.json(); } catch(_){}
+        let j=null; try {  j=await res.json(); } catch(_){}
         if (res.status===409) { try{ window.__neonWrittenCodes = window.__neonWrittenCodes||new Set(); window.__neonWrittenCodes.add(code) }catch(_){}; return { ok:true, duplicate:true, body:j } }
         console.warn('[NEON BLOCKED] reason=server_error', res.status);
         return { ok:false, status:res.status, body:j }
       }
       console.log('[NEON] write success');
-      let j=null; try { j=await res.json(); } catch(_){}
+      let j=null; try {  j=await res.json(); } catch(_){}
       try{ window.__neonWrittenCodes = window.__neonWrittenCodes||new Set(); window.__neonWrittenCodes.add(code) }catch(_){}
       try{ window.__neonInFlightCodes && window.__neonInFlightCodes.delete && window.__neonInFlightCodes.delete(code) }catch(_){}
       return { ok:true, body:j };
     } catch(e) { console.warn('[NEON BLOCKED] reason=exception', e && e.message); return { ok:false, error:e && e.message } }
   }
 
-  try { window.writeCodeToNeon = writeCodeToNeon } catch(_){}
-  try { window.getNeonCodes = getNeonCodes } catch(_){}
+  try {  window.writeCodeToNeon = writeCodeToNeon } catch(_){}
+  try {  window.getNeonCodes = getNeonCodes } catch(_){}
 
   // Auto-write on assets:updated disabled; writes initiated by Bankode after Neon read
 
@@ -101,7 +101,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
 ;(function(){
   async function sendReward(toUserId, amount = 1){
     try{
-      try { window.__lastRewardMark = Date.now() } catch(_){ }
+      try {  window.__lastRewardMark = Date.now() } catch(_){ }
       const res = await fetch('/api/rewards/transfer', {
         method: 'POST',
         credentials: 'include',
@@ -110,9 +110,9 @@ try{ /* auth-free in CodeBank */ }catch(_){}
       });
       const json = await res.json().catch(()=>({}));
       if (json && json.status === 'success' && json.balances) {
-        try { window.__lastRewardMark = Date.now() } catch(_){ }
-        try { window.dispatchEvent(new CustomEvent('balances:updated', { detail: { balances: json.balances } })) } catch(_){}
-        try {
+        try {  window.__lastRewardMark = Date.now() } catch(_){ }
+        try {  window.dispatchEvent(new CustomEvent('balances:updated', { detail: { balances: json.balances } })) } catch(_){}
+        try { 
           const ss = window.safeStorage || null;
           const s = (ss && ss.get('codebank_assets')) ? JSON.parse(ss.get('codebank_assets')) : {};
           // Note: We no longer update codes count directly - codes are stored as array in AssetBus
@@ -122,12 +122,12 @@ try{ /* auth-free in CodeBank */ }catch(_){}
           const detail = { type: 'balances', likes: next.likes || 0, superlikes: next.superlikes || 0, games: next.games || 0, transactions: next.transactions || 0, ts: pTs, proof: String(pTs), expiryTs: pTs + 5000 };
           window.dispatchEvent(new CustomEvent('assets:updated', { detail }));
         } catch(_){}
-        try { if (window.NeonAdapter && typeof window.NeonAdapter.sync==='function') { await window.NeonAdapter.sync() } } catch(_){}
+        try {  if (window.NeonAdapter && typeof window.NeonAdapter.sync==='function') { await window.NeonAdapter.sync() } } catch(_){}
       }
       return json;
     } catch(e){ return { status:'failed', error: e && e.message } }
   }
-  try { window.sendReward = sendReward } catch(_){}
+  try {  window.sendReward = sendReward } catch(_){}
 })();
 ;(function(){
   async function hasValidSession(){
@@ -141,7 +141,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
       const data=await res.json();
       const count= typeof data.count==='number' ? data.count : (Array.isArray(data.rows)? data.rows.length : 0);
       const latest= data.latest || (Array.isArray(data.rows)&&data.rows[0]? data.rows[0].code : null);
-      let ts = 0; try { const r0 = Array.isArray(data.rows) && data.rows[0] || null; if (r0 && r0.created_at) { const t = Date.parse(r0.created_at); if (Number.isFinite(t)) ts = t; } } catch(_){ }
+      let ts = 0; try {  const r0 = Array.isArray(data.rows) && data.rows[0] || null; if (r0 && r0.created_at) { const t = Date.parse(r0.created_at); if (Number.isFinite(t)) ts = t; } } catch(_){ }
       return { ok:true, count, latest, rows:data.rows||[], ts };
     }catch(e){ return { ok:false, error:e.message } }
   }
@@ -170,7 +170,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
     const latest = res.latest || null;
     const count = (typeof res.count==='number' ? res.count : (Array.isArray(res.rows)? res.rows.length : 0)) || 0;
     if (!latest) return res;
-    if (latest && count===0 && Array.isArray(res.rows) && res.rows.length>0){ try { console.error('CRITICAL: latest present but computed count=0; using rows.length') } catch(_){} }
+    if (latest && count===0 && Array.isArray(res.rows) && res.rows.length>0){ try {  console.error('CRITICAL: latest present but computed count=0; using rows.length') } catch(_){} }
     try{ window.dispatchEvent(new CustomEvent('neon:snapshot',{ detail:{ latest, rows: res.rows||[], ts: res.ts||0, count } })) }catch(_){}
     return Object.assign({}, res, { count, latest });
   }
@@ -196,7 +196,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
   });
 
   function retryPendingNeonWrites() {
-      try {
+      try { 
           const safeStorage = window.safeStorage || window.localStorage;
           const pending = safeStorage.getItem('neon_pending');
           if (!pending) return;
@@ -219,7 +219,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
   }
 
   function retryBalancesFetch() {
-      try {
+      try { 
           fetch('/api/balances', { method: 'GET', credentials: 'include' })
               .then(res => res.json())
               .then(data => {
@@ -239,7 +239,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
   window.writeNeonCode = async function(code, ts) {
       const result = await originalWriteNeonCode(code, ts);
       if (!result.ok) {
-          try {
+          try { 
               const safeStorage = window.safeStorage || window.localStorage;
               safeStorage.setItem('neon_pending', JSON.stringify({
                   code,
@@ -259,7 +259,7 @@ try{ /* auth-free in CodeBank */ }catch(_){}
   window.writeCodeToNeon = async function(params) {
       const result = await originalWriteCodeToNeon(params);
       if (!result.ok) {
-          try {
+          try { 
               const safeStorage = window.safeStorage || window.localStorage;
               safeStorage.setItem('neon_pending', JSON.stringify({
                   code: params.code,

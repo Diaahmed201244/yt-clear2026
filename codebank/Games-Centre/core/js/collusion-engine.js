@@ -31,7 +31,7 @@ class CollusionEngine {
     // --- Persistence ---
 
     loadState() {
-        try {
+        try { 
             const raw = localStorage.getItem(this.storageKey);
             if (raw) return JSON.parse(raw);
         } catch (e) {
@@ -45,7 +45,7 @@ class CollusionEngine {
     }
 
     saveState() {
-        try {
+        try { 
             localStorage.setItem(this.storageKey, JSON.stringify(this.state));
         } catch (e) {
             console.warn('[CollusionEngine] Failed to save state', e);
@@ -177,7 +177,7 @@ class CollusionEngine {
         this.saveState();
 
         // Log to Ledger (Amount 0)
-        try {
+        try { 
             await ledgerKernel.appendTransaction({
                 userId: userId,
                 type: 'COLLUSION_DETECTED',

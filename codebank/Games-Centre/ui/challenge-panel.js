@@ -155,7 +155,7 @@ class ChallengePanel {
 
     const creator = `player_${Math.floor(Math.random() * 10000)}`;
 
-    try {
+    try { 
       const challenge = this.competitionEngine.createChallenge({
         gameId,
         mode,

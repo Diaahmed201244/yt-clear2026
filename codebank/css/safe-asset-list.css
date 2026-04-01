@@ -1,10 +1,6 @@
-/* ===================================================
    Unified Safe Asset List Styles
-   =================================================== */
 
-<<<<<<< HEAD
 /* Container */
-=======
 /* Layout container fit (align with Samma3ny playlist) */
 #codebank-assets-tab,
 #codebank-assets-tab .safe-container {
@@ -15,17 +11,13 @@
 }
 
 /* Scrollable list area */
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 #safe-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-<<<<<<< HEAD
   max-height: 400px;
-=======
   flex: 1 1 auto;
   min-height: 0;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   overflow-y: auto;
   padding: 8px;
 }
@@ -66,8 +58,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-<<<<<<< HEAD
-=======
 .safe-item.selected {
   background: linear-gradient(180deg, rgba(59,130,246,0.12) 0%, rgba(37,99,235,0.10) 100%);
   border-color: rgba(59,130,246,0.5);
@@ -114,7 +104,6 @@
 }
 @keyframes safe-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 /* Asset Type Specific Styles */
 .safe-codes {
   color: #eaeaea;
@@ -158,8 +147,6 @@
   font-style: italic;
 }
 
-<<<<<<< HEAD
-=======
 /* Pagination - sticky bottom like Samma3ny panel footer */
 .safe-pagination {
   position: sticky;
@@ -174,7 +161,6 @@
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 /* Tab Button Styles */
 .safe-tab-button {
   padding: 8px 16px;

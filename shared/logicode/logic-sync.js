@@ -10,7 +10,7 @@ export async function queueSync(item) {
   const id = Core5.uuidv4();
   const obj = { id, item, createdAt: Core5.nowTs(), tries:0 };
   await Storage6.idbPut(Storage6.STORAGE_CONFIG?.SYNC_STORE || 'sync_queue', obj);
-  try { await syncPending(); } catch(e){}
+  try {  await syncPending(); } catch(e){}
   return obj;
 }
 
@@ -19,7 +19,7 @@ export async function syncPending() {
   const uid = localStorage.getItem(Core5.CONFIG.LOCAL_UID_KEY);
   const queue = await Storage6.idbGetAll(Storage6.STORAGE_CONFIG?.SYNC_STORE || 'sync_queue');
   for (const q of queue) {
-    try {
+    try { 
       if (!q.item || !q.item.type) { await Storage6.idbDelete(Storage6.STORAGE_CONFIG?.SYNC_STORE || 'sync_queue', q.id); continue; }
       if (q.item.type === 'bars') {
         const bars = q.item.payload;

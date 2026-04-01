@@ -10,11 +10,11 @@ export async function auditLog({
   ip_address,
   user_agent
 }) {
-  try {
+  try { 
     await query(
     )
   } catch (e) {
-    try { console.warn('[auditLog] insert failed:', e.message) } catch (_) {}
+    try {  console.warn('[auditLog] insert failed:', e.message) } catch (_) {}
   }
   return { ok: true }
 }

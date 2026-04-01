@@ -13,7 +13,7 @@ const pool = new Pool({
 // Query function
 export async function query(text, params) {
   const start = Date.now();
-  try {
+  try { 
     const res = await pool.query(text, params);
     const duration = Date.now() - start;
     console.log('Executed query', { text, duration, rows: res.rowCount });

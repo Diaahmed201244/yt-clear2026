@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThemeProvider = ThemeProvider;
@@ -7,32 +6,26 @@ const react_1 = require("react");
 const ThemeProviderContext = (0, react_1.createContext)(undefined);
 function ThemeProvider({ children, defaultTheme = "dark", storageKey = "e7ki-theme", }) {
     const [theme, setThemeState] = (0, react_1.useState)(() => {
-=======
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeProviderContext = createContext(undefined);
 
 export function ThemeProvider({ children, defaultTheme = "dark", storageKey = "e7ki-theme", }) {
     const [theme, setThemeState] = useState(() => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         if (typeof window !== "undefined") {
             const stored = localStorage.getItem(storageKey);
             return stored || defaultTheme;
         }
         return defaultTheme;
     });
-<<<<<<< HEAD
     (0, react_1.useEffect)(() => {
-=======
 
     useEffect(() => {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         const root = document.documentElement;
         root.classList.remove("light", "dark");
         root.classList.add(theme);
         localStorage.setItem(storageKey, theme);
     }, [theme, storageKey]);
-<<<<<<< HEAD
     const setTheme = (newTheme) => {
         setThemeState(newTheme);
     };
@@ -45,7 +38,6 @@ export function ThemeProvider({ children, defaultTheme = "dark", storageKey = "e
 }
 function useTheme() {
     const context = (0, react_1.useContext)(ThemeProviderContext);
-=======
 
     const setTheme = (newTheme) => {
         setThemeState(newTheme);
@@ -64,7 +56,6 @@ function useTheme() {
 
 export function useTheme() {
     const context = useContext(ThemeProviderContext);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     if (context === undefined) {
         throw new Error("useTheme must be used within a ThemeProvider");
     }

@@ -18,7 +18,7 @@ if (document.readyState === 'loading') {
 const TICK_PATH = '/assets/ui/tick.mp3';
 let tickAudio; 
 function playTickSound() {
-    try {
+    try { 
         if (!tickAudio) { 
             tickAudio = new Audio(TICK_PATH); 
             tickAudio.volume = 0.25;
@@ -36,7 +36,7 @@ function playTickSound() {
         console.debug('[3-way-toggle] Audio error:', e.message);
     }
 }
-function doHaptic() { if ('vibrate' in navigator) try { navigator.vibrate(35); } catch(e){} }
+function doHaptic() { if ('vibrate' in navigator) try {  navigator.vibrate(35); } catch(e){} }
 
 // --- HTML ELEMENTS ---
 let root, handle, track;
@@ -130,7 +130,7 @@ export function initThreeWayToggle() {
     }
     
     // Try immediately if player is ready (only after auth)
-    var __authed = false; try { __authed = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()); } catch(_){ __authed = false }
+    var __authed = false; try {  __authed = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()); } catch(_){ __authed = false }
     if (__authed && initializeHomeSection()) {
         console.log('[3-way-toggle] Home section initialized immediately');
     } else {
@@ -185,7 +185,7 @@ export function initThreeWayToggle() {
         if (idx === 0) {
             showSectionPopup('Afra7');
             if (window.showAfra7Section) {
-                try {
+                try { 
                     await window.showAfra7Section();
                 } catch (e) {
                     console.error('[3-way-toggle] Error in showAfra7Section:', e);
@@ -196,7 +196,7 @@ export function initThreeWayToggle() {
         } else if (idx === 1) {
             showSectionPopup('Home');
             if (window.showHomeSection) {
-                try {
+                try { 
                     await window.showHomeSection();
                 } catch (e) {
                     console.error('[3-way-toggle] Error in showHomeSection:', e);
@@ -207,7 +207,7 @@ export function initThreeWayToggle() {
         } else if (idx === 2) {
             showSectionPopup('Nour');
             if (window.showNourSection) {
-                try {
+                try { 
                     await window.showNourSection();
                 } catch (e) {
                     console.error('[3-way-toggle] Error in showNourSection:', e);

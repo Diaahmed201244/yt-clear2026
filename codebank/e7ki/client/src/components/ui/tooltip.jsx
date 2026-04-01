@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
@@ -29,7 +28,6 @@ const TooltipContent = React.forwardRef((_a, ref) => {
 });
 exports.TooltipContent = TooltipContent;
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
-=======
 import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
@@ -54,4 +52,3 @@ const TooltipContent = React.forwardRef(({ className, sideOffset = 4, ...props }
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

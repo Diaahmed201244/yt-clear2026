@@ -49,7 +49,7 @@ router.get('/health', (_req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/capture', async (req, res) => {
-  try {
+  try { 
     const { url, options = {} } = req.body;
 
     if (!url) {
@@ -84,7 +84,7 @@ router.post('/capture', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/capture-youtube', async (req, res) => {
-  try {
+  try { 
     const { videoId, timestamp, quality = 'high', options = {} } = req.body;
 
     if (!videoId) {

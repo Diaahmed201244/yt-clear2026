@@ -176,8 +176,6 @@
     margin-bottom: 15px;
 }
 
-<<<<<<< HEAD
-=======
 .capture-badge {
     padding: 4px 8px;
     border-radius: 4px;
@@ -206,7 +204,6 @@
     color: white;
 }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 .screenshot-date {
     font-size: 0.85rem;
     opacity: 0.8;

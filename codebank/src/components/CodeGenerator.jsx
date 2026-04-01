@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './CodeGenerator.css';
 
-<<<<<<< HEAD
 // Helper function to get Clerk session token
 const getClerkSessionToken = () => {
   // Try to get token from various sources
   return (
     localStorage.getItem('clerk-session-token') ||
     document.cookie.replace(/(?:(?:^|.*;\s*)__session\s*=\s*([^;]*).*$)|^.*$/, '$1') ||
-=======
 // Helper function to get internal session token
 const getSessionToken = () => {
   // Try to get token from internal session
   return (
     localStorage.getItem('session_token') ||
     document.cookie.replace(/(?:(?:^|.*;\s*)session_token\s*=\s*([^;]*).*$)|^.*$/, '$1') ||
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     null
   );
 };
@@ -39,11 +36,8 @@ const CodeGenerator = ({ source = 'yt-new' }) => {
 
   // Save code to backend
   const saveCode = async (codeToSave) => {
-<<<<<<< HEAD
     const sessionToken = getClerkSessionToken();
-=======
     const sessionToken = getSessionToken();
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     
     if (!sessionToken) {
       setError('Authentication required. Please log in.');

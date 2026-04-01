@@ -26,7 +26,7 @@ async function idbTxn(storeName, mode, cb) {
   return new Promise((res, rej) => {
     const tx = db.transaction(storeName, mode);
     const store = tx.objectStore(storeName);
-    try {
+    try { 
       const r = cb(store);
       tx.oncomplete = () => res(r);
       tx.onerror = () => rej(tx.error);

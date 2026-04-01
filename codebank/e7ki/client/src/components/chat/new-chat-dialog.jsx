@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -110,7 +109,6 @@ function NewChatDialog({ children }) {
         </dialog_1.DialogFooter>
       </dialog_1.DialogContent>
     </dialog_1.Dialog>);
-=======
 import { useState, useEffect } from "react";
 import { useChat } from "@/lib/chat-context";
 import { useAuth } from "@/lib/auth-context";
@@ -247,5 +245,4 @@ export function NewChatDialog({ children }) {
             </DialogContent>
         </Dialog>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

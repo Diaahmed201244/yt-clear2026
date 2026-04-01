@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 import { cn } from "@/lib/utils";
 export function TypingIndicator({ typingUsers }) {
     if (typingUsers.length === 0)
         return null;
     const names = typingUsers.map((u) => u.userName);
-=======
 import { useChat } from "@/lib/chat-context";
 import { cn } from "@/lib/utils";
 
@@ -15,20 +13,17 @@ export function TypingIndicator() {
         return null;
         
     const names = typingUsers.map((u) => u.username);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const text = names.length === 1
         ? `${names[0]} is typing...`
         : names.length === 2
             ? `${names[0]} and ${names[1]} are typing...`
             : `${names[0]} and ${names.length - 1} others are typing...`;
-<<<<<<< HEAD
     return (<div className="flex items-center gap-2 px-4 py-2" data-testid="typing-indicator">
       <div className="flex gap-1">
         {[0, 1, 2].map((i) => (<span key={i} className={cn("h-2 w-2 rounded-full bg-muted-foreground", "animate-bounce")} style={{ animationDelay: `${i * 150}ms` }}/>))}
       </div>
       <span className="text-sm text-muted-foreground italic">{text}</span>
     </div>);
-=======
             
     return (
         <div className="flex items-center gap-2 px-4 py-2" data-testid="typing-indicator">
@@ -44,5 +39,4 @@ export function TypingIndicator() {
             <span className="text-[10px] text-muted-foreground italic">{text}</span>
         </div>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

@@ -1,12 +1,9 @@
 import { useRef, useState, useMemo, useEffect } from "react";
 import { useChat } from "@/lib/chat-context";
-<<<<<<< HEAD
 import { MessageBubble, MessageInput, TypingIndicator } from "@/components/chat";
-=======
 import { MessageBubble } from "./message-bubble";
 import { MessageInput } from "./message-input";
 import { TypingIndicator } from "./typing-indicator";
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -14,10 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { isToday, isYesterday, isSameDay, format } from "date-fns";
 import { MessageCircle, ArrowLeft, Phone, Video, Info } from "lucide-react";
-<<<<<<< HEAD
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function getInitials(name) {
     return name
         .split(" ")
@@ -26,7 +20,6 @@ function getInitials(name) {
         .toUpperCase()
         .slice(0, 2);
 }
-<<<<<<< HEAD
 function formatDateSeparator(date) {
     if (isToday(date)) return "Today";
     if (isYesterday(date)) return "Yesterday";
@@ -58,7 +51,6 @@ export function ConversationView({ onBack, isMobile }) {
     const { activeChat, messages, currentUser, typingUsersInActiveChat, markAsRead, isLoading, } = useChat();
     const scrollRef = useRef(null);
     const [replyTo, setReplyTo] = useState(null);
-=======
 
 function formatDateSeparator(date) {
     const d = new Date(date);
@@ -110,7 +102,6 @@ export function ConversationView({ onBack, isMobile }) {
     const scrollRef = useRef(null);
     const [replyTo, setReplyTo] = useState(null);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const messagesWithDateSeparators = useMemo(() => {
         const result = [];
         let lastDate = null;
@@ -124,15 +115,11 @@ export function ConversationView({ onBack, isMobile }) {
         });
         return result;
     }, [messages]);
-<<<<<<< HEAD
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
-<<<<<<< HEAD
     }, [messages, typingUsersInActiveChat]);
     useEffect(() => {
         const lastMessage = messages[messages.length - 1];
@@ -236,7 +223,6 @@ export function ConversationView({ onBack, isMobile }) {
 
       <MessageInput replyTo={replyTo} onCancelReply={() => setReplyTo(null)}/>
     </div>);
-=======
     }, [messages, typingUsers]);
 
     if (!activeChat) {
@@ -332,5 +318,4 @@ export function ConversationView({ onBack, isMobile }) {
             <MessageInput replyTo={replyTo} onCancelReply={() => setReplyTo(null)} />
         </div>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

@@ -62,7 +62,7 @@ const upload = multer({
 
 // Upload endpoint
 const handleUpload = (req, res) => {
-  try {
+  try { 
     if (!req.file) {
       return res.status(400).json({
         success: false,

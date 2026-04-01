@@ -1,7 +1,7 @@
 import { useState } from 'react';
 export function useLocalStorage(key, initialValue) {
     const [storedValue, setStoredValue] = useState(() => {
-        try {
+        try { 
             const item = window.localStorage.getItem(key);
             if (key === 'hasPlayedToday') {
                 const lastPlayDate = localStorage.getItem('lastPlayDate');
@@ -19,7 +19,7 @@ export function useLocalStorage(key, initialValue) {
         }
     });
     const setValue = (value) => {
-        try {
+        try { 
             const valueToStore = value instanceof Function ? value(storedValue) : value;
             setStoredValue(valueToStore);
             window.localStorage.setItem(key, JSON.stringify(valueToStore));

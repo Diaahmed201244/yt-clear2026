@@ -120,7 +120,6 @@ function testEnhancedSparkAnimation() {
 // Run all tests
 function runAllTests() {
     console.log('🚀 Starting Samma3ny Spark Animation Fix Tests...');
-    console.log('==============================================');
 
     initializeMockPlaylist();
 
@@ -130,7 +129,6 @@ function runAllTests() {
     console.log('---');
     testEnhancedSparkAnimation();
 
-    console.log('==============================================');
     console.log('🎉 All tests completed!');
 }
 

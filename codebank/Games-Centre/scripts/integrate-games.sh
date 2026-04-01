@@ -6,7 +6,6 @@ GAMES_DIR="$(cd "$(dirname "$0")/../games/vanilla" && pwd)"
 SHARED_DIR="$GAMES_DIR/_shared"
 
 echo "🎮 Games Centre - Batch Integration Script"
-echo "==========================================="
 echo ""
 
 # Games to integrate (excluding snake which is already done)
@@ -84,7 +83,6 @@ for game in "${GAMES[@]}"; do
     echo ""
 done
 
-echo "==========================================="
 echo "✨ Integration complete!"
 echo ""
 echo "Next steps:"

@@ -26,7 +26,7 @@ const testCodes = [
 async function testPhase3Flow() {
   console.log('🧪 Starting Phase 3 Code Generation & Autosave Tests\n');
   
-  try {
+  try { 
     // Test 1: Generate and save valid code
     console.log('Test 1: Generate and save valid code');
     const validCode = testCodes[0];
@@ -89,7 +89,7 @@ async function testPhase3Flow() {
 }
 
 async function saveCode(code, source, token = MOCK_CLERK_TOKEN) {
-  try {
+  try { 
     const response = await fetch(`${API_BASE}/codes/save`, {
       method: 'POST',
       headers: {

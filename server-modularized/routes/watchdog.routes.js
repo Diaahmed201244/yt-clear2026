@@ -24,7 +24,7 @@ const router = Router();
 // ---------------------------------------------------------------------------
 
 router.post('/watchdog/feed', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
 
@@ -68,7 +68,7 @@ router.post('/watchdog/feed', requireAuth, enforceFinancialSecurity, async (req,
 // ---------------------------------------------------------------------------
 
 router.get('/watchdog/status', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
 
     // Refresh state based on time

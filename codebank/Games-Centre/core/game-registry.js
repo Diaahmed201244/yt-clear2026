@@ -3,7 +3,7 @@
  * Central registry for all game modules
  */
 
-class GameRegistry {
+class GameRegistry { 
   constructor() {
     this.games = new Map();
     this.gameMetadata = new Map();

@@ -1,16 +1,13 @@
 import { useState, useCallback, useRef } from "react";
-<<<<<<< HEAD
 import { Upload, Link as LinkIcon, AlertCircle, Loader2, FileVideo, X } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-=======
 import { Upload, Link as LinkIcon, AlertCircle, Loader2, FileVideo, X, Download } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -25,14 +22,11 @@ interface UploadModalProps {
 }
 
 export function UploadModal({ open, onOpenChange }: UploadModalProps) {
-<<<<<<< HEAD
   const [uploadMode, setUploadMode] = useState<"url" | "file">("file");
   const [videoUrl, setVideoUrl] = useState("");
-=======
   const [uploadMode, setUploadMode] = useState<"url" | "file" | "import">("file");
   const [videoUrl, setVideoUrl] = useState("");
   const [importUrls, setImportUrls] = useState("");
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [caption, setCaption] = useState("");
@@ -46,9 +40,7 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
   // URL-based upload mutation
   const urlUploadMutation = useMutation({
     mutationFn: async (data: { videoUrl: string; thumbnailUrl?: string; caption: string; category: string; copyrightConsent: boolean; responsibilityConsent: boolean }) => {
-<<<<<<< HEAD
       return await apiRequest("POST", "/api/videos", data);
-=======
       console.log("[FRONTEND] Attempting URL upload with data:", data);
       try {
         const response = await apiRequest("POST", "/api/videos", data);
@@ -58,7 +50,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
         console.error("[FRONTEND] URL upload request failed:", err);
         throw err;
       }
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/videos"] });
@@ -66,16 +57,11 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
       resetForm();
     },
     onError: (err) => {
-<<<<<<< HEAD
-=======
       console.error("[FRONTEND] URL upload mutation error details:", err);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       setError(err instanceof Error ? err.message : "Upload failed");
     },
   });
 
-<<<<<<< HEAD
-=======
   // Import Samples mutation
   const importSamplesMutation = useMutation({
     mutationFn: async (data: { urls: string[]; category: string }) => {
@@ -91,7 +77,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
     },
   });
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   // File-based upload mutation (NO AUTH REQUIRED)
   const fileUploadMutation = useMutation({
     mutationFn: async (formData: FormData) => {
@@ -121,19 +106,16 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
     },
   });
 
-<<<<<<< HEAD
   const isPending = urlUploadMutation.isPending || fileUploadMutation.isPending;
   
   const canUpload = uploadMode === "url" 
     ? (videoUrl && copyrightAgreed && responsibilityAgreed && !isPending)
-=======
   const isPending = urlUploadMutation.isPending || fileUploadMutation.isPending || importSamplesMutation.isPending;
   
   const canUpload = uploadMode === "url" 
     ? (videoUrl && copyrightAgreed && responsibilityAgreed && !isPending)
     : uploadMode === "import"
     ? (importUrls.trim() && copyrightAgreed && responsibilityAgreed && !isPending)
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     : (videoFile && copyrightAgreed && responsibilityAgreed && !isPending);
 
   const handleUpload = useCallback(() => {
@@ -149,12 +131,10 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
         copyrightConsent: copyrightAgreed,
         responsibilityConsent: responsibilityAgreed,
       });
-<<<<<<< HEAD
     } else if (videoFile) {
       const formData = new FormData();
       formData.append("video", videoFile);
       formData.append("caption", caption);
-=======
     } else if (uploadMode === "import") {
       const urls = importUrls.split('\n').map(u => u.trim()).filter(u => u.length > 0);
       importSamplesMutation.mutate({
@@ -166,7 +146,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
       const formData = new FormData();
       formData.append("video", videoFile); // ⚡ MUST match upload.single("video") on backend
       formData.append("caption", caption || videoFile.name);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       formData.append("category", category);
       formData.append("copyrightConsent", String(copyrightAgreed));
       formData.append("responsibilityConsent", String(responsibilityAgreed));
@@ -175,18 +154,15 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
       }
       fileUploadMutation.mutate(formData);
     }
-<<<<<<< HEAD
   }, [uploadMode, videoUrl, videoFile, thumbnailUrl, caption, category, copyrightAgreed, responsibilityAgreed, canUpload, urlUploadMutation, fileUploadMutation]);
 
   const resetForm = useCallback(() => {
     setVideoUrl("");
-=======
   }, [uploadMode, videoUrl, importUrls, videoFile, thumbnailUrl, caption, category, copyrightAgreed, responsibilityAgreed, canUpload, urlUploadMutation, fileUploadMutation, importSamplesMutation]);
 
   const resetForm = useCallback(() => {
     setVideoUrl("");
     setImportUrls("");
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     setVideoFile(null);
     setThumbnailUrl("");
     setCaption("");
@@ -272,7 +248,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
         </DialogHeader>
 
         <div className="space-y-4">
-<<<<<<< HEAD
           <Tabs value={uploadMode} onValueChange={(v) => setUploadMode(v as "url" | "file")}>
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="file" disabled={isPending} data-testid="tab-file-upload">
@@ -282,7 +257,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               <TabsTrigger value="url" disabled={isPending} data-testid="tab-url-upload">
                 <LinkIcon className="w-4 h-4 mr-2" />
                 Video URL
-=======
           <Tabs value={uploadMode} onValueChange={(v) => setUploadMode(v as "url" | "file" | "import")}>
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="file" disabled={isPending} data-testid="tab-file-upload">
@@ -296,7 +270,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               <TabsTrigger value="import" disabled={isPending} data-testid="tab-import-samples">
                 <Download className="w-4 h-4 mr-2" />
                 Import
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
               </TabsTrigger>
             </TabsList>
             
@@ -374,7 +347,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               )}
             </TabsContent>
 
-<<<<<<< HEAD
             <TabsContent value="url" className="space-y-2 mt-4 min-h-[180px]">
               <Label htmlFor="videoUrl">Video URL</Label>
               <div className="relative">
@@ -411,7 +383,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
                   )}
                 </Button>
               </div>
-=======
             <TabsContent value="url" className="space-y-4 mt-4 min-h-[180px]">
               <div className="space-y-2">
                 <Label htmlFor="videoUrl">Video URL</Label>
@@ -485,7 +456,6 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
                   </>
                 )}
               </Button>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             </TabsContent>
           </Tabs>
 

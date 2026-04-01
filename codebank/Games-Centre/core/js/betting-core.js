@@ -119,7 +119,7 @@ class CompetitionEscrow {
         const lockResults = [];
 
         for (const participant of this.participants) {
-            try {
+            try { 
                 // ✅ CORRECT: Ask Assets Bus to lock balance
                 const lockResult = await assetsBus.lockBalance(
                     participant.userId,
@@ -180,7 +180,7 @@ class CompetitionEscrow {
      */
     async rollbackLocks(successfulLocks) {
         for (const lock of this.lockReferences) {
-            try {
+            try { 
                 // ✅ CORRECT: Ask Assets Bus to unlock
                 await assetsBus.unlockBalance(lock.lockId);
 
@@ -217,7 +217,7 @@ class CompetitionEscrow {
             throw new Error('Cannot settle unlocked escrow');
         }
 
-        try {
+        try { 
             // ✅ CORRECT: Assets Bus settles the competition
             // Service fees are collected, system reward is distributed
             const settlementResult = await assetsBus.settleBet({
@@ -289,7 +289,7 @@ class CompetitionEscrow {
             throw new Error('Cannot refund unlocked escrow');
         }
 
-        try {
+        try { 
             // ✅ CORRECT: Assets Bus handles refunds
             for (const lock of this.lockReferences) {
                 await assetsBus.unlockBalance(lock.lockId);
@@ -357,7 +357,7 @@ class CompetitionCore {
 
     async initRecovery() {
         console.log('[CompetitionCore] Recovering state from CSA...');
-        try {
+        try { 
             const active = await csa.getActiveCompetitions();
             for (const comp of active) {
                 console.log(`[CompetitionCore] Restored competition ${comp.competitionId} in status ${comp.status}`);
@@ -496,7 +496,7 @@ class CompetitionCore {
         const competitionId = this.generateBetId(updatedPlayers, gameId);
 
         // Idempotency check handled by db constraint usually, but we assume unique ID per request
-        try {
+        try { 
             await csa.create({
                 competitionId,
                 gameId,
@@ -605,7 +605,7 @@ class CompetitionCore {
             );
         }
 
-        try {
+        try { 
             if (isDraw) {
                 await escrow.refund();
                 await csa.transition(betId, COMPETITION_STATUS.SETTLED, { result: { draw: true } });
@@ -653,7 +653,7 @@ class CompetitionCore {
 
         const escrow = this.escrows.get(betId);
 
-        try {
+        try { 
             await escrow.refund();
             competition.status = COMPETITION_STATUS.CANCELLED;
             competition.cancelledAt = Date.now();
@@ -738,7 +738,7 @@ class CompetitionCore {
     }
 
     async validateUserCanCompete(userId, amount, asset = 'code') {
-        try {
+        try { 
             const balance = await assetsBus.getBalance(userId, asset);
             if (balance < amount) {
                 return { valid: false, reason: `Insufficient ${asset}` };

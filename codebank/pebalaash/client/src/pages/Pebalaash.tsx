@@ -7,26 +7,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-<<<<<<< HEAD
 import { Loader2, Coins, Package, ShoppingCart } from "lucide-react";
 import { AdminDashboard } from "@/components/AdminDashboard";
-=======
 import { Loader2, Coins, Package, ShoppingCart, Search, Menu, Filter, Star, Zap, Clock } from "lucide-react";
 import { AdminDashboard } from "@/components/AdminDashboard";
 import { IceOverlay } from "@/components/iceOverlay";
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 import { api } from "@shared/routes";
 import { CartPanel } from "@/components/CartPanel";
 import { MarqueeSection } from "@/components/MarqueeSection";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-<<<<<<< HEAD
-=======
 import { Footer } from "@/components/Footer";
 import { Heart } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 const purchaseSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -81,8 +75,6 @@ interface FailedPurchase {
 
 const GUEST_USER_ID = "550e8400-e29b-41d4-a716-446655440000";
 
-<<<<<<< HEAD
-=======
 // Declare global window property for TypeScript
 declare global {
   interface Window {
@@ -91,7 +83,6 @@ declare global {
   }
 }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 export default function Pebalaash() {
   const { toast } = useToast();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -101,23 +92,18 @@ export default function Pebalaash() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-<<<<<<< HEAD
-=======
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [balloonPoints, setBalloonPoints] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("featured");
   const [wishlist, setWishlist] = useState<number[]>([]);
   const [isBulkCheckoutOpen, setIsBulkCheckoutOpen] = useState(false);
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   
   // Cart state
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [purchasedItems, setPurchasedItems] = useState<PurchasedItem[]>([]);
   const [failedPurchases, setFailedPurchases] = useState<FailedPurchase[]>([]);
 
-<<<<<<< HEAD
-=======
   // Listen for balloon points updates
   useEffect(() => {
     // Initialize with current global points
@@ -187,7 +173,6 @@ export default function Pebalaash() {
     }
   }, [wishlist]);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   // Fetch categories
   const { data: categories = [] } = useQuery({
     queryKey: [api.categories.list.path],
@@ -254,8 +239,6 @@ export default function Pebalaash() {
     setCartItems(cartItems.filter((item: CartItem) => item.product.id !== productId));
   };
 
-<<<<<<< HEAD
-=======
   const toggleWishlist = (productId: number) => {
     if (wishlist.includes(productId)) {
       setWishlist(wishlist.filter(id => id !== productId));
@@ -269,7 +252,6 @@ export default function Pebalaash() {
     setIsDetailsOpen(true);
   };
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   const handleBuyClick = (product: Product) => {
     setSelectedProduct(product);
     setIsSheetOpen(true);
@@ -353,9 +335,7 @@ export default function Pebalaash() {
     }
   };
 
-<<<<<<< HEAD
   const canAfford = selectedProduct && wallet && wallet.codes >= selectedProduct.priceCodes;
-=======
   const onBulkPurchaseSubmit = async (data: PurchaseFormData) => {
     if (cartItems.length === 0 || !wallet) return;
 
@@ -428,7 +408,6 @@ export default function Pebalaash() {
     });
 
   const canAfford = selectedProduct && wallet ? wallet.codes >= selectedProduct.priceCodes : false;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -436,7 +415,6 @@ export default function Pebalaash() {
       <MarqueeSection />
 
       {/* Navigation */}
-<<<<<<< HEAD
       <nav className="bg-card/80 border-b border-border sticky top-0 z-10 backdrop-blur brand-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -463,7 +441,6 @@ export default function Pebalaash() {
                 <ShoppingCart className="w-5 h-5" />
                 {(cartItems.length + purchasedItems.length + failedPurchases.length) > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-=======
       <nav className="bg-[#131921] sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center gap-6">
@@ -519,7 +496,6 @@ export default function Pebalaash() {
                 </div>
                 {(cartItems.length + purchasedItems.length + failedPurchases.length) > 0 && (
                   <span className="absolute top-0 right-0 bg-[#FFD814] text-[#131921] text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-md">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                     {cartItems.length + purchasedItems.length + failedPurchases.length}
                   </span>
                 )}
@@ -527,7 +503,6 @@ export default function Pebalaash() {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
       </nav>
 
       <div className="flex-grow flex">
@@ -642,7 +617,6 @@ export default function Pebalaash() {
           )}
         </main>
       </div>
-=======
 
         {/* Sub Navigation (Categories) */}
         <div className="bg-[#232F3E] text-white">
@@ -956,7 +930,6 @@ export default function Pebalaash() {
           )}
         </SheetContent>
       </Sheet>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
       {/* Checkout Sheet */}
       <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -1062,15 +1035,12 @@ export default function Pebalaash() {
 
       {/* Admin Dashboard */}
       {isAdminOpen && <AdminDashboard onClose={() => setIsAdminOpen(false)} />}
-<<<<<<< HEAD
-=======
       
       {/* Ice Overlay Animation */}
       <IceOverlay />
 
       {/* Footer */}
       <Footer />
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     </div>
   );
 }

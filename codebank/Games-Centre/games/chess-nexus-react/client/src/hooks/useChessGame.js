@@ -2,8 +2,8 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function fulfilled(value) { try {  step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try {  step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -89,7 +89,7 @@ function useChessGame(gameMode) {
         });
     }, [chess, gameState.orientation, gameState.whiteTime, gameState.blackTime, gameState.aiThinking]);
     const makeMove = (0, react_1.useCallback)((move) => {
-        try {
+        try { 
             const moveObj = chess.move(move);
             if (!moveObj)
                 return false;
@@ -208,7 +208,7 @@ function useChessGame(gameMode) {
         return chess.fen();
     }, [chess]);
     const importFEN = (0, react_1.useCallback)((fen) => {
-        try {
+        try { 
             chess.load(fen);
             updateGameState();
         }

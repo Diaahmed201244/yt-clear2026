@@ -12,7 +12,7 @@ const PIXABAY_API_KEY = "51193144-58166af266c808b2e75cfc735";
  * Load videos from Pexels API
  */
 async function loadPexelsVideos() {
-  try {
+  try { 
     console.log("[Farragna] Loading Pexels videos...");
     
     const response = await fetch(
@@ -51,7 +51,7 @@ async function loadPexelsVideos() {
  * Load videos from Pixabay API
  */
 async function loadPixabayVideos() {
-  try {
+  try { 
     console.log("[Farragna] Loading Pixabay videos...");
     
     const response = await fetch(
@@ -84,7 +84,7 @@ async function loadPixabayVideos() {
  * Load videos from Mixkit public feeds
  */
 async function loadMixkitVideos() {
-  try {
+  try { 
     console.log("[Farragna] Loading Mixkit videos...");
     
     // Mixkit doesn't have a traditional API, using their public JSON feed
@@ -145,7 +145,7 @@ function shuffleArray(array) {
 async function loadFarragnaFeed() {
   console.log("[Farragna] Loading video feed from all sources...");
   
-  try {
+  try { 
     // Load from all APIs concurrently
     const [pexelsVideos, pixabayVideos, mixkitVideos] = await Promise.all([
       loadPexelsVideos(),

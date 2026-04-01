@@ -894,7 +894,7 @@
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        try {
+                        try { 
                             const settings = JSON.parse(e.target.result);
                             azanDashboard.currentSettings = { ...azanDashboard.currentSettings, ...settings };
                             azanDashboard.saveSettings();

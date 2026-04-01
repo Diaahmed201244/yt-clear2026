@@ -6,7 +6,7 @@ class SoundManager {
         this.initializeAudioContext();
     }
     async initializeAudioContext() {
-        try {
+        try { 
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
             if (this.audioContext.state === 'suspended') {
                 const resumeContext = () => {
@@ -25,7 +25,7 @@ class SoundManager {
     async loadSound(url) {
         if (!this.audioContext)
             return null;
-        try {
+        try { 
             const response = await fetch(url);
             const arrayBuffer = await response.arrayBuffer();
             const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);

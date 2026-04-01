@@ -31,7 +31,7 @@ class WatchDog {
     // Notify visual dog that we are monitoring/checking
     this.updateVisualState('monitoring');
 
-    try {
+    try { 
       if (!this.dbQuery) {
         throw new Error('Database helper not initialized in WatchDog');
       }

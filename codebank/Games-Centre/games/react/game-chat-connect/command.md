@@ -1,6 +1,4 @@
-// ==========================
 // FULL LOGIC FOR GAMBLING DECK GAME
-// ==========================
 
 // This module defines the full logic and state management for a Texas Hold'em-like gambling card game.
 

@@ -60,7 +60,7 @@ function cfAccountId() {
 
 // Request a direct upload URL (no server file handling)
 router.post('/direct-upload', async (req, res) => {
-  try {
+  try { 
     const id = cfAccountId()
     const url = `https://api.cloudflare.com/client/v4/accounts/${id}/stream/direct_upload`
     const r = await fetch(url, { method: 'POST', headers: cfHeaders(), body: JSON.stringify({}) })
@@ -70,7 +70,7 @@ router.post('/direct-upload', async (req, res) => {
     const stream_uid = data?.result?.uid
     if (!upload_url || !stream_uid) return res.status(500).json({ ok: false, error: 'CF_RESPONSE_INVALID' })
 
-    try {
+    try { 
       await query(
         'INSERT INTO farragna_videos (id, owner_id, stream_uid, status) VALUES ($1, $2, $3, $4)',
         [crypto.randomUUID(), req.user?.clerkUserId || 'anonymous', stream_uid, 'pending']
@@ -85,7 +85,7 @@ router.post('/direct-upload', async (req, res) => {
 
 // Cloudflare webhook: processing/ready/failed
 export async function webhookCloudflare(req, res) {
-  try {
+  try { 
     const secret = process.env.CF_STREAM_WEBHOOK_SECRET
     if (secret) {
       const hdr = req.headers['x-webhook-token'] || req.headers['x-cf-webhook-token']
@@ -105,7 +105,7 @@ export async function webhookCloudflare(req, res) {
     else if (status === 'inprogress' || status === 'queued') newStatus = 'processing'
     else if (status === 'error' || status === 'failed') newStatus = 'failed'
 
-    try {
+    try { 
       await query(
         `UPDATE farragna_videos SET status=$2, playback_url=COALESCE($3, playback_url), duration=COALESCE($4, duration), size=COALESCE($5, size)
          WHERE stream_uid=$1`,
@@ -123,7 +123,7 @@ router.post('/webhook/cloudflare', webhookCloudflare)
 // View video (only ready). Count unique view and reward owner once.
 router.get('/view/:id', async (req, res) => {
   const client = await pool.connect()
-  try {
+  try { 
     await client.query('BEGIN')
     const id = req.params.id
     const vres = await client.query('SELECT id, owner_id, status, playback_url FROM farragna_videos WHERE id=$1', [id])
@@ -147,13 +147,13 @@ router.get('/view/:id', async (req, res) => {
         [id, userId]
       )
       
-      try { await grantReward({ userId: v.owner_id, amount: 1, source: 'watch', meta: { video_id: id } }) } catch (_) {}
+      try {  await grantReward({ userId: v.owner_id, amount: 1, source: 'watch', meta: { video_id: id } }) } catch (_) {}
     }
     
     await client.query('COMMIT')
     res.json({ ok: true, id: v.id, playback_url: v.playback_url, status: v.status })
   } catch (e) {
-    try { await client.query('ROLLBACK') } catch (_) {}
+    try {  await client.query('ROLLBACK') } catch (_) {}
     res.status(500).json({ ok: false, error: 'VIEW_ERROR' })
   } finally {
     client.release()
@@ -165,7 +165,7 @@ router.get('/feed', async (req, res) => {
   const page = Math.max(parseInt(req.query.page, 10) || 1, 1)
   const pageSize = Math.min(parseInt(req.query.page_size, 10) || 20, 100)
   const offset = (page - 1) * pageSize
-  try {
+  try { 
     const r = await query(
       `SELECT id, owner_id, playback_url, views_count, rewards_earned, created_at
        FROM farragna_videos
@@ -182,7 +182,7 @@ router.get('/feed', async (req, res) => {
 
 // Trending v1
 router.get('/trending', async (_req, res) => {
-  try {
+  try { 
     const r = await query(
       `SELECT id, owner_id, playback_url, views_count, rewards_earned, created_at
        FROM farragna_videos
@@ -209,7 +209,7 @@ router.get('/trending', async (_req, res) => {
 
 // Bulk upload endpoint
 router.post('/upload', upload.any(), async (req, res) => {
-  try {
+  try { 
     const files = req.files
     if (!files || files.length === 0) {
       return res.status(400).json({ error: 'No files uploaded', message: 'Please select video files to upload' })
@@ -224,7 +224,7 @@ router.post('/upload', upload.any(), async (req, res) => {
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileIndex = i + 1
-      try {
+      try { 
         console.log(`📤 Processing file ${fileIndex}/${files.length}: ${file.originalname}`)
         if (!file.mimetype.startsWith('video/')) {
           errors.push({ file: file.originalname, error: 'Invalid file type', message: 'Only video files are allowed' })
@@ -242,7 +242,7 @@ router.post('/upload', upload.any(), async (req, res) => {
         const timestamp = Date.now()
         const randomId = Math.random().toString(36).substr(2, 9)
         const publicId = `farragna/video_${timestamp}_${randomId}`
-        try {
+        try { 
           const result = await cloudinary.v2.uploader.upload(file.path, {
             resource_type: 'video',
             folder: 'farragna',
@@ -276,7 +276,7 @@ router.post('/upload', upload.any(), async (req, res) => {
           console.log(`✅ Successfully uploaded: ${file.originalname} (${formatFileSize(result.bytes)})`)
         } catch (uploadError) {
           console.error(`❌ Cloudinary upload failed for ${file.originalname}:`, uploadError.message)
-          try {
+          try { 
             const localPath = path.join(process.cwd(), 'services/codebank/farragna/uploads')
             if (!fs.existsSync(localPath)) fs.mkdirSync(localPath, { recursive: true })
             const localFileName = `local_${timestamp}_${file.originalname}`
@@ -342,7 +342,7 @@ router.post('/upload', upload.any(), async (req, res) => {
 
 // Admin videos
 router.all('/admin/videos', async (req, res) => {
-  try {
+  try { 
     const { default: adminVideosHandler } = await import('../../api/admin/videos.js')
     await adminVideosHandler(req, res)
   } catch (error) {
@@ -353,7 +353,7 @@ router.all('/admin/videos', async (req, res) => {
 
 // Admin views
 router.all('/admin/views', async (req, res) => {
-  try {
+  try { 
     const { default: adminViewsHandler } = await import('../../api/admin/views.js')
     await adminViewsHandler(req, res)
   } catch (error) {

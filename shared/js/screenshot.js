@@ -1,6 +1,4 @@
-// ================================
 // Instant Mobile-Style Screenshot System (Enhanced with Complete Escape System)
-// ================================
 
 const SCREENSHOT_KEY = "user_screenshots";
 const MONTHLY_DATA_KEY = "monthly_screenshot_data";
@@ -9,7 +7,7 @@ const MONTHLY_DATA_KEY = "monthly_screenshot_data";
 // 1. Enhanced LocalStorage for Monthly Limit (Dual System for Compatibility)
 // --------------------
 function getScreenshotData() {
-    try {
+    try { 
         const data = JSON.parse(localStorage.getItem(SCREENSHOT_KEY)) || { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() };
         const currentMonth = new Date().getMonth();
         const currentYear = new Date().getFullYear();
@@ -30,7 +28,7 @@ function getScreenshotData() {
 
 // Enhanced monthly data system for escape button
 function getMonthlyScreenshotData() {
-    try {
+    try { 
         const data = JSON.parse(localStorage.getItem(MONTHLY_DATA_KEY)) || { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() };
         const currentMonth = new Date().getMonth();
         const currentYear = new Date().getFullYear();
@@ -53,7 +51,7 @@ function incrementScreenshotCount() {
     // Update legacy system
     const legacyData = getScreenshotData();
     legacyData.count++;
-    try {
+    try { 
         localStorage.setItem(SCREENSHOT_KEY, JSON.stringify(legacyData));
     } catch (e) {
         console.warn("Failed to save screenshot count.");
@@ -62,7 +60,7 @@ function incrementScreenshotCount() {
     // Update new monthly system
     const monthlyData = getMonthlyScreenshotData();
     monthlyData.count++;
-    try {
+    try { 
         localStorage.setItem(MONTHLY_DATA_KEY, JSON.stringify(monthlyData));
     } catch (e) {
         console.warn("Failed to save monthly screenshot count.");
@@ -125,7 +123,7 @@ async function instantScreenshot() {
     if (isCapturing) return;
     isCapturing = true;
 
-    try {
+    try { 
         console.log("🎬 Starting enhanced screenshot capture...");
         
         // Capture the entire page including video container
@@ -144,7 +142,7 @@ async function instantScreenshot() {
         console.error("Screenshot failed:", e);
         
         // Fallback: Try simple page screenshot
-        try {
+        try { 
             console.log("🔄 Attempting fallback screenshot...");
             const fallbackCanvas = await captureFallbackScreenshot();
             if (fallbackCanvas) {
@@ -164,7 +162,7 @@ async function instantScreenshot() {
 
 // Enhanced full-page screenshot with YouTube background
 async function captureFullPageScreenshot() {
-    try {
+    try { 
         // Ensure YouTube iframe is loaded
         const ytIframe = document.getElementById("yt-iframe");
         if (!ytIframe) {
@@ -195,7 +193,7 @@ async function captureFullPageScreenshot() {
             ctx.fillRect(0, 0, pageWidth, pageHeight);
             
             // Try to draw the thumbnail as background
-            try {
+            try { 
                 ctx.drawImage(videoThumbnail, 0, 0, pageWidth, pageHeight);
             } catch (e) {
                 console.warn("Could not draw thumbnail to canvas:", e);
@@ -236,7 +234,7 @@ async function captureFullPageScreenshot() {
 
 // Fallback screenshot method
 async function captureFallbackScreenshot() {
-    try {
+    try { 
         const canvas = await html2canvas(document.body, {
             useCORS: true,
             allowTaint: true,
@@ -277,7 +275,7 @@ function waitForIframeLoad(iframe) {
 
 // Get current video thumbnail from YouTube API
 async function getCurrentVideoThumbnail() {
-    try {
+    try { 
         // Get current video ID from iframe src or player
         const videoId = extractVideoIdFromIframe() || getCurrentVideoIdFromPlayer();
         
@@ -322,7 +320,7 @@ function extractVideoIdFromIframe() {
 
 // Get current video ID from YouTube player
 function getCurrentVideoIdFromPlayer() {
-    try {
+    try { 
         if (typeof player !== 'undefined' && player.getVideoData) {
             const videoData = player.getVideoData();
             return videoData?.video_id || null;
@@ -457,9 +455,7 @@ function showScreenshotAnimation(imageData) {
         setTimeout(() => preview.remove(), 1000);
     }, 1000);
 }
-// ================================
 // GLOBAL EXPORTS - MUST BE AT THE END
-// ================================
 
 // Expose functions globally for play-pause button integration
 window.hasReachedLimit = hasReachedLimit;

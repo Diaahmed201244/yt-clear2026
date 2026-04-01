@@ -6,7 +6,7 @@ import { spendCodes } from './rewards.js'
 const router = Router()
 
 router.get('/categories', async (_req, res) => {
-  try {
+  try { 
     const r = await query('SELECT id, name, slug, created_at FROM categories ORDER BY name ASC')
     res.json(r.rows.map(row => ({ id: row.id, name: row.name, slug: row.slug, createdAt: row.created_at })))
   } catch (e) {
@@ -15,7 +15,7 @@ router.get('/categories', async (_req, res) => {
 })
 
 router.get('/products', async (req, res) => {
-  try {
+  try { 
     const categoryId = req.query.categoryId ? Number(req.query.categoryId) : undefined
     const r = categoryId
       ? await query('SELECT * FROM products WHERE category_id=$1 ORDER BY id DESC', [categoryId])
@@ -37,7 +37,7 @@ router.get('/products', async (req, res) => {
 })
 
 router.get('/products/:id', async (req, res) => {
-  try {
+  try { 
     const id = Number(req.params.id)
     const r = await query('SELECT * FROM products WHERE id=$1', [id])
     const row = r.rows[0]
@@ -59,7 +59,7 @@ router.get('/products/:id', async (req, res) => {
 })
 
 router.get('/wallet', async (req, res) => {
-  try {
+  try { 
     const r = await query('SELECT balance FROM user_rewards WHERE user_id=$1', [req.user.clerkUserId])
     const codes = r.rows[0]?.balance || 0
     res.json({ userId: req.user.clerkUserId, codes })
@@ -69,7 +69,7 @@ router.get('/wallet', async (req, res) => {
 })
 
 router.post('/checkout', async (req, res) => {
-  try {
+  try { 
     const { productId, customerInfo } = req.body || {}
     const pr = await query('SELECT id, price_codes, stock FROM products WHERE id=$1', [productId])
     const product = pr.rows[0]
@@ -91,7 +91,7 @@ router.post('/checkout', async (req, res) => {
 })
 
 router.get('/admin/stats', requireRole('admin'), async (_req, res) => {
-  try {
+  try { 
     const recent = await query(
       'SELECT o.id, o.user_id, o.product_id, o.customer_info, o.status, o.total_codes, o.created_at, p.name AS product_name FROM orders o LEFT JOIN products p ON p.id=o.product_id ORDER BY o.created_at DESC LIMIT 50'
     )

@@ -58,19 +58,16 @@ export function Header({
   }, [onSearch]);
 
   return (
-<<<<<<< HEAD
     <header className="fixed top-0 left-0 right-0 h-20 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="h-full px-5 flex items-center justify-between gap-4">
         <button
           onClick={handleLogoClick}
           className="relative group flex items-center gap-2"
-=======
     <header className="fixed top-0 left-0 right-0 h-24 z-50 bg-gradient-to-b from-black/80 via-black/20 to-transparent pointer-events-none">
       <div className="h-full px-5 flex items-start pt-5 justify-between gap-4">
         <button
           onClick={handleLogoClick}
           className="relative group flex items-center gap-2 pointer-events-auto"
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           data-testid="button-logo"
         >
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent select-none">
@@ -87,11 +84,8 @@ export function Header({
           )}
         </button>
 
-<<<<<<< HEAD
         <div className="flex-1 flex justify-center">
-=======
         <div className="flex-1 flex justify-center pointer-events-auto">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           {showSearch ? (
             <form onSubmit={handleSearch} className="w-full max-w-md flex gap-2">
               <div className="relative flex-1">
@@ -131,11 +125,8 @@ export function Header({
           )}
         </div>
 
-<<<<<<< HEAD
         <div className="flex items-center gap-3">
-=======
         <div className="flex items-center gap-3 pointer-events-auto">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           <Button
             variant="default"
             onClick={onUploadClick}

@@ -12,12 +12,10 @@
     let syncQueue = [];
     let isProcessing = false;
 
-    // ==========================================
     // INITIALIZATION
-    // ==========================================
     
     async function init() {
-        try {
+        try { 
             // Try to open SQLite database (using sql.js or native Web SQLite)
             if (window.initSqlJs) {
                 const SQL = await window.initSqlJs({
@@ -84,9 +82,7 @@
         await execSQL(schema);
     }
 
-    // ==========================================
     // CORE SYNC FUNCTION - FIXED saved:0 ISSUE
-    // ==========================================
     
     async function syncCode(codeData) {
         const { code, userId, suffix, source = 'unknown' } = codeData;
@@ -111,7 +107,7 @@
             };
         }
 
-        try {
+        try { 
             // CRITICAL FIX: Use INSERT OR REPLACE to handle conflicts properly
             // This ensures we always get 1 row affected (either inserted or updated)
             const sql = `
@@ -181,9 +177,7 @@
         }
     }
 
-    // ==========================================
     // QUEUE MANAGEMENT
-    // ==========================================
     
     function queueSync(codeData) {
         // Don't queue if already processing this code
@@ -226,9 +220,7 @@
         }
     }
 
-    // ==========================================
     // SQL EXECUTION HELPERS
-    // ==========================================
     
     async function execSQL(sql, params = []) {
         if (!db) throw new Error('Database not initialized');
@@ -281,12 +273,10 @@
         }
     }
 
-    // ==========================================
     // UTILITY FUNCTIONS
-    // ==========================================
     
     async function logSyncAttempt(code, userId, saved) {
-        try {
+        try { 
             await execSQL(
                 'INSERT INTO sync_log (code, action, result) VALUES (?, ?, ?)',
                 [code, 'sync', saved > 0 ? 'success' : 'no_change']
@@ -354,9 +344,7 @@
         };
     }
 
-    // ==========================================
     // PUBLIC API
-    // ==========================================
     
     window.SQLiteAdapter = {
         init,

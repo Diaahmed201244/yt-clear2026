@@ -5,7 +5,7 @@ const router = Router()
 
 // Validate balloon click (deprecated - use /pop instead)
 router.post('/click', async (req, res) => {
-  try {
+  try { 
     const { userId, balloonId, token } = req.body
 
     if (!userId || !balloonId || !token) {
@@ -22,7 +22,7 @@ router.post('/click', async (req, res) => {
 
 // Handle balloon pop with points
 router.post('/pop', async (req, res) => {
-  try {
+  try { 
     const { points, timestamp, userId } = req.body
 
     if (!userId || points === undefined || !timestamp) {

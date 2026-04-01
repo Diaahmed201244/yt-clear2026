@@ -53,7 +53,7 @@ class BattaloodaBridge extends ServiceBridgeBase {
         const { gameId, gameType, entryFee = 0 } = data;
 
         if (entryFee > 0) {
-            try {
+            try { 
                 const result = await this.requestTransaction('spend', entryFee, 'silver', {
                     gameId,
                     gameType,
@@ -102,7 +102,7 @@ class BattaloodaBridge extends ServiceBridgeBase {
             return;
         }
 
-        try {
+        try { 
             const result = await this.requestTransaction('spend', amount, currency, {
                 gameId,
                 description: `Bet in game ${gameId}`
@@ -152,7 +152,7 @@ class BattaloodaBridge extends ServiceBridgeBase {
         const isWin = result === 'win';
         const totalBets = game.bets.reduce((sum, bet) => sum + bet.amount, 0);
 
-        try {
+        try { 
             if (isWin && winAmount > 0) {
                 const txResult = await this.requestTransaction('game_win', winAmount, currency, {
                     gameId,

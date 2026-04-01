@@ -32,14 +32,14 @@
     </script>
 
     <script>
-        try { window.__AUTH_OVERLAY_DISABLED__ = true; } catch(_){}
-        try { window.showAuthOverlay = function(){ try { } catch(_){} }; } catch(_){}
-        try { window.openLoginModal = function(){ try { } catch(_){} }; } catch(_){}
-        try {
+        try {  window.__AUTH_OVERLAY_DISABLED__ = true; } catch(_){}
+        try {  window.showAuthOverlay = function(){ try {  } catch(_){} }; } catch(_){}
+        try {  window.openLoginModal = function(){ try {  } catch(_){} }; } catch(_){}
+        try { 
             document.addEventListener('DOMContentLoaded', function(){
-                try {
+                try { 
                     var nodes = document.querySelectorAll('[id*="auth"], [class*="auth"], [id*="login-overlay"], [class*="login-overlay"], [id*="auth-overlay"], [class*="auth-overlay"]');
-                    for (var i=0;i<nodes.length;i++){ try { nodes[i].remove(); } catch(_){} }
+                    for (var i=0;i<nodes.length;i++){ try {  nodes[i].remove(); } catch(_){} }
                 } catch(_){ }
             });
         } catch(_){}
@@ -1798,9 +1798,9 @@
     <!-- External Scripts -->
     <script>
         (function () {
-            try {
+            try { 
                 if (!window.YT) window.YT = { loading: 0, loaded: 0 };
-                if (!window.YT.ready) { window.YT.ready = function (f) { try { f && f(); } catch (_) { } }; }
+                if (!window.YT.ready) { window.YT.ready = function (f) { try {  f && f(); } catch (_) { } }; }
                 window.onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady || function () { };
                 var s = document.createElement('script');
                 s.src = 'https://www.youtube.com/iframe_api';
@@ -1827,7 +1827,7 @@
     <script>
 (function(){
             function checkSomething() {
-                try {
+                try { 
                     if (typeof window !== 'undefined' && window.YT && window.YT.loading === 0 && window.YT.loaded === 1) {
                         return true;
                     }
@@ -1836,18 +1836,18 @@
             }
 
             async function initAssetsFromStorage(){
-                try {
-                    function openDB(){ return new Promise(function (resolve, reject) { try { var req = indexedDB.open('CodeBankSnapshotDB', 1); req.onupgradeneeded = function () { var db = req.result; if (!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots'); }; req.onsuccess = function () { resolve(req.result) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }
-                    function readSnap(){ return openDB().then(function (db) { return new Promise(function (resolve, reject) { try { var tx = db.transaction('snapshots', 'readonly'); var store = tx.objectStore('snapshots'); var req = store.get('latest'); req.onsuccess = function () { resolve(req.result || null) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }); }
+                try { 
+                    function openDB(){ return new Promise(function (resolve, reject) { try {  var req = indexedDB.open('CodeBankSnapshotDB', 1); req.onupgradeneeded = function () { var db = req.result; if (!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots'); }; req.onsuccess = function () { resolve(req.result) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }
+                    function readSnap(){ return openDB().then(function (db) { return new Promise(function (resolve, reject) { try {  var tx = db.transaction('snapshots', 'readonly'); var store = tx.objectStore('snapshots'); var req = store.get('latest'); req.onsuccess = function () { resolve(req.result || null) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }); }
                     var snap = await readSnap();
                     if (snap && Array.isArray(snap.codesList) && snap.codesList.length > 0) { return true; }
                     return false;
                 } catch(_) { return false; }
             }
 
-            try {
+            try { 
                 window.addEventListener('auth:ready', async function(e){
-                    try {
+                    try { 
                         var okAuth = !!(e && e.detail && e.detail.authenticated);
                         if (!okAuth) return;
                         async function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms) }) }
@@ -1870,11 +1870,11 @@
     <script src="/ui/asset-dashboard.js"></script>
     <script>
         (function () {
-            function openDB() { return new Promise(function (resolve, reject) { try { var req = indexedDB.open('CodeBankSnapshotDB', 1); req.onupgradeneeded = function () { var db = req.result; if (!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots'); }; req.onsuccess = function () { resolve(req.result) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }
-            function writeSnap(obj) { return openDB().then(function (db) { return new Promise(function (resolve, reject) { try { var tx = db.transaction('snapshots', 'readwrite'); var store = tx.objectStore('snapshots'); var req = store.put(obj, 'latest'); req.onsuccess = function () { resolve(true) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }); }
-            function readSnap() { return openDB().then(function (db) { return new Promise(function (resolve, reject) { try { var tx = db.transaction('snapshots', 'readonly'); var store = tx.objectStore('snapshots'); var req = store.get('latest'); req.onsuccess = function () { resolve(req.result || null) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }); }
-            function sanitizeUISnapshot(snapshot) { try { if (snapshot && snapshot.source !== 'neon') { if (snapshot.count === 0) { delete snapshot.count; } if (snapshot.latestCode) { delete snapshot.latestCode; } if (Array.isArray(snapshot.codesList) && snapshot.codesList.length === 0) { delete snapshot.codesList; } } } catch (_) { } return snapshot; }
-            try { window.addEventListener('assets:updated', function (e) { try { var d = e && e.detail || {}; var list = Array.isArray(d && d.list) ? d.list : []; var latest = (d && d.latest) || ''; var typ = d && d.type || 'unknown'; readSnap().then(function(prev){ try {
+            function openDB() { return new Promise(function (resolve, reject) { try {  var req = indexedDB.open('CodeBankSnapshotDB', 1); req.onupgradeneeded = function () { var db = req.result; if (!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots'); }; req.onsuccess = function () { resolve(req.result) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }
+            function writeSnap(obj) { return openDB().then(function (db) { return new Promise(function (resolve, reject) { try {  var tx = db.transaction('snapshots', 'readwrite'); var store = tx.objectStore('snapshots'); var req = store.put(obj, 'latest'); req.onsuccess = function () { resolve(true) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }); }
+            function readSnap() { return openDB().then(function (db) { return new Promise(function (resolve, reject) { try {  var tx = db.transaction('snapshots', 'readonly'); var store = tx.objectStore('snapshots'); var req = store.get('latest'); req.onsuccess = function () { resolve(req.result || null) }; req.onerror = function () { reject(req.error) }; } catch (e) { reject(e) } }); }); }
+            function sanitizeUISnapshot(snapshot) { try {  if (snapshot && snapshot.source !== 'neon') { if (snapshot.count === 0) { delete snapshot.count; } if (snapshot.latestCode) { delete snapshot.latestCode; } if (Array.isArray(snapshot.codesList) && snapshot.codesList.length === 0) { delete snapshot.codesList; } } } catch (_) { } return snapshot; }
+            try {  window.addEventListener('assets:updated', function (e) { try {  var d = e && e.detail || {}; var list = Array.isArray(d && d.list) ? d.list : []; var latest = (d && d.latest) || ''; var typ = d && d.type || 'unknown'; readSnap().then(function(prev){ try { 
                                 var prevLatest = prev && prev.latestCode || '';
                                 var prevList = prev && Array.isArray(prev.codesList) ? prev.codesList : [];
                                 var prevCount = prev && typeof prev.count==='number' ? prev.count : 0;
@@ -1888,28 +1888,28 @@
                                 }
                                 const snap = AssetBus.snapshot();
                                 var uiSnap = Object.assign({}, snap, { source: 'ui' });
-                                try { if (uiSnap.source !== 'neon' && uiSnap.count === 0) { console.warn('[UI SNAPSHOT] zero-count snapshot blocked', uiSnap); } } catch(_){}
+                                try {  if (uiSnap.source !== 'neon' && uiSnap.count === 0) { console.warn('[UI SNAPSHOT] zero-count snapshot blocked', uiSnap); } } catch(_){}
                                 uiSnap = sanitizeUISnapshot(uiSnap);
                                 writeSnap(uiSnap);
                             } catch(_){ } }); } catch(_){ } }); } catch (_) { }
-            try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_ASSETS_HANDSHAKE') { try { var snap = AssetBus.snapshot(); if (snap && ev.source) { try { var out = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out && out.count === 0) { } } catch(_){} } } catch(_){} } } catch(_){} }); } catch(_){}
-            try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_INTENT') { try { var intent = data.intent || ''; var detail = data.detail || {}; if (intent === 'compress') { window.dispatchEvent(new CustomEvent('intent:compress', { detail: detail })); } else if (intent === 'convert') { window.dispatchEvent(new CustomEvent('intent:convert', { detail: detail })); } else if (intent === 'grind') { window.dispatchEvent(new CustomEvent('intent:grind', { detail: detail })); } } catch(_){} } } catch(_){} }); } catch(_){}
-            try { var frame = document.getElementById('code-popup-iframe'); if (frame) { frame.addEventListener('load', function () { try { var snap = AssetBus.snapshot(); if (snap && frame.contentWindow) { try { var out2 = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out2 && out2.count === 0) { }
-                        var authed2 = false; try { authed2 = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed2 = false }
+            try {  window.addEventListener('message', function (ev) { try {  var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_ASSETS_HANDSHAKE') { try {  var snap = AssetBus.snapshot(); if (snap && ev.source) { try {  var out = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out && out.count === 0) { } } catch(_){} } } catch(_){} } } catch(_){} }); } catch(_){}
+            try {  window.addEventListener('message', function (ev) { try {  var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_INTENT') { try {  var intent = data.intent || ''; var detail = data.detail || {}; if (intent === 'compress') { window.dispatchEvent(new CustomEvent('intent:compress', { detail: detail })); } else if (intent === 'convert') { window.dispatchEvent(new CustomEvent('intent:convert', { detail: detail })); } else if (intent === 'grind') { window.dispatchEvent(new CustomEvent('intent:grind', { detail: detail })); } } catch(_){} } } catch(_){} }); } catch(_){}
+            try {  var frame = document.getElementById('code-popup-iframe'); if (frame) { frame.addEventListener('load', function () { try {  var snap = AssetBus.snapshot(); if (snap && frame.contentWindow) { try {  var out2 = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out2 && out2.count === 0) { }
+                        var authed2 = false; try {  authed2 = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed2 = false }
                         if (!authed2) { return; }
                         frame.contentWindow.postMessage({ type: 'CODEBANK_ASSETS_SYNC', payload: out2 }, window.location.origin); } catch (_) { } } } catch (_) { } }); } } catch (_) { }
         })();
     </script>
     <script>
         (function(){
-            try {
+            try { 
                 window.addEventListener('auth:ready', async function (e) {
-                    try { if (!(e && e.detail && e.detail.authenticated === true)) return; } catch(_) { return }
-                    try {
+                    try {  if (!(e && e.detail && e.detail.authenticated === true)) return; } catch(_) { return }
+                    try { 
                         var res = await fetch('/api/balances', { method: 'GET', credentials: 'include' });
                         var data = null;
-                        try { data = await res.json(); } catch(_) { data = null }
-                                try { window.dispatchEvent(new CustomEvent('balances:updated', { detail: { balances: bal } })); } catch(_){}
+                        try {  data = await res.json(); } catch(_) { data = null }
+                                try {  window.dispatchEvent(new CustomEvent('balances:updated', { detail: { balances: bal } })); } catch(_){}
                                 var det = {
                                     count: (typeof bal.codes==='number' ? bal.codes : undefined),
                                     likes: (typeof bal.likes==='number' ? bal.likes : undefined),
@@ -1953,7 +1953,7 @@
             var dimStart = null;
             var dimMaxMs = 30 * 60 * 1000;
             var body = document.body;
-            try {
+            try { 
                 var ds = sessionStorage.getItem('dimMode:start');
                 if (ds) { var t = parseInt(ds, 10); if (!isNaN(t)) { var delta = Date.now() - t; if (delta < dimMaxMs) { dimActive = true; dimStart = t; body.style.transition = 'opacity 0.6s ease'; body.style.opacity = '0.05'; } else { sessionStorage.removeItem('dimMode:start'); } } }
             } catch (_) { }
@@ -1965,7 +1965,7 @@
                 var mins = Math.floor(total / 60000) % 60;
                 sw.textContent = String(deci).padStart(2, '0') + ':' + String(secs).padStart(2, '0') + ':' + String(mins).padStart(2, '0');
                 if (modalDisplay) modalDisplay.textContent = sw.textContent;
-                if (alarmMs != null && !alarmActive) { if (total >= alarmMs) { alarmActive = true; lockRun = true; alarmStart = Date.now(); try { sw.classList.add('pulse'); } catch (_) { } try { eyeNotice.style.display = 'block'; } catch (_) { } try { if (audioCtx) { audioCtx.resume(); } else { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } var g = audioCtx.createGain(); g.gain.value = 0.15; g.connect(audioCtx.destination); alarmOsc = audioCtx.createOscillator(); alarmOsc.type = 'sine'; alarmOsc.frequency.value = 660; alarmOsc.connect(g); alarmOsc.start(); setTimeout(function () { try { alarmOsc.stop(); } catch (_) { } alarmOsc = null; try { sw.classList.remove('pulse'); } catch (_) { } if (!dimActive) { dimActive = true; dimStart = Date.now(); sessionStorage.setItem('dimMode:start', String(dimStart)); body.style.transition = 'opacity 1.2s ease'; body.style.opacity = '0.05'; setTimeout(function () { dimActive = false; sessionStorage.removeItem('dimMode:start'); body.style.opacity = '1'; }, dimMaxMs); } }, 60000); } catch (_) { } } }
+                if (alarmMs != null && !alarmActive) { if (total >= alarmMs) { alarmActive = true; lockRun = true; alarmStart = Date.now(); try {  sw.classList.add('pulse'); } catch (_) { } try {  eyeNotice.style.display = 'block'; } catch (_) { } try {  if (audioCtx) { audioCtx.resume(); } else { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } var g = audioCtx.createGain(); g.gain.value = 0.15; g.connect(audioCtx.destination); alarmOsc = audioCtx.createOscillator(); alarmOsc.type = 'sine'; alarmOsc.frequency.value = 660; alarmOsc.connect(g); alarmOsc.start(); setTimeout(function () { try {  alarmOsc.stop(); } catch (_) { } alarmOsc = null; try {  sw.classList.remove('pulse'); } catch (_) { } if (!dimActive) { dimActive = true; dimStart = Date.now(); sessionStorage.setItem('dimMode:start', String(dimStart)); body.style.transition = 'opacity 1.2s ease'; body.style.opacity = '0.05'; setTimeout(function () { dimActive = false; sessionStorage.removeItem('dimMode:start'); body.style.opacity = '1'; }, dimMaxMs); } }, 60000); } catch (_) { } } }
             }
 
             function start() {
@@ -1973,7 +1973,7 @@
                 running = true;
                 startTs = Date.now();
                 intervalId = setInterval(fmt, 100);
-                try { sw.classList.add('running'); } catch (_) { }
+                try {  sw.classList.add('running'); } catch (_) { }
                 fmt();
             }
 
@@ -1983,7 +1983,7 @@
                 elapsedMs += (Date.now() - startTs);
                 startTs = 0;
                 if (intervalId) { clearInterval(intervalId); intervalId = null; }
-                try { sw.classList.remove('running'); } catch (_) { }
+                try {  sw.classList.remove('running'); } catch (_) { }
                 fmt();
             }
 
@@ -1993,7 +1993,7 @@
                 startTs = 0;
                 elapsedMs = 0;
                 if (intervalId) { clearInterval(intervalId); intervalId = null; }
-                try { sw.classList.remove('running'); } catch (_) { }
+                try {  sw.classList.remove('running'); } catch (_) { }
                 fmt();
             }
 
@@ -2004,10 +2004,10 @@
             });
 
             sw.addEventListener('dblclick', function () {
-                if (!modal) return; if (modal.style.display === 'block') return; modal.style.display = 'block'; modal.setAttribute('aria-hidden', 'false'); try { if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } audioCtx.resume(); } catch (_) { }
+                if (!modal) return; if (modal.style.display === 'block') return; modal.style.display = 'block'; modal.setAttribute('aria-hidden', 'false'); try {  if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } audioCtx.resume(); } catch (_) { }
             });
             var wt = document.getElementById('watch-time');
-            if (wt) { wt.addEventListener('dblclick', function () { if (!modal) return; if (modal.style.display === 'block') return; modal.style.display = 'block'; modal.setAttribute('aria-hidden', 'false'); try { if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } audioCtx.resume(); } catch (_) { } }); }
+            if (wt) { wt.addEventListener('dblclick', function () { if (!modal) return; if (modal.style.display === 'block') return; modal.style.display = 'block'; modal.setAttribute('aria-hidden', 'false'); try {  if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } audioCtx.resume(); } catch (_) { } }); }
             if (modalClose) { modalClose.addEventListener('click', function () { modal.style.display = 'none'; modal.setAttribute('aria-hidden', 'true'); }); }
             if (setBtn) { setBtn.addEventListener('click', function () { var m = parseInt(minsIn.value || '0', 10); var s = parseInt(secsIn.value || '0', 10); if (isNaN(m) || isNaN(s)) return; if (m < 0) m = 0; if (s < 0) s = 0; if (m > 59) m = 59; if (s > 59) s = 59; alarmMs = m * 60000 + s * 1000; alarmActive = false; lockRun = (alarmMs === 0); eyeNotice.style.display = 'none'; sw.classList.remove('pulse'); if (modal) { modal.style.display = 'none'; modal.setAttribute('aria-hidden', 'true'); } start(); }); }
 
@@ -2058,9 +2058,9 @@
 
     
 
-  try {
+  try { 
     if (window.Auth && typeof window.Auth.isAuthenticated === 'function') {
-      if (window.Auth.isAuthenticated()) { Bankode.startTimer(300000) } else { window.addEventListener('auth:ready', function(e){ try { var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ Bankode.startTimer(300000) } } catch(_){} }) }
+      if (window.Auth.isAuthenticated()) { Bankode.startTimer(300000) } else { window.addEventListener('auth:ready', function(e){ try {  var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ Bankode.startTimer(300000) } } catch(_){} }) }
     } else { Bankode.startTimer(300000) }
   } catch(_){}
 });
@@ -2089,17 +2089,17 @@
     <script>
         (function () {
             function basicHandleExtraModeChange(active) {
-                try {
+                try { 
                     if (typeof window.setWatchDogActive === 'function') {
                         window.setWatchDogActive(!!active);
                     } else {
                         window.watchDogActive = !!active;
-                        try { } catch (_) { }
-                        try { document.body.classList.toggle('watch-dog-active', !!active); } catch (_) { }
+                        try {  } catch (_) { }
+                        try {  document.body.classList.toggle('watch-dog-active', !!active); } catch (_) { }
                     }
                 } catch (_) { }
             }
-            try { window.addEventListener('extra-mode:changed', function (e) { basicHandleExtraModeChange(!!(e && e.detail && e.detail.active)); }); } catch (_) { }
+            try {  window.addEventListener('extra-mode:changed', function (e) { basicHandleExtraModeChange(!!(e && e.detail && e.detail.active)); }); } catch (_) { }
             if (!window.handleExtraModeChange) { window.handleExtraModeChange = basicHandleExtraModeChange; }
         })();
     </script>

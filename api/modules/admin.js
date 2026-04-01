@@ -29,7 +29,7 @@ router.get('/audit', requireRole('admin'), async (req, res) => {
   const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : ''
   const limit = Math.min(parseInt(page_size, 10) || 50, 200)
   const offset = (Math.max(parseInt(page, 10) || 1, 1) - 1) * limit
-  try {
+  try { 
     const rows = await query(
       `SELECT id, actor_user_id, actor_role, action, target_type, target_id, metadata, ip_address, user_agent, created_at
        FROM audit_logs ${whereSql}
@@ -45,7 +45,7 @@ router.get('/audit', requireRole('admin'), async (req, res) => {
 
 // View users (read-only)
 router.get('/users', requireRole('admin'), async (_req, res) => {
-  try {
+  try { 
     const r = await query('SELECT id, email, user_type, disabled, created_at FROM users ORDER BY created_at DESC LIMIT 500', [])
     res.json({ ok: true, users: r.rows })
   } catch (e) {
@@ -56,7 +56,7 @@ router.get('/users', requireRole('admin'), async (_req, res) => {
 // Disable user (SUPERADMIN)
 router.post('/users/:id/disable', requireGateValid(), requireRole('superadmin'), async (req, res) => {
   const { id } = req.params
-  try {
+  try { 
     await audit(req, { action: 'USER_DISABLED', target_type: 'user', target_id: id })
     await audit(req, { action: 'SESSION_REVOKED', target_type: 'user', target_id: id })
     res.json({ ok: true })
@@ -68,7 +68,7 @@ router.post('/users/:id/disable', requireGateValid(), requireRole('superadmin'),
 // Enable user (SUPERADMIN)
 router.post('/users/:id/enable', requireGateValid(), requireRole('superadmin'), async (req, res) => {
   const { id } = req.params
-  try {
+  try { 
     await audit(req, { action: 'USER_ENABLED', target_type: 'user', target_id: id })
     res.json({ ok: true })
   } catch (e) {
@@ -98,11 +98,11 @@ router.use((err, _req, res, _next) => {
 router.post('/bankode/verify', requireRole('admin'), async (req, res) => {
   const { password } = req.body || {}
   if (!password) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' })
-  try {
+  try { 
     const uid = req.user?.clerkUserId
     if (!uid) return res.status(401).json({ ok: false, error: 'UNAUTHORIZED' })
     let hash
-    try {
+    try { 
       const r = await query('SELECT gate_password_hash FROM bankode_users WHERE user_id=$1', [uid])
       hash = r.rows[0]?.gate_password_hash
       if (!hash) {
@@ -117,7 +117,7 @@ router.post('/bankode/verify', requireRole('admin'), async (req, res) => {
       return res.json({ ok: false, error: 'INVALID_PASSWORD' })
     }
     const expires = new Date(Date.now() + 5 * 60 * 1000)
-    try {
+    try { 
       await query('INSERT INTO bankode_password_sessions (user_id, expires_at) VALUES ($1,$2)', [uid, expires])
     } catch (_) {}
     await audit(req, { action: 'ADMIN_GATE_VERIFIED', target_type: 'user', target_id: uid, metadata: { expires: expires.toISOString() } })
@@ -129,7 +129,7 @@ router.post('/bankode/verify', requireRole('admin'), async (req, res) => {
 
 // Farragna moderation (Bankode protected)
 router.get('/farragna/videos', requireGateValid(), requireRole('admin'), async (_req, res) => {
-  try {
+  try { 
     const r = await query(
       `SELECT id, owner_id, stream_uid, status, playback_url, views_count, rewards_earned, created_at
        FROM farragna_videos
@@ -145,7 +145,7 @@ router.get('/farragna/videos', requireGateValid(), requireRole('admin'), async (
 
 router.patch('/farragna/:id/hide', requireGateValid(), requireRole('admin'), async (req, res) => {
   const { id } = req.params
-  try {
+  try { 
     await query('UPDATE farragna_videos SET status=$2 WHERE id=$1', [id, 'hidden'])
     await audit(req, { action: 'FARRAGNA_HIDE', target_type: 'video', target_id: id })
     res.json({ ok: true })
@@ -156,7 +156,7 @@ router.patch('/farragna/:id/hide', requireGateValid(), requireRole('admin'), asy
 
 router.patch('/farragna/:id/restore', requireGateValid(), requireRole('admin'), async (req, res) => {
   const { id } = req.params
-  try {
+  try { 
     await query('UPDATE farragna_videos SET status=$2 WHERE id=$1 AND status=$3', [id, 'ready', 'hidden'])
     await audit(req, { action: 'FARRAGNA_RESTORE', target_type: 'video', target_id: id })
     res.json({ ok: true })
@@ -167,7 +167,7 @@ router.patch('/farragna/:id/restore', requireGateValid(), requireRole('admin'), 
 
 router.delete('/farragna/:id', requireGateValid(), requireRole('admin'), async (req, res) => {
   const { id } = req.params
-  try {
+  try { 
     await query('DELETE FROM farragna_views WHERE video_id=$1', [id])
     await query('DELETE FROM farragna_videos WHERE id=$1', [id])
     await audit(req, { action: 'FARRAGNA_DELETE', target_type: 'video', target_id: id })

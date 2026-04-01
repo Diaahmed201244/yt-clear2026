@@ -104,7 +104,7 @@ class SolitaireGame {
 
     handleWin() {
         // Award prizes for winning
-        try {
+        try { 
             const currentRewards = window.getRewards ? window.getRewards() : { codes: 0, silverBars: 0, goldBars: 0 };
             const prize = { codes: 200 }; // Award 200 codes for winning
             

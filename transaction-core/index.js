@@ -31,7 +31,7 @@ oldUsers.forEach(user => usersManager.addUser(user))
 oldTransactions
   .filter(tx => tx.status === "success" || tx.status === "pending")
   .forEach(tx => {
-    try {
+    try { 
       switch (tx.type) {
         case "transfer":
           userToUser(transactionManager, tx.from, tx.to, tx.amount)
@@ -61,7 +61,7 @@ userToBankode(transactionManager, 2, 10)
 bankodeToUser(transactionManager, 1, 15)
 rewardLike(transactionManager, 2, 1, 5, "super")
 
-try {
+try { 
   usersManager.addUser({ id: 100, balance: 10 })
   usersManager.addUser({ id: 101, balance: 0 })
 
@@ -74,11 +74,11 @@ try {
     }
     const tmDb = new TransactionManager(usersManager, bankodeManager, ledger, repos)
     await tmDb.executeTransaction({ type: "UserToUser", from: 100, to: 101, amount: 5, description: "Phase1:A->B:5" })
-    try { await tmDb.executeTransaction({ type: "UserToUser", from: 100, to: 101, amount: 10, description: "Phase1:A->B:10" }) } catch (_) {}
+    try {  await tmDb.executeTransaction({ type: "UserToUser", from: 100, to: 101, amount: 10, description: "Phase1:A->B:10" }) } catch (_) {}
     await tmDb.executeTransaction({ type: "BankodeToUser", to: 101, amount: 100, description: "Phase1:Bankode->B:100" })
   } else {
     await transactionManager.executeTransaction({ type: "UserToUser", from: 100, to: 101, amount: 5, description: "Phase1:A->B:5" })
-    try { await transactionManager.executeTransaction({ type: "UserToUser", from: 100, to: 101, amount: 10, description: "Phase1:A->B:10" }) } catch (_) {}
+    try {  await transactionManager.executeTransaction({ type: "UserToUser", from: 100, to: 101, amount: 10, description: "Phase1:A->B:10" }) } catch (_) {}
     await transactionManager.executeTransaction({ type: "BankodeToUser", to: 101, amount: 100, description: "Phase1:Bankode->B:100" })
   }
 } catch (e) {
@@ -93,7 +93,7 @@ console.log("\n=== Bankode State ===")
 console.log(bankodeManager.balance)
 
 // Phase 1.6 Offline Intent Queue scenario (in-memory storage)
-try {
+try { 
   const storage = {
     _map: new Map(),
     getItem(k) { return this._map.get(k) || null },
@@ -127,7 +127,7 @@ try {
 }
 
 // Full Auth + Virtual Users + Transaction Validation
-try {
+try { 
   console.log("\n=== Auth Mock & Virtual Users Test ===")
   const MockAuth = {
     currentUserId: null,
@@ -144,7 +144,7 @@ try {
   if (process.env.DATABASE_URL) {
     const neon = new NeonClient()
     await neon.transaction(async (client) => {
-      try {
+      try { 
         await client.query("CREATE TABLE IF NOT EXISTS users(id INT PRIMARY KEY, balance INT)")
         await client.query("CREATE TABLE IF NOT EXISTS user_assets(user_id INT, asset_id TEXT, PRIMARY KEY(user_id, asset_id))")
         await client.query("INSERT INTO users(id, balance) VALUES($1,$2) ON CONFLICT (id) DO UPDATE SET balance=$2", [300, 50])
@@ -174,7 +174,7 @@ try {
   console.log("[TX] StorePurchase 200 sku-xyz:7 => success")
 
   // Edge case: fail over-limit
-  try {
+  try { 
     await transactionManager.executeTransaction({ type: "UserToUser", from: 300, to: 301, amount: 1000, description: "Edge Overdraft" })
     console.log("[TX] Overdraft unexpectedly succeeded")
   } catch (e) {

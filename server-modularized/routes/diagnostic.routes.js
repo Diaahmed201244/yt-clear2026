@@ -43,7 +43,7 @@ router.use((req, res, next) => {
 // ---------------------------------------------------------------------------
 
 router.get('/diag/ledger-schema', async (req, res) => {
-  try {
+  try { 
     const { rows } = await query('PRAGMA table_info(ledger)');
     return res.json({ columns: rows.map(r => r.name) });
   } catch (e) {
@@ -56,7 +56,7 @@ router.get('/diag/ledger-schema', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/diag/neon-sync', async (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) {
       return res.json({ ok: false, reason: 'no_session' });
@@ -86,7 +86,7 @@ router.get(
   ['/diag/sqlite-codes', '/sqlite/codes', '/codes/list', '/sync/list'],
   requireAuth,
   async (req, res) => {
-    try {
+    try { 
       const userId = req.user.id || req.user.userId;
 
       const codesResult = await query(
@@ -127,12 +127,12 @@ router.get(
 // ---------------------------------------------------------------------------
 
 router.get('/sqlite/diag', async (req, res) => {
-  try {
+  try { 
     const tables = ['users', 'codes', 'ledger', 'rewards', 'events', 'transactions', 'vault'];
     const columns = [];
 
     for (const t of tables) {
-      try {
+      try { 
         const { rows } = await query(`PRAGMA table_info(${t})`);
         rows.forEach(r => columns.push({ column_name: r.name, table_name: t }));
       } catch (_) {

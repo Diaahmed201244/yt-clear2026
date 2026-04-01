@@ -9,7 +9,7 @@ export class NeonClient {
 
   async transaction(fn) {
     const client = await this.pool.connect()
-    try {
+    try { 
       await client.query("BEGIN")
       const result = await fn(client)
       await client.query("COMMIT")

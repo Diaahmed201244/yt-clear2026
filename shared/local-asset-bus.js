@@ -1,8 +1,6 @@
 // local-asset-bus.js
 
-// ========================
 // Utilities
-// ========================
 function now() {
   return Date.now();
 }

@@ -125,9 +125,9 @@ async function ensureSchema() {
     )`
   ]
   for (const sql of ddl) {
-    try { await query(sql) } catch (e) { /* ignore for dev/no-db */ }
+    try {  await query(sql) } catch (e) { /* ignore for dev/no-db */ }
   }
-  try {
+  try { 
     await query(`CREATE TABLE IF NOT EXISTS samma3ny_songs (
       id TEXT PRIMARY KEY,
       name TEXT,
@@ -140,7 +140,7 @@ async function ensureSchema() {
 ensureSchema().catch(() => {})
 
 router.post('/neon/assets/save', async (req, res) => {
-  try {
+  try { 
     const { userId, codes, rewards, source, ts } = req.body || {}
     if (!userId) return res.status(400).json({ error: 'Missing userId' })
     const u = await query('SELECT id FROM users WHERE id=$1 LIMIT 1', [userId])
@@ -154,7 +154,7 @@ router.post('/neon/assets/save', async (req, res) => {
       if (!/^[A-Z0-9]+$/.test(c)) continue
       const dup = await query('SELECT id FROM codes WHERE code_value=$1', [c])
       if (dup?.rows?.length) continue
-      try {
+      try { 
         await query(
           'INSERT INTO codes (user_id, code_value, source, expires_at, metadata) VALUES ($1,$2,$3,$4,$5)',
           [userId, c, source || 'neon', nowExp, { ts }]
@@ -192,11 +192,11 @@ router.get('/version', (req, res) => {
 
 // YouTube status proxy with safe fallback
 router.get('/youtube/status', async (req, res) => {
-  try {
+  try { 
     const channelId = process.env.YOUTUBE_CHANNEL_ID || 'UCZ5heNyv3s5dIw9mtjsAGsg'
     const apiKey = process.env.YOUTUBE_API_KEY
     if (apiKey) {
-      try {
+      try { 
         const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`)
         if (r.ok) {
           const j = await r.json()
@@ -243,10 +243,10 @@ router.use('/farragna', farragnaRouter)
 router.use('/admin', (adminMod.default || adminMod.router || adminMod))
 
 router.post('/identity/sync', async (req, res) => {
-  try {
+  try { 
     const { name, country, religion, telephone, email, userId } = req.body || {}
     if (!email && !userId) return res.json({ ok: true })
-    try {
+    try { 
       const col = userId ? 'id' : 'email'
       await query(
         `UPDATE users SET name = $1, country = $2, religion = $3, phone = $4 WHERE ${col} = $5`,
@@ -261,7 +261,7 @@ router.post('/identity/sync', async (req, res) => {
 
 // Global error silencing (JSON-safe)
 router.use((err, _req, res, _next) => {
-  try { console.error('[API]', err?.message || err) } catch (_) {}
+  try {  console.error('[API]', err?.message || err) } catch (_) {}
   res.status(500).json({ ok: false, error: 'INTERNAL_SERVER_ERROR' })
 })
 

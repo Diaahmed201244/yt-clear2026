@@ -11,7 +11,7 @@ let hasReachedLimit, incrementScreenshotCount, activateEscapeButton, instantScre
 function initScreenshotFunctions() {
     // Try to get functions from global scope or window
     hasReachedLimit = window.hasReachedLimit || (() => {
-        try {
+        try { 
             const data = JSON.parse(localStorage.getItem("user_screenshots")) || { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() };
             return data.count >= 10;
         } catch (e) {
@@ -20,7 +20,7 @@ function initScreenshotFunctions() {
     });
     
     incrementScreenshotCount = window.incrementScreenshotCount || (() => {
-        try {
+        try { 
             const data = JSON.parse(localStorage.getItem("user_screenshots")) || { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() };
             data.count++;
             localStorage.setItem("user_screenshots", JSON.stringify(data));
@@ -61,7 +61,7 @@ playPauseButton.addEventListener('click', async (e) => {
     // Take screenshot after a short delay (after video state change)
     setTimeout(async () => {
         if (instantScreenshot && typeof instantScreenshot === 'function') {
-            try {
+            try { 
                 await instantScreenshot();
                 incrementScreenshotCount && incrementScreenshotCount();
                 
@@ -135,7 +135,7 @@ function startTimer(e) {
             if (ytChannelPopup && typeof channelId !== 'undefined') {
                 // Wait for popup to load before sending message
                     setTimeout(() => {
-                        try { ytChannelPopup.postMessage({ channelId: channelId }, window.location.origin); } catch(_){}
+                        try {  ytChannelPopup.postMessage({ channelId: channelId }, window.location.origin); } catch(_){}
                     }, 1000);
             }
         }

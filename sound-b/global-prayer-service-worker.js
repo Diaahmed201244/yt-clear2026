@@ -134,7 +134,7 @@ self.addEventListener('push', event => {
     };
     
     if (event.data) {
-        try {
+        try { 
             const data = event.data.json();
             console.log('🕌 Push data:', data);
             
@@ -275,7 +275,7 @@ function snoozeNotification(minutes) {
 }
 
 async function syncPrayerTimes() {
-    try {
+    try { 
         console.log('🕌 Syncing prayer times in background...');
         
         // Get location from cache or use default
@@ -299,7 +299,7 @@ async function syncPrayerTimes() {
 }
 
 async function updateAzanFiles() {
-    try {
+    try { 
         console.log('🕌 Updating azan files cache...');
         
         const azanFiles = [
@@ -311,7 +311,7 @@ async function updateAzanFiles() {
         
         // Update each azan file
         for (const file of azanFiles) {
-            try {
+            try { 
                 const response = await fetch(`/yt-coder/${file}`);
                 if (response.ok) {
                     await cache.put(`/yt-coder/${file}`, response);
@@ -373,7 +373,7 @@ function cancelPrayerNotification(prayerId) {
 }
 
 async function getCachedPrayerTimes() {
-    try {
+    try { 
         const cache = await caches.open(PRAYER_CACHE);
         const response = await cache.match('/cached-prayer-times');
         
@@ -388,7 +388,7 @@ async function getCachedPrayerTimes() {
 }
 
 async function cachePrayerTimes(timings) {
-    try {
+    try { 
         const cache = await caches.open(PRAYER_CACHE);
         const response = new Response(JSON.stringify(timings), {
             headers: { 'Content-Type': 'application/json' }
@@ -402,7 +402,7 @@ async function cachePrayerTimes(timings) {
 }
 
 async function getCachedLocation() {
-    try {
+    try { 
         const cache = await caches.open(PRAYER_CACHE);
         const response = await cache.match('/cached-location');
         

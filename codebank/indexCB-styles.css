@@ -23,8 +23,6 @@
     --transition-slow: 0.6s ease;
 }
 
-<<<<<<< HEAD
-=======
 /* App Launcher Grid Styles */
 .app-grid {
     display: grid;
@@ -106,7 +104,6 @@
     }
 }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 /* Modern Body Background */
 body {
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
@@ -476,8 +473,6 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-<<<<<<< HEAD
-=======
 /* SafeCode iframe visibility fixes */
 #safe-asset-container,
 .safe-asset-list,
@@ -507,7 +502,6 @@ iframe[data-service="safecode"] {
     opacity: 1 !important;
 }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 /* Modern Animations */
 @keyframes fadeInUp {
     from {

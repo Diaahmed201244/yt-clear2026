@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -105,7 +104,6 @@ const DropdownMenuShortcut = (_a) => {
 };
 exports.DropdownMenuShortcut = DropdownMenuShortcut;
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
-=======
 import * as React from "react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { Check, ChevronRight, Circle } from "lucide-react";
@@ -258,4 +256,3 @@ export {
     DropdownMenuSubTrigger,
     DropdownMenuRadioGroup,
 };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = NotFound;
@@ -19,7 +18,6 @@ function NotFound() {
         </card_1.CardContent>
       </card_1.Card>
     </div>);
-=======
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
@@ -39,5 +37,4 @@ export default function NotFound() {
             </Card>
         </div>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

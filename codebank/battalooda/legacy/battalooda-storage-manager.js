@@ -22,9 +22,7 @@
     currentRecording: null,
     isInitialized: false,
 
-    // ============================================
     // INITIALIZATION
-    // ============================================
 
     init: async function() {
       if (this.isInitialized) return;
@@ -66,9 +64,7 @@
       });
     },
 
-    // ============================================
     // LOCAL STORAGE (IndexedDB) - FREE TIER 
-    // ============================================
 
     async saveRecording(blob, metadata = {}) {
       await this.init();
@@ -201,9 +197,7 @@
       });
     },
 
-    // ============================================
     // CLOUD UPLOAD (Only when needed - Freemium)
-    // ============================================
 
     async uploadToCloud(id, options = {}) {
       const recording = await this.getRecording(id);
@@ -289,9 +283,7 @@
       }
     },
 
-    // ============================================
     // SHARING & PUBLIC LINKS
-    // ============================================
 
     async shareRecording(id) {
       const recording = await this.getRecording(id);
@@ -340,9 +332,7 @@
       });
     },
 
-    // ============================================
     // CLEANUP & MAINTENANCE
-    // ============================================
 
     async cleanupOldRecordings() {
       const recordings = await this.getAllRecordings();
@@ -426,9 +416,7 @@
       });
     },
 
-    // ============================================
     // UTILITIES
-    // ============================================
 
     blobToArrayBuffer(blob) {
       return new Promise((resolve, reject) => {
@@ -463,9 +451,7 @@
       }));
     },
 
-    // ============================================
     // STATS & INFO
-    // ============================================
 
     async getStats() {
       const recordings = await this.getAllRecordings();

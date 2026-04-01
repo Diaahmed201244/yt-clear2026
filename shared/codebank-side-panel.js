@@ -28,7 +28,7 @@ class CodeBankSidePanel {
 
         console.log('✅ CodeBank Side Panel initialized');
 
-        try {
+        try { 
             const persisted = sessionStorage.getItem('codebank_panel_open');
             if (persisted === '1') {
                 this.open();
@@ -354,7 +354,7 @@ class CodeBankSidePanel {
         const content = this.panel.querySelector('#codebank-content');
         content.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
 
-        try {
+        try { 
             await this.loadTabContent(tabName);
         } catch (error) {
             console.error('Failed to load tab content:', error);
@@ -551,7 +551,7 @@ Are you sure you want to continue?`);
 
         if (!confirmed) return;
 
-        try {
+        try { 
             const response = await fetch('/api/auth/reset-account', {
                 method: 'POST',
                 headers: {
@@ -595,7 +595,7 @@ Are you sure you want to continue?`);
             this.panel.style.opacity = '1';
             this.panel.style.pointerEvents = 'auto';
             this.isOpen = true;
-            try { sessionStorage.setItem('codebank_panel_open', '1') } catch (_) {}
+            try {  sessionStorage.setItem('codebank_panel_open', '1') } catch (_) {}
 
             const indicator = this.panel.querySelector('#panel-state-indicator');
             if (indicator) {
@@ -629,7 +629,7 @@ Are you sure you want to continue?`);
             this.panel.style.pointerEvents = 'none';
             this.isOpen = false;
             this.closeRequested = false;
-            try { sessionStorage.setItem('codebank_panel_open', '0') } catch (_) {}
+            try {  sessionStorage.setItem('codebank_panel_open', '0') } catch (_) {}
 
             const indicator = this.panel.querySelector('#panel-state-indicator');
             if (indicator) {

@@ -177,9 +177,7 @@ img[loading="lazy"] {
   }
 }
 
-/* ==========================================
    🚨 GPU CRISIS FIXES - 1.7GB Issue
-   ========================================== */
 
 /* 21. Disable expensive backdrop-filter effects (major GPU hog) */
 .gpu-save-mode,

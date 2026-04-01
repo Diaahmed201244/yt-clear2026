@@ -16,7 +16,7 @@ export async function replaySQLiteQueue(userId){
       __telemetry('QUEUE_REPLAY_DROPPED',{ id: it.id, userId: it.userId, retries: it.retries||0 });
       continue
     }
-    try {
+    try { 
       const fn = (window.writeCodeToSQLite || window.sqliteSaveAssets || window.writeCodeToNeon || (async()=>{ throw new Error('no_sync_fn') }));
       await fn({ userId: it.userId, code: it.payload && it.payload.code, codes: it.payload && it.payload.codes, rewards: it.payload && it.payload.rewards, source: it.source || 'queue' });
       await deleteFromQueue(it.id);
@@ -29,4 +29,4 @@ export async function replaySQLiteQueue(userId){
   }
   return true
 }
-try { window.queueSQLiteAsset = queueSQLiteAsset; window.getLastQueuedAsset = getLastQueuedAsset; window.replaySQLiteQueue = replaySQLiteQueue; window.__QUEUE_REPLAY_ENABLED = true } catch(_){ }
+try {  window.queueSQLiteAsset = queueSQLiteAsset; window.getLastQueuedAsset = getLastQueuedAsset; window.replaySQLiteQueue = replaySQLiteQueue; window.__QUEUE_REPLAY_ENABLED = true } catch(_){ }

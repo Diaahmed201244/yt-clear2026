@@ -115,13 +115,10 @@ export function CartPanel({
               </div>
 
               {/* Cart Summary */}
-<<<<<<< HEAD
               <div className="bg-gradient-to-r from-orange-500/10 to-pink-500/10 p-3 rounded-lg border border-orange-500/30 sticky bottom-0">
                 <div className="flex justify-between items-center mb-2">
-=======
               <div className="bg-gradient-to-r from-orange-500/10 to-pink-500/10 p-3 rounded-lg border border-orange-500/30 sticky bottom-0 space-y-3">
                 <div className="flex justify-between items-center">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                   <span className="font-medium text-foreground">Subtotal</span>
                   <div className="flex items-center text-orange-400 font-bold">
                     <Coins className="w-4 h-4 mr-1" />
@@ -130,11 +127,8 @@ export function CartPanel({
                 </div>
                 {wallet && (
                   <>
-<<<<<<< HEAD
                     <div className="flex justify-between items-center text-sm text-muted-foreground mb-2">
-=======
                     <div className="flex justify-between items-center text-sm text-muted-foreground">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
                       <span>Balance</span>
                       <span className="text-orange-300">{wallet.codes}</span>
                     </div>
@@ -144,8 +138,6 @@ export function CartPanel({
                     </div>
                   </>
                 )}
-<<<<<<< HEAD
-=======
                 <Button 
                   className="w-full bg-[#FFD814] hover:bg-[#F7CA00] text-black font-bold rounded-full py-4 mt-2"
                   disabled={!canCheckoutAll || cartItems.length === 0}
@@ -153,7 +145,6 @@ export function CartPanel({
                 >
                   Proceed to Checkout ({cartItems.length} items)
                 </Button>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
               </div>
             </>
           )}

@@ -6,7 +6,7 @@ import { requireAuth } from '../middleware/auth.js';
 const router = express.Router();
 
 router.post('/', requireAuth, async (req, res) => {
-  try {
+  try { 
     const { delta_codes, delta_silver, delta_gold, sync_id } = req.body || {};
     const userId = req.user.id;
 
@@ -39,7 +39,7 @@ router.post('/', requireAuth, async (req, res) => {
 
     const client = await pool.connect();
     await client.query('BEGIN');
-    try {
+    try { 
       await client.query(
         "INSERT INTO sync_events (id, user_id, delta_codes, delta_silver, delta_gold) VALUES ($1, $2, $3, $4, $5)",
         [sync_id, userId, d_codes, d_silver, d_gold]
@@ -81,7 +81,7 @@ router.post('/', requireAuth, async (req, res) => {
 });
 
 router.post('/claim', requireAuth, async (req, res) => {
-  try {
+  try { 
     const { code } = req.body || {};
     const userId = req.user.id;
 
@@ -93,7 +93,7 @@ router.post('/claim', requireAuth, async (req, res) => {
     const hash = crypto.createHash('sha256').update(code).digest('hex');
     const client = await pool.connect();
     await client.query('BEGIN');
-    try {
+    try { 
       const used = await client.query("INSERT INTO used_codes (code_hash, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING", [hash, userId]);
       if (used.rowCount === 0) {
         await client.query('ROLLBACK');
@@ -118,7 +118,7 @@ router.post('/claim', requireAuth, async (req, res) => {
 });
 
 router.get('/list', requireAuth, async (req, res) => { 
-  try { 
+  try {  
     const userId = req.user.id;
     const userRes = await query("SELECT COALESCE(codes_count, 0) as count, COALESCE(silver_count, 0) as silver, COALESCE(gold_count, 0) as gold FROM users WHERE id = $1", [userId]);
     const userRow = userRes.rows[0] || { count: 0, silver: 0, gold: 0 };

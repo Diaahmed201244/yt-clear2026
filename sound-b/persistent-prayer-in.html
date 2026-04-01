@@ -166,7 +166,6 @@
 
         <div class="logs" id="logs">
             <div>🕌 Enhanced Persistent Prayer System Logs</div>
-            <div>=======================================</div>
         </div>
     </div>
 
@@ -192,7 +191,7 @@
         async function initializeSystem() {
             addLog('🚀 Initializing Enhanced Persistent Prayer System...', 'info');
             
-            try {
+            try { 
                 // Check Service Worker support
                 if (!('serviceWorker' in navigator)) {
                     throw new Error('Service Workers not supported in this browser');
@@ -222,7 +221,7 @@
         async function requestNotifications() {
             addLog('🔔 Requesting notification permission...', 'info');
             
-            try {
+            try { 
                 const permission = await Notification.requestPermission();
                 
                 if (permission === 'granted') {
@@ -250,7 +249,7 @@
         async function getLocation() {
             addLog('📍 Getting current location...', 'info');
             
-            try {
+            try { 
                 const position = await new Promise((resolve, reject) => {
                     navigator.geolocation.getCurrentPosition(resolve, reject, {
                         enableHighAccuracy: true,
@@ -280,7 +279,7 @@
         async function loadPrayerTimes() {
             addLog('⏰ Loading prayer times...', 'info');
             
-            try {
+            try { 
                 const location = JSON.parse(localStorage.getItem('prayerLocation') || '{"lat": 21.4225, "lon": 39.8262}');
                 
                 // Fetch prayer times from API
@@ -323,7 +322,7 @@
         async function schedulePrayers() {
             addLog('📅 Scheduling prayer notifications...', 'info');
             
-            try {
+            try { 
                 const prayerData = localStorage.getItem('prayerTimes');
                 if (!prayerData) {
                     throw new Error('No prayer times available. Load prayer times first.');

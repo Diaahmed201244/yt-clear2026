@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
@@ -71,7 +70,6 @@ const DialogDescription = React.forwardRef((_a, ref) => {
 });
 exports.DialogDescription = DialogDescription;
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
-=======
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
@@ -155,4 +153,3 @@ export {
     DialogTitle,
     DialogDescription,
 };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

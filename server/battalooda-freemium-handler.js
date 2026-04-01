@@ -27,7 +27,7 @@ cloudinary.config({
 const handler = {
   // Upload to cloud (only when user clicks share)
   uploadToCloud: async (req, res) => {
-    try {
+    try { 
       if (!req.file) {
         return res.status(400).json({ success: false, error: 'No file' });
       }
@@ -61,7 +61,7 @@ const handler = {
 
   // Delete from cloud
   deleteFromCloud: async (req, res) => {
-    try {
+    try { 
       const { publicId } = req.body;
       if (publicId) {
         await cloudinary.uploader.destroy(publicId, { resource_type: 'video' });

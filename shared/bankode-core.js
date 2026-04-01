@@ -8,7 +8,7 @@
     },
     emit(payload){
       for (const fn of this.listeners) {
-        try { fn(payload) } catch(e) { console.error('Bankode listener error', e) }
+        try {  fn(payload) } catch(e) { console.error('Bankode listener error', e) }
       }
     }
   };
@@ -83,8 +83,8 @@
   }
 
   const ls = {
-    get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d } catch(_) { return d } },
-    set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)) } catch(_){} }
+    get(k, d){ try {  const v = localStorage.getItem(k); return v ? JSON.parse(v) : d } catch(_) { return d } },
+    set(k, v){ try {  localStorage.setItem(k, JSON.stringify(v)) } catch(_){} }
   };
 
     sessionId: null,
@@ -109,8 +109,8 @@
     },
 
     async _persistAfterGen(entry){
-      try { await idbAddCode(entry); } catch(_) {}
-      try { this.count = await idbCountCodes(); } catch(_) {}
+      try {  await idbAddCode(entry); } catch(_) {}
+      try {  this.count = await idbCountCodes(); } catch(_) {}
       ls.set('Bankode.meta', { count: this.count, nextDueAt: this._nextDueAt });
       ls.set('Bankode.last', entry);
     },

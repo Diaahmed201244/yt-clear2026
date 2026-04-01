@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-=======
 @keyframes progress-indeterminate {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(300%); }
@@ -13,7 +11,6 @@
   animation: progress-indeterminate 1.5s infinite linear;
 }
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);

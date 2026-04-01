@@ -1,15 +1,11 @@
 // UV: SAFE-UI-UNIFY-2026-02-15
-/* ===================================================
     SafeCode Implementation - Unified Wrapper
     Handles visibility logic based on AssetsState
-    =================================================== */
 
 (function() {
   'use strict';
 
-  // ========================
   // SafeCode Object
-  // ========================
   window.SafeCode = {
     // Show empty state when no assets are present
     showEmptyState: function() {
@@ -87,9 +83,7 @@
     }
   };
 
-  // ========================
   // Event Listeners
-  // ========================
   // Listen for both events for maximum compatibility
   function handleAssetUpdate(assetsState) {
     window.SafeCode.render(assetsState);

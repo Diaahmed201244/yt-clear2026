@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -21,7 +20,6 @@ const Textarea = React.forwardRef((_a, ref) => {
 });
 exports.Textarea = Textarea;
 Textarea.displayName = "Textarea";
-=======
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -40,4 +38,3 @@ const Textarea = React.forwardRef(({ className, ...props }, ref) => {
 Textarea.displayName = "Textarea";
 
 export { Textarea };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

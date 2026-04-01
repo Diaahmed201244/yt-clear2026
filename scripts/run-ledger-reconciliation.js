@@ -47,7 +47,7 @@ Examples:
   // Check for report-only mode
   if (args.includes('--report-only')) {
     console.log('🔍 Generating ledger reconciliation report...\n');
-    try {
+    try { 
       const result = await WatchDog.reconcile({ dryRun: true });
       console.log('📄 Reconciliation Report:');
       console.log('');
@@ -77,7 +77,7 @@ Examples:
     console.log('This will detect and report issues without making any changes.\n');
   }
 
-  try {
+  try { 
     const result = await WatchDog.reconcile({ dryRun: isDryRun });
     if (result.success) {
       if (isDryRun) {

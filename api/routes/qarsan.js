@@ -9,7 +9,7 @@ const router = express.Router();
 
 // GET /api/qarsan/status - Get Qarsan status for current user
 router.get('/status', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id
     
     const userEmailRes = await query(
@@ -66,14 +66,14 @@ router.get('/status', requireAuth, async (req, res) => {
 })
 
 router.post('/mode', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id
     const { mode, depositAmount } = req.body || {}
     if (!mode || !['OFF', 'RANGED', 'EXPOSURE'].includes(mode)) {
       return res.status(400).json({ success: false, error: 'invalid_mode' })
     }
     const client = await pool.connect()
-    try {
+    try { 
       await client.query('BEGIN')
       const dogResult = await client.query(
         'SELECT dog_state, last_fed_at FROM watchdog_state WHERE user_id = $1',
@@ -151,7 +151,7 @@ router.post('/mode', requireAuth, enforceFinancialSecurity, async (req, res) => 
 })
 
 router.post('/attack', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const attackerId = req.user.id
     const { targetUserId, amount, txId: providedTxId } = req.body || {}
     if (!targetUserId) return res.status(400).json({ success: false, error: 'target_required' })
@@ -162,7 +162,7 @@ router.post('/attack', requireAuth, enforceFinancialSecurity, async (req, res) =
     if (stealAmount <= 0) return res.status(400).json({ success: false, error: 'invalid_amount' })
     
     const client = await pool.connect()
-    try {
+    try { 
       await client.query('BEGIN')
       const prior = await client.query('SELECT 1 FROM ledger WHERE tx_id = $1 LIMIT 1', [providedTxId])
       if (prior.rows.length > 0) {

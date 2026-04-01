@@ -83,7 +83,7 @@ function formatFileSize(bytes) {
 // ---------------------------------------------------------------------------
 
 router.get('/list', async (req, res) => {
-  try {
+  try { 
     console.log('🔄 Fetching Samma3ny songs with direct Cloudinary API call...');
 
     const CLOUDINARY_CLOUD = process.env.CLOUDINARY_CLOUD_NAME;
@@ -126,7 +126,7 @@ router.get('/songs', handleSamma3nySongs);
 // ---------------------------------------------------------------------------
 
 router.post('/upload', upload.any(), async (req, res) => {
-  try {
+  try { 
     const files = req.files;
     if (!files || files.length === 0) {
       return res.status(400).json({
@@ -146,7 +146,7 @@ router.post('/upload', upload.any(), async (req, res) => {
       const file = files[i];
       const fileIndex = i + 1;
 
-      try {
+      try { 
         console.log(`📤 Processing file ${fileIndex}/${files.length}: ${file.originalname}`);
 
         // Validate MIME type
@@ -179,7 +179,7 @@ router.post('/upload', upload.any(), async (req, res) => {
         const randomId = Math.random().toString(36).substr(2, 9);
         const publicId = `media-player/audio_${timestamp}_${randomId}`;
 
-        try {
+        try { 
           // Upload to Cloudinary (resource_type 'video' is required for audio files)
           const result = await cloudinary.uploader.upload(file.path, {
             resource_type: 'video',
@@ -221,7 +221,7 @@ router.post('/upload', upload.any(), async (req, res) => {
           console.error(`❌ Cloudinary upload failed for ${file.originalname}:`, uploadError.message);
 
           // Fallback: save to local filesystem
-          try {
+          try { 
             const localDir = path.join(process.cwd(), 'services/codebank/samma3ny/uploads');
             if (!fs.existsSync(localDir)) fs.mkdirSync(localDir, { recursive: true });
 
@@ -302,7 +302,7 @@ router.post('/upload', upload.any(), async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/rename-bulk', async (req, res) => {
-  try {
+  try { 
     const ids = Array.isArray(req.body?.ids) ? req.body.ids : [];
     const name = (req.body?.name || '').trim();
     if (ids.length === 0 || !name) {
@@ -311,7 +311,7 @@ router.post('/rename-bulk', async (req, res) => {
 
     let updated = 0;
     for (const id of ids) {
-      try {
+      try { 
         await cloudinary.api.update(id, { context: { title: name, display_name: name } });
         updated++;
       } catch (_) { /* ignore per-item errors */ }

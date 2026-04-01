@@ -30,7 +30,7 @@ class ACCClient {
     connect() {
         if (this.ws?.readyState === WebSocket.OPEN) return;
 
-        try {
+        try { 
             this.ws = new WebSocket(this.serverUrl);
 
             this.ws.onopen = () => {
@@ -181,7 +181,7 @@ class ACCClient {
         }
 
         // Fallback to HTTP
-        try {
+        try { 
             const response = await fetch(`${this.httpUrl}/transaction`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -212,7 +212,7 @@ class ACCClient {
         if (!this.assets) return;
         
         this.serviceBridges.forEach((bridge, serviceName) => {
-            try {
+            try { 
                 bridge.updateAssets(this.assets);
             } catch (error) {
                 console.error(`[ACC Client] Failed to update ${serviceName}:`, error);
@@ -237,7 +237,7 @@ class ACCClient {
     emit(event, data) {
         if (this.listeners.has(event)) {
             this.listeners.get(event).forEach(callback => {
-                try {
+                try { 
                     callback(data);
                 } catch (error) {
                     console.error('[ACC Client] Event handler error:', error);

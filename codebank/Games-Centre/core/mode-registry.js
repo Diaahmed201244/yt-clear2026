@@ -3,7 +3,7 @@
  * Central registry for all game modes
  */
 
-class ModeRegistry {
+class ModeRegistry { 
   constructor() {
     this.modes = new Map();
     this.modeMetadata = new Map();

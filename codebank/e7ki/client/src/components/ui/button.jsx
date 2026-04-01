@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -54,7 +53,6 @@ const Button = React.forwardRef((_a, ref) => {
 });
 exports.Button = Button;
 Button.displayName = "Button";
-=======
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
@@ -98,4 +96,3 @@ const Button = React.forwardRef(({ className, variant, size, asChild = false, ..
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

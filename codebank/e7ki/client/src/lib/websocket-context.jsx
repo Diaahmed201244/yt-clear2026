@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 const IS_EMBEDDED = import.meta.env.VITE_EMBEDDED === 'true';
 
@@ -152,7 +151,6 @@ export function useWebSocket() {
     }
     return context;
 }
-=======
 import { createContext, useContext, useEffect, useState, useRef, useCallback } from 'react';
 import { io } from 'socket.io-client';
 import { useAuth } from './auth-context';
@@ -301,4 +299,3 @@ export const useWebSocket = () => {
   if (!context) throw new Error('useWebSocket must be used within WebSocketProvider');
   return context;
 };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

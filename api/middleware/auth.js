@@ -27,7 +27,7 @@ export const requireGateValid = () => {
 };
 
 export const requireAuth = async (req, res, next) => {
-  try {
+  try { 
     let token = (req.cookies && req.cookies.session_token) || null;
     
     // Check Authorization header if cookie is missing
@@ -56,7 +56,7 @@ export const requireAuth = async (req, res, next) => {
     }
     
     // Check database auth_sessions
-    try {
+    try { 
       const dbSession = await query('SELECT user_id, expires_at FROM auth_sessions WHERE token = $1 OR token_hash = $2', [token, token]);
       if (dbSession.rows && dbSession.rows.length > 0 && new Date() < new Date(dbSession.rows[0].expires_at)) {
         const userId = dbSession.rows[0].user_id;
@@ -77,7 +77,7 @@ export const requireAuth = async (req, res, next) => {
     }
 
     // Also check for JWT (for Farragna or others)
-    try {
+    try { 
       const JWT_SECRET = process.env.JWT_SECRET || 'secret-demo';
       const decoded = jwt.verify(token, JWT_SECRET);
       if (decoded && decoded.userId) {

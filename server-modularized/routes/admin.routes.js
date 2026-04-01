@@ -38,7 +38,7 @@ function checkAdminAuth(req, res) {
   const session = readSessionFromCookie(req, res);
   let authEmail = null;
 
-  try {
+  try { 
     const h = (req.headers && req.headers.authorization) || '';
     const parts = h.split(' ');
     if (parts[0] === 'Bearer' && parts[1]) {
@@ -80,7 +80,7 @@ function checkAdminAuth(req, res) {
 // ---------------------------------------------------------------------------
 
 router.post('/admin/deposit', async (req, res) => {
-  try {
+  try { 
     const { isAdmin, session } = checkAdminAuth(req, res);
     if (!session && !req.headers.authorization) {
       return res.status(401).json({ success: false, error: 'unauthorized' });
@@ -98,7 +98,7 @@ router.post('/admin/deposit', async (req, res) => {
     const kind = (t === 'silver' || t === 'gold') ? t : 'codes';
 
     const client = await pool.connect();
-    try {
+    try { 
       await client.query('BEGIN');
 
       const u = await client.query(
@@ -112,7 +112,7 @@ router.post('/admin/deposit', async (req, res) => {
       const userId = u.rows[0].id;
 
       // Ensure type column exists
-      try {
+      try { 
         await client.query("ALTER TABLE codes ADD COLUMN IF NOT EXISTS type VARCHAR(20) DEFAULT 'codes'");
       } catch (e) {
         if (!e.message.includes('duplicate column name')) throw e;
@@ -129,7 +129,7 @@ router.post('/admin/deposit', async (req, res) => {
       await client.query('COMMIT');
 
       // Notify via WebSocket (best-effort)
-      try {
+      try { 
         const wss = globalThis.__wss;
         if (wss) {
           const count = Math.max(1, parseInt(amt, 10) || 1);
@@ -140,7 +140,7 @@ router.post('/admin/deposit', async (req, res) => {
           } else if (wss.clients) {
             const s = JSON.stringify(payload);
             wss.clients.forEach(ws => {
-              try { if (ws && ws.readyState === 1 && ws.userId === String(userId)) ws.send(s); } catch (_) { /* ignore */ }
+              try {  if (ws && ws.readyState === 1 && ws.userId === String(userId)) ws.send(s); } catch (_) { /* ignore */ }
             });
           }
         }
@@ -166,11 +166,11 @@ router.post('/admin/deposit', async (req, res) => {
         balances,
       });
     } catch (e) {
-      try { await client.query('ROLLBACK'); } catch (_) { /* ignore */ }
+      try {  await client.query('ROLLBACK'); } catch (_) { /* ignore */ }
       console.error('[Admin Deposit]', e);
       return res.status(500).json({ success: false, error: (e && e.message) || 'deposit_failed' });
     } finally {
-      try { client.release(); } catch (_) { /* ignore */ }
+      try {  client.release(); } catch (_) { /* ignore */ }
     }
   } catch (e) {
     return res.status(500).json({ success: false, error: (e && e.message) || 'internal_error' });
@@ -182,7 +182,7 @@ router.post('/admin/deposit', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/admin/users', async (req, res) => {
-  try {
+  try { 
     const { isAdmin } = checkAdminAuth(req, res);
     if (!isAdmin) {
       return res.status(403).json({ success: false, error: 'forbidden' });

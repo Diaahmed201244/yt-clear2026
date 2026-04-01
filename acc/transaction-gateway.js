@@ -40,7 +40,7 @@ class TransactionGateway {
 
         // Run middleware
         for (const middleware of this.middleware) {
-            try {
+            try { 
                 await middleware(context);
                 if (!context.approved) break;
             } catch (error) {

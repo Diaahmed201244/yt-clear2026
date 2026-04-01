@@ -11,7 +11,7 @@
 
   // تابع لبث snapshot للـ UI
   function broadcastSnapshot(source = 'bankode-bridge') {
-    try {
+    try { 
       if (!AssetBus || !AssetBus.snapshot) return;
       const snap = AssetBus.snapshot();
       const evt = new CustomEvent('assets:updated', { detail: { snapshot: snap, source } });

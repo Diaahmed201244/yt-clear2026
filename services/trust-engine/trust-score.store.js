@@ -69,7 +69,7 @@ export function withLock(userId, fn) {
   const u = getUser(userId)
   if (u.lock) return { ok: false, error: 'locked' }
   u.lock = true
-  try {
+  try { 
     const r = fn()
     return { ok: true, result: r }
   } finally {

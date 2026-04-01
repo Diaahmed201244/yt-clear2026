@@ -25,7 +25,7 @@ window.CodeEngine = {
     emit(code) {
         console.log("🧬 CODE GENERATED:", code);
         this.listeners.forEach(fn => {
-            try {
+            try { 
                 fn(code);
             } catch (error) {
                 console.error('[CodeEngine] Listener error:', error);

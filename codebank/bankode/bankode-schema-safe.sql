@@ -1,6 +1,4 @@
--- ========================================
 -- BANKODE CORE BANKING SCHEMA (SAFE VERSION)
--- ========================================
 -- Fully isolated banking system for CodeBank
 -- Safe version with DROP TABLE IF EXISTS handling
 -- Complete isolation from Eb3at/Community systems
@@ -26,9 +24,7 @@ DROP FUNCTION IF EXISTS bankode_verify_password(UUID, TEXT) CASCADE;
 DROP FUNCTION IF EXISTS create_bankode_wallet_for_user() CASCADE;
 DROP FUNCTION IF EXISTS update_bankode_updated_at() CASCADE;
 
--- ========================================
 -- TABLE 1: bankode_wallets (User Banking Balances)
--- ========================================
 CREATE TABLE bankode_wallets (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
@@ -43,9 +39,7 @@ CREATE TABLE bankode_wallets (
   is_locked BOOLEAN DEFAULT FALSE
 );
 
--- ========================================
 -- TABLE 2: bankode_transactions (Transaction History)
--- ========================================
 CREATE TABLE bankode_transactions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -61,9 +55,7 @@ CREATE TABLE bankode_transactions (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- ========================================
 -- TABLE 3: bankode_auth (Bankode Authentication)
--- ========================================
 CREATE TABLE bankode_auth (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
@@ -76,9 +68,7 @@ CREATE TABLE bankode_auth (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- ========================================
 -- TABLE 4: bankode_audit (Audit Trail)
--- ========================================
 CREATE TABLE bankode_audit (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
@@ -91,9 +81,7 @@ CREATE TABLE bankode_audit (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- ========================================
 -- TABLE 5: bankode_admin_actions (Admin Operations Log)
--- ========================================
 CREATE TABLE bankode_admin_actions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   admin_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -106,9 +94,7 @@ CREATE TABLE bankode_admin_actions (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- ========================================
 -- PERFORMANCE INDEXES
--- ========================================
 -- Wallets indexes
 CREATE INDEX IF NOT EXISTS idx_bankode_wallets_user_id ON bankode_wallets(user_id);
 CREATE INDEX IF NOT EXISTS idx_bankode_wallets_codes ON bankode_wallets(codes_balance);
@@ -135,17 +121,13 @@ CREATE INDEX IF NOT EXISTS idx_bankode_admin_actions_admin_id ON bankode_admin_a
 CREATE INDEX IF NOT EXISTS idx_bankode_admin_actions_target_user ON bankode_admin_actions(target_user_id);
 CREATE INDEX IF NOT EXISTS idx_bankode_admin_actions_created_at ON bankode_admin_actions(created_at);
 
--- ========================================
 -- ROW LEVEL SECURITY (RLS) ENABLING
--- ========================================
 ALTER TABLE bankode_wallets ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bankode_transactions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bankode_audit ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bankode_admin_actions ENABLE ROW LEVEL SECURITY;
 
--- ========================================
 -- RLS POLICIES - bankode_wallets
--- ========================================
 -- Users can only access their own wallet data
 CREATE POLICY "bankode_wallets_select_own" ON bankode_wallets
   FOR SELECT USING (auth.uid() = user_id);
@@ -160,9 +142,7 @@ CREATE POLICY "bankode_wallets_insert_own" ON bankode_wallets
 CREATE POLICY "bankode_wallets_service_role_full" ON bankode_wallets
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_transactions
--- ========================================
 -- Users can only view their own transactions
 CREATE POLICY "bankode_transactions_select_own" ON bankode_transactions
   FOR SELECT USING (auth.uid() = user_id);
@@ -174,9 +154,7 @@ CREATE POLICY "bankode_transactions_insert_own" ON bankode_transactions
 CREATE POLICY "bankode_transactions_service_role_full" ON bankode_transactions
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_auth
--- ========================================
 -- Users can only access their own auth data
 CREATE POLICY "bankode_auth_all_own" ON bankode_auth
   FOR ALL USING (auth.uid() = user_id);
@@ -185,9 +163,7 @@ CREATE POLICY "bankode_auth_all_own" ON bankode_auth
 CREATE POLICY "bankode_auth_service_role_full" ON bankode_auth
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_audit
--- ========================================
 -- Users can view their own audit logs
 CREATE POLICY "bankode_audit_select_own" ON bankode_audit
   FOR SELECT USING (user_id IS NOT NULL AND auth.uid() = user_id);
@@ -196,16 +172,12 @@ CREATE POLICY "bankode_audit_select_own" ON bankode_audit
 CREATE POLICY "bankode_audit_service_role_full" ON bankode_audit
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_admin_actions
--- ========================================
 -- Only service role can access admin actions
 CREATE POLICY "bankode_admin_actions_service_role_full" ON bankode_admin_actions
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- HELPER FUNCTIONS
--- ========================================
 
 -- Function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_bankode_updated_at()
@@ -250,9 +222,7 @@ CREATE TRIGGER on_bankode_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION create_bankode_wallet_for_user();
 
--- ========================================
 -- RPC FUNCTIONS
--- ========================================
 
 -- Function to verify Bankode password
 CREATE OR REPLACE FUNCTION bankode_verify_password(
@@ -584,9 +554,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- ========================================
 -- PERMISSIONS
--- ========================================
 -- Grant necessary permissions
 GRANT USAGE ON SCHEMA public TO anon, authenticated;
 
@@ -606,9 +574,7 @@ GRANT EXECUTE ON FUNCTION bankode_mint_assets TO authenticated;
 GRANT EXECUTE ON FUNCTION bankode_admin_adjust TO authenticated;
 GRANT EXECUTE ON FUNCTION bankode_create_audit TO authenticated;
 
--- ========================================
 -- COMPLETION MESSAGE
--- ========================================
 -- Bankode Core Banking Schema Created Successfully (SAFE VERSION)
 -- Tables: 5 (bankode_wallets, bankode_transactions, bankode_auth, bankode_audit, bankode_admin_actions)
 -- Functions: 8 helper + 7 RPC = 15 total functions

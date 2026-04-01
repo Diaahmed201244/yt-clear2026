@@ -1,21 +1,15 @@
--- ========================================
 -- BANKODE CORE BANKING SCHEMA (COMPATIBLE VERSION)
--- ========================================
 -- Compatible with existing Bankode tables
 -- Uses existing column names: owner_uid, from_uid, to_uid
 -- Adds missing indexes, constraints, triggers, RLS policies, and RPC functions
 
--- ========================================
 -- TABLE STRUCTURE VERIFICATION (Existing Tables)
--- ========================================
 -- bankode: id (bigint, PK), owner_uid (uuid), balance_codes (numeric), balance_silver (numeric), balance_gold (numeric), created_at, last_updated
 -- bankode_auth: id (bigint, PK), owner_uid (uuid, UNIQUE), password_hash (text), created_at
 -- bankode_transactions: id (bigint, PK), created_at, from_uid (uuid), to_uid (uuid), amount_codes (numeric), amount_silver (numeric), amount_gold (numeric), tx_type (text), description (text)
 -- bankode_audit: id (bigint, PK), table_name (text), operation (text), changed_by (uuid), changed_at, old_record (jsonb), new_record (jsonb)
 
--- ========================================
 -- ADD MISSING CONSTRAINTS AND INDEXES
--- ========================================
 
 -- Add constraints to existing tables if they don't exist
 -- Bankode table constraints
@@ -82,9 +76,7 @@ BEGIN
     END IF;
 END $$;
 
--- ========================================
 -- PERFORMANCE INDEXES
--- ========================================
 
 -- Bankode table indexes
 CREATE INDEX IF NOT EXISTS idx_bankode_owner_uid ON bankode(owner_uid);
@@ -109,9 +101,7 @@ CREATE INDEX IF NOT EXISTS idx_bankode_audit_changed_at ON bankode_audit(changed
 CREATE INDEX IF NOT EXISTS idx_bankode_audit_table_name ON bankode_audit(table_name);
 CREATE INDEX IF NOT EXISTS idx_bankode_audit_operation ON bankode_audit(operation);
 
--- ========================================
 -- ROW LEVEL SECURITY (RLS) POLICIES
--- ========================================
 
 -- Enable RLS on existing tables
 ALTER TABLE bankode ENABLE ROW LEVEL SECURITY;
@@ -119,9 +109,7 @@ ALTER TABLE bankode_auth ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bankode_transactions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bankode_audit ENABLE ROW LEVEL SECURITY;
 
--- ========================================
 -- RLS POLICIES - bankode table
--- ========================================
 
 -- Drop existing policies if they exist
 DROP POLICY IF EXISTS "bankode_select_own" ON bankode;
@@ -143,9 +131,7 @@ CREATE POLICY "bankode_insert_own" ON bankode
 CREATE POLICY "bankode_service_role_all" ON bankode
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_auth table
--- ========================================
 
 -- Drop existing policies if they exist
 DROP POLICY IF EXISTS "bankode_auth_all_own" ON bankode_auth;
@@ -159,9 +145,7 @@ CREATE POLICY "bankode_auth_all_own" ON bankode_auth
 CREATE POLICY "bankode_auth_service_role_all" ON bankode_auth
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_transactions table
--- ========================================
 
 -- Drop existing policies if they exist
 DROP POLICY IF EXISTS "bankode_transactions_select_own" ON bankode_transactions;
@@ -179,9 +163,7 @@ CREATE POLICY "bankode_transactions_insert_own" ON bankode_transactions
 CREATE POLICY "bankode_transactions_service_role_all" ON bankode_transactions
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- RLS POLICIES - bankode_audit table
--- ========================================
 
 -- Drop existing policies if they exist
 DROP POLICY IF EXISTS "bankode_audit_select_own" ON bankode_audit;
@@ -195,9 +177,7 @@ CREATE POLICY "bankode_audit_select_own" ON bankode_audit
 CREATE POLICY "bankode_audit_service_role_all" ON bankode_audit
   FOR ALL USING (auth.role() = 'service_role');
 
--- ========================================
 -- HELPER FUNCTIONS
--- ========================================
 
 -- Function to update last_updated timestamp
 CREATE OR REPLACE FUNCTION update_bankode_last_updated()
@@ -236,9 +216,7 @@ CREATE TRIGGER on_bankode_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION create_bankode_wallet_for_user();
 
--- ========================================
 -- RPC FUNCTIONS
--- ========================================
 
 -- Function to verify Bankode password
 CREATE OR REPLACE FUNCTION bankode_verify_password(
@@ -544,9 +522,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- ========================================
 -- PERMISSIONS
--- ========================================
 
 -- Grant necessary permissions
 GRANT USAGE ON SCHEMA public TO anon, authenticated;
@@ -566,9 +542,7 @@ GRANT EXECUTE ON FUNCTION bankode_mint_assets TO authenticated;
 GRANT EXECUTE ON FUNCTION bankode_admin_adjust TO authenticated;
 GRANT EXECUTE ON FUNCTION bankode_create_audit TO authenticated;
 
--- ========================================
 -- COMPLETION MESSAGE
--- ========================================
 -- Bankode Core Banking Schema (Compatible Version) Applied Successfully
 -- Tables: 4 existing tables enhanced with constraints, indexes, RLS policies
 -- Functions: 8 helper + 7 RPC = 15 total functions

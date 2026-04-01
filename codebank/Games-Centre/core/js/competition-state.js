@@ -193,7 +193,7 @@ class CompetitionStateAuthority {
     }
 
     saveToLocalStorage(state) {
-        try {
+        try { 
             const key = `csa_${state.competitionId}`;
             localStorage.setItem(key, JSON.stringify(state));
         } catch (e) {
@@ -202,7 +202,7 @@ class CompetitionStateAuthority {
     }
 
     loadFromLocalStorage(competitionId) {
-        try {
+        try { 
             const key = `csa_${competitionId}`;
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : null;

@@ -31,7 +31,7 @@ const router = Router();
 router.post('/sync', requireAuth, async (req, res) => {
   // BUG FIX (CRITICAL): acquire a client from the pool — original forgot this
   const client = await pool.connect();
-  try {
+  try { 
     const { delta_codes, delta_silver, delta_gold, sync_id } = req.body || {};
     const userId = req.user.id;
 
@@ -83,7 +83,7 @@ router.post('/sync', requireAuth, async (req, res) => {
 
     // 3. Atomic transaction: record event + update balances
     await client.query('BEGIN');
-    try {
+    try { 
       // Store sync event for idempotency
       await client.query(
         'INSERT INTO sync_events (id, user_id, delta_codes, delta_silver, delta_gold) VALUES ($1, $2, $3, $4, $5)',

@@ -120,9 +120,7 @@ const app = express();
 // 🛡️ CRITICAL: Trust proxy for Ngrok to pass internal session cookies correctly
 app.set('trust proxy', 1);
 
-// ============================================
 // COUNTRY & RELIGION DATA API
-// ============================================
 
 // Get all countries with phone codes
 app.get('/api/countries', (req, res) => {
@@ -593,6 +591,23 @@ app.get('/events', (req, res) => {
 async function __startEventProcessor() {
   try {
     if (process.env.EVENT_PROCESSOR_DISABLED === '1') return;
+
+    // 🛡️ Ensure event_store table exists before starting processor
+    try {
+      await query(`
+        CREATE TABLE IF NOT EXISTS event_store (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          event_type TEXT NOT NULL,
+          payload TEXT,
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+      console.log('✅ [EVENT] event_store table verified');
+    } catch (err) {
+      console.error('❌ [EVENT] Failed to create event_store:', err.message);
+      return; // stop processor if table can't be created
+    }
+
     let lastId = 0;
     try {
       const r = await query("SELECT last_id FROM event_offsets WHERE key='default'");
@@ -2567,10 +2582,8 @@ app.post('/api/watchdog/feed', requireAuth, enforceFinancialSecurity, async (req
   }
 })
 
-// =============================================================================
 // QARSAN API ENDPOINTS - Server-Side Financial Operations
 // CRITICAL: All operations MUST go through security middleware
-// =============================================================================
 
 // Tables will be auto-created on first API call via ON CONFLICT DO UPDATE
 console.log('[QARSAN] Tables auto-created on first use')

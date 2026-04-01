@@ -17,7 +17,7 @@ import { query } from '../config/database.js';
 async function ensureUserColumns() {
   const columns = ['religion', 'country', 'phone'];
   for (const col of columns) {
-    try {
+    try { 
       await query(`ALTER TABLE users ADD COLUMN ${col} TEXT`);
       console.log(`[DB] Added missing column: ${col}`);
     } catch (e) {
@@ -215,7 +215,7 @@ const schemaStatements = [
  */
 export async function applyNeonCompressionDDL() {
   // Step 1 — ensure dynamic columns on the users table
-  try {
+  try { 
     await ensureUserColumns();
   } catch (e) {
     console.error('[DB] Schema migration failed:', e.message);
@@ -224,9 +224,9 @@ export async function applyNeonCompressionDDL() {
   console.log('[DB] Schema verification completed');
 
   // Step 2 — run all DDL statements
-  try {
+  try { 
     for (const sql of schemaStatements) {
-      try {
+      try { 
         await querySilent(sql);
       } catch (e) {
         // Silent wrapper already handles logging

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -18,7 +17,6 @@ function Skeleton(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);
     return (<div className={(0, utils_1.cn)("animate-pulse rounded-md bg-muted", className)} {...props}/>);
 }
-=======
 import { cn } from "@/lib/utils";
 
 function Skeleton({ className, ...props }) {
@@ -26,4 +24,3 @@ function Skeleton({ className, ...props }) {
 }
 
 export { Skeleton };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

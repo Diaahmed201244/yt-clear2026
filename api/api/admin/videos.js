@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  try {
+  try { 
     // AUTH REMOVED — CLEAN RESET
 
     switch (req.method) {
@@ -50,7 +50,7 @@ async function verifyAdminToken(token) {
 
 // GET /api/admin/videos - List all videos with admin details
 async function handleGetVideos(req, res) {
-  try {
+  try { 
     const {
       page = 1,
       limit = 20,
@@ -96,7 +96,7 @@ async function handleGetVideos(req, res) {
 
 // POST /api/admin/videos - Create/update video metadata
 async function handleCreateVideo(req, res) {
-  try {
+  try { 
     const {
       public_id,
       title,
@@ -138,7 +138,7 @@ async function handleCreateVideo(req, res) {
 
 // PUT /api/admin/videos - Bulk update videos
 async function handleUpdateVideo(req, res) {
-  try {
+  try { 
     const { video_ids, updates } = req.body;
 
     if (!Array.isArray(video_ids) || video_ids.length === 0) {
@@ -163,7 +163,7 @@ async function handleUpdateVideo(req, res) {
 
 // DELETE /api/admin/videos - Delete videos
 async function handleDeleteVideo(req, res) {
-  try {
+  try { 
     const { public_ids } = req.body;
 
     if (!Array.isArray(public_ids) || public_ids.length === 0) {

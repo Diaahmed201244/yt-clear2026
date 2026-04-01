@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -36,7 +35,6 @@ const TabsContent = React.forwardRef((_a, ref) => {
 });
 exports.TabsContent = TabsContent;
 TabsContent.displayName = TabsPrimitive.Content.displayName;
-=======
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { cn } from "@/lib/utils";
@@ -80,4 +78,3 @@ const TabsContent = React.forwardRef(({ className, ...props }, ref) => (
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

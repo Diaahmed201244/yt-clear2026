@@ -287,7 +287,6 @@ class BankodeValidationTest {
      */
     printTestSummary() {
         console.log('\n📊 Bankode Isolation Test Summary');
-        console.log('================================');
         console.log(`Total Tests: ${this.testResults.total}`);
         console.log(`Passed: ${this.testResults.passed}`);
         console.log(`Failed: ${this.testResults.failed}`);

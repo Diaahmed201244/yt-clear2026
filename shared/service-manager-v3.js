@@ -74,9 +74,7 @@
       errors: []
     },
 
-    // ============================================
     // INITIALIZATION
-    // ============================================
 
     init() {
       this.setupAuthBridge();
@@ -87,9 +85,7 @@
       console.log('[ServiceManager] V3 initialized');
     },
 
-    // ============================================
     // AUTH BRIDGE (Universal)
-    // ============================================
 
     setupAuthBridge() {
       // Listen for auth ready
@@ -122,9 +118,7 @@
       });
     },
 
-    // ============================================
     // SERVICE LOADING (Lazy + Pooling)
-    // ============================================
 
     async loadService(serviceId, containerId, options = {}) {
       const registry = this.serviceRegistry[serviceId];
@@ -232,9 +226,7 @@
       return url.toString();
     },
 
-    // ============================================
     // SERVICE LIFECYCLE
-    // ============================================
 
     activateService(serviceId) {
       const service = this.activeServices.get(serviceId);
@@ -340,9 +332,7 @@
       }
     },
 
-    // ============================================
     // SERVICE COMMUNICATION
-    // ============================================
 
     setupServiceBridge(service) {
       // Listen for messages from service
@@ -389,9 +379,7 @@
       }, '*');
     },
 
-    // ============================================
     // PRELOADING & OPTIMIZATION
-    // ============================================
 
     preloadCriticalServices() {
       this.config.preloadCritical.forEach(serviceId => {
@@ -412,9 +400,7 @@
       console.log('[ServiceManager] Preloaded:', serviceId);
     },
 
-    // ============================================
     // MEMORY MANAGEMENT
-    // ============================================
 
     setupMemoryManagement() {
       // Cleanup on visibility change
@@ -464,9 +450,7 @@
       }
     },
 
-    // ============================================
     // PERFORMANCE MONITORING
-    // ============================================
 
     setupPerformanceObserver() {
       if ('PerformanceObserver' in window) {
@@ -481,9 +465,7 @@
       }
     },
 
-    // ============================================
     // PUBLIC API
-    // ============================================
 
     open(serviceId, containerId = 'main-container') {
       return this.loadService(serviceId, containerId);

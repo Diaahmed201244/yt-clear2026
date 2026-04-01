@@ -5,9 +5,7 @@ function __boot(){
 
   console.warn("🟢 CodeBank index.js running in TRUE Browser Local Mode");
 
-  /* ============================
      Sidebar
-   ============================ */
 
   const panel   = document.getElementById('settings-panel');
   const openBtn = document.getElementById('settings-btn');
@@ -74,9 +72,7 @@ function __boot(){
   setSidebar(false);
 
 
-  /* ============================
      Theme
-   ============================ */
 
   const themeToggle = document.getElementById('theme-toggle');
 
@@ -98,9 +94,7 @@ function __boot(){
   }
 
 
-  /* ============================
      Safe Door
-   ============================ */
 
   const safeToggle = document.getElementById('safe-door-toggle');
   const ASSET_KEYS = ['asset-codes','asset-silver','asset-gold'];
@@ -147,9 +141,7 @@ function __boot(){
   setSafeDoor(true);
 
 
-  /* ============================
      Tabs
-   ============================ */
 
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
@@ -183,9 +175,7 @@ function __boot(){
   applyTab(initial);
 
 
-  /* ============================
      Safe API
-   ============================ */
 
   window.safeDoor = {
     setAssetValue(key, value){

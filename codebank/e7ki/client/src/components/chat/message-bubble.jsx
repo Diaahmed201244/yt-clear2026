@@ -2,14 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { useChat } from "@/lib/chat-context";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-<<<<<<< HEAD
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Check, CheckCheck, Pause, Play, FileText, Download, Smile, MoreVertical, Reply, Copy, Trash2 } from "lucide-react";
 const REACTIONS = ["👍", "❤️", "😂", "😮", "😢", "🔥", "👏", "🎉"];
-=======
 import { 
     DropdownMenu, 
     DropdownMenuTrigger, 
@@ -35,7 +33,6 @@ import {
 
 const REACTIONS = ["👍", "❤️", "😂", "😮", "😢", "🔥", "👏", "🎉"];
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function getInitials(name) {
     return name
         .split(" ")
@@ -44,7 +41,6 @@ function getInitials(name) {
         .toUpperCase()
         .slice(0, 2);
 }
-<<<<<<< HEAD
 function formatFileSize(bytes) {
     if (bytes < 1024)
         return `${bytes} B`;
@@ -62,7 +58,6 @@ function MessageStatus({ status }) {
             return <CheckCheck className="h-3 w-3 text-muted-foreground"/>;
         case "read":
             return <CheckCheck className="h-3 w-3 text-primary"/>;
-=======
 
 function formatFileSize(bytes) {
     if (bytes < 1024) return `${bytes} B`;
@@ -80,25 +75,18 @@ function MessageStatus({ status }) {
             return <CheckCheck className="h-3 w-3 text-muted-foreground" />;
         case "read":
             return <CheckCheck className="h-3 w-3 text-primary" />;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         default:
             return null;
     }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 function VoiceMessage({ message }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(message.duration || 0);
     const audioRef = useRef(null);
     const progressInterval = useRef(null);
-<<<<<<< HEAD
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     useEffect(() => {
         const audio = new Audio(message.content);
         audioRef.current = audio;
@@ -119,26 +107,20 @@ function VoiceMessage({ message }) {
             }
         };
     }, [message.content]);
-<<<<<<< HEAD
     const togglePlay = () => {
         if (!audioRef.current)
             return;
-=======
 
     const togglePlay = () => {
         if (!audioRef.current) return;
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         if (isPlaying) {
             audioRef.current.pause();
             if (progressInterval.current) {
                 clearInterval(progressInterval.current);
             }
-<<<<<<< HEAD
         }
         else {
-=======
         } else {
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
             audioRef.current.play();
             progressInterval.current = setInterval(() => {
                 if (audioRef.current) {
@@ -148,16 +130,12 @@ function VoiceMessage({ message }) {
         }
         setIsPlaying(!isPlaying);
     };
-<<<<<<< HEAD
-=======
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
     const formatDuration = (seconds) => {
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${mins}:${secs.toString().padStart(2, "0")}`;
     };
-<<<<<<< HEAD
     return (<div className="flex items-center gap-3 min-w-[200px]">
       <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-primary/10" onClick={togglePlay} data-testid="button-play-voice">
         {isPlaying ? (<Pause className="h-4 w-4"/>) : (<Play className="h-4 w-4 ml-0.5"/>)}
@@ -308,7 +286,6 @@ export function MessageBubble({ message, isGrouped, showAvatar, replyToMessage, 
         </div>
       </div>
     </div>);
-=======
 
     return (
         <div className="flex items-center gap-3 min-w-[200px]">
@@ -456,5 +433,4 @@ export function MessageBubble({ message, isMe, onReply }) {
             </div>
         </div>
     );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

@@ -22,7 +22,7 @@ cloudinary.v2.config({
  * This fixes the issue where Samma3ny was looking for songs in wrong folders
  */
 export async function handleSamma3nySongs(req, res) {
-  try {
+  try { 
     console.log('🔍 [FIXED] Fetching Samma3ny songs with corrected folder search...');
     console.log('Cloudinary config:', {
       cloud_name: cloudinary.v2.config().cloud_name,
@@ -35,7 +35,7 @@ export async function handleSamma3nySongs(req, res) {
     let allResources = [];
 
     for (const prefix of folderPrefixes) {
-      try {
+      try { 
         console.log(`🔍 Checking folder: "${prefix || 'root'}" with full pagination`);
 
         let nextCursor = null;

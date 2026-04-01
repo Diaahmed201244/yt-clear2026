@@ -21,9 +21,7 @@
       console.log(`[${serviceName}] Service base initialized`);
     },
 
-    // ============================================
     // PARENT COMMUNICATION
-    // ============================================
 
     detectParentOrigin() {
       const params = new URLSearchParams(location.search);
@@ -76,9 +74,7 @@
       }, this.parentOrigin);
     },
 
-    // ============================================
     // AUTHENTICATION
-    // ============================================
 
     setupAuth() {
       // Request auth from parent
@@ -113,9 +109,7 @@
       });
     },
 
-    // ============================================
     // LIFECYCLE HOOKS (Override in service)
-    // ============================================
 
     onAuthUpdate(auth) {
       // Override in service
@@ -158,9 +152,7 @@
       }));
     },
 
-    // ============================================
     // PERFORMANCE UTILITIES
-    // ============================================
 
     debounce(fn, delay) {
       let timeout;

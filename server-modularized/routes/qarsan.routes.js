@@ -41,7 +41,7 @@ function __sseEmit(userId, payload) {
 // ---------------------------------------------------------------------------
 
 router.get('/qarsan/status', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
 
@@ -103,7 +103,7 @@ router.get('/qarsan/status', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/qarsan/mode', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
     const { mode, depositAmount } = req.body || {};
@@ -112,7 +112,7 @@ router.post('/qarsan/mode', requireAuth, enforceFinancialSecurity, async (req, r
     }
 
     const client = await pool.connect();
-    try {
+    try { 
       await client.query('BEGIN');
 
       const dogResult = await client.query(
@@ -203,7 +203,7 @@ router.post('/qarsan/mode', requireAuth, enforceFinancialSecurity, async (req, r
 // ---------------------------------------------------------------------------
 
 router.post('/qarsan/activate', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
 
@@ -214,7 +214,7 @@ router.post('/qarsan/activate', requireAuth, enforceFinancialSecurity, async (re
 
     const client = await pool.connect();
 
-    try {
+    try { 
       await client.query('BEGIN');
 
       // Check Watch-Dog state
@@ -313,13 +313,13 @@ router.post('/qarsan/activate', requireAuth, enforceFinancialSecurity, async (re
 // ---------------------------------------------------------------------------
 
 router.post('/qarsan/deactivate', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
 
     const client = await pool.connect();
 
-    try {
+    try { 
       await client.query('BEGIN');
 
       // Get current Qarsan state
@@ -367,7 +367,7 @@ router.post('/qarsan/deactivate', requireAuth, enforceFinancialSecurity, async (
 // ---------------------------------------------------------------------------
 
 router.post('/qarsan/attack', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const attackerId = req.user && req.user.id;
     if (!attackerId) return res.status(401).json({ success: false, error: 'unauthorized' });
 
@@ -381,7 +381,7 @@ router.post('/qarsan/attack', requireAuth, enforceFinancialSecurity, async (req,
 
     const client = await pool.connect();
 
-    try {
+    try { 
       await client.query('BEGIN');
 
       const prior = await client.query('SELECT 1 FROM ledger WHERE tx_id = $1::uuid LIMIT 1', [providedTxId]);
@@ -508,7 +508,7 @@ router.post('/qarsan/attack', requireAuth, enforceFinancialSecurity, async (req,
 // ---------------------------------------------------------------------------
 
 router.get('/qarsan/users', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
 
@@ -600,7 +600,7 @@ router.get('/qarsan/users', requireAuth, async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/qarsan/feed-dog', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id;
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' });
 

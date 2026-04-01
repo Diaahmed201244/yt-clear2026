@@ -269,7 +269,7 @@ class GamesDashboard {
       servicesConfig.video = this.element.querySelector('#enableVideo')?.checked || false;
     }
 
-    try {
+    try { 
       // Start the game
       const session = await this.gameEngine.startGame(
         this.currentGame,
@@ -349,7 +349,7 @@ class GamesDashboard {
   acceptChallenge(challengeId) {
     const playerId = `player_${Math.floor(Math.random() * 10000)}`;
 
-    try {
+    try { 
       this.competitionEngine.acceptChallenge(challengeId, playerId);
       console.log(`[GamesDashboard] Challenge accepted: ${challengeId}`);
     } catch (error) {

@@ -77,7 +77,7 @@ export function useChessGame(gameMode) {
         });
     }, [chess, gameState.orientation, gameState.whiteTime, gameState.blackTime, gameState.aiThinking]);
     const makeMove = useCallback((move) => {
-        try {
+        try { 
             const moveObj = chess.move(move);
             if (!moveObj)
                 return false;
@@ -192,7 +192,7 @@ export function useChessGame(gameMode) {
         return chess.fen();
     }, [chess]);
     const importFEN = useCallback((fen) => {
-        try {
+        try { 
             chess.load(fen);
             updateGameState();
         }

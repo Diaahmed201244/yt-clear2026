@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   soundButton.addEventListener('mousemove', (e) => {
     if (!hasShown && (e.clientX || 0) > enterX + 10) {
       updatePopupContent();
-      try {
+      try { 
         const cc = document.getElementById('counter-container');
         if (cc) {
           const w = cc.offsetWidth;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   soundButton.addEventListener('click', () => {
     if (isLongPress) { isLongPress = false; return; }
     if (!window.player || typeof player.isMuted !== 'function') return;
-    try {
+    try { 
       if (player.isMuted()) { if (typeof player.unMute === 'function') player.unMute(); }
       else { if (typeof player.mute === 'function') player.mute(); }
     } catch (_) {}

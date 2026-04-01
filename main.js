@@ -7,9 +7,7 @@ import { AppLifecycleManager, onceEvent, safeFetch } from "./core/app-lifecycle.
 import { SelfHealing } from "./core/self-healing.js";
 import { AIBrainEngine } from "./core/ai-brain.js";
 
-// ==========================================
 // 🔇 0) Console Spam Suppression
-// ==========================================
 
 // Suppress YouTube postMessage spam in console
 (function() {
@@ -23,9 +21,7 @@ import { AIBrainEngine } from "./core/ai-brain.js";
     console.log('[Console] YouTube postMessage spam suppression ACTIVE');
 })();
 
-// ==========================================
 // 🛡️ 1) Self-Healing Rules Registration
-// ==========================================
 
 // Rule 1: Auth Desync Fix
 SelfHealing.registerRule(
@@ -102,7 +98,7 @@ SelfHealing.registerRule(
 SelfHealing.registerRule(
   "reload-loop",
   async () => {
-    try {
+    try { 
         const navigation = performance.getEntriesByType("navigation")[0];
         return navigation && navigation.type === 'reload';
     } catch (e) {
@@ -117,9 +113,7 @@ SelfHealing.registerRule(
   30000
 );
 
-// ==========================================
 // 🧩 2) Module Registrations
-// ==========================================
 
 // Auth Module
 AppLifecycleManager.register("auth", {
@@ -296,7 +290,7 @@ AppLifecycleManager.register("bankode", {
       if (isFetching) return;
       isFetching = true;
 
-      try {
+      try { 
         window.__LAST_FETCH__ = Date.now();
         await safeFetch("/api/sqlite/codes", { credentials: 'include' });
         // Reset API errors on success
@@ -313,9 +307,7 @@ AppLifecycleManager.register("bankode", {
   }
 }, ["auth"]);
 
-// ==========================================
 // 🚀 3) Entry Point Bootstrap
-// ==========================================
 
 if (!window.__APP_STARTED__) {
   window.__APP_STARTED__ = true;
@@ -327,7 +319,7 @@ if (!window.__APP_STARTED__) {
   };
 
   async function boot() {
-    try {
+    try { 
         // Listen for authentication to initialize ACC
         window.addEventListener('auth:authenticated', async (e) => {
             const { userId, token } = e.detail;

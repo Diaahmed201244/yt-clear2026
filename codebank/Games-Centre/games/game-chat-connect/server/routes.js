@@ -23,11 +23,11 @@ export async function registerRoutes(app) {
         clients.add(ws);
         console.log('Client connected');
         ws.on('message', async (data) => {
-            try {
+            try { 
                 const message = JSON.parse(data.toString());
                 switch (message.type) {
                     case 'join_room':
-                        try {
+                        try { 
                             const { roomCode, playerId, playerName } = message.data;
                             // Get room
                             const room = await storage.getRoomByCode(roomCode);
@@ -70,7 +70,7 @@ export async function registerRoutes(app) {
                         }
                         break;
                     case 'start_game':
-                        try {
+                        try { 
                             if (!ws.roomId)
                                 return;
                             const room = await storage.getRoom(ws.roomId);
@@ -99,7 +99,7 @@ export async function registerRoutes(app) {
                         }
                         break;
                     case 'reset_game':
-                        try {
+                        try { 
                             if (!ws.roomId)
                                 return;
                             const room = await storage.getRoom(ws.roomId);
@@ -129,7 +129,7 @@ export async function registerRoutes(app) {
                         }
                         break;
                     case 'chat_message':
-                        try {
+                        try { 
                             if (!ws.roomId || !ws.playerId || !ws.playerName)
                                 return;
                             const { message: chatMessage, messageType } = message.data;
@@ -152,7 +152,7 @@ export async function registerRoutes(app) {
                         }
                         break;
                     case 'exchange_money':
-                        try {
+                        try { 
                             if (!ws.playerId)
                                 return;
                             const { amount } = message.data;
@@ -211,7 +211,7 @@ export async function registerRoutes(app) {
     });
     // REST API routes
     app.post("/api/auth/register", async (req, res) => {
-        try {
+        try { 
             const userData = insertUserSchema.parse(req.body);
             const user = await storage.createUser(userData);
             res.json({ user });
@@ -222,7 +222,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/rooms/create", async (req, res) => {
-        try {
+        try { 
             const roomData = insertRoomSchema.parse(req.body);
             const room = await storage.createRoom(roomData);
             res.json({ room });
@@ -233,7 +233,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/rooms/start", async (req, res) => {
-        try {
+        try { 
             const { roomCode } = req.body;
             if (!roomCode) {
                 return res.status(400).json({ error: "Room code is required" });
@@ -275,7 +275,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/rooms/:roomCode", async (req, res) => {
-        try {
+        try { 
             const { roomCode } = req.params;
             const room = await storage.getRoomByCode(roomCode);
             if (!room) {

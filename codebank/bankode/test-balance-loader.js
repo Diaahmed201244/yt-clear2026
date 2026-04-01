@@ -250,7 +250,6 @@ class BalanceLoaderTest {
      */
     printTestSummary() {
         console.log('\n📊 Bankode Balance Loader Test Summary');
-        console.log('=====================================');
         console.log(`Total Tests: ${this.testResults.total}`);
         console.log(`Passed: ${this.testResults.passed}`);
         console.log(`Failed: ${this.testResults.failed}`);

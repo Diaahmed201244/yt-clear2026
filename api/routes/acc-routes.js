@@ -16,7 +16,7 @@ const accDb = createClient({
  * Returns user asset snapshot + transaction summary
  */
 router.get('/stats/:userId', async (req, res) => {
-    try {
+    try { 
         const { userId } = req.params;
 
         const assetsRes = await accDb.execute({
@@ -58,7 +58,7 @@ router.get('/stats/:userId', async (req, res) => {
  * Body: { userId, assetType, required }
  */
 router.post('/check-balance', async (req, res) => {
-    try {
+    try { 
         const { userId, assetType, required } = req.body;
 
         if (!userId || !assetType || required == null) {

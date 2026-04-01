@@ -45,7 +45,7 @@ import { deterministicHash, formatAsCompressedCode } from '../helpers/hash-helpe
  */
 export async function autoCompressUserCodes(userId) {
   const client = await pool.connect();
-  try {
+  try { 
     // 1. Compress Normal → Silver (100 → 1)
     const normalRes = await client.query(
       "SELECT id, code FROM codes WHERE user_id = $1 AND type = 'normal' ORDER BY created_at ASC",
@@ -61,7 +61,7 @@ export async function autoCompressUserCodes(userId) {
       const silverCode = formatAsCompressedCode(silverHash, 'S1');
 
       await client.query('BEGIN');
-      try {
+      try { 
         // BUG FIX: Use PostgreSQL $N placeholders instead of ?
         const placeholders = ids.map((_, i) => `$${i + 1}`).join(',');
         await client.query(
@@ -102,7 +102,7 @@ export async function autoCompressUserCodes(userId) {
       const goldCode = formatAsCompressedCode(goldHash, 'G1');
 
       await client.query('BEGIN');
-      try {
+      try { 
         // BUG FIX: Use PostgreSQL $N placeholders instead of ?
         const placeholders = ids.map((_, i) => `$${i + 1}`).join(',');
         await client.query(
@@ -125,7 +125,7 @@ export async function autoCompressUserCodes(userId) {
     console.error('❌ [COMPRESSION ERROR]', err.message);
   } finally {
     // BUG FIX: Always release the client in a finally block
-    try {
+    try { 
       client.release();
     } catch (_) {
       // Already released (e.g. after recursive call)
@@ -143,7 +143,7 @@ export async function autoCompressUserCodes(userId) {
  * @param {string} userId
  */
 export async function compressToSilver(userId) {
-  try {
+  try { 
     const r = await query(
       'SELECT codes_count FROM balances WHERE user_id = $1',
       [userId]
@@ -167,7 +167,7 @@ export async function compressToSilver(userId) {
  * @param {string} userId
  */
 export async function compressToGold(userId) {
-  try {
+  try { 
     const r = await query(
       'SELECT silver_count FROM balances WHERE user_id = $1',
       [userId]

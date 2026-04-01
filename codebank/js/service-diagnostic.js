@@ -155,7 +155,6 @@ export class ServiceDiagnostic {
 
     generateReport() {
         console.log('\n📊 CodeBank Service Diagnostic Report');
-        console.log('=====================================\n');
 
         for (const result of this.results) {
             const statusIcon = result.status === 'available' ? '✅' : result.status === 'unavailable' ? '❌' : '⚠️';

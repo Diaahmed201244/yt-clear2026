@@ -9,10 +9,7 @@ import { UploadModal } from "@/components/upload-modal";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import type { Video, Category, EngagementType, Favorite } from "@shared/schema";
 import { Button } from "@/components/ui/button";
-<<<<<<< HEAD
-=======
 import { cn } from "@/lib/utils";
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
 export default function Home() {
   const [view, setView] = useState<"feed" | "categories" | "admin">("feed");
@@ -98,11 +95,8 @@ export default function Home() {
   };
 
   return (
-<<<<<<< HEAD
     <div className="min-h-screen bg-background flex flex-col">
-=======
     <div className="h-[100dvh] w-full bg-black overflow-hidden relative">
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       <Header
         onUploadClick={() => setShowUpload(true)}
         onFavoritesClick={() => setShowFavorites(true)}
@@ -110,14 +104,11 @@ export default function Home() {
         onAdminClick={handleLogoClick}
       />
 
-<<<<<<< HEAD
       <main className="flex-1 pt-20 overflow-hidden">
-=======
       <main className={cn(
         "absolute inset-0 w-full h-full",
         view !== "feed" && "pt-20 bg-background overflow-y-auto"
       )}>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
         {view === "admin" ? (
           <AdminDashboard onBack={handleBackFromAdmin} />
         ) : view === "categories" ? (

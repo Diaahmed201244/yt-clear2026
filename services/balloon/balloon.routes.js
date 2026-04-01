@@ -4,7 +4,7 @@ import { validateClick, generateBalloonToken } from './balloon.service.js'
 const router = express.Router()
 
 router.post('/click', async (req, res) => {
-  try {
+  try { 
     const { userId, balloonId, token } = req.body
 
     if (!userId || !balloonId || !token) {
@@ -20,7 +20,7 @@ router.post('/click', async (req, res) => {
 })
 
 router.post('/generate-token', (req, res) => {
-  try {
+  try { 
     const { balloonId } = req.body
 
     if (!balloonId) {

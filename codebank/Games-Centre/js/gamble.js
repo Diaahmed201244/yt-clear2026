@@ -29,7 +29,7 @@ async function updateUserBalance(userId, newCodes) {
 }
 
 async function transferCodes(fromId, toId, amount) {
-  try {
+  try { 
     if (firebase && typeof firebase.rpc === 'function') {
       const { data, error } = await firebase.rpc('transfer_codes', {
         from_user_id: fromId,

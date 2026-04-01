@@ -5,7 +5,7 @@ const router = Router()
 
 // Create monetization_windows table if it doesn't exist
 async function ensureMonetizationTable() {
-  try {
+  try { 
     await query(`
       CREATE TABLE IF NOT EXISTS monetization_windows (
         id TEXT PRIMARY KEY,
@@ -29,7 +29,7 @@ async function ensureMonetizationTable() {
 
 // Calculate and store monthly monetization window
 export async function calculateMonthlyMonetizationWindow() {
-  try {
+  try { 
     await ensureMonetizationTable()
     
     const now = new Date()
@@ -86,7 +86,7 @@ export async function calculateMonthlyMonetizationWindow() {
 
 // Get current monetization window
 router.get('/current', async (req, res) => {
-  try {
+  try { 
     const now = new Date()
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
     const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
@@ -110,7 +110,7 @@ router.get('/current', async (req, res) => {
 
 // Get user's progress in current monetization window
 router.get('/progress', async (req, res) => {
-  try {
+  try { 
     const now = new Date()
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
     const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
@@ -151,7 +151,7 @@ router.get('/progress', async (req, res) => {
 
 // Admin endpoint to trigger calculation
 router.post('/calculate', async (req, res) => {
-  try {
+  try { 
     await calculateMonthlyMonetizationWindow()
     res.json({ ok: true, message: 'Monetization window calculated successfully' })
   } catch (error) {

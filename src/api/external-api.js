@@ -76,7 +76,7 @@ class ExternalAPI {
     const startTime = performance.now();
     let result;
     
-    try {
+    try { 
       result = await this.executeEndpoint(endpoint, method, body, keyData);
     } catch (error) {
       this.logAudit(apiKey, endpoint, 'error', error.message, performance.now() - startTime);

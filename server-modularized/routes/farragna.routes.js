@@ -70,7 +70,7 @@ function formatFileSize(bytes) {
 // ---------------------------------------------------------------------------
 
 router.post('/upload', upload.any(), async (req, res) => {
-  try {
+  try { 
     const files = req.files;
     if (!files || files.length === 0) {
       return res.status(400).json({
@@ -90,7 +90,7 @@ router.post('/upload', upload.any(), async (req, res) => {
       const file = files[i];
       const fileIndex = i + 1;
 
-      try {
+      try { 
         console.log(`📤 Processing file ${fileIndex}/${files.length}: ${file.originalname}`);
 
         // Validate MIME type
@@ -123,7 +123,7 @@ router.post('/upload', upload.any(), async (req, res) => {
         const randomId = Math.random().toString(36).substr(2, 9);
         const publicId = `farragna/video_${timestamp}_${randomId}`;
 
-        try {
+        try { 
           // Upload to Cloudinary
           const result = await cloudinary.uploader.upload(file.path, {
             resource_type: 'video',
@@ -165,7 +165,7 @@ router.post('/upload', upload.any(), async (req, res) => {
           console.error(`❌ Cloudinary upload failed for ${file.originalname}:`, uploadError.message);
 
           // Fallback: save to local filesystem
-          try {
+          try { 
             const localDir = path.join(process.cwd(), 'services/codebank/farragna/uploads');
             if (!fs.existsSync(localDir)) fs.mkdirSync(localDir, { recursive: true });
 

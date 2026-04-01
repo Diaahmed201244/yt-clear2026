@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let filteredGames = [];
 
   // Load games manifest dynamically
-  try {
+  try { 
     const response = await fetch('../dashboard-manifest.json');
     if (!response.ok) throw new Error('Failed to fetch manifest');
     const manifest = await response.json();

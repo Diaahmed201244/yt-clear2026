@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -31,7 +30,6 @@ function Toaster() {
         })}
       <toast_1.ToastViewport />
     </toast_1.ToastProvider>);
-=======
 import { useToast } from "@/hooks/use-toast";
 import {
   Toast,
@@ -64,5 +62,4 @@ export function Toaster() {
       <ToastViewport />
     </ToastProvider>
   );
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 }

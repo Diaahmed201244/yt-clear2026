@@ -29,7 +29,7 @@ const FEED_COST = 10;
  */
 export async function feedWatchDog(userId, idempotencyKey = null) {
   const client = await pool.connect();
-  try {
+  try { 
     await client.query('BEGIN');
 
     // Check balance
@@ -77,7 +77,7 @@ export async function feedWatchDog(userId, idempotencyKey = null) {
       idempotent: false,
     };
   } catch (err) {
-    try { await client.query('ROLLBACK'); } catch (_) { /* ignore */ }
+    try {  await client.query('ROLLBACK'); } catch (_) { /* ignore */ }
     console.error('[WATCHDOG] feedWatchDog error:', err);
     return { success: false, error: 'FEED_FAILED', message: err.message };
   } finally {
@@ -92,7 +92,7 @@ export async function feedWatchDog(userId, idempotencyKey = null) {
  * @returns {Promise<{ dogState: string, lastFedAt: string|null, isFrozen: boolean }>}
  */
 export async function getWatchDogState(userId) {
-  try {
+  try { 
     const result = await query(
       'SELECT dog_state, last_fed_at FROM watchdog_state WHERE user_id = $1::uuid',
       [userId]
@@ -124,7 +124,7 @@ export async function getWatchDogState(userId) {
  * @returns {Promise<{ hoursSinceLastFeed: number }>}
  */
 export async function updateDogStateByTime(userId) {
-  try {
+  try { 
     const result = await query(
       'SELECT last_fed_at FROM watchdog_state WHERE user_id = $1::uuid',
       [userId]

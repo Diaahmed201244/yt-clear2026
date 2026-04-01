@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -28,7 +27,6 @@ const PopoverContent = React.forwardRef((_a, ref) => {
 });
 exports.PopoverContent = PopoverContent;
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
-=======
 import * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { cn } from "@/lib/utils";
@@ -53,4 +51,3 @@ const PopoverContent = React.forwardRef(({ className, align = "center", sideOffs
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
 export { Popover, PopoverTrigger, PopoverContent };
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)

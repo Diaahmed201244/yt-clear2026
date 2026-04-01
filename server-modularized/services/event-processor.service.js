@@ -31,11 +31,11 @@ import { emitSSE } from './sse.service.js';
  * returns immediately if `EVENT_PROCESSOR_DISABLED=1`).
  */
 export async function startEventProcessor() {
-  try {
+  try { 
     if (process.env.EVENT_PROCESSOR_DISABLED === '1') return;
 
     let lastId = 0;
-    try {
+    try { 
       const r = await query("SELECT last_id FROM event_offsets WHERE key = 'default'");
       lastId = (r.rows && r.rows[0] && Number(r.rows[0].last_id)) || 0;
     } catch (err) {
@@ -46,7 +46,7 @@ export async function startEventProcessor() {
     // Start the infinite processing loop
     (async function loop() {
       for (;;) {
-        try {
+        try { 
           const { rows } = await query(
             'SELECT id, event_type, payload FROM event_store WHERE id > $1 ORDER BY id ASC LIMIT 50',
             [lastId]
@@ -59,7 +59,7 @@ export async function startEventProcessor() {
 
           for (const ev of rows) {
             const client = await pool.connect();
-            try {
+            try { 
               await client.query('BEGIN');
 
               // Idempotency guard
@@ -112,7 +112,7 @@ export async function startEventProcessor() {
                 }
 
                 // Notify via SSE
-                try {
+                try { 
                   if (assetType === 'codes') {
                     const codesRes = await client.query(
                       'SELECT code FROM codes WHERE id IN (SELECT id FROM codes WHERE user_id = $1 ORDER BY created_at DESC LIMIT $2)',
@@ -134,13 +134,13 @@ export async function startEventProcessor() {
               await client.query('COMMIT');
             } catch (e) {
               console.error('[PROCESSOR ERROR]', e.message);
-              try {
+              try { 
                 await client.query('ROLLBACK');
               } catch (_) {
                 // Rollback may fail if connection is broken
               }
             } finally {
-              try {
+              try { 
                 client.release();
               } catch (_) {
                 // Already released
@@ -150,7 +150,7 @@ export async function startEventProcessor() {
           }
 
           // Persist cursor
-          try {
+          try { 
             await query(
               "UPDATE event_offsets SET last_id = $1, updated_at = CURRENT_TIMESTAMP WHERE key = 'default'",
               [lastId]

@@ -73,8 +73,6 @@ export function VideoPlayer({
     }
   }, [isPlaying]);
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     const handleToggle = () => {
       if (isActive) {
@@ -85,7 +83,6 @@ export function VideoPlayer({
     return () => window.removeEventListener("feed-play-pause-toggle", handleToggle);
   }, [handlePlayPause, isActive]);
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   const handleSeek = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const videoEl = videoRef.current;
     if (!videoEl) return;
@@ -107,8 +104,6 @@ export function VideoPlayer({
     }
   }, []);
 
-<<<<<<< HEAD
-=======
   const isYouTube = video.videoUrl?.includes("youtube.com") || video.videoUrl?.includes("youtu.be");
   const getYouTubeEmbedUrl = (url: string) => {
     let videoId = "";
@@ -120,7 +115,6 @@ export function VideoPlayer({
     return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&loop=1&playlist=${videoId}`;
   };
 
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
   return (
     <div
       className="relative w-full h-full bg-black overflow-hidden group"
@@ -128,7 +122,6 @@ export function VideoPlayer({
       onMouseLeave={() => setShowControls(false)}
       onContextMenu={(e) => e.preventDefault()}
     >
-<<<<<<< HEAD
       <video
         controls
         preload="metadata"
@@ -148,7 +141,6 @@ export function VideoPlayer({
         draggable={false}
         data-testid={`video-element-${video.id}`}
       />
-=======
       {isYouTube ? (
         <iframe
           src={getYouTubeEmbedUrl(video.videoUrl)}
@@ -177,7 +169,6 @@ export function VideoPlayer({
           data-testid={`video-element-${video.id}`}
         />
       )}
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
 
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
@@ -227,7 +218,6 @@ export function VideoPlayer({
 
       <div
         className={cn(
-<<<<<<< HEAD
           "absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 transition-all duration-300",
           showControls ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
         )}
@@ -248,7 +238,6 @@ export function VideoPlayer({
         <button
           onClick={onMuteToggle}
           className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center hover:bg-black/80 hover:scale-110 active:scale-95 transition-all duration-200 border border-white/10 hover:border-white/20 shadow-lg"
-=======
           "absolute right-4 top-28 flex flex-col gap-3 transition-opacity duration-300",
           showControls ? "opacity-100" : "opacity-0"
         )}
@@ -259,12 +248,10 @@ export function VideoPlayer({
             onMuteToggle();
           }}
           className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-all duration-200 border border-white/10"
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
           aria-label={isMuted ? "Unmute" : "Mute"}
           data-testid={`button-mute-${video.id}`}
         >
           {isMuted ? (
-<<<<<<< HEAD
             <VolumeX className="w-6 h-6 text-white drop-shadow-sm" />
           ) : (
             <Volume2 className="w-6 h-6 text-white drop-shadow-sm" />
@@ -279,13 +266,11 @@ export function VideoPlayer({
         >
           <Maximize className="w-6 h-6 text-white drop-shadow-sm" />
         </button>
-=======
             <VolumeX className="w-5 h-5 text-white drop-shadow-sm" />
           ) : (
             <Volume2 className="w-5 h-5 text-white drop-shadow-sm" />
           )}
         </button>
->>>>>>> 715f14454 (BACKUP: Pre-modularization state - 4,827 line server.js)
       </div>
 
       <div
