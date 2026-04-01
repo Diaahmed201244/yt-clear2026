@@ -5,7 +5,7 @@ import { requireAuth } from '../middleware/auth.js';
 const router = express.Router();
 
 router.get('/:userId', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { userId } = req.params;
         if (req.user.id !== userId && req.user.role !== 'admin') {
             return res.status(403).json({ success: false, error: 'unauthorized_access' });
@@ -18,7 +18,7 @@ router.get('/:userId', requireAuth, async (req, res) => {
 });
 
 router.post('/transaction', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { userId, type, assetType, amount } = req.body;
         if (req.user.id !== userId && req.user.role !== 'admin') {
             return res.status(403).json({ success: false, error: 'unauthorized_access' });

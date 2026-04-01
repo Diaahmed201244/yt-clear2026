@@ -38,7 +38,7 @@ class CSPCompliance {
 
   // Method to safely execute code without eval (for critical operations)
   executeSafeCode(code) {
-    try { 
+    try {   
       return null;
     }
   }

@@ -32,7 +32,7 @@ export class PaymentGateway {
     async processPayment(paymentData) {
         const paymentId = paymentData.id || `payment_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 
-        try {
+        try { 
             console.log('💳 Processing payment:', paymentId, paymentData);
 
             // Validate payment data
@@ -144,7 +144,7 @@ export class PaymentGateway {
 
     // Refund a payment
     async refundPayment(paymentId, amount = null, reason = 'requested_by_customer') {
-        try {
+        try { 
             console.log('💸 Refunding payment:', paymentId);
 
             // Find original payment
@@ -294,7 +294,7 @@ export class PaymentGateway {
 
     // Process webhook
     async processWebhook(provider, payload) {
-        try {
+        try { 
             console.log('🔗 Processing webhook:', provider, payload);
 
             const providerInstance = this.providers.get(provider);
@@ -388,7 +388,7 @@ export class PaymentGateway {
 
     // Persist payment history
     _persistPaymentHistory() {
-        try {
+        try { 
             localStorage.setItem('payment_history', JSON.stringify(this.paymentHistory.slice(0, 1000)));
         } catch (error) {
             console.warn('Failed to persist payment history:', error);
@@ -409,7 +409,7 @@ export class PaymentGateway {
 
     // Load persisted payment history
     _loadPersistedHistory() {
-        try {
+        try { 
             const historyData = localStorage.getItem('payment_history');
             if (historyData) {
                 const history = JSON.parse(historyData);
@@ -589,7 +589,7 @@ export class StripeProvider extends PaymentProvider {
     }
 
     async processPayment(payment) {
-        try {
+        try { 
             // This would integrate with actual Stripe API
             console.log('💳 Processing Stripe payment:', payment.id);
 
@@ -611,7 +611,7 @@ export class StripeProvider extends PaymentProvider {
     }
 
     async refundPayment(originalPayment, amount, reason) {
-        try {
+        try { 
             console.log('💸 Processing Stripe refund:', originalPayment.id);
 
             // Simulate API call
@@ -657,7 +657,7 @@ export class PayPalProvider extends PaymentProvider {
     }
 
     async processPayment(payment) {
-        try {
+        try { 
             console.log('💰 Processing PayPal payment:', payment.id);
 
             // Simulate API call
@@ -678,7 +678,7 @@ export class PayPalProvider extends PaymentProvider {
     }
 
     async refundPayment(originalPayment, amount, reason) {
-        try {
+        try { 
             console.log('💸 Processing PayPal refund:', originalPayment.id);
 
             // Simulate API call
@@ -713,7 +713,7 @@ export class CryptoProvider extends PaymentProvider {
     }
 
     async processPayment(payment) {
-        try {
+        try { 
             console.log('₿ Processing crypto payment:', payment.id);
 
             // Simulate blockchain confirmation

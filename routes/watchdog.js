@@ -6,7 +6,7 @@ const router = express.Router();
 
 // ✅ GET state (Public or Internal)
 router.get('/state', async (req, res) => {
-  try { 
+  try {   
     const result = await watchdog.verifySystemIntegrity();
 
     res.json({
@@ -28,7 +28,7 @@ router.get('/state', async (req, res) => {
 
 // 🦴 Compatibility Endpoint for UI
 router.get('/status', async (req, res) => {
-  try { 
+  try {   
     const result = await watchdog.verifySystemIntegrity();
     
     // Return format expected by safe-list-actions.js
@@ -46,7 +46,7 @@ router.get('/status', async (req, res) => {
 
 // 🔧 manual heal (ADMIN ONLY)
 router.post('/heal', requireAuth, async (req, res) => {
-  try { 
+  try {   
     // 🛡️ Admin Check
     if (req.user.role !== 'admin') {
       return res.status(403).json({ error: 'forbidden', message: 'Admin access required' });

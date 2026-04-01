@@ -100,7 +100,7 @@ export class VoiceChat {
     }
 
     async startLocalStream(video = false) {
-        try { 
+        try {   
             this.isVideoOff = !video; // Set state
             this.localStream = await navigator.mediaDevices.getUserMedia({
                 audio: true,

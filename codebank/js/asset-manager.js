@@ -37,7 +37,7 @@ export class AssetManager {
     async registerAsset(assetData) {
         const assetId = assetData.id || `asset_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 
-        try {
+        try { 
             console.log('📦 Registering asset:', assetId, assetData);
 
             // Validate asset data
@@ -108,7 +108,7 @@ export class AssetManager {
 
     // Update asset information
     async updateAsset(assetId, updates) {
-        try {
+        try { 
             const asset = this.assets.get(assetId);
             if (!asset) {
                 throw new Error('Asset not found');
@@ -156,7 +156,7 @@ export class AssetManager {
 
     // Transfer asset between users/locations
     async transferAsset(assetId, toUserId, quantity = null) {
-        try {
+        try { 
             const asset = this.assets.get(assetId);
             if (!asset) {
                 throw new Error('Asset not found');
@@ -332,7 +332,7 @@ export class AssetManager {
 
     // Update asset valuation
     async updateAssetValuation(assetId, newUnitValue, source = 'manual') {
-        try {
+        try { 
             const updates = {
                 unitValue: newUnitValue,
                 totalValue: null, // Will be recalculated
@@ -374,7 +374,7 @@ export class AssetManager {
         const results = [];
 
         for (const assetId of assetIds) {
-            try {
+            try { 
                 const result = await this.updateAsset(assetId, updates);
                 results.push({ success: true, assetId, asset: result });
             } catch (error) {
@@ -442,7 +442,7 @@ export class AssetManager {
 
     // Import asset data
     async importAssetData(data, options = {}) {
-        try {
+        try { 
             const { assets, history } = data;
             const overwrite = options.overwrite || false;
 
@@ -578,7 +578,7 @@ export class AssetManager {
 
     // Persistence methods
     async _persistAsset(asset) {
-        try {
+        try { 
             if (this.enablePersistence) {
                 localStorage.setItem(`asset_${asset.id}`, JSON.stringify(asset));
 
@@ -599,7 +599,7 @@ export class AssetManager {
     }
 
     async _persistAllAssets() {
-        try {
+        try { 
             const index = {};
 
             for (const asset of this.assets.values()) {
@@ -621,7 +621,7 @@ export class AssetManager {
     }
 
     _persistHistory() {
-        try {
+        try { 
             localStorage.setItem('asset_history', JSON.stringify(this.assetHistory.slice(0, 500)));
         } catch (error) {
             console.warn('Failed to persist history:', error);
@@ -629,7 +629,7 @@ export class AssetManager {
     }
 
     _loadPersistedAssets() {
-        try {
+        try { 
             // Load asset index
             const indexData = localStorage.getItem('asset_index');
             if (indexData) {

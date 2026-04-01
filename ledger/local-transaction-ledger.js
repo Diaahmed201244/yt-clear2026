@@ -7,7 +7,7 @@ let ledger = null
 
 async function loadLedger() {
   if (ledger) return ledger
-  try {
+  try { 
     const us = typeof window !== 'undefined' ? window.unifiedStorage : null
     if (us && us.ledgerDB && typeof us.ledgerDB.get === 'function') {
       const v = await us.ledgerDB.get()
@@ -15,7 +15,7 @@ async function loadLedger() {
       return ledger
     }
   } catch (_) {}
-  try {
+  try { 
     const s = localStorage.getItem('__LTL__')
     ledger = s ? JSON.parse(s) : []
   } catch (_) { ledger = [] }
@@ -24,14 +24,14 @@ async function loadLedger() {
 
 async function persistLedger() {
   const list = Array.isArray(ledger) ? ledger : []
-  try {
+  try { 
     const us = typeof window !== 'undefined' ? window.unifiedStorage : null
     if (us && us.ledgerDB && typeof us.ledgerDB.set === 'function') {
       await us.ledgerDB.set(list)
       return
     }
   } catch (_) {}
-  try { localStorage.setItem('__LTL__', JSON.stringify(list)) } catch (_) {}
+  try {  localStorage.setItem('__LTL__', JSON.stringify(list)) } catch (_) {}
 }
 
 function applyDelta(bal, tx) {
@@ -82,8 +82,8 @@ export const ledgerKernel = {
     list.push(finalTx)
     ledger = list
     await persistLedger()
-    try { console.log('[LTL] Tx appended:', finalTx) } catch (_) {}
-    try { assetSync.applyBalance(nextSnap) } catch (_) {}
+    try {  console.log('[LTL] Tx appended:', finalTx) } catch (_) {}
+    try {  assetSync.applyBalance(nextSnap) } catch (_) {}
     return finalTx
   },
 
@@ -99,10 +99,10 @@ export const ledgerKernel = {
 
   async replay(userId) {
     const bal = await this.calculateBalance(userId)
-    try { assetSync.applyBalance(bal) } catch (_) {}
+    try {  assetSync.applyBalance(bal) } catch (_) {}
     return bal
   }
 }
 
 export default ledgerKernel
-if (typeof window !== 'undefined') { try { window.ledgerKernel = ledgerKernel } catch (_) {} }
+if (typeof window !== 'undefined') { try {  window.ledgerKernel = ledgerKernel } catch (_) {} }

@@ -36,7 +36,7 @@ for (const key of Object.keys(DIRS)) {
 }
 
 function loadJSONSafe(filePath) {
-  try { return JSON.parse(fs.readFileSync(filePath, 'utf-8')); } catch { return null; }
+  try {  return JSON.parse(fs.readFileSync(filePath, 'utf-8')); } catch { return null; }
 }
 
 function saveSubmission(meta) {

@@ -22,7 +22,7 @@ export const AssetsKernel = {
         const pool = await NeonAdapter.connect();
         const client = await pool.connect();
 
-        try {
+        try { 
             await client.query('BEGIN');
 
             // 1. Update Balance
@@ -67,7 +67,7 @@ export const AssetsKernel = {
         const client = await pool.connect();
         const lockId = AssetLocker.generateLockId();
 
-        try {
+        try { 
             await client.query('BEGIN');
 
             // 1. Deduct Balance (Will throw if insufficient)
@@ -115,7 +115,7 @@ export const AssetsKernel = {
         const pool = await NeonAdapter.connect();
         const client = await pool.connect();
 
-        try {
+        try { 
             await client.query('BEGIN');
 
             // 1. Refund Balance
@@ -159,7 +159,7 @@ export const AssetsKernel = {
         const pool = await NeonAdapter.connect();
         const client = await pool.connect();
 
-        try {
+        try { 
             await client.query('BEGIN');
 
             // 1. Write Ledger
@@ -194,7 +194,7 @@ export const AssetsKernel = {
         const pool = await NeonAdapter.connect();
         const client = await pool.connect();
 
-        try {
+        try { 
             await client.query('BEGIN');
 
             // 1. Deduct Balance

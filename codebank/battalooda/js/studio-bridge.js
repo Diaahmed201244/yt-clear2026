@@ -27,7 +27,7 @@ class StudioBridge {
   }
 
   initializeInternalBridge() {
-    try {
+    try { 
       const iframeWindow = this.iframe.contentWindow;
       const iframeDoc = this.iframe.contentDocument || iframeWindow.document;
 
@@ -49,7 +49,7 @@ class StudioBridge {
     doc.addEventListener('click', (e) => {
       const target = e.target;
       const isMenuButton = menuSelectors.some(selector => {
-        try { return target.matches(selector) || target.closest(selector); } catch(err) { return false; }
+        try {  return target.matches(selector) || target.closest(selector); } catch(err) { return false; }
       }) || this.isLikelyMenuButton(target);
 
       if (isMenuButton) {

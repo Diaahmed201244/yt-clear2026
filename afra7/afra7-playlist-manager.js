@@ -22,7 +22,7 @@
         
         // Load songs from registry (Cloudinary URLs)
         loadSongsRegistry: async function() {
-            try {
+            try { 
                 const response = await fetch(SONGS_REGISTRY_URL);
                 if (!response.ok) throw new Error('Failed to load registry');
                 
@@ -37,7 +37,7 @@
         
         // Load user's saved playlist from localStorage
         loadUserPlaylist: function() {
-            try {
+            try { 
                 const saved = localStorage.getItem(STORAGE_KEY);
                 if (saved) {
                     this.userPlaylist = JSON.parse(saved);
@@ -51,7 +51,7 @@
         
         // Save user playlist to localStorage (JSON format, no audio files)
         saveUserPlaylist: function() {
-            try {
+            try { 
                 // Only save metadata (titles, URLs, order) - not actual audio files
                 const dataToSave = this.userPlaylist.map(song => ({
                     id: song.id,

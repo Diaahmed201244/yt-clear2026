@@ -4,7 +4,7 @@ exports.useLocalStorage = useLocalStorage;
 const react_1 = require("react");
 function useLocalStorage(key, initialValue) {
     const [storedValue, setStoredValue] = (0, react_1.useState)(() => {
-        try { 
+        try {   
             const item = window.localStorage.getItem(key);
             // Special handling for daily reset
             if (key === 'hasPlayedToday') {
@@ -24,7 +24,7 @@ function useLocalStorage(key, initialValue) {
         }
     });
     const setValue = (value) => {
-        try { 
+        try {   
             const valueToStore = value instanceof Function ? value(storedValue) : value;
             setStoredValue(valueToStore);
             window.localStorage.setItem(key, JSON.stringify(valueToStore));

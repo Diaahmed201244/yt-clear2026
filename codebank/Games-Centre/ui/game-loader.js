@@ -117,7 +117,7 @@ class GameLoader {
     // Show loading state
     this.showLoading();
 
-    try { 
+    try {   
       // Start the game through game engine
       const session = await this.gameEngine.startGame(gameId, modeId, config);
 
@@ -143,7 +143,7 @@ class GameLoader {
    */
   unloadGame() {
     if (this.currentGame) {
-      try { 
+      try {   
         // End the game through game engine
         this.gameEngine.endGame({ status: 'COMPLETED', result: 'User exited' });
 

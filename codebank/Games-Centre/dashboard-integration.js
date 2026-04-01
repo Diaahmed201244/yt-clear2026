@@ -21,7 +21,7 @@ import { assetsBus } from './core/js/assets-bus-adapter.js';
 
 // User context
 let userContext;
-try { 
+try {   
     const module = await import('../context/user-context.js');
     userContext = module.userContext;
 } catch (e) {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ===== BALANCE DISPLAY (READ-ONLY) =====
 
     async function updateBalanceDisplay() {
-        try { 
+        try {   
             // ✅ CORRECT: Only reading for display, not for calculations
             const codeBalance = await assetsBus.getBalance(currentUserId, 'code');
             const barsBalance = await assetsBus.getBalance(currentUserId, 'bars');
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ===== GAME LOADING =====
 
     async function loadManifest() {
-        try { 
+        try {   
             loadingState.classList.remove('hidden');
             const response = await fetch('./core/dashboard-manifest.json');
 
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log('Game frame loaded:', game.title);
 
             setTimeout(async () => {
-                try { 
+                try {   
                     const res = await currentGameWrapper.startGame(betAmount, opponents);
 
                     if (!res.success) {
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Show matchmaking UI
         showMatchmakingStatus('Searching for opponent...');
 
-        try { 
+        try {   
             const result = await matchmaker.quickMatch(
                 currentUserId,
                 currentUsername,

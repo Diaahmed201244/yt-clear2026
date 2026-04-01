@@ -164,7 +164,7 @@ export class ExtraModeManager {
     if (!navigator.onLine) { this._expire('offline_claim'); return false; }
     const code = this._generateCode();
     const item = { code, type: this._rewardType, origin: 'extra', status: 'claimed' };
-    try {
+    try { 
       // Add to AssetBus
       window.AssetBus.addAsset(this._rewardType, code);
       
@@ -222,4 +222,4 @@ export class ExtraModeManager {
   getProgress() { return this._progress; }
 }
 
-try { window.ExtraModeManager = ExtraModeManager } catch(_){}
+try {  window.ExtraModeManager = ExtraModeManager } catch(_){}

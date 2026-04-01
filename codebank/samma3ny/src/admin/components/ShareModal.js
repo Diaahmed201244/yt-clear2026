@@ -18,7 +18,7 @@ const ShareModal = ({ isOpen, onClose, song }) => {
     setSharing(true);
     setError('');
 
-    try {
+    try { 
       // Generate share message
       const shareMessage = `🎵 Check out this song: "${song.title}" by ${song.artist || 'Unknown Artist'}\n\nListen to it and more on the Dr. D App! 🎧\n\nSong URL: ${song.url}`;
 

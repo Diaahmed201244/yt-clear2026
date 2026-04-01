@@ -396,7 +396,7 @@ export function createE7kiAPIRoutes(database) {
       });
     }
 
-    try {
+    try { 
       // For now, we'll use a simple validation
       // In production, this should validate JWT tokens
       req.user = { id: 'test-user-id', email: 'test@example.com' };
@@ -449,7 +449,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Get conversations for current user
   router.get('/chats', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const conversations = database.getConversations(userId);
       res.json(conversations);
@@ -461,7 +461,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Create new conversation
   router.post('/chats', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const { participantIds, title } = req.body;
 
@@ -485,7 +485,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Get messages for a conversation
   router.get('/messages', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const conversationId = req.query.chat_id;
       const limit = parseInt(req.query.limit) || 50;
@@ -511,7 +511,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Send message
   router.post('/messages', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const { chat_id, content, type = 'text', media_url, reply_to } = req.body;
 
@@ -559,7 +559,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Upload file
   router.post('/upload', authenticate, upload.single('file'), (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const chatId = req.body.chat_id;
       const file = req.file;
@@ -611,7 +611,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Add reaction to message
   router.post('/messages/:messageId/reactions', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const messageId = req.params.messageId;
       const { emoji } = req.body;
@@ -630,7 +630,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Remove reaction from message
   router.delete('/messages/:messageId/reactions', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const messageId = req.params.messageId;
 
@@ -644,7 +644,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Mark message as read
   router.post('/messages/:messageId/read', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const messageId = req.params.messageId;
 
@@ -658,7 +658,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Typing indicator
   router.post('/typing', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const { chat_id, is_typing } = req.body;
 
@@ -682,7 +682,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Search users
   router.get('/users/search', authenticate, (req, res) => {
-    try {
+    try { 
       const userId = req.user.id;
       const query = req.query.q;
 
@@ -700,7 +700,7 @@ export function createE7kiAPIRoutes(database) {
 
   // Get user info
   router.get('/users/:userId', authenticate, (req, res) => {
-    try {
+    try { 
       const requestedUserId = req.params.userId;
       const user = database.getUser(requestedUserId);
 

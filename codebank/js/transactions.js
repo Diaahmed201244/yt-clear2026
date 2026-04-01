@@ -26,7 +26,7 @@ const FN_BASE_URL = 'https://us-central1-d-connect-2025.cloudfunctions.net/';
 let useFirebase = false;
 
 function readLocal() {
-  try {
+  try { 
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     return JSON.parse(raw);
@@ -37,7 +37,7 @@ function readLocal() {
 }
 
 function writeLocal(arr) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) { console.warn('transactions.writeLocal error', e); }
+  try {  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) { console.warn('transactions.writeLocal error', e); }
 }
 
 function makeTxObject(obj = {}) {
@@ -50,7 +50,7 @@ async function addTransaction(transaction) {
   const item = makeTxObject(transaction);
   list.unshift(item);
   writeLocal(list);
-  try { window.dispatchEvent(new CustomEvent('transactions:updated', { detail: item })); } catch (e) {}
+  try {  window.dispatchEvent(new CustomEvent('transactions:updated', { detail: item })); } catch (e) {}
   return item;
 }
 
@@ -66,7 +66,7 @@ async function sendTransaction(recipient, codes) {
       list[idx].status = 'sent';
       list[idx].tx_id = 'local-' + tx.id;
       writeLocal(list);
-      try { window.dispatchEvent(new CustomEvent('transactions:sent', { detail: list[idx] })); } catch(e){}
+      try {  window.dispatchEvent(new CustomEvent('transactions:sent', { detail: list[idx] })); } catch(e){}
     }
   }, 200);
   return { success: true, tx_id: 'local-' + tx.id };

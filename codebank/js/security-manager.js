@@ -360,7 +360,7 @@ export class SecurityManager {
     }
 
     _getCurrentUserId() {
-        try {
+        try { 
             const userData = JSON.parse(localStorage.getItem('userData') || '{}');
             return userData.id || userData.uid || null;
         } catch (error) {
@@ -415,7 +415,7 @@ export class SecurityManager {
     }
 
     _persistAuditTrail() {
-        try {
+        try { 
             localStorage.setItem('transaction_audit_trail', JSON.stringify(this.auditTrail.slice(0, 1000)));
         } catch (error) {
             console.warn('Failed to persist audit trail:', error);
@@ -423,7 +423,7 @@ export class SecurityManager {
     }
 
     _persistSecurityEvents() {
-        try {
+        try { 
             localStorage.setItem('transaction_security_events', JSON.stringify(this.securityEvents.slice(0, 500)));
         } catch (error) {
             console.warn('Failed to persist security events:', error);
@@ -477,7 +477,7 @@ export class SecurityManager {
         this.securityEvents = [];
 
         // Clear storage
-        try {
+        try { 
             localStorage.removeItem('transaction_audit_trail');
             localStorage.removeItem('transaction_security_events');
         } catch (error) {

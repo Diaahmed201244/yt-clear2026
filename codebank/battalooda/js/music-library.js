@@ -91,7 +91,7 @@ class JamendoLibrary {
     }
 
     async searchTracks(query, genre = null) {
-        try {
+        try { 
             // Check cache first
             const cacheKey = `search_${query}_${genre}`;
             if (this.cache.has(cacheKey)) {
@@ -145,7 +145,7 @@ class JamendoLibrary {
     }
 
     async getPopularTracks(category) {
-        try {
+        try { 
             // Check cache first
             const cacheKey = `popular_${category}`;
             if (this.cache.has(cacheKey)) {
@@ -282,7 +282,7 @@ class JamendoLibrary {
             return false;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/favorite-tracks', {
                 method: 'POST',
                 headers: {
@@ -312,7 +312,7 @@ class JamendoLibrary {
             return [];
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/favorite-tracks');
             const data = await response.json();
             
@@ -333,7 +333,7 @@ class JamendoLibrary {
         const audioUrl = track.preview_url || track.url;
         const audio = new Audio(audioUrl);
         
-        try {
+        try { 
             await audio.play();
             return {
                 stop: () => {
@@ -411,7 +411,7 @@ class MusicLibraryManager {
         this.currentSource = source;
         this.currentCategory = category || this.currentCategory;
 
-        try {
+        try { 
             let tracks = [];
 
             switch (source) {

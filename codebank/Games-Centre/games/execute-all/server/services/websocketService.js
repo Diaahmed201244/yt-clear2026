@@ -15,7 +15,7 @@ export class WebSocketService {
             const clientConnection = { ws };
             this.clients.set(ws, clientConnection);
             ws.on('message', async (data) => {
-                try { 
+                try {   
                     const message = JSON.parse(data.toString());
                     await this.handleMessage(ws, message);
                 }
@@ -61,7 +61,7 @@ export class WebSocketService {
         }
     }
     async handleJoinRoom(ws, data) {
-        try { 
+        try {   
             const room = await storage.getGameRoomByCode(data.roomCode);
             if (!room) {
                 this.sendError(ws, 'Room not found');
@@ -116,7 +116,7 @@ export class WebSocketService {
             this.sendError(ws, 'Not in a room');
             return;
         }
-        try { 
+        try {   
             const success = await gameService.playCard(client.roomId, client.userId, data.card);
             if (success) {
                 await this.sendGameState(client.roomId);
@@ -143,7 +143,7 @@ export class WebSocketService {
             this.sendError(ws, 'Not in a room');
             return;
         }
-        try { 
+        try {   
             const bars = await gameService.exchangeMoney(client.userId, client.roomId, data.amount);
             if (bars.length > 0) {
                 await this.sendGameState(client.roomId);
@@ -167,7 +167,7 @@ export class WebSocketService {
             this.sendError(ws, 'Not in a room');
             return;
         }
-        try { 
+        try {   
             const chatMessage = await storage.addChatMessage({
                 roomId: client.roomId,
                 playerId: client.userId,
@@ -191,7 +191,7 @@ export class WebSocketService {
             this.sendError(ws, 'Not in a room');
             return;
         }
-        try { 
+        try {   
             const success = await gameService.startGame(client.roomId);
             if (success) {
                 await this.sendGameState(client.roomId);
@@ -215,7 +215,7 @@ export class WebSocketService {
             this.sendError(ws, 'Not in a room');
             return;
         }
-        try { 
+        try {   
             const player = await storage.getPlayer(client.roomId, client.userId);
             if (player) {
                 await storage.updatePlayer(player.id, { isReady: true });
@@ -232,7 +232,7 @@ export class WebSocketService {
         }
     }
     async sendGameState(roomId) {
-        try { 
+        try {   
             const room = await storage.getGameRoom(roomId);
             const players = await storage.getPlayersInRoom(roomId);
             const messages = await storage.getChatMessages(roomId, 20);

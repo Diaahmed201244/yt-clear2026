@@ -193,7 +193,7 @@
         text.textContent = 'Testing...';
         spinner.classList.remove('hidden');
 
-        try {
+        try { 
           // Initialize JWT Auth
           await window.JWT_AUTH.init();
           addTestResult('JWT Auth Initialization', 'pass', 'JWT system initialized successfully');
@@ -245,7 +245,7 @@
         text.textContent = 'Testing...';
         spinner.classList.remove('hidden');
 
-        try {
+        try { 
           // Test session management
           const session = window.JWT_AUTH.getCurrentSession();
           if (session) {
@@ -286,7 +286,7 @@
         text.textContent = 'Testing...';
         spinner.classList.remove('hidden');
 
-        try {
+        try { 
           // Wait for unifiedStorage to be ready
           await window.unifiedStorageReady;
 
@@ -338,7 +338,7 @@
         text.textContent = 'Testing...';
         spinner.classList.remove('hidden');
 
-        try {
+        try { 
           // Test dashboard initialization
           const dashboardInit = await window.BankodeDashboard.init();
           if (dashboardInit) {
@@ -370,7 +370,7 @@
           addTestResult('Dashboard Methods', 'pass', `${methodCount}/${dashboardMethods.length} methods available`);
 
           // Test JWT enforcement
-          try {
+          try { 
             await window.BankodeDashboard.ensureAuth();
             addTestResult('JWT Enforcement', 'pass', 'JWT authentication enforced');
           } catch (error) {
@@ -391,7 +391,7 @@
       async function runInitialTests() {
         addTestResult('Initialization', 'info', 'Starting Bankode JWT Integration Test');
 
-        try {
+        try { 
           // Test JWT Auth initialization
           await window.JWT_AUTH.init();
           addTestResult('JWT Auth System', 'pass', 'JWT authentication system ready');

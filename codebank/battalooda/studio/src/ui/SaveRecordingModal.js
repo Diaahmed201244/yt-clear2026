@@ -124,7 +124,7 @@ export function showSaveRecordingModal({ blob, duration, bpm, genre, onSaved, on
     const name = document.getElementById('srm-name-input').value.trim() || defaultName;
     saveBtn.disabled = true;
     saveBtn.textContent = '⏳ Saving…';
-    try {
+    try { 
       await saveRecording({ name, blob, duration, bpm, genre });
       document.dispatchEvent(new CustomEvent('recordings-updated'));
       cleanup();

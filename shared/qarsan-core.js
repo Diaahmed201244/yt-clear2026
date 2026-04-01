@@ -31,7 +31,7 @@ export const STEAL_SCOPE = {
  * Get Qarsan state for a user from database
  */
 async function getQarsanState(userId) {
-  try { 
+  try {   
     const result = await dbQuery(
       `SELECT mode, wallet_balance, created_at, updated_at 
        FROM qarsan_state 
@@ -67,7 +67,7 @@ async function getQarsanState(userId) {
  * Update Qarsan state
  */
 async function updateQarsanState(userId, updates) {
-  try { 
+  try {   
     const setClauses = [];
     const params = [userId];
     let paramIndex = 2;

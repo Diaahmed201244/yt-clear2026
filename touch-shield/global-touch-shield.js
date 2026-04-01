@@ -72,7 +72,7 @@ function activateProtection(titleText, messageText) {
   window.__EXTRA_MODE_LOCKED__ = true;
   document.body.style.pointerEvents = 'none';
   document.body.style.userSelect = 'none';
-  try {  if (window.pauseCounter) window.pauseCounter(); } catch(_){}
+  try {    if (window.pauseCounter) window.pauseCounter(); } catch(_){}
 }
 
 function deactivateProtection() {
@@ -83,7 +83,7 @@ function deactivateProtection() {
     document.body.style.pointerEvents = '';
     document.body.style.userSelect = '';
     window.__EXTRA_MODE_LOCKED__ = false;
-    try {  if (window.startCounter) window.startCounter(); } catch(_){}
+    try {    if (window.startCounter) window.startCounter(); } catch(_){}
   }
 }
 
@@ -147,7 +147,7 @@ function ensureShield() {
     document._iframeProtectionInstalled = true;
     eventsToBlock.forEach(evt => {
       document.addEventListener(evt, function(e) {
-        try { 
+        try {   
           const iframe = document.querySelector('#video-container iframe, .theatre-mode iframe, iframe.theatre-mode');
           if (iframe && (e.target === iframe || (iframe.contains && iframe.contains(e.target)))) {
             e.preventDefault();
@@ -193,7 +193,7 @@ function ensureShield() {
     }
   }
 
-  try { 
+  try {   
     window.addEventListener('codebank:opened', function(){
       flags.player = true;
       flags.switches = true;
@@ -202,10 +202,10 @@ function ensureShield() {
     });
   } catch(_) {}
 
-  try { 
+  try {   
     window.addEventListener('auth:ready', function(e){
-      try {  INIT_OVERLAY_ACTIVE = false; } catch(_){}
-      try {  deactivateProtection(); } catch(_){}
+      try {    INIT_OVERLAY_ACTIVE = false; } catch(_){}
+      try {    deactivateProtection(); } catch(_){}
     });
   } catch(_) {}
 

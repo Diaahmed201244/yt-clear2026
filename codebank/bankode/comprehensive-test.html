@@ -17,7 +17,7 @@
 
     // Authentication helper
     window.checkAuth = async function() {
-      try {
+      try { 
         const { data: { session }, error } = await window.supabase.auth.getSession();
         if (error) { console.error('Auth error:', error); return null; }
         return session?.user || null;
@@ -43,7 +43,7 @@
       console.log('🔍 Test 1: Supabase has createClient method:', typeof window.supabase.createClient === 'function');
 
       // Test 2: Authentication helper works
-      try {
+      try { 
         const user = await window.checkAuth();
         console.log('🔍 Test 2: Authentication check completed, user:', user ? 'authenticated' : 'null');
       } catch (error) {
@@ -51,7 +51,7 @@
       }
 
       // Test 3: Simulate unifiedStorage.js behavior
-      try {
+      try { 
         console.log('🔍 Test 3: Starting unifiedStorage simulation...');
 
         // This simulates what unifiedStorage.js does
@@ -87,7 +87,7 @@
       }
 
       // Test 4: Simulate bankode-safe.js behavior
-      try {
+      try { 
         console.log('🔍 Test 4: Starting bankode-safe simulation...');
 
         // This simulates what bankode-safe.js does

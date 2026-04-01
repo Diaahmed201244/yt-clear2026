@@ -24,7 +24,7 @@ function App() {
   };
 
   const fetchSongs = async () => {
-    try {
+    try { 
       const response = await fetch('http://localhost:8002/api/songs');
       const data = await response.json();
       setSongs(data);

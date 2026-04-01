@@ -44,7 +44,7 @@ class PebalaashBridge extends ServiceBridgeBase {
     async handleBarterRequest(data) {
         const { itemId, itemName, price, sellerId } = data;
         
-        try { 
+        try {   
             // Check balance
             if (!this.assets || this.assets.silver_balance < price) {
                 this.sendToService({
@@ -100,7 +100,7 @@ class PebalaashBridge extends ServiceBridgeBase {
     async handlePurchaseRequest(data) {
         const { itemId, itemName, price, currency = 'silver' } = data;
         
-        try { 
+        try {   
             const result = await this.requestTransaction('spend', price, currency, {
                 itemId,
                 itemName,

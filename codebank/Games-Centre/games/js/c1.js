@@ -769,7 +769,7 @@ class ChessGame {
     if (this.gameOver) return;
 
     if (this.currentPlayer === "black" && !this.isPlayerTurn) {
-      try { 
+      try {   
         const legalMoves = this.findLegalMoves("black");
 
         if (legalMoves.length === 0) {
@@ -1195,7 +1195,7 @@ class ChessGame {
         if (piece && piece.color === color) {
           for (let toY = 0; toY < 8; toY++) {
             for (let toX = 0; toX < 8; toX++) {
-              try { 
+              try {   
                 if (this.isValidMove({ piece, x, y }, toX, toY)) {
                   moves.push({ piece, fromX: x, fromY: y, toX, toY });
                 }

@@ -32,7 +32,7 @@
       isHealing = true;
       console.warn("[AUTO-HEAL] Rebuilding state ONCE due to integrity issue with:", code);
 
-      try { 
+      try {   
         const stored = await this.getCodes(true); // Get all codes, skip recursive integrity check
         
         if (window.__BANKODE__ && typeof window.__BANKODE__.restoreFromStorage === 'function') {
@@ -52,7 +52,7 @@
     },
 
     async init() {
-      try { 
+      try {   
         return await new Promise((resolve, reject) => {
           const request = indexedDB.open(this.DB_NAME, this.VERSION);
           request.onupgradeneeded = (e) => {
@@ -124,9 +124,9 @@
       // 🛡️ 4. Retry Mechanism & Self-Healing (Requirement 5)
       const MAX_RETRIES = 3;
       for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-        try { 
+        try {   
           const result = await new Promise((resolve, reject) => {
-            try { 
+            try {   
               const tx = db.transaction(this.STORE_NAME, 'readwrite');
               const store = tx.objectStore(this.STORE_NAME);
               
@@ -180,7 +180,7 @@
       if (!navigator.onLine) return false;
       const userId = window.Auth?._userId || 'guest';
 
-      try { 
+      try {   
         const response = await fetch('/api/codes/sync', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -295,7 +295,7 @@
     },
 
     async syncWithServerInBackground() {
-        try { 
+        try {   
           const response = await fetch('/api/sync/list', {
             headers: { 'Cache-Control': 'no-cache' },
             credentials: 'include'
@@ -427,7 +427,7 @@
 
        // 1. IndexedDB Save (Primary Local)
        let localResult = false;
-       try { 
+       try {   
          if (await CapacitorStorage.isAvailable()) {
            localResult = await CapacitorStorage.saveCode(entry);
          } else {
@@ -486,7 +486,7 @@
      async getCodeCount() {
        // 🛡️ STABILITY FIX: Ensure we get the most accurate count from multiple sources if possible
        let count = 0;
-       try { 
+       try {   
          if (await CapacitorStorage.isAvailable()) {
            count = await CapacitorStorage.getCodeCount();
          } else {

@@ -23,7 +23,7 @@ console.log('🔍 [CONFIG] LOOKUP_USER_FN_URL =', LOOKUP_USER_FN_URL);
 // Friendly lookup error notifier
 function notifyLookupError(status, body) {
     const msg = status === 404 ? 'Recipient not found. Check the username.' : status === 401 ? 'Lookup requires authentication. Please sign in.' : 'Recipient lookup failed. Try again later.';
-    try { window.showToast && window.showToast(msg, 'error'); } catch (e) { /* ignore */ }
+    try {  window.showToast && window.showToast(msg, 'error'); } catch (e) { /* ignore */ }
     console.warn('Lookup error:', status, body);
 }
 
@@ -32,7 +32,7 @@ async function buildLookupHeaders() {
     const headers = { 'Content-Type': 'application/json' };
 
     // Try to get Authorization from app auth client if available
-    try {
+    try { 
         const client = getSupabaseClient();
         if (client && typeof client.getIdToken === 'function') {
             const token = await client.getIdToken().catch(() => null);
@@ -70,19 +70,19 @@ async function buildLookupHeaders() {
 
 // Smart user lookup function
 async function lookupUserId(username) {
-    try {
+    try { 
         if (!username) return null;
 
         // Best-effort current user check
         let currentUser = null;
-        try {
+        try { 
             currentUser = await window.authHelper?.getCurrentUser?.() || null;
         } catch (e) {
             // ignore
         }
 
         // Prefer direct Supabase lookup when client available
-        try {
+        try { 
             const client = getSupabaseClient();
             if (client) {
                 const { data, error } = await client
@@ -96,7 +96,7 @@ async function lookupUserId(username) {
 
         // Fallback to provided lookup URL if present
         if (LOOKUP_USER_FN_URL) {
-            try {
+            try { 
                 const hdrs = await buildLookupHeaders();
                 const res = await fetch(LOOKUP_USER_FN_URL, {
                     method: 'POST',
@@ -122,7 +122,7 @@ async function lookupUserId(username) {
 
 // Wait for auth to be ready
 const waitForAuth = async () => {
-  try { return !!(window.Auth || window.authHelper); } catch(_) { return false; }
+  try {  return !!(window.Auth || window.authHelper); } catch(_) { return false; }
 };
 
 //
@@ -147,10 +147,10 @@ window.addEventListener('auth:signedOut', () => { });
 
 // Listen for signup success (needs email confirmation)
 window.addEventListener('auth:signup_success', (event) => {
-       try {
+       try { 
            console.log('Signup success event received:', event.detail);
            // Show message that email confirmation is needed
-           try { window.showToast && window.showToast('Account created! Please check your email and confirm your account before transferring assets.', 'info'); } catch(e) {}
+           try {  window.showToast && window.showToast('Account created! Please check your email and confirm your account before transferring assets.', 'info'); } catch(e) {}
 
            // Disable transfer button until email is confirmed
            const sendButton = document.getElementById('send-button');
@@ -207,7 +207,7 @@ console.log('🔍 [DEBUG] buttons.js: Page loaded, checking elements...');
     }
 
     // Determine current signed-in username (best-effort). Used to prevent self-transfers.
-    try {
+    try { 
         if (window.authHelper && typeof window.authHelper.getCurrentUser === 'function') {
             const cu = await window.authHelper.getCurrentUser();
             currentUserUsername = cu?.user_metadata?.username?.toLowerCase() || null;
@@ -234,7 +234,7 @@ console.log('🔍 [DEBUG] buttons.js: Page loaded, checking elements...');
         }
 
         const validateRecipient = () => {
-            try {
+            try { 
                 const val = (receiverInput.value || '').trim().toLowerCase();
                 if (val && currentUserUsername && val === currentUserUsername) {
                     // Disable action and show message
@@ -271,7 +271,7 @@ const quickPlayBtn = document.getElementById('quick-play');
 if (quickPlayBtn) {
    quickPlayBtn.addEventListener('click', () => {
        console.log('Play Games clicked');
-       try { window.showToast && window.showToast('Opening Quick Games dialog...', 'info'); } catch(e) { console.warn('Toast failed: Opening Quick Games dialog...'); }
+       try {  window.showToast && window.showToast('Opening Quick Games dialog...', 'info'); } catch(e) { console.warn('Toast failed: Opening Quick Games dialog...'); }
        const dialog = document.getElementById('game-dialog');
        if (dialog) dialog.style.display = 'flex';
    });
@@ -285,19 +285,19 @@ console.log('🔍 [DEBUG] sendButton element found =', !!sendButton);
 if (sendButton) {
    sendButton.addEventListener('click', async () => {
        console.log('Send button clicked - starting transfer process');
-       try {
+       try { 
            console.log('🔍 [DEBUG] Transfer: Starting transfer process...');
            // Wait for auth to be ready
            await waitForAuth();
 
            // Simplified authentication check using consolidated auth helper
            console.log('🔍 [DEBUG] Transfer: Checking authentication...');
-           try {
+           try { 
                const authResult = await window.authHelper.checkTransferAuth();
                const currentUser = authResult.user;
                console.log('🔍 [DEBUG] Transfer: Authentication verified for user:', currentUser.email);
            } catch (authError) {
-               try { window.showToast && window.showToast(authError.message, 'warning'); } catch(e) {}
+               try {  window.showToast && window.showToast(authError.message, 'warning'); } catch(e) {}
                const settingsBtn = document.getElementById('settings-btn');
                if (settingsBtn) {
                    settingsBtn.classList.add('animate-bounce');
@@ -311,12 +311,12 @@ if (sendButton) {
            const username = document.getElementById('receiver-username').value;
 
            if (!amount || !username) {
-               try { window.showToast && window.showToast('Please enter amount and username.', 'warning'); } catch(e) {}
+               try {  window.showToast && window.showToast('Please enter amount and username.', 'warning'); } catch(e) {}
                return;
            }
 
            if (assetType !== 'codes') {
-               try { window.showToast && window.showToast('Only codes can be transferred currently.', 'warning'); } catch(e) {}
+               try {  window.showToast && window.showToast('Only codes can be transferred currently.', 'warning'); } catch(e) {}
                return;
            }
 
@@ -325,10 +325,10 @@ if (sendButton) {
            // Get user info (use getFirebaseClient and avoid undefined globals)
            let user = null;
            let session = null;
-           try {
+           try { 
                const client = getFirebaseClient();
                if (client) {
-                   try {
+                   try { 
                        user = client.currentUser;
                        if (user) {
                            session = { access_token: await user.getIdToken() };
@@ -344,7 +344,7 @@ if (sendButton) {
           
 
            if (!user?.id) {
-               try { window.showToast && window.showToast('Could not determine user ID. Please try signing out and in again.', 'error'); } catch(e) {}
+               try {  window.showToast && window.showToast('Could not determine user ID. Please try signing out and in again.', 'error'); } catch(e) {}
                return;
            }
 
@@ -353,16 +353,16 @@ if (sendButton) {
            const recipientUserId = await lookupUserId(username);
            if (!recipientUserId) {
                console.error('Recipient lookup failed: User not found');
-               try { window.showToast && window.showToast('Recipient username not found. Please check the username and try again.', 'error'); } catch(e) {}
+               try {  window.showToast && window.showToast('Recipient username not found. Please check the username and try again.', 'error'); } catch(e) {}
                return;
            }
            console.log('🔍 [DEBUG] Transfer: Found recipient user_id:', recipientUserId);
 
            // Execute transfer - prefer centralized transactions module if available
-           try {
+           try { 
                console.log('🔍 [DEBUG] Transfer: Attempting to load transactions module...');
                let txModule = null;
-               try {
+               try { 
                    txModule = (await import('./transactions.js')).default;
                    console.log('🔍 [DEBUG] Transfer: transactions module loaded successfully =', !!txModule);
                } catch(e) {
@@ -371,7 +371,7 @@ if (sendButton) {
                }
                if (txModule && typeof txModule.sendTransaction === 'function') {
                    // Enable Firebase usage if we have a session
-                   try {
+                   try { 
                        const client = getFirebaseClient();
                        if (client && client.currentUser) {
                            txModule.enableFirebase(true);
@@ -379,11 +379,11 @@ if (sendButton) {
                    } catch(e){}
 
                    // Show sending feedback
-                   try { sendButton.disabled = true; sendButton.textContent = 'Sending...'; } catch(e){}
+                   try {  sendButton.disabled = true; sendButton.textContent = 'Sending...'; } catch(e){}
                    const r = await txModule.sendTransaction(username, amount);
-                   try { sendButton.textContent = 'Send'; sendButton.disabled = false; } catch(e){}
+                   try {  sendButton.textContent = 'Send'; sendButton.disabled = false; } catch(e){}
                    if (r && r.success) {
-                       try { window.showToast && window.showToast(`Transfer sent: ${amount} codes to ${username} (Tx ID: ${r.tx_id})`, 'success'); } catch(e){}
+                       try {  window.showToast && window.showToast(`Transfer sent: ${amount} codes to ${username} (Tx ID: ${r.tx_id})`, 'success'); } catch(e){}
                        await refreshBalances(user.id);
                    } else {
                        throw r.error || new Error('Transaction failed');
@@ -401,15 +401,15 @@ if (sendButton) {
                    });
                    if (!res.ok) throw new Error(await res.text());
                    const result = await res.json();
-                   if (result.success) { try { window.showToast && window.showToast(`Transfer sent: ${amount} codes to ${username} (Tx ID: ${result.tx_id})`, 'success'); } catch(e){}; await refreshBalances(user.id); } else { throw new Error(result.message || 'Unknown error'); }
+                   if (result.success) { try {  window.showToast && window.showToast(`Transfer sent: ${amount} codes to ${username} (Tx ID: ${result.tx_id})`, 'success'); } catch(e){}; await refreshBalances(user.id); } else { throw new Error(result.message || 'Unknown error'); }
                }
            } catch (err) {
                console.error('Transfer failed:', err);
-               try { window.showToast && window.showToast(`Transfer failed: ${err.message || String(err)}`, 'error'); } catch(e) {}
+               try {  window.showToast && window.showToast(`Transfer failed: ${err.message || String(err)}`, 'error'); } catch(e) {}
            }
        } catch (e) {
            console.error('Transfer handler error:', e);
-           try { window.showToast && window.showToast('An unexpected error occurred.', 'error'); } catch(e) {}
+           try {  window.showToast && window.showToast('An unexpected error occurred.', 'error'); } catch(e) {}
        }
    });
 }
@@ -423,7 +423,7 @@ if (buyForm) {
        const amount = parseInt(document.getElementById('buy-amount').value) || 0;
        const method = document.getElementById('payment-method').value;
        console.log(`Buy: ${amount} ${currency} via ${method}`);
-       try { window.showToast && window.showToast(`Purchase processed: ${amount} ${currency} (Mock)`, 'success'); } catch(e) { console.warn('Toast failed: Purchase processed'); }
+       try {  window.showToast && window.showToast(`Purchase processed: ${amount} ${currency} (Mock)`, 'success'); } catch(e) { console.warn('Toast failed: Purchase processed'); }
        // Add codes mock - REMOVED: Do not update DOM counters directly
        buyForm.reset();
    });
@@ -437,7 +437,7 @@ if (sellForm) {
        const codes = parseInt(document.getElementById('codes-to-sell').value) || 0;
        const currency = document.getElementById('sell-currency').value;
        console.log(`Sell: ${codes} codes for ${currency}`);
-       try { window.showToast && window.showToast(`Sell order placed: ${codes} codes (Mock)`, 'success'); } catch(e) { console.warn('Toast failed: Sell order placed'); }
+       try {  window.showToast && window.showToast(`Sell order placed: ${codes} codes (Mock)`, 'success'); } catch(e) { console.warn('Toast failed: Sell order placed'); }
        // Deduct codes mock - REMOVED: Do not update DOM counters directly
        sellForm.reset();
    });
@@ -449,7 +449,7 @@ quickGameBtns.forEach(btn => {
    btn.addEventListener('click', () => {
        const game = btn.dataset.game;
        console.log(`${game} game selected`);
-       try { window.showToast && window.showToast(`${game.charAt(0).toUpperCase() + game.slice(1)} game starting... (Mock)`, 'info'); } catch(e) { console.warn('Toast failed: Game starting'); }
+       try {  window.showToast && window.showToast(`${game.charAt(0).toUpperCase() + game.slice(1)} game starting... (Mock)`, 'info'); } catch(e) { console.warn('Toast failed: Game starting'); }
        // Navigate to game (from yt-coder)
        window.location.href = `games/${game}.html`;
        const dialog = document.getElementById('game-dialog');
@@ -545,7 +545,7 @@ if (refreshFarragnaBtn) {
 const premiumBtn = document.getElementById('premium-btn');
 if (premiumBtn) {
    premiumBtn.addEventListener('click', () => {
-       try { window.showToast && window.showToast('Premium status: Active (Mock)', 'info'); } catch(e) { console.warn('Toast failed: Premium status'); }
+       try {  window.showToast && window.showToast('Premium status: Active (Mock)', 'info'); } catch(e) { console.warn('Toast failed: Premium status'); }
        console.log('Premium button clicked');
        // Redirect to premium.html (from yt-coder)
        window.location.href = 'premium.html';
@@ -556,7 +556,7 @@ if (premiumBtn) {
 const subscribeBtn = document.getElementById('subscribe-btn');
 if (subscribeBtn) {
    subscribeBtn.addEventListener('click', () => {
-       try { window.showToast && window.showToast('Redirecting to YouTube subscribe... (Mock)', 'info'); } catch(e) { console.warn('Toast failed: Redirecting to YouTube subscribe'); }
+       try {  window.showToast && window.showToast('Redirecting to YouTube subscribe... (Mock)', 'info'); } catch(e) { console.warn('Toast failed: Redirecting to YouTube subscribe'); }
        console.log('Subscribe clicked');
    });
 }
@@ -598,12 +598,12 @@ document.querySelectorAll('.settings-btn').forEach(btn => {
            case 'switch-account':
                await waitForAuth();
                if (window.isAuthenticated && await window.isAuthenticated()) {
-                   try { window.showToast && window.showToast('You are already signed in.', 'info'); } catch(e) {}
+                   try {  window.showToast && window.showToast('You are already signed in.', 'info'); } catch(e) {}
                    return;
                }
 
                if (window.location.pathname.endsWith('indexCB.html')) {
-                   try {
+                   try { 
                        const returnUrl = encodeURIComponent('./indexCB.html');
                        const w = 600, h = 700;
                        const left = window.screenX + (window.outerWidth - w) / 2;
@@ -615,7 +615,7 @@ document.querySelectorAll('.settings-btn').forEach(btn => {
                            `width=${w},height=${h},left=${left},top=${top}`
                        );
                        if (!popup) {
-                           try { window.showToast && window.showToast('Popup blocked. Please enable popups to sign in.', 'warning'); } catch(e) {}
+                           try {  window.showToast && window.showToast('Popup blocked. Please enable popups to sign in.', 'warning'); } catch(e) {}
                        }
                    } catch (e) {
                        const returnUrl = encodeURIComponent('./indexCB.html');
@@ -630,7 +630,7 @@ document.querySelectorAll('.settings-btn').forEach(btn => {
            case 'anonymous':
                await waitForAuth();
                if (window.isAuthenticated && await window.isAuthenticated()) {
-                   try { window.showToast && window.showToast('You are already signed in.', 'info'); } catch(e) {}
+                   try {  window.showToast && window.showToast('You are already signed in.', 'info'); } catch(e) {}
                    return;
                }
 
@@ -641,20 +641,20 @@ document.querySelectorAll('.settings-btn').forEach(btn => {
                    const originalText = anonymousBtn.innerHTML;
                    anonymousBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing in...';
 
-                   try {
+                   try { 
                        // Call anonymous sign-in
                        if (window.auth && window.auth.signInAnonymously) {
                            const result = await window.auth.signInAnonymously();
                            if (result.error) {
                                throw new Error(result.error.message || 'Anonymous sign-in failed');
                            }
-                           try { window.showToast && window.showToast('Signed in anonymously! You can now transfer assets.', 'success'); } catch(e) {}
+                           try {  window.showToast && window.showToast('Signed in anonymously! You can now transfer assets.', 'success'); } catch(e) {}
                        } else {
                            throw new Error('Anonymous sign-in not available');
                        }
                    } catch (error) {
                        console.error('Anonymous sign-in failed:', error);
-                       try { window.showToast && window.showToast('Anonymous sign-in failed. Please try again.', 'error'); } catch(e) {}
+                       try {  window.showToast && window.showToast('Anonymous sign-in failed. Please try again.', 'error'); } catch(e) {}
                        // Reset button
                        anonymousBtn.disabled = false;
                        anonymousBtn.innerHTML = originalText;
@@ -687,7 +687,7 @@ if (cgForm) {
        const trigger = document.getElementById('trigger').value;
        const prefix = document.getElementById('actionPrefix').value;
        console.log(`New trigger: ${trigger} -> ${prefix}`);
-       try { window.showToast && window.showToast(`Trigger saved: ${trigger} (Mock)`, 'success'); } catch(e) { console.warn('Toast failed: Trigger saved'); }
+       try {  window.showToast && window.showToast(`Trigger saved: ${trigger} (Mock)`, 'success'); } catch(e) { console.warn('Toast failed: Trigger saved'); }
        cgForm.reset();
    });
 }

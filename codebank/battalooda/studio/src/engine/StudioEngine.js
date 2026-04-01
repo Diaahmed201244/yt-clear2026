@@ -112,7 +112,7 @@ export class StudioEngine {
     if (this.samples[name]) return this.samples[name];
     if (!this.isCdnEnabled) return null; // Fallback to synthesized samples
 
-    try {
+    try { 
       console.log(`[AssetManager] Streaming sample from CDN: ${name}`);
       const response = await fetch(`${this.cdnUrl}${name}.wav`);
       const arrayBuffer = await response.arrayBuffer();
@@ -180,7 +180,7 @@ export class StudioEngine {
     await this.initAudio();
 
     let micTrack = null;
-    try {
+    try { 
       this.micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
       this.micSource = this.audioCtx.createMediaStreamSource(this.micStream);
       this.micSource.connect(this.mediaStreamDest);
@@ -230,7 +230,7 @@ export class StudioEngine {
     });
 
     if (this.micSource) {
-      try { this.micSource.disconnect(); } catch {}
+      try {  this.micSource.disconnect(); } catch {}
       this.micSource = null;
     }
     if (this.micStream) {

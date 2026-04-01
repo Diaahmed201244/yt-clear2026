@@ -25,7 +25,7 @@ class BankodeRLSManager {
      * @returns {Promise<Object>} Query result
      */
     async executeRLSSafeQuery(tableName, query) {
-        try {
+        try { 
             // Validate table name for RLS compliance
             if (!tableName.startsWith('bankode_')) {
                 throw new Error(`RLS violation: Table ${tableName} is not a Bankode table`);
@@ -62,7 +62,7 @@ class BankodeRLSManager {
      * @returns {Promise<Object>} RPC call result
      */
     async executeRLSSafeRPC(rpcName, params = {}) {
-        try {
+        try { 
             // Validate RPC name for RLS compliance
             if (!rpcName.startsWith('bankode_')) {
                 throw new Error(`RLS violation: RPC ${rpcName} is not a Bankode function`);
@@ -121,7 +121,7 @@ class BankodeRLSManager {
      * @returns {Promise<Object>} RLS verification result
      */
     async verifyRLSPolicies() {
-        try {
+        try { 
             const user = await this.getAuthenticatedUser();
             if (!user) {
                 return { success: false, error: 'Cannot verify RLS without authenticated user' };
@@ -198,7 +198,7 @@ class BankodeRLSManager {
      * @returns {Promise<Object>} RPC result
      */
     async executeValidationRPC(rpcName, params = {}) {
-        try {
+        try { 
             const user = await this.getAuthenticatedUser();
             if (!user) {
                 return { success: false, error: 'User not authenticated for validation RPC' };
@@ -228,7 +228,7 @@ class BankodeRLSManager {
      * @returns {Promise<Object>} Validation result
      */
     async fixValidationCounter() {
-        try {
+        try { 
             const user = await this.getAuthenticatedUser();
             if (!user) {
                 return { success: false, error: 'User not authenticated for validation fix' };

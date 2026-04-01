@@ -2,7 +2,7 @@ const api = {
   async feed() {
   },
   async view(id) {
-    try { await fetch(`/api/farragna/${id}`, { credentials: 'include' }) } catch (_) {}
+    try {  await fetch(`/api/farragna/${id}`, { credentials: 'include' }) } catch (_) {}
   },
   async requestUpload() {
   }
@@ -64,9 +64,9 @@ function setupObserver(items){
       const video = e.target.querySelector('video')
       if (!video) return
       if (e.isIntersecting) {
-        try { video.play() } catch(_){}
+        try {  video.play() } catch(_){}
       } else {
-        try { video.pause() } catch(_){}
+        try {  video.pause() } catch(_){}
       }
     })
   }, options)
@@ -78,9 +78,9 @@ async function loadReels(){
   if (!container) return
   container.innerHTML = ''
   let list = []
-  try { list = await api.feed() } catch(_){}
+  try {  list = await api.feed() } catch(_){}
   if (!list || !list.length) {
-    try { list = await api.trending() } catch(_){}
+    try {  list = await api.trending() } catch(_){}
   }
   if (!ready.length) {
     container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:80vh;opacity:.7">No ready videos yet</div>'

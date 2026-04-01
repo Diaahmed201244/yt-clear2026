@@ -11,7 +11,7 @@ class AuthBridge {
     }
 
     async init() {
-        try { 
+        try {   
             // Wait for AuthClient to be available
             if (!window.AuthClient) {
                 await new Promise(resolve => {
@@ -74,7 +74,7 @@ class AuthBridge {
     }
 
     async refreshJWT() {
-        try { 
+        try {   
             if (window.AuthClient?.refreshSession) {
                 const session = await window.AuthClient.refreshSession();
                 if (session?.access_token) {

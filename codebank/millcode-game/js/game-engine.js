@@ -156,7 +156,7 @@ class MillcodeGame {
     async loadGame() {
         this.showLoading(true);
         
-        try {
+        try { 
             // Load questions from external APIs
             await this.loadQuestions();
             this.showLoading(false);

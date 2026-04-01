@@ -42,7 +42,7 @@ export class NotificationManager {
     async sendNotification(userId, notificationData) {
         const notificationId = notificationData.id || `notif_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 
-        try {
+        try { 
             console.log('📢 Sending notification:', notificationId, notificationData);
 
             const notification = {
@@ -133,7 +133,7 @@ export class NotificationManager {
 
         const results = [];
         for (const notificationData of notifications) {
-            try {
+            try { 
                 const result = await this.sendNotification(userId, notificationData);
                 results.push(result);
             } catch (error) {
@@ -172,7 +172,7 @@ export class NotificationManager {
 
     // Mark notification as read
     async markAsRead(notificationId, userId) {
-        try {
+        try { 
             const notification = this.notifications.get(notificationId);
             if (!notification && notification.userId !== userId) {
                 throw new Error('Notification not found or not owned by user');
@@ -192,7 +192,7 @@ export class NotificationManager {
 
     // Mark all user notifications as read
     async markAllAsRead(userId) {
-        try {
+        try { 
             const userNotifs = this.userNotifications.get(userId) || [];
             let markedCount = 0;
 
@@ -215,7 +215,7 @@ export class NotificationManager {
 
     // Set user notification preferences
     async setUserPreferences(userId, preferences) {
-        try {
+        try { 
             console.log('⚙️ Setting notification preferences for user:', userId, preferences);
 
             const userPrefs = {
@@ -335,7 +335,7 @@ export class NotificationManager {
             return;
         }
 
-        try {
+        try { 
             this.websocket.send(JSON.stringify({
                 type: 'notification',
                 data: notification
@@ -352,7 +352,7 @@ export class NotificationManager {
             return;
         }
 
-        try {
+        try { 
             const payload = JSON.stringify({
                 title: notification.title,
                 body: notification.message,
@@ -383,7 +383,7 @@ export class NotificationManager {
             return;
         }
 
-        try {
+        try { 
             await this.emailService.send({
                 to: notification.userId, // Would need to resolve user email
                 subject: notification.title,
@@ -402,7 +402,7 @@ export class NotificationManager {
             return;
         }
 
-        try {
+        try { 
             await this.smsService.send({
                 to: notification.userId, // Would need to resolve user phone
                 message: `${notification.title}: ${notification.message}`
@@ -485,7 +485,7 @@ export class NotificationManager {
     _initializeWebSocket() {
         if (!this.enableWebSocket) return;
 
-        try {
+        try { 
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             const wsUrl = `${protocol}//${window.location.host}/ws/notifications`;
 
@@ -497,7 +497,7 @@ export class NotificationManager {
             };
 
             this.websocket.onmessage = (event) => {
-                try {
+                try { 
                     const message = JSON.parse(event.data);
                     this._handleWebSocketMessage(message);
                 } catch (error) {
@@ -591,7 +591,7 @@ export class NotificationManager {
 
     // Persist user preferences
     _persistUserPreferences() {
-        try {
+        try { 
             const preferences = {};
             for (const [userId, prefs] of this.userPreferences.entries()) {
                 preferences[userId] = prefs;
@@ -604,7 +604,7 @@ export class NotificationManager {
 
     // Persist notification history
     _persistNotificationHistory() {
-        try {
+        try { 
             localStorage.setItem('notification_history', JSON.stringify(this.notificationHistory.slice(0, 1000)));
         } catch (error) {
             console.warn('Failed to persist notification history:', error);
@@ -613,7 +613,7 @@ export class NotificationManager {
 
     // Load persisted data
     _loadPersistedData() {
-        try {
+        try { 
             // Load user preferences
             const preferencesData = localStorage.getItem('notification_preferences');
             if (preferencesData) {

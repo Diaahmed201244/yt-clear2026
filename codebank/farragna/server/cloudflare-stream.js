@@ -8,7 +8,7 @@ class CloudflareStreamService {
   }
 
   async createDirectUploadUrl() {
-    try {
+    try { 
       const response = await fetch(`${this.baseUrl}/direct_upload`, {
         method: 'POST',
         headers: {
@@ -39,7 +39,7 @@ class CloudflareStreamService {
   }
 
   async getVideoDetails(videoId) {
-    try {
+    try { 
       const response = await fetch(`${this.baseUrl}/${videoId}`, {
         method: 'GET',
         headers: {
@@ -61,7 +61,7 @@ class CloudflareStreamService {
   }
 
   async deleteVideo(videoId) {
-    try {
+    try { 
       const response = await fetch(`${this.baseUrl}/${videoId}`, {
         method: 'DELETE',
         headers: {
@@ -83,7 +83,7 @@ class CloudflareStreamService {
   }
 
   async getVideoStatus(videoId) {
-    try {
+    try { 
       const response = await fetch(`${this.baseUrl}/${videoId}`, {
         method: 'GET',
         headers: {

@@ -10,7 +10,7 @@ const tabConfig = {
         features: 'width=1024,height=768,resizable=yes,scrollbars=yes,status=yes',
         onLoadCallback: function(win) {
             console.log('Farragna tab loaded successfully');
-            try {
+            try { 
                 const displayBtn = win.document.querySelector('.player-display-btn');
                 if (displayBtn) {
                     displayBtn.addEventListener('click', () => {
@@ -64,7 +64,7 @@ function handleMessage(event) {
 }
 
 export function activateTab(tabId) {
-    try {
+    try { 
         const buttons = document.querySelectorAll('.tab-btn');
         buttons.forEach(b => b.classList.remove('active'));
         const activeBtn = document.querySelector(`[data-tab="${tabId}"]`) || document.querySelector(`[data-tab-id="${tabId}"]`);

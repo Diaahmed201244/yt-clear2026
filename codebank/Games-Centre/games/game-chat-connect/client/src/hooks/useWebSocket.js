@@ -20,7 +20,7 @@ function useWebSocket(onMessage) {
         if (((_a = ws.current) === null || _a === void 0 ? void 0 : _a.readyState) === WebSocket.CONNECTING || ((_b = ws.current) === null || _b === void 0 ? void 0 : _b.readyState) === WebSocket.OPEN) {
             return;
         }
-        try { 
+        try {   
             const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
             let wsHost = window.location.host;
             if (import.meta.env.DEV) {
@@ -52,7 +52,7 @@ function useWebSocket(onMessage) {
             };
             ws.current.onmessage = (event) => {
                 var _a;
-                try { 
+                try {   
                     const message = JSON.parse(event.data);
                     setLastMessage(message);
                     (_a = onMessageRef.current) === null || _a === void 0 ? void 0 : _a.call(onMessageRef, message);
@@ -77,7 +77,7 @@ function useWebSocket(onMessage) {
     const send = (0, react_1.useCallback)((message) => {
         var _a;
         if (((_a = ws.current) === null || _a === void 0 ? void 0 : _a.readyState) === WebSocket.OPEN) {
-            try { 
+            try {   
                 ws.current.send(JSON.stringify(message));
             }
             catch (error) {

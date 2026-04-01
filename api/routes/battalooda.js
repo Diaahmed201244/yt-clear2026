@@ -44,7 +44,7 @@ const requireAuth = (req, res, next) => {
 
 // GET /api/battalooda/feed?category=&page=
 router.get('/feed', async (req, res) => {
-    try { 
+    try {   
         const category = req.query.category || 'all';
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 20;
@@ -74,7 +74,7 @@ router.get('/feed', async (req, res) => {
         // Format music track info
         recordings.forEach(recording => {
             if (recording.music_track_info) {
-                try { 
+                try {   
                     recording.music_track_info = JSON.parse(recording.music_track_info);
                 } catch (e) {
                     recording.music_track_info = null;
@@ -91,7 +91,7 @@ router.get('/feed', async (req, res) => {
 
 // POST /api/battalooda/upload
 router.post('/upload', requireAuth, upload.single('audio'), async (req, res) => {
-    try { 
+    try {   
         if (!req.file) {
             return res.status(400).json({ error: 'No audio file provided' });
         }
@@ -132,7 +132,7 @@ router.post('/upload', requireAuth, upload.single('audio'), async (req, res) => 
 
 // POST /api/battalooda/like
 router.post('/like', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { recordingId } = req.body;
 
         if (!recordingId) {
@@ -174,7 +174,7 @@ router.post('/like', requireAuth, async (req, res) => {
 
 // GET /api/battalooda/comments?recordingId=
 router.get('/comments', async (req, res) => {
-    try { 
+    try {   
         const { recordingId, page = 1, limit = 10 } = req.query;
         
         if (!recordingId) {
@@ -212,7 +212,7 @@ router.get('/comments', async (req, res) => {
 
 // POST /api/battalooda/comment
 router.post('/comment', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { recordingId, text } = req.body;
 
         if (!recordingId || !text) {
@@ -257,7 +257,7 @@ router.post('/comment', requireAuth, async (req, res) => {
 
 // GET /api/battalooda/recording/:id
 router.get('/recording/:id', async (req, res) => {
-    try { 
+    try {   
         const recordingId = req.params.id;
         
         const recording = await db.get(`
@@ -274,7 +274,7 @@ router.get('/recording/:id', async (req, res) => {
         }
 
         if (recording.music_track_info) {
-            try { 
+            try {   
                 recording.music_track_info = JSON.parse(recording.music_track_info);
             } catch (e) {
                 recording.music_track_info = null;
@@ -290,7 +290,7 @@ router.get('/recording/:id', async (req, res) => {
 
 // DELETE /api/battalooda/recording/:id
 router.delete('/recording/:id', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const recordingId = req.params.id;
         
         // Check ownership
@@ -321,7 +321,7 @@ router.delete('/recording/:id', requireAuth, async (req, res) => {
 
 // POST /api/battalooda/favorite-tracks
 router.post('/favorite-tracks', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { trackId, trackInfo } = req.body;
 
         if (!trackId) {
@@ -352,7 +352,7 @@ router.post('/favorite-tracks', requireAuth, async (req, res) => {
 
 // GET /api/battalooda/favorite-tracks
 router.get('/favorite-tracks', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const tracks = await db.all(
             'SELECT * FROM battalooda_favorite_tracks WHERE user_id = ? ORDER BY created_at DESC',
             [req.session.userId]
@@ -361,7 +361,7 @@ router.get('/favorite-tracks', requireAuth, async (req, res) => {
         // Parse track info
         tracks.forEach(track => {
             if (track.track_info) {
-                try { 
+                try {   
                     track.track_info = JSON.parse(track.track_info);
                 } catch (e) {
                     track.track_info = null;
@@ -378,7 +378,7 @@ router.get('/favorite-tracks', requireAuth, async (req, res) => {
 
 // DELETE /api/battalooda/favorite-tracks/:trackId
 router.delete('/favorite-tracks/:trackId', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const trackId = req.params.trackId;
 
         await db.run(
@@ -395,7 +395,7 @@ router.delete('/favorite-tracks/:trackId', requireAuth, async (req, res) => {
 
 // POST /api/battalooda/follow
 router.post('/follow', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { userId } = req.body;
 
         if (!userId) {
@@ -426,7 +426,7 @@ router.post('/follow', requireAuth, async (req, res) => {
 
 // POST /api/battalooda/report
 router.post('/report', requireAuth, async (req, res) => {
-    try { 
+    try {   
         const { recordingId, reason } = req.body;
 
         if (!recordingId || !reason) {
@@ -447,7 +447,7 @@ router.post('/report', requireAuth, async (req, res) => {
 
 // GET /api/battalooda/music/search?q=&source=
 router.get('/music/search', async (req, res) => {
-    try { 
+    try {   
         const { q: query, source = 'local' } = req.query;
 
         if (!query) {
@@ -503,7 +503,7 @@ router.get('/music/search', async (req, res) => {
 
 // GET /api/battalooda/music/popular?category=
 router.get('/music/popular', async (req, res) => {
-    try { 
+    try {   
         const { category = 'singing' } = req.query;
 
         let tracks = [];

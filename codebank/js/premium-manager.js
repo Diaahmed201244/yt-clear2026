@@ -28,7 +28,7 @@ export class PremiumManager {
 
     // Check premium status from localStorage (primary)
     async checkPremiumStatus() {
-        try {
+        try { 
             const data = this.premiumData || {};
             this.isPremium = !!(data.active && data.expiresAt && new Date(data.expiresAt) > new Date());
             this.updateUI();
@@ -44,7 +44,7 @@ export class PremiumManager {
     // Fetch-based verification (from codebank, alternative/fallback)
     async verifyPremium() {
         if (!this.verifyUrl) return { premium: false };
-        try {
+        try { 
             const response = await fetch(this.verifyUrl);
             const data = await response.json();
             
@@ -153,7 +153,7 @@ export class PremiumManager {
             return;
         }
 
-        try {
+        try { 
             const user = await getCurrentUser();
             if (!user) {
                 showToast('Please log in first', 'error');

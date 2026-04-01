@@ -57,7 +57,7 @@ export const setAuthenticated = (authenticated) => {
  * Validate user credentials with backend
  */
 export const validateCredentials = async (credentials) => {
-  try {
+  try { 
     const response = await fetch('/api/auth/validate', {
       method: 'POST',
       headers: {

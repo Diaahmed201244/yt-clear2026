@@ -7,7 +7,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Wait for player initialization to complete
     const checkPlayerReady = setInterval(() => {
-        try {
+        try { 
             // Check if player is ready by testing for key variables
             if (typeof audioPlayer !== 'undefined' &&
                 typeof playlist !== 'undefined' &&
@@ -42,7 +42,7 @@ function applyFixes() {
 }
 
 function fixCDPlayerSpin() {
-    try {
+    try { 
         const playBtn = document.getElementById('play-btn');
         const pauseBtn = document.getElementById('pause-btn');
         const cdDisc = document.getElementById('cd-disc');
@@ -95,7 +95,7 @@ function fixCDPlayerSpin() {
 }
 
 function fixSparkAnimationNavigation() {
-    try {
+    try { 
         const nextBtn = document.getElementById('next-btn');
         const prevBtn = document.getElementById('prev-btn');
 
@@ -151,7 +151,7 @@ function fixSparkAnimationNavigation() {
 }
 
 function triggerSparkOnActiveTrack() {
-    try {
+    try { 
         const activeItem = document.querySelector('.playlist-item.active');
         if (activeItem) {
             const thumbnail = activeItem.querySelector('.track-thumbnail');
@@ -227,7 +227,7 @@ function triggerSparkOnActiveTrack() {
 }
 
 function fixLikeAndDownloadButtons() {
-    try {
+    try { 
         // Fix like buttons - use event delegation for dynamically loaded content
         document.addEventListener('click', function(e) {
             // Handle like button clicks
@@ -304,7 +304,7 @@ function fixLikeAndDownloadButtons() {
 }
 
 function enhanceSparkAnimation() {
-    try {
+    try { 
         // Add enhanced spark animation CSS if not present
         if (!document.getElementById('enhanced-spark-styles')) {
             const style = document.createElement('style');

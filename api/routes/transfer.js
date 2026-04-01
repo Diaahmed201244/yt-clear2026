@@ -42,7 +42,7 @@ router.post('/', requireAuth, transferLimiter, enforceFinancialSecurity, async (
     });
   }
 
-  try { 
+  try {   
     const receiver = await sqliteFindUserByEmail(receiverEmail);
     if (!receiver || !receiver.id) return res.status(404).json({ success: false, error: 'RECEIVER_NOT_FOUND' });
     const toUserId = receiver.id;
@@ -51,7 +51,7 @@ router.post('/', requireAuth, transferLimiter, enforceFinancialSecurity, async (
     const balanceField = assetType === 'silver' ? 'silver_count' : (assetType === 'gold' ? 'gold_count' : 'codes_count');
 
     await client.query('BEGIN');
-    try { 
+    try {   
       const idempRes = await client.query("INSERT INTO processed_transactions (tx_id) VALUES ($1) ON CONFLICT DO NOTHING", [transactionId]);
       if (idempRes.rowCount === 0) {
         await client.query('ROLLBACK');

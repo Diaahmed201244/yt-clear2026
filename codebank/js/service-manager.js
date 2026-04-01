@@ -78,7 +78,7 @@ class ServiceManager {
     if (runner) runner.classList.add('active');
     this.showLoadingState(serviceId);
 
-    try {
+    try { 
       // Reset iframe properly for GC
       if (iframe) {
         // 🔧 FIX: Comment out about:blank to preserve state
@@ -142,7 +142,7 @@ class ServiceManager {
       return;
     }
 
-    try {
+    try { 
       iframe.contentWindow.postMessage({
         type: 'codebank:init',
         serviceId: serviceId,
@@ -160,7 +160,7 @@ class ServiceManager {
   }
 
   getAuthState() {
-    try {
+    try { 
       return {
         user: JSON.parse(localStorage.getItem('user') || '{}'),
         codes: JSON.parse(localStorage.getItem('safeCodes') || '[]'),
@@ -246,7 +246,7 @@ class ServiceManager {
     
     if (iframe) {
       // 🛡️ EMERGENCY CLEANUP
-      try {
+      try { 
         // 1. Send destroy signal to iframe
         if (iframe.contentWindow) {
           iframe.contentWindow.postMessage({ type: 'service:destroy' }, "*");
@@ -278,7 +278,7 @@ class ServiceManager {
     
     // Hint to GC
     if (window.gc) {
-      try { window.gc(); } catch(_) {}
+      try {  window.gc(); } catch(_) {}
     }
   }
 }

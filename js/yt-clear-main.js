@@ -68,7 +68,7 @@
         t.className = 'toast';
         t.textContent = String(text || '');
         toastContainer.appendChild(t);
-        setTimeout(() => { try { t.remove(); } catch (_) { } }, 2000);
+        setTimeout(() => { try {  t.remove(); } catch (_) { } }, 2000);
     }
     window.addEventListener('balances:updated', function(e) {
         const d = (e && e.detail && e.detail.balances) || {};
@@ -85,7 +85,7 @@
 
     // Asset Sync & Storage
     async function fetchSqliteCodesFirst() {
-        try {
+        try { 
             const res = await fetch('/api/sync/list', { credentials: 'include' });
             if (!res.ok) return false;
             const data = await res.json();

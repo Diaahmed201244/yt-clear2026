@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Hijri date using hijri-date library or fallback calculation
     if (typeof HijriDate !== 'undefined') {
-      try { 
+      try {   
         const hijri = new HijriDate(now);
         // HijriDate months are 0-indexed (0 = Muharram, 11 = Dhu al-Hijjah)
         const monthNames = [
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Wait a bit for library to load, then retry
       setTimeout(() => {
         if (typeof HijriDate !== 'undefined') {
-          try { 
+          try {   
             const hijri = new HijriDate(now);
             const monthNames = [
               'Muharram', 'Safar', 'Rabi\' al-awwal', 'Rabi\' al-thani',
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Popup logic for azan-clock.html
   function showAzanClockPopup() {
-    try { 
+    try {   
       const url = '/services/yt-clear/azan-clock.html';
       const w = window.open(url, 'azanClock', 'width=600,height=700,resizable=yes,scrollbars=1,toolbar=0,location=0,menubar=0,status=0');
       if (w) w.focus();

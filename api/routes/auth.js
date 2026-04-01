@@ -14,7 +14,7 @@ function signJwt(userId, email) {
 }
 
 async function sqliteFindUserByEmail(email) {
-  try { 
+  try {   
     const normalizedEmail = String(email).toLowerCase().trim();
     const r = await query('SELECT id, email, password_hash, codes_count, silver_count, gold_count, last_sync_at, user_type, is_untrusted FROM users WHERE LOWER(email)=$1', [normalizedEmail]);
     return r.rows[0] || null;
@@ -29,7 +29,7 @@ async function createUser(email, username, password, profile = {}) {
   const hash = await bcrypt.hash(password, 10); 
   const id = crypto.randomUUID();
 
-  try { 
+  try {   
     await query(
       'INSERT INTO users(id, email, username, password_hash, religion, country, phone) VALUES($1,$2,$3,$4,$5,$6,$7)',
       [
@@ -53,7 +53,7 @@ async function createUser(email, username, password, profile = {}) {
 
 // Dev login
 router.post('/dev-login', (req, res) => {
-  try { 
+  try {   
     const sessionId = crypto.randomUUID();
     const userId = crypto.randomUUID();
     devSessions.set(sessionId, { userId, role: 'dev', sessionId });
@@ -76,7 +76,7 @@ router.post('/dev-login', (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-  try { 
+  try {   
     const token = req.cookies && req.cookies.session_token;
     if (token) devSessions.delete(token);
     res.clearCookie('session_token', { path: '/' });
@@ -86,7 +86,7 @@ router.post('/logout', (req, res) => {
 
 // Hybrid OTP
 router.post('/send-hybrid-otp', async (req, res) => {
-  try { 
+  try {   
     const { email, phone, countryCode } = req.body;
     if (!email || !phone || !countryCode) {
       return res.status(400).json({ success: false, error: 'Email, phone, and country code are required' });
@@ -108,7 +108,7 @@ router.post('/send-hybrid-otp', async (req, res) => {
 });
 
 router.post('/verify-hybrid-otp', async (req, res) => {
-  try { 
+  try {   
     const { sessionId, otp, channel } = req.body;
     if (!sessionId || !otp || !channel) {
       return res.status(400).json({ success: false, error: 'Session ID, OTP, and channel are required' });
@@ -124,7 +124,7 @@ router.post('/verify-hybrid-otp', async (req, res) => {
 });
 
 router.post('/resend-otp', async (req, res) => {
-  try { 
+  try {   
     const { sessionId, channel } = req.body;
     const result = await resendOTP(sessionId, channel);
     if (result.success) return res.json({ success: true, message: `OTP resent via ${channel}` });
@@ -136,7 +136,7 @@ router.post('/resend-otp', async (req, res) => {
 
 // Signup
 router.post('/signup', async (req, res) => {
-  try { 
+  try {   
     const { email, username, password, religion, country, phone, countryCode } = req.body;
     if (!email || !password || !religion || !country || !phone) {
       return res.status(400).json({ status: 'failed', error: 'All fields are required' });
@@ -184,7 +184,7 @@ router.post('/signup', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
-  try { 
+  try {   
     const { email, password } = req.body || {};
     if (!email || !password) return res.status(400).json({ status: 'failed', error: 'Email and password required' });
 
@@ -246,7 +246,7 @@ router.get('/me', async (req, res) => {
     });
   }
 
-  try { 
+  try {   
     // 1. Check in-memory devSessions
     const memSession = devSessions.get(sessionId);
     if (memSession) {
@@ -301,7 +301,7 @@ router.get('/me', async (req, res) => {
 
 // ACC Token - short-lived JWT scoped to ACC, called by acc-adapter.js after login
 router.post('/acc-token', requireAuth, (req, res) => {
-  try { 
+  try {   
     const userId = req.user?.id;
     if (!userId) return res.status(401).json({ success: false, error: 'Unauthorized' });
     const accToken = jwt.sign({ userId, scope: 'acc' }, JWT_SECRET, { expiresIn: '24h' });

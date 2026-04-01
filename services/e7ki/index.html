@@ -139,7 +139,7 @@
             },
 
             connectWebSocket(url) {
-                try { 
+                try {   
                     this.socket = new WebSocket(url);
                     
                     this.socket.onopen = () => {
@@ -261,7 +261,7 @@
                 console.log('[E7ki] Starting HTTP polling fallback');
                 // Simple polling implementation
                 setInterval(async () => {
-                    try { 
+                    try {   
                         const response = await fetch(`/api/e7ki/messages?chat_id=default`);
                         if (response.ok) {
                             const messages = await response.json();

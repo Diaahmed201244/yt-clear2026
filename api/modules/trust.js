@@ -6,7 +6,7 @@ const router = Router()
 const trustEngine = new TrustEngine()
 
 router.get('/score', (req, res) => {
-  try { 
+  try {   
     const userId = (req.query && req.query.userId) ? String(req.query.userId) : ''
     if (!userId) return res.status(400).json({ error: 'userId is required' })
     const data = getTrustData(userId)
@@ -14,13 +14,13 @@ router.get('/score', (req, res) => {
     const level = score > 0.8 ? 'premium' : (score > 0.5 ? 'mid' : 'basic')
     return res.json({ trustScore: score, level })
   } catch (e) {
-    try {  console.error('[TRUST GET]', e && e.message ? e.message : e) } catch(_){}
+    try {    console.error('[TRUST GET]', e && e.message ? e.message : e) } catch(_){}
     return res.status(500).json({ error: 'Failed to get trust score' })
   }
 })
 
 router.post('/event', (req, res) => {
-  try { 
+  try {   
     const body = req.body || {}
     const userId = String(body.userId || '')
     const balloonType = String(body.balloonType || '')
@@ -35,7 +35,7 @@ router.post('/event', (req, res) => {
     const level = newScore > 0.8 ? 'premium' : (newScore > 0.5 ? 'mid' : 'basic')
     return res.json({ trustScore: newScore, level, flags: Array.isArray(data?.flags) ? data.flags : [] })
   } catch (e) {
-    try {  console.error('[TRUST EVENT]', e && e.message ? e.message : e) } catch(_){}
+    try {    console.error('[TRUST EVENT]', e && e.message ? e.message : e) } catch(_){}
     return res.status(500).json({ error: 'Failed to update trust score' })
   }
 })

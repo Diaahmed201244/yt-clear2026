@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  try { 
+  try {   
     // Verify Cloudinary webhook signature for security
     const isValidSignature = await verifyCloudinarySignature(req);
 
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
 // Verify Cloudinary webhook signature
 async function verifyCloudinarySignature(req) {
-  try { 
+  try {   
     const crypto = await import('crypto');
 
     // Get the raw body and signature from headers
@@ -102,7 +102,7 @@ async function handleUploadNotification(payload) {
 
   console.log(`Upload completed: ${public_id}`);
 
-  try { 
+  try {   
     // Store upload metadata in database or cache
     const uploadData = {
       public_id,
@@ -144,7 +144,7 @@ async function handleModerationNotification(payload) {
 
   console.log(`Moderation result for ${public_id}: ${moderation_status}`);
 
-  try { 
+  try {   
     // Update moderation status in database
     const moderationData = {
       public_id,
@@ -183,7 +183,7 @@ async function handleDeleteNotification(payload) {
 
   console.log(`Resource deleted: ${public_id}`);
 
-  try { 
+  try {   
     // Remove from database and update indexes
     await removeFromVideoIndex(public_id);
 
@@ -203,7 +203,7 @@ async function handleTransformNotification(payload) {
 
   console.log(`Transform completed for ${public_id}`);
 
-  try { 
+  try {   
     // Update transformation URLs in database
     await updateTransformationUrls(public_id, transformation, secure_url);
 

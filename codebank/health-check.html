@@ -124,7 +124,7 @@
             ];
 
             for (const path of paths) {
-                try {
+                try { 
                     const startTime = performance.now();
                     const response = await fetch(path, { 
                         method: 'HEAD',
@@ -230,7 +230,7 @@
             // Show loading toast
             showToast(`Testing ${service.name}...`, 'info');
             
-            try {
+            try { 
                 const response = await fetch(path, { method: 'HEAD', cache: 'no-cache' });
                 
                 if (response.ok) {

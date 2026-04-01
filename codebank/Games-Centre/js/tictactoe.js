@@ -150,7 +150,7 @@ class TicTacToe {
         
         // Award prizes for winning
         if (winner === 'X') { // Only award prizes when the player wins
-            try { 
+            try {   
                 const currentRewards = window.getRewards ? window.getRewards() : { codes: 0, silverBars: 0, goldBars: 0 };
                 const prize = { codes: 100 }; // Award 100 codes for winning
                 
@@ -177,7 +177,7 @@ class TicTacToe {
         document.getElementById('game-status').textContent = "It's a Draw!";
         
         // Award a smaller prize for a draw
-        try { 
+        try {   
             const currentRewards = window.getRewards ? window.getRewards() : { codes: 0, silverBars: 0, goldBars: 0 };
             const prize = { codes: 25 }; // Award 25 codes for a draw
             

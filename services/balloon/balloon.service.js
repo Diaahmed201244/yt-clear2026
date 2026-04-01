@@ -16,7 +16,7 @@ async function getBalloonValue(balloonId) {
 import { grantReward } from '../../api/modules/rewards.js'
 
 async function addUserPoints(userId, value) {
-  try { 
+  try {   
     await grantReward({
       userId,
       amount: value,

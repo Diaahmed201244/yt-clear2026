@@ -1,5 +1,5 @@
 export function requireFarragnaAuth(req, res, next) {
-  try { 
+  try {   
     const h = req.headers.authorization || '';
     const parts = h.split(' ');
     if (parts[0] !== 'Bearer' || !parts[1]) {

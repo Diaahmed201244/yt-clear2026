@@ -57,7 +57,7 @@ class LocalAssetsBus {
     _dispatchLocal(eventName, payload) {
         if (!this.listeners[eventName]) return;
         this.listeners[eventName].forEach(cb => {
-            try { cb(payload); }
+            try {  cb(payload); }
             catch (e) { console.error(`[AssetsBus] Error in listener for ${eventName}:`, e); }
         });
     }

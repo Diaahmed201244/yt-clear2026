@@ -124,7 +124,7 @@ export class WatchDogAnimator {
     const safeDelta = Math.min(delta, 0.1);
     this.time += safeDelta;
 
-    try { 
+    try {   
       if (this.scene && this.scene.scene && this.scene.camera && this.scene.renderer) {
         this.updateLogic(safeDelta);
         this.scene.renderer.render(this.scene.scene, this.scene.camera);

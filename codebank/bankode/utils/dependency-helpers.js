@@ -114,7 +114,7 @@
   window.waitForDependencies = async function waitForDependencies(dependencies, timeout = 10000) {
     const results = {};
     const promises = Object.entries(dependencies).map(async ([name, checkFn]) => {
-      try {
+      try { 
         if (checkFn()) {
           results[name] = window[name] || true;
           return;

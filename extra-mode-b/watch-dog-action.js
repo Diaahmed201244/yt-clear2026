@@ -93,12 +93,12 @@ function setWatchDogActive(active) {
   // Add your watch-dog activation/deactivation code here
   if (active) {
     console.log('Watch-dog activated');
-    try {  document.body.classList.add('watch-dog-active'); } catch(_){}
-    try {  scheduleNextWatchDog(); } catch(_){}
+    try {    document.body.classList.add('watch-dog-active'); } catch(_){}
+    try {    scheduleNextWatchDog(); } catch(_){}
   } else {
     console.log('Watch-dog deactivated (prayer window)');
-    try {  document.body.classList.remove('watch-dog-active'); } catch(_){}
-    try {  if (watchDogTimerId) { clearTimeout(watchDogTimerId); watchDogTimerId = null; } } catch(_){}
+    try {    document.body.classList.remove('watch-dog-active'); } catch(_){}
+    try {    if (watchDogTimerId) { clearTimeout(watchDogTimerId); watchDogTimerId = null; } } catch(_){}
   }
 }
 
@@ -116,7 +116,7 @@ function setWatchDogActive(active) {
   
   if (active) {
     console.log('[ActionLayer] Watch-dog activated');
-    try {  document.body.classList.add('watch-dog-active'); } catch(_){}
+    try {    document.body.classList.add('watch-dog-active'); } catch(_){}
     
     // Set 3D state to monitoring if active
     if (guardian && typeof guardian.setState === 'function') {
@@ -124,7 +124,7 @@ function setWatchDogActive(active) {
     }
   } else {
     console.log('[ActionLayer] Watch-dog deactivated');
-    try {  document.body.classList.remove('watch-dog-active'); } catch(_){}
+    try {    document.body.classList.remove('watch-dog-active'); } catch(_){}
     
     // Set 3D state to idle if deactivated
     if (guardian && typeof guardian.setState === 'function') {
@@ -168,7 +168,7 @@ window.isWithinPrayerWindow = isWithinPrayerWindow;
 window.setWatchDogActive = setWatchDogActive;
 
 // React to explicit extra mode change events
-try { 
+try {   
   window.addEventListener('extra-mode:changed', function(e){
     const active = !!(e && e.detail && e.detail.active);
     handleExtraModeChange(active);

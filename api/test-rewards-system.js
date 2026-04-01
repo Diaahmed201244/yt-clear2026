@@ -50,7 +50,7 @@ async function makeRequest(endpoint, options = {}) {
 async function testAuth() {
   console.log('🔐 Testing Authentication...')
   
-  try { 
+  try {   
     // Register user
     const registerResult = await makeRequest('/auth/register', {
       method: 'POST',
@@ -91,7 +91,7 @@ async function testAuth() {
 async function testWealthLeaderboard() {
   console.log('\n🏆 Testing Wealth Leaderboard...')
   
-  try { 
+  try {   
     const result = await makeRequest('/logicode/wealth-leaderboard?limit=5')
     
     if (result.response.ok) {
@@ -111,7 +111,7 @@ async function testWealthLeaderboard() {
 async function testGrantReward() {
   console.log('\n🎁 Testing Grant Reward Function...')
   
-  try { 
+  try {   
     // Test direct reward claim
     const result = await makeRequest('/rewards/claim', {
       method: 'POST',
@@ -135,7 +135,7 @@ async function testGrantReward() {
 async function testBalance() {
   console.log('\n💰 Testing Balance Endpoint...')
   
-  try { 
+  try {   
     const result = await makeRequest('/rewards/balance')
     
     if (result.response.ok) {
@@ -153,7 +153,7 @@ async function testBalance() {
 async function testRewardHistory() {
   console.log('\n📜 Testing Reward History...')
   
-  try { 
+  try {   
     const result = await makeRequest('/rewards/history')
     
     if (result.response.ok) {
@@ -173,7 +173,7 @@ async function testRewardHistory() {
 async function testCorsaRedeem() {
   console.log('\n🏁 Testing Corsa Code Redeem...')
   
-  try { 
+  try {   
     // This will likely fail since we don't have a valid code, but we can test the endpoint structure
     const result = await makeRequest('/corsa/redeem', {
       method: 'POST',
@@ -196,7 +196,7 @@ async function testCorsaRedeem() {
 async function testGameScore() {
   console.log('\n🎮 Testing Game Score Submission...')
   
-  try { 
+  try {   
     const result = await makeRequest('/games/scores', {
       method: 'POST',
       body: JSON.stringify({
@@ -222,7 +222,7 @@ async function testGameScore() {
 async function testAssetActions() {
   console.log('\n🖼️ Testing Asset Actions...')
   
-  try { 
+  try {   
     // Test asset view
     const viewResult = await makeRequest('/assets/view/test-asset-123', {
       method: 'POST'
@@ -252,7 +252,7 @@ async function testAssetActions() {
 async function testLocalSync() {
   console.log('\n🔄 Testing Local → Neon Sync...')
   
-  try { 
+  try {   
     const result = await makeRequest('/rewards/sync', {
       method: 'POST',
       body: JSON.stringify({
@@ -288,7 +288,7 @@ async function testLocalSync() {
 async function testMonetization() {
   console.log('\n💰 Testing Monetization Windows...')
   
-  try { 
+  try {   
     // Test current window
     const currentResult = await makeRequest('/monetization/current')
     

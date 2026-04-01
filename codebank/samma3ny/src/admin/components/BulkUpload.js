@@ -72,7 +72,7 @@ const BulkUpload = () => {
           cover: '',
         };
 
-        try {
+        try { 
           const serverResponse = await axios.post('http://localhost:8002/api/songs', song);
           console.log(`✅ Song saved to server: ${song.title}`);
         } catch (error) {
@@ -88,7 +88,7 @@ const BulkUpload = () => {
       return response.data;
     });
 
-    try {
+    try { 
       await Promise.all(uploadPromises);
       setFiles([]);
       console.log(`✅ Upload complete! ${files.length} files uploaded successfully.`);

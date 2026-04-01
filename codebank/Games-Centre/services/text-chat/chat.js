@@ -113,7 +113,7 @@ class TextChatService {
    */
   notifyMessageListeners(message) {
     this.messageListeners.forEach(listener => {
-      try {
+      try { 
         listener(message);
       } catch (error) {
         console.error('[TextChat] Error in message listener:', error);

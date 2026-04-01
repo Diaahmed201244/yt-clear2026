@@ -147,7 +147,7 @@ async function tryOpenService(app, fallbackIndex = 0) {
 
 // Helper function to send init message to iframe
 function sendInitToIframe(iframe, app) {
-    try {
+    try { 
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         
         // Get codes from AssetBus if available
@@ -268,7 +268,7 @@ function setupModalControls() {
                     State.openedApps.delete(State.currentApp.id);
                 }
 
-                try {
+                try { 
                     // Send destroy signal
                     if (iframe.contentWindow) {
                         iframe.contentWindow.postMessage({ type: 'service:destroy' }, "*");
@@ -292,7 +292,7 @@ function setupModalControls() {
             State.currentApp = null;
             
             // Trigger GC hint
-            if (window.gc) try { window.gc(); } catch(_) {}
+            if (window.gc) try {  window.gc(); } catch(_) {}
         };
     }
 
@@ -412,7 +412,7 @@ async function handleYahoodTransaction(data, iframe) {
     // 🛡️ INTEGRATION: Try BankodeAssetBusBridge or ACCBridge
     const bridge = window.ACCBridge || window.BankodeAssetBusBridge;
     if (bridge) {
-        try {
+        try { 
             const result = await bridge.transaction({
                 type: data.assetType,
                 amount: data.amount,

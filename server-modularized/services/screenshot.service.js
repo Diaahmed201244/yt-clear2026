@@ -86,7 +86,7 @@ export async function captureScreenshot(url, options = {}) {
   };
 
   let page;
-  try { 
+  try {   
     page = await browser.newPage();
     await page.setViewport({
       width: opts.width,
@@ -146,7 +146,7 @@ export async function captureYouTubeFrame(videoId, timestamp = null, quality = '
   };
 
   let page;
-  try { 
+  try {   
     page = await browser.newPage();
     await page.setViewport({
       width: opts.width,

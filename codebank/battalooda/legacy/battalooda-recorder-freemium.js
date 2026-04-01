@@ -69,7 +69,7 @@
     },
 
     async startRecording() {
-      try {
+      try { 
         this.recordedChunks = [];
         this.isRecording = true;
         this.recordingStartTime = Date.now();
@@ -154,7 +154,7 @@
       }
 
       // Save to IndexedDB (local, free)
-      try {
+      try { 
         this.currentRecording = await window.BattaloodaStorage.saveRecording(blob, {
           duration: this.recordingDuration,
           userId: this.getUserId(),
@@ -179,7 +179,7 @@
         return;
       }
 
-      try {
+      try { 
         this.updateUI('uploading');
         
         const result = await window.BattaloodaStorage.uploadToCloud(
@@ -208,7 +208,7 @@
         return;
       }
 
-      try {
+      try { 
         const result = await window.BattaloodaStorage.shareRecording(
           this.currentRecording.id
         );
@@ -263,7 +263,7 @@
     },
 
     async shareRecordingById(id) {
-      try {
+      try { 
         const result = await window.BattaloodaStorage.shareRecording(id);
         this.showSuccess(result.message);
         this.showShareDialog(result.url);
@@ -275,7 +275,7 @@
     async deleteRecording(id) {
       if (!confirm('هل أنت متأكد من حذف هذا التسجيل؟')) return;
 
-      try {
+      try { 
         await window.BattaloodaStorage.deleteRecording(id);
         this.showSuccess('تم الحذف');
         this.loadRecordingList();

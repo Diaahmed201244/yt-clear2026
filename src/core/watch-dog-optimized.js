@@ -250,7 +250,7 @@ class WatchDogGuardianV2 {
     // Use requestIdleCallback for non-blocking
     return new Promise((resolve) => {
       const check = async () => {
-        try { 
+        try {   
           // Quick hash check
           const currentHash = await this.getCurrentLedgerHash();
           const storedHash = localStorage.getItem('ledger-hash');

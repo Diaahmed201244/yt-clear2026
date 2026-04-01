@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  try { 
+  try {   
     // AUTH REMOVED - CLEAN RESET
     // No authentication required
 
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 
 // GET /api/admin/views - Get analytics data
 async function handleGetAnalytics(req, res) {
-  try { 
+  try {   
     const {
       period = '7d', // 1d, 7d, 30d, 90d
       metric = 'all', // views, engagement, performance, demographics
@@ -78,7 +78,7 @@ async function handleGetAnalytics(req, res) {
 
 // POST /api/admin/views - Track a view event
 async function handleTrackView(req, res) {
-  try { 
+  try {   
     const {
       video_id,
       user_id,

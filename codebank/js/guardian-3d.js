@@ -42,7 +42,7 @@
     async init() {
       if (this.isDestroyed) return;
 
-      try {
+      try { 
         // Dynamic import of the single source of truth core
         const { createWatchDog } = await import('/shared/watchdog-core/watchdog-core.js');
         

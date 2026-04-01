@@ -9,7 +9,7 @@ import path from 'path';
 // --- DATABASE INIT ---
 // Ensure the core E7ki tables exist via the global pool
 export const initE7kiTables = async () => {
-    try { 
+    try {   
         await query(`
             CREATE TABLE IF NOT EXISTS e7ki_conversations (
                 id TEXT PRIMARY KEY,
@@ -79,7 +79,7 @@ router.get('/health', (req, res) => {
 });
 
 router.get('/users', async (req, res) => {
-    try { 
+    try {   
         // Query users table (from core CodeBank)
         const users = await query('SELECT id, username, email FROM users WHERE id != $1 LIMIT 100', [req.user.id]);
         res.json(users.rows);
@@ -89,7 +89,7 @@ router.get('/users', async (req, res) => {
 });
 
 router.get('/chats', async (req, res) => {
-    try { 
+    try {   
         const chats = await query(`
             SELECT * FROM e7ki_conversations 
             WHERE participant_ids LIKE $1
@@ -108,7 +108,7 @@ router.get('/chats', async (req, res) => {
 });
 
 router.post('/chats', async (req, res) => {
-    try { 
+    try {   
         const { participantIds, title } = req.body;
         const allParticipants = [req.user.id, ...participantIds];
         const id = uuidv4();
@@ -127,7 +127,7 @@ router.post('/chats', async (req, res) => {
 });
 
 router.get('/chats/:chatId/messages', async (req, res) => {
-    try { 
+    try {   
         const limit = parseInt(req.query.limit) || 50;
         const offset = parseInt(req.query.offset) || 0;
         
@@ -147,7 +147,7 @@ router.get('/chats/:chatId/messages', async (req, res) => {
 
 // Used exclusively for explicit send outside WS or for REST
 router.post('/messages', async (req, res) => {
-    try { 
+    try {   
         const id = uuidv4();
         const { chatId, content, type, mediaUrl, status } = req.body;
         const msgType = type || 'text';
@@ -175,7 +175,7 @@ router.post('/messages', async (req, res) => {
 });
 
 router.post('/messages/:id/read', async (req, res) => {
-    try { 
+    try {   
         await query(`UPDATE e7ki_messages SET status = $1 WHERE id = $2`, ['read', req.params.id]);
         res.json({ success: true });
     } catch (err) {

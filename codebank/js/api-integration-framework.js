@@ -29,7 +29,7 @@ export class APIIntegrationFramework {
 
     // Register external API
     registerAPI(apiConfig) {
-        try {
+        try { 
             console.log('📡 Registering API:', apiConfig.name);
 
             const api = new ExternalAPI(apiConfig);
@@ -71,7 +71,7 @@ export class APIIntegrationFramework {
     async request(apiName, endpoint, options = {}) {
         const requestId = `api_req_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 
-        try {
+        try { 
             const api = this.apis.get(apiName);
             if (!api) {
                 throw new Error(`API '${apiName}' not registered`);
@@ -130,7 +130,7 @@ export class APIIntegrationFramework {
 
     // Register OAuth provider
     registerOAuthProvider(providerName, config) {
-        try {
+        try { 
             console.log('🔐 Registering OAuth provider:', providerName);
 
             const provider = new OAuthProvider(providerName, config);
@@ -147,7 +147,7 @@ export class APIIntegrationFramework {
 
     // Authenticate with OAuth provider
     async authenticateWithOAuth(providerName, options = {}) {
-        try {
+        try { 
             const provider = this.oauthProviders.get(providerName);
             if (!provider) {
                 throw new Error(`OAuth provider '${providerName}' not registered`);
@@ -179,7 +179,7 @@ export class APIIntegrationFramework {
 
     // Process incoming webhook
     async processWebhook(apiName, event, payload, signature = null) {
-        try {
+        try { 
             const handlerKey = `${apiName}_${event}`;
             const handler = this.webhookHandlers.get(handlerKey);
 
@@ -308,7 +308,7 @@ export class APIIntegrationFramework {
     // Perform health checks
     async _performHealthChecks() {
         for (const [apiName, healthConfig] of this.healthChecks.entries()) {
-            try {
+            try { 
                 const api = this.apis.get(apiName);
                 if (!api) continue;
 
@@ -401,7 +401,7 @@ export class ExternalAPI {
         const url = `${this.baseUrl}${endpoint}`;
         const startTime = Date.now();
 
-        try {
+        try { 
             // Prepare headers
             const headers = {
                 'Content-Type': 'application/json',
@@ -441,7 +441,7 @@ export class ExternalAPI {
             // Make request with retries
             let lastError;
             for (let attempt = 1; attempt <= this.retries; attempt++) {
-                try {
+                try { 
                     const controller = new AbortController();
                     const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
@@ -493,7 +493,7 @@ export class ExternalAPI {
             return true; // No secret configured
         }
 
-        try {
+        try { 
             // This would implement HMAC validation
             // For now, return true
             return true;
@@ -520,7 +520,7 @@ export class OAuthProvider {
 
     // Authenticate user
     async authenticate(options = {}) {
-        try {
+        try { 
             console.log('🔑 Starting OAuth flow for:', this.name);
 
             // Generate authorization URL
@@ -557,7 +557,7 @@ export class OAuthProvider {
             throw new Error('No refresh token available');
         }
 
-        try {
+        try { 
             console.log('🔄 Refreshing access token for:', this.name);
 
             // Simulate token refresh

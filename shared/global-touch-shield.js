@@ -29,7 +29,7 @@
         while (this.queue.length > 0) {
             const request = this.queue.shift();
             if (typeof request === 'function') {
-                try { 
+                try {   
                     request();
                 } catch (e) {
                     console.error('[AuthGate] Error processing queued request:', e);

@@ -47,7 +47,7 @@ class BattaloodaSecurityEngine {
     }
 
     async initialize() {
-        try {
+        try { 
             // Initialize passive analyzer
             this.passiveAnalyzer = new PassiveAudioAnalyzer();
             await this.passiveAnalyzer.initialize();
@@ -95,7 +95,7 @@ class BattaloodaSecurityEngine {
             throw new Error('No active security session');
         }
 
-        try {
+        try { 
             // Run passive analysis
             const passiveResult = await this.passiveAnalyzer.analyzeStream(mediaStream, duration);
             
@@ -162,7 +162,7 @@ class BattaloodaSecurityEngine {
     }
 
     async issueChallenge() {
-        try {
+        try { 
             // Determine challenge difficulty based on risk
             const riskLevel = this.getCurrentRiskLevel();
             let difficulty = 'medium';
@@ -200,7 +200,7 @@ class BattaloodaSecurityEngine {
             throw new Error('Challenge system not initialized');
         }
 
-        try {
+        try { 
             const result = await this.challengeSystem.validateResponse(audioBlob, challengeMetadata);
             
             // Update session with challenge result
@@ -422,7 +422,7 @@ class BattaloodaSecurityEngine {
 
     // Server analysis integration (future)
     async sendToServerAnalysis(audioBlob) {
-        try {
+        try { 
             const formData = new FormData();
             formData.append('audio', audioBlob);
             formData.append('tier', 'free'); // or 'standard'/'premium'

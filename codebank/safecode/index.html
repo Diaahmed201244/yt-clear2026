@@ -373,7 +373,7 @@
             if (watchdog) watchdog.setState(state in STATES ? state : STATES.IDLE);
         }
 
-        try {
+        try { 
             watchdog = createWatchDog(watchdogContainer, { initialState: STATES.IDLE });
             applyWatchdogState(STATES.IDLE);
         } catch (e) {
@@ -436,7 +436,7 @@
                 return;
             }
 
-            try {
+            try { 
                 const snapshot = window.AssetBus.snapshot();
                 const assets = snapshot[activeTab] || [];
 

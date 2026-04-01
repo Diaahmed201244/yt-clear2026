@@ -92,7 +92,7 @@ class CompetitionEngine {
     this.challenges.set(challenge.id, { ...challenge, status: 'RUNNING' });
 
     // Start the game
-    try { 
+    try {   
       await this.gameEngine.startGame(challenge.gameId, challenge.mode, {
         matchId,
         players: challenge.players,

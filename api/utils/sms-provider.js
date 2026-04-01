@@ -64,7 +64,7 @@ async function sendWhatsAppOtp(phone, otp) {
   // 🛡️ Twilio Verify API check (Recommended for production)
   const verifyServiceSid = process.env.TWILIO_VERIFY_SERVICE_SID;
   if (verifyServiceSid && !verifyServiceSid.startsWith('VA12345')) {
-    try { 
+    try {   
       const verification = await client.verify.v2.services(verifyServiceSid)
         .verifications
         .create({ to: phone, channel: 'whatsapp' });
@@ -96,7 +96,7 @@ async function sendSMSOtp(phone, otp) {
   // 🛡️ Twilio Verify API check (Recommended for production)
   const verifyServiceSid = process.env.TWILIO_VERIFY_SERVICE_SID;
   if (verifyServiceSid && !verifyServiceSid.startsWith('VA12345')) {
-    try { 
+    try {   
       const verification = await client.verify.v2.services(verifyServiceSid)
         .verifications
         .create({ to: phone, channel: 'sms' });

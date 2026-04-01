@@ -74,7 +74,7 @@ export class HealthCheckSystem {
 
         // Perform all checks
         for (const [name, checkFn] of Object.entries(this.checks)) {
-            try {
+            try { 
                 const checkResult = await checkFn();
                 results.checks[name] = checkResult;
 
@@ -150,7 +150,7 @@ export class HealthCheckSystem {
 
     // Individual health checks
     async _checkDatabase() {
-        try {
+        try { 
             const firebase = window.__SUPABASE_CLIENT__ || (window.Auth && window.Auth.client);
             if (!firebase) {
                 return {
@@ -191,7 +191,7 @@ export class HealthCheckSystem {
     }
 
     async _checkCache() {
-        try {
+        try { 
             if (!window.transactionCache) {
                 return {
                     status: 'warning',
@@ -224,7 +224,7 @@ export class HealthCheckSystem {
     }
 
     async _checkQueue() {
-        try {
+        try { 
             if (!window.transactionQueue) {
                 return {
                     status: 'warning',
@@ -258,7 +258,7 @@ export class HealthCheckSystem {
     }
 
     async _checkErrorHandler() {
-        try {
+        try { 
             if (!window.errorHandler) {
                 return {
                     status: 'warning',
@@ -291,7 +291,7 @@ export class HealthCheckSystem {
     }
 
     async _checkMonitor() {
-        try {
+        try { 
             if (!window.transactionMonitor) {
                 return {
                     status: 'warning',
@@ -325,7 +325,7 @@ export class HealthCheckSystem {
     }
 
     async _checkMemory() {
-        try {
+        try { 
             if (!performance.memory) {
                 return {
                     status: 'healthy',
@@ -365,7 +365,7 @@ export class HealthCheckSystem {
     }
 
     async _checkNetwork() {
-        try {
+        try { 
             if (!navigator.onLine) {
                 return {
                     status: 'unhealthy',
@@ -408,7 +408,7 @@ export class HealthCheckSystem {
     }
 
     async _checkAuthentication() {
-        try {
+        try { 
             if (!window.authHelper) {
                 return {
                     status: 'warning',
@@ -445,7 +445,7 @@ export class HealthCheckSystem {
 
     _emitHealthEvent(results) {
         // Emit custom event for other systems to listen to
-        try {
+        try { 
             const event = new CustomEvent('transactionSystemHealthCheck', {
                 detail: results
             });
@@ -550,7 +550,7 @@ export class HealthCheckAPI {
         };
 
         // Collect metrics from all systems
-        try {
+        try { 
             if (window.transactionMonitor) {
                 metrics.transactionMonitor = window.transactionMonitor.getMetrics();
             }

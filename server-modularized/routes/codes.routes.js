@@ -33,7 +33,7 @@ router.get(
   ['/sqlite/codes', '/codes/list', '/sync/list', '/diag/sqlite-codes'],
   requireAuth,
   async (req, res) => {
-    try { 
+    try {   
       const userId = req.user.id;
 
       const codesResult = await query(
@@ -73,7 +73,7 @@ router.get(
 // ---------------------------------------------------------------------------
 
 router.post('/sqlite/codes', async (req, res) => {
-  try { 
+  try {   
     const { code } = req.body || {};
     const session = readSessionFromCookie(req, res);
 
@@ -97,7 +97,7 @@ router.post('/sqlite/codes', async (req, res) => {
     const userId = session.userId;
 
     await query('BEGIN');
-    try { 
+    try {   
       const used = await query(
         'INSERT INTO used_codes (code_hash, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
         [hash, userId]
@@ -144,7 +144,7 @@ router.post('/sqlite/codes', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/sqlite/codes-legacy', async (req, res) => {
-  try { 
+  try {   
     const body = req.body || {};
     const code = body.code || '';
     if (!code || typeof code !== 'string') {
@@ -158,7 +158,7 @@ router.post('/sqlite/codes-legacy', async (req, res) => {
     }
 
     let userId = null;
-    try { 
+    try {   
       const token = req.cookies && req.cookies.session_token;
       const s = token && devSessions.get(token);
       if (s && s.userId) userId = s.userId;
@@ -179,7 +179,7 @@ router.post('/sqlite/codes-legacy', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.delete('/sqlite/codes/:id', requireAuth, async (req, res) => {
-  try { 
+  try {   
     const userId = req.user.id;
     const codeId = req.params.id;
 

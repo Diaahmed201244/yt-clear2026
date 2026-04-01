@@ -39,7 +39,7 @@ export const devSessions = new Map();
  * Clears stale cookies automatically.
  */
 export function readSessionFromCookie(req, res) {
-  try { 
+  try {   
     const token = (req.cookies && req.cookies.session_token) || null;
     if (!token) return null;
 
@@ -66,7 +66,7 @@ export function readSessionFromCookie(req, res) {
  * Responds with 401 if no valid session is found.
  */
 export function requireAuth(req, res, next) {
-  try { 
+  try {   
     const session = readSessionFromCookie(req, res);
     if (!session || !session.userId) {
       return res.status(401).json({ success: false, error: 'Unauthorized' });
@@ -103,7 +103,7 @@ export function signJwt(userId, email) {
  * On success, sets `req.auth = { userId, email }`.
  */
 export function requireJwtAuth(req, res, next) {
-  try { 
+  try {   
     const header = req.headers.authorization || '';
     const parts = header.split(' ');
 
@@ -133,7 +133,7 @@ const __authUsers = new Map();
  * @returns {Promise<Object|null>}
  */
 export async function sqliteFindUserByEmail(email) {
-  try { 
+  try {   
     const normalizedEmail = String(email).toLowerCase().trim();
 
     const r = await query(
@@ -181,7 +181,7 @@ export async function memCreateUser(email, username, password, profile = {}, use
 
   let id = crypto.randomUUID();
 
-  try { 
+  try {   
     if (process.env.DATABASE_URL) {
       // Check if user exists first
       const existing = await query(
@@ -223,7 +223,7 @@ export async function memCreateUser(email, username, password, profile = {}, use
       }
 
       // Initialize default assets
-      try { 
+      try {   
         await query(
           'INSERT INTO user_assets(user_id, asset_id) VALUES($1,$2) ON CONFLICT DO NOTHING',
           [id, 'init']

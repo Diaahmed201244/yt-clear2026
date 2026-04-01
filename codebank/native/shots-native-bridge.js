@@ -11,7 +11,7 @@ class NativeShotsBridge {
             return await this.webCapture();
         }
         
-        try {
+        try { 
             // Using @capawesome/capacitor-screenshot as a more reliable alternative
             const { Screenshot } = await import('@capawesome/capacitor-screenshot');
             const { Filesystem, Directory } = await import('@capacitor/filesystem');

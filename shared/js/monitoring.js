@@ -107,7 +107,7 @@ class PerformanceMonitor {
    */
   async checkServiceHealth(serviceName, checkFn) {
     const startTime = Date.now();
-    try { 
+    try {   
       await checkFn();
       const duration = Date.now() - startTime;
       this.metrics.services[serviceName] = {
@@ -184,7 +184,7 @@ class HealthChecker {
   async runAll() {
     const results = {};
     for (const [name, checkFn] of Object.entries(this.checks)) {
-      try { 
+      try {   
         results[name] = {
           status: 'pass',
           timestamp: new Date().toISOString(),

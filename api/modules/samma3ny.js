@@ -22,7 +22,7 @@ const upload = multer({
 })
 
 // Ensure Cloudinary is configured from environment variables
-try { 
+try {   
   const cfg = {
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -63,7 +63,7 @@ function formatFileSize(bytes) {
 }
 
 router.get('/songs', async (req, res) => {
-  try { 
+  try {   
     const prefixes = ['media-player/', 'samma3ny/', 'media-player', 'samma3ny']
     const all = []
     for (const prefix of prefixes) {
@@ -108,7 +108,7 @@ router.get('/songs', async (req, res) => {
         created_at: item.created_at
       }))
       if (tracks.length > 0) return res.json(tracks)
-      try { 
+      try {   
         const jsonPath = path.join(process.cwd(), 'services', 'codebank', 'samma3ny', 'songs.json')
         const raw = fs.readFileSync(jsonPath, 'utf-8')
         const arr = JSON.parse(raw)
@@ -124,7 +124,7 @@ router.get('/songs', async (req, res) => {
         return res.json([])
       }
     }
-    try { 
+    try {   
       const rows = await query('SELECT id, name, position FROM samma3ny_songs', [])
       const byId = new Map(rows.rows.map(r => [r.id, r]))
       for (const s of all) {
@@ -149,7 +149,7 @@ router.get('/songs', async (req, res) => {
 
 // List with direct Cloudinary fetch
 router.get('/list', async (req, res) => {
-  try { 
+  try {   
     console.log('🔄 Fetching Samma3ny songs with direct Cloudinary API call...')
     const CLOUDINARY_CLOUD = process.env.CLOUDINARY_CLOUD_NAME || 'dhpyneqgk'
     const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY || '799518422494748'
@@ -172,7 +172,7 @@ router.get('/list', async (req, res) => {
 
 // Bulk upload
 router.post('/upload', upload.any(), async (req, res) => {
-  try { 
+  try {   
     const files = req.files
     if (!files || files.length === 0) {
       return res.status(400).json({ error: 'No files uploaded', message: 'Please select audio files to upload' })
@@ -185,7 +185,7 @@ router.post('/upload', upload.any(), async (req, res) => {
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const fileIndex = i + 1
-      try { 
+      try {   
         console.log(`📤 Processing file ${fileIndex}/${files.length}: ${file.originalname}`)
         if (!file.mimetype.startsWith('audio/')) {
           errors.push({ file: file.originalname, error: 'Invalid file type', message: 'Only audio files are allowed' })
@@ -204,7 +204,7 @@ router.post('/upload', upload.any(), async (req, res) => {
         const timestamp = Date.now()
         const randomId = Math.random().toString(36).substr(2, 9)
         const publicId = `media-player/audio_${timestamp}_${randomId}`
-        try { 
+        try {   
           const result = await cloudinary.v2.uploader.upload(file.path, {
             resource_type: 'video',
             folder: 'media-player',
@@ -237,7 +237,7 @@ router.post('/upload', upload.any(), async (req, res) => {
           console.log(`✅ Successfully uploaded: ${file.originalname} (${formatFileSize(result.bytes)})`)
         } catch (uploadError) {
           console.error(`❌ Cloudinary upload failed for ${file.originalname}:`, uploadError.message)
-          try { 
+          try {   
             const localPath = path.join(process.cwd(), 'services/codebank/samma3ny/uploads')
             if (!fs.existsSync(localPath)) fs.mkdirSync(localPath, { recursive: true })
             const localFileName = `local_${timestamp}_${file.originalname}`
@@ -300,11 +300,11 @@ router.post('/upload', upload.any(), async (req, res) => {
 })
 
 router.post('/order', async (req, res) => {
-  try { 
+  try {   
     const positions = Array.isArray(req.body?.positions) ? req.body.positions : []
     if (positions.length === 0) return res.json({ ok: true, updated: 0 })
     let updated = 0
-    try { 
+    try {   
       for (const { id, position } of positions) {
         await query(
           [id, typeof position === 'number' ? position : null]
@@ -314,7 +314,7 @@ router.post('/order', async (req, res) => {
       return res.json({ ok: true, updated })
     } catch (_) {}
     for (const { id, position } of positions) {
-      try { 
+      try {   
         await cloudinary.v2.api.update(id, { context: { order: position } })
         updated++
       } catch (_) {}
@@ -326,17 +326,17 @@ router.post('/order', async (req, res) => {
 })
 
 router.post('/rename', async (req, res) => {
-  try { 
+  try {   
     const id = req.body?.id
     const name = (req.body?.name || '').trim()
     if (!id || !name) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' })
-    try { 
+    try {   
       await query(
         [id, name]
       )
       return res.json({ ok: true })
     } catch (_) {}
-    try { 
+    try {   
       await cloudinary.v2.api.update(id, { context: { title: name, display_name: name } })
       return res.json({ ok: true })
     } catch (e2) {
@@ -348,12 +348,12 @@ router.post('/rename', async (req, res) => {
 })
 
 router.post('/rename-bulk', async (req, res) => {
-  try { 
+  try {   
     const ids = Array.isArray(req.body?.ids) ? req.body.ids : []
     const name = (req.body?.name || '').trim()
     if (ids.length === 0 || !name) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' })
     let updated = 0
-    try { 
+    try {   
       for (const id of ids) {
         await query(
           [id, name]
@@ -363,7 +363,7 @@ router.post('/rename-bulk', async (req, res) => {
       return res.json({ ok: true, updated })
     } catch (_) {}
     for (const id of ids) {
-      try { 
+      try {   
         await cloudinary.v2.api.update(id, { context: { title: name, display_name: name } })
         updated++
       } catch (_) {}
@@ -386,7 +386,7 @@ router.get('/upload-status', (req, res) => {
 
 // Refresh playlist
 router.post('/refresh-playlist', async (req, res) => {
-  try { 
+  try {   
     console.log('🔄 Manual playlist refresh requested')
     const response = await cloudinary.v2.api.resources({
       resource_type: 'video',
@@ -416,7 +416,7 @@ router.post('/refresh-playlist', async (req, res) => {
 
 // Songs count
 router.get('/songs/count', async (req, res) => {
-  try { 
+  try {   
     const response = await cloudinary.v2.api.resources({
       resource_type: 'video',
       prefix: 'media-player/',

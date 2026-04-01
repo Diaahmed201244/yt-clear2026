@@ -190,7 +190,7 @@ export class TransactionMonitor {
 
     // Collect system metrics
     _collectMetrics() {
-        try {
+        try { 
             // Memory usage (if available)
             if (performance.memory) {
                 this.metrics.system.memoryUsage = performance.memory.usedJSHeapSize;

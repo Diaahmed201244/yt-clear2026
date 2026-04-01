@@ -5,7 +5,7 @@ import { requireAuth } from '../middleware/auth.js';
 const router = express.Router();
 
 router.get('/balance', requireAuth, async (req, res) => {
-  try { 
+  try {   
     const userId = req.user.id;
     const result = await query(
       "SELECT COALESCE(codes_count, 0) as codes, COALESCE(silver_count, 0) as silver, COALESCE(gold_count, 0) as gold FROM users WHERE id = $1",

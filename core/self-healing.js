@@ -57,7 +57,7 @@ class SelfHealingEngine {
 
       if (now - lastRun < rule.cooldown) continue
 
-      try {
+      try { 
         const isBroken = await rule.check()
 
         if (isBroken) {

@@ -27,7 +27,7 @@ class VideoCallService {
     this.gameId = gameId;
     this.playerId = playerId;
 
-    try {
+    try { 
       // Get local video stream
       this.localStream = await navigator.mediaDevices.getUserMedia({
         video: config.video || true,

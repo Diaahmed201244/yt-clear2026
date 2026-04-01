@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 import * as tf from '@tensorflow/tfjs-node'
 
 function resolveLocalPathFromUrl(url) {
-  try {
+  try { 
     const u = new URL(url)
     const p = u.pathname
     if (p.startsWith('/uploads/piccarboon/')) {

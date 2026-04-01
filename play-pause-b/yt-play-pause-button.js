@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let pressTimer = null;
 
   function ensurePulseStyles(){
-    try { 
+    try {   
       if (document.getElementById('play-pause-pulse-style')) return;
       const style = document.createElement('style');
       style.id = 'play-pause-pulse-style';
@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.__EXTRA_MODE_LOCKED__ === true) return;
     e.preventDefault();
     e.stopPropagation();
-    try { 
+    try {   
       if (window.ExtraMode && window.ExtraMode.isActive && window.ExtraMode.isActive()) {
         window.ExtraMode.deactivate && window.ExtraMode.deactivate();
       }
     } catch(_) {}
     ensurePulseStyles();
-    try {  playPauseButton.classList.add('screenshot-pulse'); } catch(_){}
-    setTimeout(() => { try {  playPauseButton.classList.remove('screenshot-pulse'); } catch(_){} }, 900);
+    try {    playPauseButton.classList.add('screenshot-pulse'); } catch(_){}
+    setTimeout(() => { try {    playPauseButton.classList.remove('screenshot-pulse'); } catch(_){} }, 900);
     if (typeof window.instantScreenshot === 'function') {
       window.instantScreenshot();
     }

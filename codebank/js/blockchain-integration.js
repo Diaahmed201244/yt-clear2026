@@ -34,7 +34,7 @@ export class BlockchainIntegration {
     async anchorTransaction(transactionData) {
         const anchorId = `anchor_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 
-        try {
+        try { 
             console.log('🔗 Anchoring transaction to blockchain:', anchorId);
 
             const anchor = {
@@ -72,7 +72,7 @@ export class BlockchainIntegration {
 
     // Verify transaction on blockchain
     async verifyTransaction(transactionHash, chain = null) {
-        try {
+        try { 
             const blockchain = chain || this.defaultChain;
             const connection = this.connections.get(blockchain);
 
@@ -101,7 +101,7 @@ export class BlockchainIntegration {
 
     // Execute smart contract function
     async executeSmartContract(contractAddress, functionName, params = {}, options = {}) {
-        try {
+        try { 
             const chain = options.chain || this.defaultChain;
             const contract = await this._getContract(contractAddress, chain);
 
@@ -132,7 +132,7 @@ export class BlockchainIntegration {
 
     // Get account balance on blockchain
     async getBlockchainBalance(address, tokenAddress = null, chain = null) {
-        try {
+        try { 
             const blockchain = chain || this.defaultChain;
             const connection = this.connections.get(blockchain);
 
@@ -159,7 +159,7 @@ export class BlockchainIntegration {
 
     // Transfer tokens/assets on blockchain
     async transferOnChain(fromAddress, toAddress, amount, tokenAddress = null, options = {}) {
-        try {
+        try { 
             const chain = options.chain || this.defaultChain;
             const connection = this.connections.get(chain);
 
@@ -238,7 +238,7 @@ export class BlockchainIntegration {
     // Initialize blockchain connections
     _initializeBlockchainConnections() {
         for (const chain of this.enabledChains) {
-            try {
+            try { 
                 const connection = this._createChainConnection(chain);
                 this.connections.set(chain, connection);
                 console.log(`🔗 Connected to ${chain}`);
@@ -281,7 +281,7 @@ export class BlockchainIntegration {
 
     // Process anchor queue
     async _processAnchor(anchor) {
-        try {
+        try { 
             console.log('⛏️ Processing anchor:', anchor.id);
 
             const chain = anchor.chain;
@@ -417,7 +417,7 @@ export class EthereumConnection extends BlockchainConnection {
     }
 
     async _initializeWeb3() {
-        try {
+        try { 
             // This would initialize web3.js or ethers.js
             console.log('🔗 Initializing Ethereum connection');
 

@@ -80,12 +80,12 @@ app.post("/api/piccarboon/submit", picUpload.single("image"), async (req, res) =
         return res.status(400).json({ message: "No image uploaded" });
     const imageUrl = `http://localhost:${PORT}/uploads/piccarboon/${req.file.filename}`;
     let features = {};
-    try {
+    try { 
         const raw = (req && req.body && req.body.features) || "{}";
         features = JSON.parse(raw);
     }
     catch { }
-    try {
+    try { 
         const result = await PiccarboonOrchestrator.submit({ imageUrl, features });
         return res.status(200).json(result);
     }

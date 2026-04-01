@@ -220,7 +220,7 @@ export async function registerRoutes(app) {
     wss.on('connection', (ws) => {
         console.log('New WebSocket connection');
         ws.on('message', async (data) => {
-            try { 
+            try {   
                 const message = JSON.parse(data.toString());
                 switch (message.type) {
                     case 'join':
@@ -355,7 +355,7 @@ export async function registerRoutes(app) {
     });
     // REST API Routes
     app.post('/api/games', async (req, res) => {
-        try { 
+        try {   
             const gameData = insertGameSchema.parse(req.body);
             const game = await storage.createGame(gameData);
             res.json(game);
@@ -365,7 +365,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get('/api/games/:gameId', async (req, res) => {
-        try { 
+        try {   
             const game = await storage.getGame(req.params.gameId);
             if (!game) {
                 return res.status(404).json({ error: 'Game not found' });
@@ -379,7 +379,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post('/api/users', async (req, res) => {
-        try { 
+        try {   
             const userData = req.body;
             const user = await storage.createUser(userData);
             res.json(user);

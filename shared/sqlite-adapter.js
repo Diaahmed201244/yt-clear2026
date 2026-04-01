@@ -15,7 +15,7 @@
     // INITIALIZATION
     
     async function init() {
-        try { 
+        try {   
             // Try to open SQLite database (using sql.js or native Web SQLite)
             if (window.initSqlJs) {
                 const SQL = await window.initSqlJs({
@@ -107,7 +107,7 @@
             };
         }
 
-        try { 
+        try {   
             // CRITICAL FIX: Use INSERT OR REPLACE to handle conflicts properly
             // This ensures we always get 1 row affected (either inserted or updated)
             const sql = `
@@ -276,7 +276,7 @@
     // UTILITY FUNCTIONS
     
     async function logSyncAttempt(code, userId, saved) {
-        try { 
+        try {   
             await execSQL(
                 'INSERT INTO sync_log (code, action, result) VALUES (?, ?, ?)',
                 [code, 'sync', saved > 0 ? 'success' : 'no_change']

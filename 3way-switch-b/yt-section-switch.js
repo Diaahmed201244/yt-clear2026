@@ -96,7 +96,7 @@ window.showExtraModeBlockedPopup = function() {
 window.saveCurrentSectionTime = async function(sectionId) {
   if (!player || !sectionId) return;
 
-  try { 
+  try {   
     const currentTime = player && typeof player.getCurrentTime === 'function' ? player.getCurrentTime() : 0;
     const playlistIndex = player && typeof player.getPlaylistIndex === 'function' ? player.getPlaylistIndex() : 0;
 
@@ -154,12 +154,12 @@ window.showHomeSection = async function() {
 
   // Update current section
   window.currentSection = 'home';
-  try {  window.dispatchEvent(new CustomEvent('section:changed', { detail: { section: 'home' } })); } catch(_){}
+  try {    window.dispatchEvent(new CustomEvent('section:changed', { detail: { section: 'home' } })); } catch(_){}
 
   // Load saved playback time for Home (continues from last position)
   let savedData = { time: 0, index: 0 };
   if (window.AuthSyncManager && window.AuthSyncManager.getUserData) {
-    try { 
+    try {   
       const savedDataStr = null;
       if (savedDataStr && typeof savedDataStr === 'string') {
         savedData = JSON.parse(savedDataStr);
@@ -169,14 +169,14 @@ window.showHomeSection = async function() {
     } catch (e) {
       console.warn('[Section Switch] Error loading saved data for Home:', e);
       // Try localStorage fallback
-      try { 
+      try {   
         const localData = localStorage.getItem(`video_${videoIdsMap.home}`);
         if (localData) savedData = JSON.parse(localData);
       } catch (e2) {}
     }
   } else {
     // Fallback to localStorage
-    try { 
+    try {   
       const localData = localStorage.getItem(`video_${videoIdsMap.home}`);
       if (localData) savedData = JSON.parse(localData);
     } catch (e) {}
@@ -185,7 +185,7 @@ window.showHomeSection = async function() {
   const startSeconds = savedData.time || 0;
   const startIndex = savedData.index || 0;
 
-  try { 
+  try {   
     // OPTIMIZED: Use player content update instead of recreation
     if (window.YouTubeAPIManager && typeof window.YouTubeAPIManager.updatePlayerContent === 'function') {
       console.log('[Section Switch] Using optimized player content update for Home');
@@ -193,7 +193,7 @@ window.showHomeSection = async function() {
 
       // Seek to saved position after content loads
       setTimeout(() => {
-        try { 
+        try {   
           if (player && startSeconds > 0 && typeof player.seekTo === 'function') {
             player.seekTo(startSeconds, true);
           }
@@ -214,7 +214,7 @@ window.showHomeSection = async function() {
       }
 
       // Stop current playback before switching to playlist
-      try { 
+      try {   
         if (player && typeof player.stopVideo === 'function') {
           player.stopVideo();
         }
@@ -224,7 +224,7 @@ window.showHomeSection = async function() {
 
       // Small delay to ensure player is ready for new content
       setTimeout(() => {
-        try { 
+        try {   
           // Use loadPlaylist with proper parameters
             if (player && typeof player.loadPlaylist === 'function') player.loadPlaylist({
               listType: 'playlist',
@@ -236,7 +236,7 @@ window.showHomeSection = async function() {
         } catch (loadError) {
           console.warn('[Section Switch] Error with loadPlaylist, trying alternative method:', loadError);
           // Alternative: cue playlist first, then load
-          try { 
+          try {   
             if (player && typeof player.cuePlaylist === 'function') player.cuePlaylist({
               listType: 'playlist',
               list: videoIdsMap.home,
@@ -245,7 +245,7 @@ window.showHomeSection = async function() {
 
             // Wait for playlist to cue, then seek and play
             setTimeout(() => {
-              try { 
+              try {   
                 if (player && startSeconds > 0 && typeof player.seekTo === 'function') {
                   player.seekTo(startSeconds, true);
                 }
@@ -308,7 +308,7 @@ window.showNourSection = async function() {
 
   // Update current section
   window.currentSection = 'nour';
-  try {  window.dispatchEvent(new CustomEvent('section:changed', { detail: { section: 'nour' } })); } catch(_){}
+  try {    window.dispatchEvent(new CustomEvent('section:changed', { detail: { section: 'nour' } })); } catch(_){}
 
   // Deactivate extra mode if active (extra mode only works on Home)
   if (window.ExtraMode && window.ExtraMode.isActive && window.ExtraMode.isActive()) {
@@ -325,7 +325,7 @@ window.showNourSection = async function() {
   // Load saved playback time for Nour (continues from last position)
   let savedData = { time: 0 };
   if (window.AuthSyncManager && window.AuthSyncManager.getUserData) {
-    try { 
+    try {   
       const savedDataStr = null;
       if (savedDataStr && typeof savedDataStr === 'string') {
         savedData = JSON.parse(savedDataStr);
@@ -335,14 +335,14 @@ window.showNourSection = async function() {
     } catch (e) {
       console.warn('[Section Switch] Error loading saved data for Nour:', e);
       // Try localStorage fallback
-      try { 
+      try {   
         const localData = localStorage.getItem(`video_${videoIdsMap.nour}`);
         if (localData) savedData = JSON.parse(localData);
       } catch (e2) {}
     }
   } else {
     // Fallback to localStorage
-    try { 
+    try {   
       const localData = localStorage.getItem(`video_${videoIdsMap.nour}`);
       if (localData) savedData = JSON.parse(localData);
     } catch (e) {}
@@ -350,7 +350,7 @@ window.showNourSection = async function() {
 
   const startSeconds = savedData.time || 0;
 
-  try { 
+  try {   
     if (player && typeof player.loadVideoById === 'function') {
       player.loadVideoById({
         videoId: videoIdsMap.nour,
@@ -399,7 +399,7 @@ window.showAfra7Section = async function() {
 
   // Update current section
   window.currentSection = 'afra7';
-  try {  window.dispatchEvent(new CustomEvent('section:changed', { detail: { section: 'afra7' } })); } catch(_){}
+  try {    window.dispatchEvent(new CustomEvent('section:changed', { detail: { section: 'afra7' } })); } catch(_){}
 
   // Deactivate extra mode if active (extra mode only works on Home)
   if (window.ExtraMode && window.ExtraMode.isActive && window.ExtraMode.isActive()) {
@@ -416,7 +416,7 @@ window.showAfra7Section = async function() {
   // Afra7 always starts from beginning (no saved time)
   const startSeconds = 0;
 
-  try { 
+  try {   
     if (player && typeof player.loadVideoById === 'function') {
       player.loadVideoById({
         videoId: videoIdsMap.afra7,

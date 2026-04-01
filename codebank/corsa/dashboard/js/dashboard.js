@@ -39,7 +39,7 @@ class CodeStockMarketDashboard {
     }
 
     async init() {
-        try {
+        try { 
             console.log('🚀 Initializing Code-StockMarket Dashboard with CoRsA Loading System...');
 
             // Initialize sophisticated loading overlay
@@ -60,7 +60,7 @@ class CodeStockMarketDashboard {
     }
 
     async initializeWithLazyLoading() {
-        try {
+        try { 
             // Add timeout wrapper for each step
             const withTimeout = (promise, timeoutMs, description) => {
                 return Promise.race([
@@ -132,7 +132,7 @@ class CodeStockMarketDashboard {
 
     // Authentication & Authorization
     async initAuthentication() {
-        try {
+        try { 
             // Check for existing session
             const sessionData = localStorage.getItem('stockMarketSession');
             if (sessionData) {
@@ -158,7 +158,7 @@ class CodeStockMarketDashboard {
     }
 
     async getUserBalanceFromCodeBank() {
-        try {
+        try { 
             console.log('🔍 Fetching user balance from codeBank...');
 
             // Get balance from codeBank localStorage
@@ -216,7 +216,7 @@ class CodeStockMarketDashboard {
 
     // WebSocket Connection (Mock - no real server needed)
     initWebSocket() {
-        try {
+        try { 
             // Simulate WebSocket connection without actual Socket.IO
             console.log('🔌 Simulating market data stream connection');
             
@@ -236,7 +236,7 @@ class CodeStockMarketDashboard {
 
     // Market Data Management
     async loadMarketData() {
-        try {
+        try { 
             // Load mock market data for different asset types
             const marketData = {
                 stocks: [
@@ -273,7 +273,7 @@ class CodeStockMarketDashboard {
 
     // CoRsA Instruments
     async loadCorsaInstruments() {
-        try {
+        try { 
             // Mock CoRsA instruments with EGP pricing
             const corsaInstruments = [
                 {
@@ -356,7 +356,7 @@ class CodeStockMarketDashboard {
 
     // Portfolio Management
     async loadUserPortfolio() {
-        try {
+        try { 
             // Refresh user balance from codeBank before loading portfolio
             const userBalance = await this.getUserBalanceFromCodeBank();
             this.userPortfolio.codes = userBalance.codes || 0;
@@ -418,7 +418,7 @@ class CodeStockMarketDashboard {
 
     // Real-world Funds
     async loadRealWorldFunds() {
-        try {
+        try { 
             // Mock real-world funds
             this.realWorldFunds = [
                 {
@@ -736,7 +736,7 @@ class CodeStockMarketDashboard {
 
     // Realistic Charts Section
     async loadRealisticCharts() {
-        try {
+        try { 
             console.log('📈 Initializing realistic stock market charts...');
             this.initializeRealisticChart();
             this.updateTechnicalIndicators();
@@ -873,7 +873,7 @@ class CodeStockMarketDashboard {
 
     // Console Section
     async loadConsole() {
-        try {
+        try { 
             console.log('🖥️ Initializing trading console...');
             this.initializeConsole();
             this.updateConsoleState();

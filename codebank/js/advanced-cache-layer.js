@@ -51,7 +51,7 @@ export class AdvancedCacheLayer {
         const strategy = options.strategy || 'default';
         const tierPreference = options.tier || 'auto';
 
-        try {
+        try { 
             // Try memory cache first (fastest)
             if (tierPreference === 'memory' || tierPreference === 'auto') {
                 const memoryResult = this._getFromMemory(key);
@@ -115,7 +115,7 @@ export class AdvancedCacheLayer {
         const tierPreference = options.tier || 'auto';
         const persistOffline = options.persistOffline !== false;
 
-        try {
+        try { 
             const item = {
                 data,
                 timestamp: Date.now(),
@@ -152,7 +152,7 @@ export class AdvancedCacheLayer {
     async delete(key, options = {}) {
         const tierPreference = options.tier || 'all';
 
-        try {
+        try { 
             if (tierPreference === 'all' || tierPreference === 'memory') {
                 this._deleteFromMemory(key);
             }
@@ -179,7 +179,7 @@ export class AdvancedCacheLayer {
 
     // Clear all caches
     async clear() {
-        try {
+        try { 
             this.memoryCache.clear();
             this.tiers.memory.currentSize = 0;
 
@@ -265,7 +265,7 @@ export class AdvancedCacheLayer {
         const results = [];
 
         for (const operation of this.offlineQueue) {
-            try {
+            try { 
                 switch (operation.type) {
                     case 'set':
                         await this.set(operation.data.key, operation.data.data, operation.data.options);
@@ -332,7 +332,7 @@ export class AdvancedCacheLayer {
 
     // localStorage operations
     async _getFromLocalStorage(key) {
-        try {
+        try { 
             const stored = localStorage.getItem(`cache_${key}`);
             return stored ? JSON.parse(stored) : null;
         } catch (error) {
@@ -342,7 +342,7 @@ export class AdvancedCacheLayer {
     }
 
     async _setToLocalStorage(key, item) {
-        try {
+        try { 
             // Check size limit
             const currentSize = this._getLocalStorageSize();
             if (currentSize + item.size > this.tiers.localStorage.maxSize) {
@@ -357,7 +357,7 @@ export class AdvancedCacheLayer {
     }
 
     async _deleteFromLocalStorage(key) {
-        try {
+        try { 
             const item = await this._getFromLocalStorage(key);
             if (item) {
                 localStorage.removeItem(`cache_${key}`);
@@ -369,7 +369,7 @@ export class AdvancedCacheLayer {
     }
 
     _clearLocalStorage() {
-        try {
+        try { 
             const keysToRemove = [];
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
@@ -390,7 +390,7 @@ export class AdvancedCacheLayer {
     }
 
     async _evictFromLocalStorage() {
-        try {
+        try { 
             const keys = Object.keys(localStorage).filter(key => key.startsWith('cache_'));
             const items = [];
 
@@ -420,7 +420,7 @@ export class AdvancedCacheLayer {
 
     _getLocalStorageSize() {
         let total = 0;
-        try {
+        try { 
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 if (key && key.startsWith('cache_')) {
@@ -437,7 +437,7 @@ export class AdvancedCacheLayer {
     async _getFromIndexedDB(key) {
         if (!this.db) return null;
 
-        try {
+        try { 
             return new Promise((resolve, reject) => {
                 const transaction = this.db.transaction(['cache'], 'readonly');
                 const store = transaction.objectStore('cache');
@@ -455,7 +455,7 @@ export class AdvancedCacheLayer {
     async _setToIndexedDB(key, item) {
         if (!this.db) return;
 
-        try {
+        try { 
             return new Promise((resolve, reject) => {
                 const transaction = this.db.transaction(['cache'], 'readwrite');
                 const store = transaction.objectStore('cache');
@@ -472,7 +472,7 @@ export class AdvancedCacheLayer {
     async _deleteFromIndexedDB(key) {
         if (!this.db) return;
 
-        try {
+        try { 
             return new Promise((resolve, reject) => {
                 const transaction = this.db.transaction(['cache'], 'readwrite');
                 const store = transaction.objectStore('cache');
@@ -489,7 +489,7 @@ export class AdvancedCacheLayer {
     async _clearIndexedDB() {
         if (!this.db) return;
 
-        try {
+        try { 
             return new Promise((resolve, reject) => {
                 const transaction = this.db.transaction(['cache'], 'readwrite');
                 const store = transaction.objectStore('cache');
@@ -600,7 +600,7 @@ export class AdvancedCacheLayer {
     }
 
     _cleanupExpiredLocalStorageEntries() {
-        try {
+        try { 
             const keysToRemove = [];
             const now = Date.now();
 
@@ -704,7 +704,7 @@ export class AdvancedCacheLayer {
     }
 
     _persistOfflineQueue() {
-        try {
+        try { 
             localStorage.setItem('cache_offline_queue', JSON.stringify(this.offlineQueue));
         } catch (error) {
             console.warn('Failed to persist offline queue:', error);
@@ -712,7 +712,7 @@ export class AdvancedCacheLayer {
     }
 
     _loadPersistedData() {
-        try {
+        try { 
             // Load offline queue
             const queueData = localStorage.getItem('cache_offline_queue');
             if (queueData) {
@@ -724,7 +724,7 @@ export class AdvancedCacheLayer {
     }
 
     _persistStatistics() {
-        try {
+        try { 
             localStorage.setItem('cache_statistics', JSON.stringify(this.stats));
         } catch (error) {
             console.warn('Failed to persist statistics:', error);

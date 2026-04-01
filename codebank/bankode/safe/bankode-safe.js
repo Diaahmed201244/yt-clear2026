@@ -12,7 +12,7 @@
 
   // Helper function to wait for dependencies before initializing
   async function waitForDependenciesAndInit() {
-    try {
+    try { 
       console.log('🏗️ Safe: Waiting for dependencies...');
 
       // Wait for DOM to be ready first
@@ -133,7 +133,7 @@
 
     // Initialize audio
     async function initAudio() {
-      try {
+      try { 
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         createSounds();
       } catch (e) {
@@ -313,7 +313,7 @@
     }
 
     async function setPassword(password) {
-      try {
+      try { 
         const encrypted = await encryptPassword(password);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(encrypted));
         return true;
@@ -324,7 +324,7 @@
     }
 
     async function verifyPassword(inputPassword) {
-      try {
+      try { 
         const stored = localStorage.getItem(STORAGE_KEY);
         if (!stored) {
           // First time setup
@@ -861,7 +861,7 @@
     // State persistence
     async function saveState(state = {}) {
       if (supabaseAvailable) {
-        try {
+        try { 
           const user = await unifiedStorage.getCurrentUser();
           if (user) {
             await unifiedStorage.saveData('safe_state', state);
@@ -874,7 +874,7 @@
 
     async function loadState() {
       if (supabaseAvailable) {
-        try {
+        try { 
           const user = await unifiedStorage.getCurrentUser();
           if (user) {
             const state = await unifiedStorage.getData('safe_state');

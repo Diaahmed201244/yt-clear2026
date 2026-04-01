@@ -2,7 +2,7 @@ import { createServer } from "http";
 import { playerService } from "./playerService";
 export async function registerRoutes(app) {
     app.get("/api/player/:playerId/can-play", async (req, res) => {
-        try {
+        try { 
             const { playerId } = req.params;
             const canPlay = await playerService.canPlayToday(playerId);
             const timeUntilNext = await playerService.getTimeUntilNextPlay(playerId);
@@ -18,7 +18,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/player/:playerId/record-play", async (req, res) => {
-        try {
+        try { 
             const { playerId } = req.params;
             const canPlay = await playerService.canPlayToday(playerId);
             if (!canPlay) {
@@ -36,7 +36,7 @@ export async function registerRoutes(app) {
         }
     });
     app.put("/api/player/:playerId/codes", async (req, res) => {
-        try {
+        try { 
             const { playerId } = req.params;
             const { totalCodes } = req.body;
             if (typeof totalCodes !== 'number') {

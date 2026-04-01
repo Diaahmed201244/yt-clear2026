@@ -109,7 +109,7 @@ class ShotsIntegration {
 
         this.isCapturing = true;
 
-        try {
+        try { 
             console.log('📸 Starting screenshot capture...');
             
             // Capture target element instead of full page
@@ -140,7 +140,7 @@ class ShotsIntegration {
 
     // This function should be called by play-pause button long-press handlers
     async showShotsGallery() {
-        try {
+        try { 
             console.log('🖼️ Opening Shots gallery...');
             
             // Check if there are any screenshots
@@ -374,7 +374,7 @@ class ShotsIntegration {
     }
 
     async downloadScreenshot(screenshotId) {
-        try {
+        try { 
             const screenshots = await window.shotsDB.getAllScreenshots();
             const screenshot = screenshots.find(s => s.id === screenshotId);
             

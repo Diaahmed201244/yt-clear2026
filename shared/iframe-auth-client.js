@@ -82,7 +82,7 @@
     const authOrigin = params.get('auth_origin');
     
     if (authOrigin) {
-      try { 
+      try {   
         const decoded = decodeURIComponent(authOrigin);
         // Validate it's a proper URL
         new URL(decoded);
@@ -96,7 +96,7 @@
 
     // Method 2: Referrer
     if (document.referrer) {
-      try { 
+      try {   
         const url = new URL(document.referrer);
         state.parentOrigin = url.origin;
         log('Parent origin from referrer:', state.parentOrigin);
@@ -107,7 +107,7 @@
     }
 
     // Method 3: Try direct access (will fail cross-origin, but we catch it)
-    try { 
+    try {   
       if (window.parent.location.origin) {
         state.parentOrigin = window.parent.location.origin;
         log('Parent origin from direct access:', state.parentOrigin);
@@ -261,7 +261,7 @@
     // Internal listeners
     if (listeners[type]) {
       listeners[type].forEach(cb => {
-        try { 
+        try {   
           cb(detail);
         } catch(e) {
           error('Listener error:', e);
@@ -271,7 +271,7 @@
 
     // DOM events for compatibility
     const eventName = 'auth:' + type.toLowerCase().replace(/([A-Z])/g, '-$1');
-    try { 
+    try {   
       window.dispatchEvent(new CustomEvent(eventName, { detail }));
     } catch(e) {
       // IE11 fallback if needed
@@ -287,7 +287,7 @@
 
     if (standardNames[type]) {
       standardNames[type].forEach(name => {
-        try { 
+        try {   
           window.dispatchEvent(new CustomEvent(name, { detail }));
         } catch(e) {}
       });
@@ -317,7 +317,7 @@
       return false;
     }
 
-    try { 
+    try {   
       window.parent.postMessage(message, state.parentOrigin);
       return true;
     } catch(e) {

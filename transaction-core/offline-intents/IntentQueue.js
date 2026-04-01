@@ -5,7 +5,7 @@ export class IntentQueue {
   }
 
   load() {
-    try {  return JSON.parse(this.storage.getItem(this.key) || "[]") } catch(_) { return [] }
+    try {    return JSON.parse(this.storage.getItem(this.key) || "[]") } catch(_) { return [] }
   }
 
   save(intents) {

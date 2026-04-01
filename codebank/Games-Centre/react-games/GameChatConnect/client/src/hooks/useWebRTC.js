@@ -8,7 +8,7 @@ export function useWebRTC() {
     const localStreamRef = useRef(null);
     const peerConnections = useRef(new Map());
     const getAudioDevices = useCallback(async () => {
-        try { 
+        try {   
             const devices = await navigator.mediaDevices.enumerateDevices();
             const audioDevices = devices
                 .filter(device => device.kind === 'audioinput' || device.kind === 'audiooutput')
@@ -29,7 +29,7 @@ export function useWebRTC() {
         getAudioDevices();
     }, [getAudioDevices]);
     const startCall = useCallback(async () => {
-        try { 
+        try {   
             const constraints = {
                 audio: {
                     echoCancellation: true,
@@ -70,7 +70,7 @@ export function useWebRTC() {
     }, []);
     const setAudioDevice = useCallback(async (deviceId, kind) => {
         if (kind === 'audioinput' && localStreamRef.current) {
-            try { 
+            try {   
                 localStreamRef.current.getTracks().forEach(track => track.stop());
                 const constraints = {
                     audio: {

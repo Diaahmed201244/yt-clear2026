@@ -81,7 +81,7 @@ export class CameraVerification {
     }
     
     async start() {
-        try {
+        try { 
             this.stream = await navigator.mediaDevices.getUserMedia({ 
                 video: { facingMode: 'environment' }
             });

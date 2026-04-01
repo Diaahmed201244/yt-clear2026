@@ -177,7 +177,7 @@
             status.className = 'status info';
             status.textContent = 'Testing upload request endpoint...';
             
-            try {
+            try { 
                 const response = await fetch('/api/farragna/upload/request', {
                     method: 'POST',
                     credentials: 'include'
@@ -203,7 +203,7 @@
             status.className = 'status info';
             status.textContent = 'Importing sample videos...';
             
-            try {
+            try { 
                 const sampleUrls = [
                     'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
                     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
@@ -240,7 +240,7 @@
             status.className = 'status info';
             status.textContent = 'Checking feed status...';
             
-            try {
+            try { 
                 // Try feed API
                 const feedResponse = await fetch('/api/farragna/feed');
                 const feedData = await feedResponse.json().catch(() => ({ videos: [] }));
@@ -273,7 +273,7 @@
             status.textContent = 'Loading feed...';
             videosContainer.innerHTML = '';
             
-            try {
+            try { 
                 // Try feed API
                 const feedResponse = await fetch('/api/farragna/feed');
                 const feedData = await feedResponse.json().catch(() => ({ videos: [] }));
@@ -329,7 +329,7 @@
             status.className = 'status info';
             status.textContent = 'Uploading video...';
             
-            try {
+            try { 
                 const formData = new FormData();
                 formData.append('video', file);
                 formData.append('caption', 'Test Upload');

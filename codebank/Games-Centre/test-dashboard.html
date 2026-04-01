@@ -81,7 +81,7 @@
 
     <script>
         async function testManifest() {
-            try { 
+            try {   
                 const response = await fetch('./dashboard-manifest.json');
                 if (!response.ok) throw new Error('Failed to fetch manifest');
                 const manifest = await response.json();
@@ -114,7 +114,7 @@
             let totalCount = manifest.vanilla.length;
             
             for (const game of manifest.vanilla) {
-                try { 
+                try {   
                     const response = await fetch(`./${game.path}`, { method: 'HEAD' });
                     if (response.ok) successCount++;
                 } catch (error) {
@@ -140,7 +140,7 @@
             let totalCount = manifest.react.length;
             
             for (const game of manifest.react) {
-                try { 
+                try {   
                     const response = await fetch(`./${game.path}`, { method: 'HEAD' });
                     if (response.ok) successCount++;
                 } catch (error) {
@@ -188,7 +188,7 @@
             let totalCount = images.length;
             
             for (const image of images) {
-                try { 
+                try {   
                     const response = await fetch(`./${image}`, { method: 'HEAD' });
                     if (response.ok) successCount++;
                 } catch (error) {

@@ -14,7 +14,7 @@ async function getAllTracks(nextCursor = null, folderPrefix = 'media-player/') {
         ...(nextCursor && { next_cursor: nextCursor }) // Include cursor if provided
     };
 
-    try {
+    try { 
         console.log(`🔄 Fetching tracks${nextCursor ? ` (cursor: ${nextCursor})` : ''}...`);
         
         // Add retry logic for connection issues
@@ -23,7 +23,7 @@ async function getAllTracks(nextCursor = null, folderPrefix = 'media-player/') {
         let result;
         
         while (attempts < maxAttempts) {
-            try {
+            try { 
                 result = await cloudinary.api.resources(options);
                 break; // Success, exit retry loop
             } catch (retryError) {
@@ -75,7 +75,7 @@ async function getTracksFromFolder(folderName = 'media-player', includeSubfolder
  * Get track count without fetching all data
  */
 async function getTrackCount(folderPrefix = 'media-player/') {
-    try {
+    try { 
         const options = {
             resource_type: 'video',
             type: 'upload',
@@ -96,7 +96,7 @@ async function getTrackCount(folderPrefix = 'media-player/') {
  * Search tracks by metadata
  */
 async function searchTracks(searchQuery, folderPrefix = 'media-player/') {
-    try {
+    try { 
         const options = {
             resource_type: 'video',
             type: 'upload',
@@ -121,7 +121,7 @@ async function searchTracks(searchQuery, folderPrefix = 'media-player/') {
  * Get track details by public_id
  */
 async function getTrackDetails(publicId) {
-    try {
+    try { 
         const result = await cloudinary.api.resource(publicId, {
             resource_type: 'video'
         });

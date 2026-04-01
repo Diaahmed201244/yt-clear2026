@@ -53,7 +53,7 @@ export class WebhookManager {
         const webhookId = `webhook_${Date.now()}_${Math.random().toString(36).substring(2)}`;
         const startTime = Date.now();
 
-        try {
+        try { 
             console.log('🪝 Processing webhook:', serviceName, eventType);
 
             const handlerKey = `${serviceName}:${eventType}`;
@@ -228,7 +228,7 @@ export class WebhookManager {
 
     // Validate webhook signature
     async _validateWebhookSignature(serviceName, payload, headers) {
-        try {
+        try { 
             const secret = this.webhookSecrets.get(serviceName);
             if (!secret) {
                 return true; // No secret configured
@@ -294,7 +294,7 @@ export class WebhookManager {
         let lastError;
 
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
-            try {
+            try { 
                 // Execute handler with timeout
                 const result = await Promise.race([
                     handlerConfig.handler(context),
@@ -442,7 +442,7 @@ export class WebhookManager {
 
     // Persist webhook history
     _persistWebhookHistory() {
-        try {
+        try { 
             localStorage.setItem('webhook_history', JSON.stringify(this.webhookHistory.slice(0, 1000)));
         } catch (error) {
             console.warn('Failed to persist webhook history:', error);

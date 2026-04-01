@@ -2,7 +2,7 @@ export class SoundManager {
     constructor() {
         this.audioContext = null;
         this.enabled = true;
-        try { 
+        try {   
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
         catch (error) {
@@ -15,7 +15,7 @@ export class SoundManager {
     playCardFlip() {
         if (!this.enabled || !this.audioContext)
             return;
-        try { 
+        try {   
             const oscillator = this.audioContext.createOscillator();
             const gainNode = this.audioContext.createGain();
             oscillator.connect(gainNode);
@@ -34,7 +34,7 @@ export class SoundManager {
     playCoinSound() {
         if (!this.enabled || !this.audioContext)
             return;
-        try { 
+        try {   
             const oscillator = this.audioContext.createOscillator();
             const gainNode = this.audioContext.createGain();
             oscillator.connect(gainNode);
@@ -53,7 +53,7 @@ export class SoundManager {
     playWinSound() {
         if (!this.enabled || !this.audioContext)
             return;
-        try { 
+        try {   
             const frequencies = [523, 659, 784, 1047];
             frequencies.forEach((freq, index) => {
                 setTimeout(() => {
@@ -76,7 +76,7 @@ export class SoundManager {
     playDealerVoice(message) {
         if (!this.enabled)
             return;
-        try { 
+        try {   
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(message);
                 utterance.rate = 0.9;
@@ -99,7 +99,7 @@ export class SoundManager {
     playButtonClick() {
         if (!this.enabled || !this.audioContext)
             return;
-        try { 
+        try {   
             const oscillator = this.audioContext.createOscillator();
             const gainNode = this.audioContext.createGain();
             oscillator.connect(gainNode);

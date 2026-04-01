@@ -2,7 +2,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import { log } from "./index.js";
 import { registerFileRoutes } from "./fileUpload.js";
         ws.on("message", (data) => {
-            try {
+            try { 
                 const message = JSON.parse(data.toString());
                 switch (message.type) {
                     case "init":

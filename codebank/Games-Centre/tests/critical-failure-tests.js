@@ -41,7 +41,7 @@ class CatastrophicFailureTests {
         const userId = 'test_user_1';
         const betAmount = 100;
 
-        try { 
+        try {   
             // Get initial balance
             const initialBalance = await assetsBus.getBalance(userId, 'code');
 
@@ -108,7 +108,7 @@ class CatastrophicFailureTests {
         const player2 = 'test_player_2';
         const betAmount = 100;
 
-        try { 
+        try {   
             // Get initial balances
             const p1InitialBalance = await assetsBus.getBalance(player1, 'code');
             const p2InitialBalance = await assetsBus.getBalance(player2, 'code');
@@ -188,7 +188,7 @@ class CatastrophicFailureTests {
         const userId = 'test_user_3';
         const betAmount = 100;
 
-        try { 
+        try {   
             const initialBalance = await assetsBus.getBalance(userId, 'code');
 
             // Lock funds
@@ -244,7 +244,7 @@ class CatastrophicFailureTests {
         const userId = 'test_user_4';
         const betAmount = 100;
 
-        try { 
+        try {   
             // Create bet
             const betResult = await bettingCore.createBet({
                 players: [{ userId, amount: betAmount, role: 'player1' }],
@@ -306,7 +306,7 @@ class CatastrophicFailureTests {
         const player2 = 'test_player_5b';
         const betAmount = 100;
 
-        try { 
+        try {   
             const p1Initial = await assetsBus.getBalance(player1, 'code');
 
             // Create and immediately settle bet
@@ -445,7 +445,7 @@ class IslamicComplianceTests {
         const p1 = 'compliance_user_1';
         const p2 = 'compliance_user_2';
 
-        try { 
+        try {   
             // Mode A: Fee 100, Reward 210
             const mode = 'mode_a';
             const expectedFee = 100;
@@ -503,7 +503,7 @@ class IslamicComplianceTests {
         const p2 = 'collusion_user_2';
         const dummyCompId = 'test_comp_collusion';
 
-        try { 
+        try {   
             // Simulate alternating wins (Win Trading)
             // Win-Loss-Win-Loss pattern
             await collusionEngine.recordMatch(p1, p2, 'win', 'mode_a', dummyCompId + 1);
@@ -534,7 +534,7 @@ class IslamicComplianceTests {
 
         const p1 = 'practice_user_1';
 
-        try { 
+        try {   
             const result = await competitionCore.createBet({
                 players: [{ userId: p1 }],
                 gameId: 'practice_test',

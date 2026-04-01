@@ -63,7 +63,7 @@ export class GameWrapper {
 
         // Create bet if applicable
         if (this.betAmount > 0) {
-            try { 
+            try {   
                 // Build players array
                 const players = [
                     { userId: this.userId, role: 'player1', amount: this.betAmount }
@@ -151,7 +151,7 @@ export class GameWrapper {
 
         // Process bet result
         if (this.betId) {
-            try { 
+            try {   
                 const betResult = await bettingCore.processBetResult(this.betId, {
                     winnerId: result.won ? this.userId : (this.opponents[0]?.userId || null),
                     isDraw: result.draw || false,
@@ -220,7 +220,7 @@ export class GameWrapper {
         if (this.iframe && this.iframe.contentWindow) {
             this.iframe.contentWindow.postMessage(msg, '*');
             var __o;
-            try {  var __s = this.iframe.getAttribute('src') || this.iframe.src || ''; __o = new URL(__s, window.location.href).origin } catch(_) { __o = window.location.origin }
+            try {    var __s = this.iframe.getAttribute('src') || this.iframe.src || ''; __o = new URL(__s, window.location.href).origin } catch(_) { __o = window.location.origin }
             this.iframe.contentWindow.postMessage(msg, __o);
         }
     }

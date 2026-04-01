@@ -255,7 +255,7 @@ class RewardsSystem {
 
     // Storage Management
     saveToStorage() {
-        try {
+        try { 
             const data = {
                 totalEarned: this.totalEarned,
                 rewardsHistory: this.rewardsHistory,
@@ -269,7 +269,7 @@ class RewardsSystem {
     }
 
     loadFromStorage() {
-        try {
+        try { 
             const data = localStorage.getItem('millcode_rewards');
             if (data) {
                 const parsed = JSON.parse(data);

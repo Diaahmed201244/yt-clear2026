@@ -25,7 +25,7 @@ import { logoutUser } from './jwt-auth.js';
 const statusEl = document.getElementById('status');
 const usersContainer = document.getElementById('usersContainer');
 document.getElementById('loadUsersBtn').addEventListener('click', async () => {
-  try {
+  try { 
     statusEl.textContent = 'جاري التحميل...';
     usersContainer.innerHTML = '';
     const overview = await getAdminOverview();

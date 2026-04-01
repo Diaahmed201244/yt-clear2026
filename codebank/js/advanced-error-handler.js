@@ -49,7 +49,7 @@ export class AdvancedErrorHandler {
     async executeWithRetry(operation, context = {}) {
         const startTime = Date.now();
 
-        try {
+        try { 
             // Check circuit breaker
             if (this.circuitState === 'OPEN') {
                 if (Date.now() - this.lastFailureTime < this.circuitBreakerTimeout) {
@@ -82,7 +82,7 @@ export class AdvancedErrorHandler {
         let lastError;
 
         for (let attempt = 0; attempt <= this.maxRetries; attempt++) {
-            try {
+            try { 
                 const result = await operation(attempt);
 
                 if (attempt > 0) {
@@ -177,7 +177,7 @@ export class AdvancedErrorHandler {
 
     // Store error for later analysis
     _storeErrorForAnalysis(errorInfo) {
-        try {
+        try { 
             const errors = JSON.parse(localStorage.getItem('transaction_errors') || '[]');
             errors.push(errorInfo);
 
@@ -218,7 +218,7 @@ export class AdvancedErrorHandler {
 
     // Get error analysis
     getErrorAnalysis() {
-        try {
+        try { 
             const errors = JSON.parse(localStorage.getItem('transaction_errors') || '[]');
             const last24Hours = Date.now() - 24 * 60 * 60 * 1000;
 
@@ -262,7 +262,7 @@ export class ErrorRecoveryManager {
         const errorType = this._classifyError(error);
 
         if (this.recoveryStrategies[errorType]) {
-            try {
+            try { 
                 console.log(`🔧 Attempting recovery from ${errorType} error`);
                 return await this.recoveryStrategies[errorType](error, context);
             } catch (recoveryError) {
@@ -311,7 +311,7 @@ export class ErrorRecoveryManager {
 
     async _recoverFromAuthError(error, context) {
         // Attempt to refresh authentication
-        try {
+        try { 
             if (window.authHelper) {
                 const authResult = await window.authHelper.refreshAuth();
                 return authResult.success;

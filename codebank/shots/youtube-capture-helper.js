@@ -14,7 +14,7 @@ class YouTubeCaptureHelper {
     static async getThumbnail(videoId) {
         const qualities = ['maxresdefault', 'sddefault', 'hqdefault', 'mqdefault', 'default'];
         for (const quality of qualities) {
-            try {
+            try { 
                 const url = `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
                 // Use anonymous crossOrigin for canvas compatibility
                 const img = new Image();

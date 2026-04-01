@@ -53,7 +53,7 @@ class BalanceLoaderTest {
      */
     async testSupabaseInitialization() {
         const testName = 'Supabase Client Initialization';
-        try {
+        try { 
             // Check if Supabase client is properly configured
             const supabaseConfigCheck = typeof window.supabase !== 'undefined' &&
                 window.supabase &&
@@ -74,7 +74,7 @@ class BalanceLoaderTest {
      */
     async testSessionRestoration() {
         const testName = 'Session Restoration';
-        try {
+        try { 
             // Check if session restoration is working
             const sessionCheck = await window.checkAuth();
 
@@ -93,7 +93,7 @@ class BalanceLoaderTest {
      */
     async testRPCFunctionCall() {
         const testName = 'RPC Function Call';
-        try {
+        try { 
             // Check if RPC manager is available
             const rpcCheck = typeof window.BankodeRPC !== 'undefined' &&
                 window.BankodeRPC &&
@@ -114,7 +114,7 @@ class BalanceLoaderTest {
      */
     async testJSONResponseParsing() {
         const testName = 'JSON Response Parsing';
-        try {
+        try { 
             // Simulate the expected RPC response format
             const mockResponse = {
                 balance_codes: 1000,
@@ -148,7 +148,7 @@ class BalanceLoaderTest {
      */
     async testUIUpdateSimulation() {
         const testName = 'UI Update Simulation';
-        try {
+        try { 
             // Check if balance elements exist in the DOM
             const codesBalanceElement = document.getElementById('codes-balance');
             const silverBalanceElement = document.getElementById('silver-balance');
@@ -171,7 +171,7 @@ class BalanceLoaderTest {
      */
     async testCompleteBalanceLoadingFlow() {
         const testName = 'Complete Balance Loading Flow';
-        try {
+        try { 
             // Simulate the complete balance loading process
             const user = await window.checkAuth();
 

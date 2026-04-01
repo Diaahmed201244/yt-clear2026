@@ -147,7 +147,7 @@ class ServiceManagerV2 {
   }
 
   optimizeIframeContent(iframe) {
-    try { 
+    try {   
       // Access iframe content and optimize
       const doc = iframe.contentDocument;
       if (!doc) return;

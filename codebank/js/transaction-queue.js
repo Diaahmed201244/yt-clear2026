@@ -127,7 +127,7 @@ export class TransactionQueue {
 
         this._emitEvent('transaction:processing', item);
 
-        try {
+        try { 
             await this._processTransaction(item);
         } catch (error) {
             await this._handleProcessingError(item, error);
@@ -140,7 +140,7 @@ export class TransactionQueue {
     async _processTransaction(item) {
         const startTime = Date.now();
 
-        try {
+        try { 
             // Execute transaction based on type
             const result = await this._executeTransaction(item.transaction);
 
@@ -199,7 +199,7 @@ export class TransactionQueue {
         await simpleManager.initialize();
 
         // Try direct transfer first
-        try {
+        try { 
             return await simpleManager.transferCodes(fromUserId, toEmail, amount);
         } catch (error) {
             // Fallback to email transfer
@@ -234,7 +234,7 @@ export class TransactionQueue {
         const results = [];
 
         for (const transfer of transfers) {
-            try {
+            try { 
                 const result = await this._executeTransfer(transfer);
                 results.push({ success: true, result, transfer });
             } catch (error) {
@@ -307,7 +307,7 @@ export class TransactionQueue {
         clearTimeout(this.batchTimer);
         this.batchTimer = null;
 
-        try {
+        try { 
             const results = await Promise.allSettled(
                 batch.map(item => this._executeTransaction(item.transaction))
             );
@@ -345,7 +345,7 @@ export class TransactionQueue {
     _emitEvent(event, data) {
         if (this.eventListeners[event]) {
             this.eventListeners[event].forEach(callback => {
-                try {
+                try { 
                     callback(data);
                 } catch (error) {
                     console.error(`Event listener error for ${event}:`, error);

@@ -9,7 +9,7 @@ router.post('/redeem', async (req, res) => {
   const pool = (await import('../config/db.js')).pool
   const client = await pool.connect()
   
-  try { 
+  try {   
     await client.query('BEGIN')
     
     // Lock and validate code
@@ -55,7 +55,7 @@ router.post('/redeem', async (req, res) => {
 })
 
 router.get('/transactions', async (req, res) => {
-  try { 
+  try {   
     const r = await query(
       'SELECT ct.*, cc.code FROM corsa_transactions ct JOIN corsa_codes cc ON ct.code_id = cc.id WHERE ct.user_id=$1 ORDER BY ct.created_at DESC',
       [req.user.clerkUserId]

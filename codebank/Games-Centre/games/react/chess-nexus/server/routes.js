@@ -4,7 +4,7 @@ import { insertGameSchema, insertMoveSchema, insertChatMessageSchema } from "@sh
 import { z } from "zod";
 export async function registerRoutes(app) {
     app.get("/api/user/current", async (req, res) => {
-        try {
+        try { 
             const user = await storage.getUser(1);
             if (!user) {
                 return res.status(404).json({ message: "User not found" });
@@ -16,7 +16,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/games", async (req, res) => {
-        try {
+        try { 
             const gameData = insertGameSchema.parse(req.body);
             const game = await storage.createGame(gameData);
             res.json(game);
@@ -29,7 +29,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/games/:id", async (req, res) => {
-        try {
+        try { 
             const gameId = parseInt(req.params.id);
             const game = await storage.getGame(gameId);
             if (!game) {
@@ -42,7 +42,7 @@ export async function registerRoutes(app) {
         }
     });
     app.patch("/api/games/:id", async (req, res) => {
-        try {
+        try { 
             const gameId = parseInt(req.params.id);
             const updates = req.body;
             const game = await storage.updateGameState(gameId, updates);
@@ -53,7 +53,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/users/:id/games", async (req, res) => {
-        try {
+        try { 
             const userId = parseInt(req.params.id);
             const games = await storage.getUserGames(userId);
             res.json(games);
@@ -63,7 +63,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/games/:id/moves", async (req, res) => {
-        try {
+        try { 
             const gameId = parseInt(req.params.id);
             const moveData = insertMoveSchema.parse({
                 ...req.body,
@@ -80,7 +80,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/games/:id/moves", async (req, res) => {
-        try {
+        try { 
             const gameId = parseInt(req.params.id);
             const moves = await storage.getGameMoves(gameId);
             res.json(moves);
@@ -90,7 +90,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/games/:id/chat", async (req, res) => {
-        try {
+        try { 
             const gameId = parseInt(req.params.id);
             const messageData = insertChatMessageSchema.parse({
                 ...req.body,
@@ -107,7 +107,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/games/:id/chat", async (req, res) => {
-        try {
+        try { 
             const gameId = parseInt(req.params.id);
             const messages = await storage.getGameChatMessages(gameId);
             res.json(messages);
@@ -117,7 +117,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/games/multiplayer/active", async (req, res) => {
-        try {
+        try { 
             const games = await storage.getActiveMultiplayerGames();
             res.json(games);
         }

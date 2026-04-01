@@ -461,7 +461,7 @@ const LANGUAGES = [
 
 // --- Helper utilities ---
 function getStoredLang() {
-  try { 
+  try {   
     const prefs = JSON.parse(localStorage.getItem('userPrefs') || '{}');
     return prefs.language || localStorage.getItem('lang') || DEFAULT_LANG;
   } catch (e) {
@@ -474,7 +474,7 @@ function setLanguage(lang) {
   if (!['en', 'ar', 'ur'].includes(lang)) lang = DEFAULT_LANG;
   localStorage.setItem('lang', lang);
   // if userPrefs exists, update it too
-  try { 
+  try {   
     const prefs = JSON.parse(localStorage.getItem('userPrefs') || '{}');
     prefs.language = lang;
     localStorage.setItem('userPrefs', JSON.stringify(prefs));

@@ -61,7 +61,7 @@ class SpinnerGame {
         }
         
         // Update rewards using the shared utility
-        try { 
+        try {   
             const currentRewards = window.getRewards ? window.getRewards() : { codes: 0, silverBars: 0, goldBars: 0 };
             const updatedRewards = {
                 codes: (currentRewards.codes || 0) + (rewardUpdate.codes || 0),

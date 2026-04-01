@@ -27,7 +27,7 @@
     init: async function() {
       if (this.isInitialized) return;
       
-      try {
+      try { 
         this.db = await this.openDB();
         this.isInitialized = true;
         console.log('[StorageManager] IndexedDB initialized');
@@ -210,7 +210,7 @@
 
       this.updateUI('uploading');
 
-      try {
+      try { 
         // Create FormData
         const formData = new FormData();
         formData.append('audio_data', recording.blob, 'recording.webm');
@@ -271,7 +271,7 @@
 
     async deleteFromCloud(id) {
       // Call server to delete from cloud
-      try {
+      try { 
         await fetch('/api/battalooda/delete-cloud', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

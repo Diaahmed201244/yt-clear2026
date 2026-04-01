@@ -36,7 +36,7 @@ export async function setupVite(app, server) {
     app.use(vite.middlewares);
     app.use("*", async (req, res, next) => {
         const url = req.originalUrl;
-        try { 
+        try {   
             const clientTemplate = path.resolve(import.meta.dirname, "..", "client", "index.html");
             let template = await fs.promises.readFile(clientTemplate, "utf-8");
             template = template.replace(`src="/web-v1/src/main.tsx"`, `src="/web-v1/src/main.tsx?v=${nanoid()}"`);

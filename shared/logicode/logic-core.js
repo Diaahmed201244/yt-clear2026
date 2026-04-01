@@ -16,10 +16,10 @@ export function uuidv4() {
 
 export function nowTs() { return Date.now(); }
 
-export function setLocal(key, val) { try {  localStorage.setItem(key, JSON.stringify(val)); } catch(_){} }
-export function getLocal(key) { try {  const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(_){ return null } }
-export function removeLocal(key) { try {  localStorage.removeItem(key); } catch(_){} }
+export function setLocal(key, val) { try {    localStorage.setItem(key, JSON.stringify(val)); } catch(_){} }
+export function getLocal(key) { try {    const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(_){ return null } }
+export function removeLocal(key) { try {    localStorage.removeItem(key); } catch(_){} }
 
 export function isAuthenticated() {
-  try {  return !!(window.Auth && typeof window.Auth.isAuthenticated==='function' ? window.Auth.isAuthenticated() : false) } catch(_){ return false }
+  try {    return !!(window.Auth && typeof window.Auth.isAuthenticated==='function' ? window.Auth.isAuthenticated() : false) } catch(_){ return false }
 }

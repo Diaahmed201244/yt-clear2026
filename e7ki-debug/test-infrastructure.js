@@ -20,7 +20,7 @@ class E7kiTestSuite {
   async testServerHealth() {
     console.log('🔍 Testing Server Health...');
     
-    try {
+    try { 
       const response = await fetch(`${this.baseURL}/api/e7ki/health`);
       const data = await response.json();
       
@@ -77,7 +77,7 @@ class E7kiTestSuite {
   async testDatabaseConnection() {
     console.log('🔍 Testing Database Connection...');
     
-    try {
+    try { 
       const response = await fetch(`${this.baseURL}/api/e7ki/chats`, {
         headers: {
           'Authorization': 'Bearer test-token'
@@ -114,7 +114,7 @@ class E7kiTestSuite {
     console.log('🔍 Testing Authentication Flow...');
     
     // Test 1: Check if auth endpoints exist
-    try {
+    try { 
       const authResponse = await fetch(`${this.baseURL}/api/auth/me`);
       console.log('Auth endpoint status:', authResponse.status);
       
@@ -132,7 +132,7 @@ class E7kiTestSuite {
     }
 
     // Test 2: Check JWT vs Session compatibility
-    try {
+    try { 
       const jwtResponse = await fetch(`${this.baseURL}/api/e7ki/chats`, {
         headers: {
           'Authorization': 'Bearer test-jwt-token'
@@ -183,7 +183,7 @@ class E7kiTestSuite {
     ];
 
     for (const endpoint of endpoints) {
-      try {
+      try { 
         const response = await fetch(`${this.baseURL}${endpoint.path}`, {
           method: endpoint.method,
           headers: {
@@ -226,7 +226,7 @@ class E7kiTestSuite {
       type: 'text'
     };
 
-    try {
+    try { 
       const response = await fetch(`${this.baseURL}/api/e7ki/messages`, {
         method: 'POST',
         headers: {
@@ -278,7 +278,7 @@ class E7kiTestSuite {
       });
 
       ws.on('message', (data) => {
-        try {
+        try { 
           const message = JSON.parse(data.toString());
           console.log('WebSocket message received:', message.type);
           
@@ -336,7 +336,7 @@ class E7kiTestSuite {
       message: 'Hello from E2E test!'
     };
 
-    try {
+    try { 
       // Test conversation creation
       const convResponse = await fetch(`${this.baseURL}/api/e7ki/chats`, {
         method: 'POST',
@@ -442,7 +442,7 @@ class E7kiTestSuite {
     console.log('🔍 Testing Security...');
     
     // Test SQL injection
-    try {
+    try { 
       const sqlInjectionResponse = await fetch(`${this.baseURL}/api/e7ki/messages?conversation_id='; DROP TABLE e7ki_messages; --`, {
         headers: {
           'Authorization': 'Bearer test-token'
@@ -465,7 +465,7 @@ class E7kiTestSuite {
     }
 
     // Test XSS
-    try {
+    try { 
       const xssResponse = await fetch(`${this.baseURL}/api/e7ki/messages`, {
         method: 'POST',
         headers: {
@@ -545,7 +545,7 @@ class E7kiTestSuite {
       console.log(`\n📋 Running: ${test.name}`);
       console.log('-'.repeat(40));
       
-      try {
+      try { 
         const result = await test.test();
         results.push({ name: test.name, passed: result });
         console.log(result ? '✅ PASSED' : '❌ FAILED');

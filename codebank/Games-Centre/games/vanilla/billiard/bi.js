@@ -1286,7 +1286,7 @@ if (window.location.href.match(/cpgrid/)) {
   let canvas = new Canvas(render);
   let mouse = Mouse.create(render.canvas);
   let sounds;
-  try {
+  try { 
     // Disable remote audio to prevent console errors; use silent stubs
     const Silent = class { volume(){} rate(){} play(){} };
     sounds = { cue: new Silent(), ball: new Silent(), rail: new Silent() };

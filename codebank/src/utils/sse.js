@@ -32,7 +32,7 @@ export const useSSE = (channel, callback, token = null) => {
       }
 
       eventSource.onmessage = (event) => {
-        try {
+        try { 
           const data = JSON.parse(event.data)
           if (callback) {
             callback(data)
@@ -104,12 +104,12 @@ export class SSEManager {
     this.connections.set(channel, eventSource)
 
     eventSource.onmessage = (event) => {
-      try {
+      try { 
         const data = JSON.parse(event.data)
         const callbacks = this.callbacks.get(channel)
         if (callbacks) {
           callbacks.forEach(callback => {
-            try {
+            try { 
               callback(data)
             } catch (err) {
               console.error('SSE callback error:', err)

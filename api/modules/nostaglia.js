@@ -30,7 +30,7 @@ const nostagliaClients = new Set()
 function nostagliaBroadcast(event, payload) {
   const data = `event: ${event}\n` + `data: ${JSON.stringify(payload)}\n\n`
   for (const res of nostagliaClients) {
-    try {  res.write(data) } catch (e) {}
+    try {    res.write(data) } catch (e) {}
   }
 }
 
@@ -61,7 +61,7 @@ router.get('/feed', (req, res) => {
 
 // Upload
 router.post('/upload', upload.single('file'), async (req, res) => {
-  try { 
+  try {   
     const { title, artist, note } = req.body || {}
     const file = req.file
     if (!file || !title) return res.status(400).json({ message: 'Missing file or title' })
@@ -111,7 +111,7 @@ router.post('/admin/reject', (req, res) => {
 
 // Adjust codes function
 function adjustCodes(userId, delta) {
-  try { 
+  try {   
     const rewards = JSON.parse(global.codebank_rewards_cache || localStorage.getItem('codebank_rewards') || '{}')
     rewards.codes = (rewards.codes || 0) + delta
     rewards.lastUpdated = new Date().toISOString()

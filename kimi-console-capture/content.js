@@ -53,7 +53,7 @@
       const originalFetch = window.fetch;
       window.fetch = async (...args) => {
         const start = Date.now();
-        try { 
+        try {   
           const response = await originalFetch.apply(window, args);
           const duration = Date.now() - start;
           
@@ -142,7 +142,7 @@
     },
 
     serialize(data) {
-      try { 
+      try {   
         return JSON.parse(JSON.stringify(data, (key, value) => {
           if (value instanceof Error) {
             return { message: value.message, stack: value.stack };

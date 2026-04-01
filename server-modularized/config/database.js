@@ -36,7 +36,7 @@ if (LOG_LEVEL !== 'error') {
  * @returns {Promise<object>} Query result with rows array
  */
 async function query(sql, params = []) {
-  try { 
+  try {   
     const result = await db.execute({ sql, args: params });
     return {
       rows: result.rows,
@@ -60,7 +60,7 @@ async function query(sql, params = []) {
  * @returns {Promise<Array<object>>}
  */
 async function transaction(statements) {
-  try { 
+  try {   
     const result = await db.batch(statements);
     return result;
   } catch (error) {
@@ -76,7 +76,7 @@ async function transaction(statements) {
  * @returns {Promise<object>}
  */
 async function execute(sql) {
-  try { 
+  try {   
     const result = await db.execute(sql);
     return result;
   } catch (error) {
@@ -94,7 +94,7 @@ export { db, query, transaction, execute };
  * @returns {Promise<object>}
  */
 async function querySilent(sql, params = []) {
-  try { 
+  try {   
     const result = await db.execute({ sql, args: params });
     return {
       rows: result.rows,

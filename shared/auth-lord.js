@@ -1,8 +1,8 @@
 let identity = { id: 'local-user', email: null, name: 'Local User' };
 const AuthLord = {
   install() {
-    try {  window.AuthLord = this } catch (_) {}
-    try { 
+    try {    window.AuthLord = this } catch (_) {}
+    try {   
       const k = window.AuthKernel;
       if (k) {
         k.on = function(){}; k.subscribe = function(){}; k.executeCommand = function(){}; k.refreshFromAdapter = function(){};

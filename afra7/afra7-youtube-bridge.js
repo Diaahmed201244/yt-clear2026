@@ -22,7 +22,7 @@
                 return;
             }
             
-            try {
+            try { 
                 // Method 1: Direct API call if available
                 if (typeof this.player.mute === 'function') {
                     this.player.mute();
@@ -49,7 +49,7 @@
         unmuteVideo: function() {
             if (!this.player) return;
             
-            try {
+            try { 
                 if (typeof this.player.unMute === 'function') {
                     this.player.unMute();
                     this.isMuted = false;

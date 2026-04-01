@@ -33,7 +33,7 @@ const router = Router();
 // ---------------------------------------------------------------------------
 
 router.get('/countries', (req, res) => {
-  try { 
+  try {   
     const countries = getAllCountries();
     res.json({ success: true, count: countries.length, countries });
   } catch (err) {
@@ -48,7 +48,7 @@ router.get('/countries', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/countries/by-continent', (req, res) => {
-  try { 
+  try {   
     const grouped = getCountriesByContinent();
     res.json({ success: true, continents: grouped });
   } catch (err) {
@@ -61,7 +61,7 @@ router.get('/countries/by-continent', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/countries/search', (req, res) => {
-  try { 
+  try {   
     const { q } = req.query;
     if (!q) {
       return res.status(400).json({ success: false, error: 'Query parameter required' });
@@ -78,7 +78,7 @@ router.get('/countries/search', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/countries/:code', (req, res) => {
-  try { 
+  try {   
     const { code } = req.params;
     const country = getCountryByCode(code.toUpperCase());
     if (!country) {
@@ -95,7 +95,7 @@ router.get('/countries/:code', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/religions', (req, res) => {
-  try { 
+  try {   
     const religions = getReligions();
     res.json({ success: true, count: religions.length, religions });
   } catch (err) {
@@ -108,7 +108,7 @@ router.get('/religions', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/phone-code/:countryCode', (req, res) => {
-  try { 
+  try {   
     const { countryCode } = req.params;
     const phoneCode = getPhoneCode(countryCode.toUpperCase());
     if (!phoneCode) {

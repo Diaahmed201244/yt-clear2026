@@ -15,7 +15,7 @@ const charCount = document.getElementById('char-count');
 
 // Initialize the application
 async function initApp() {
-    try {
+    try { 
         showLoading();
 
         // Setup event listeners
@@ -37,7 +37,7 @@ async function initApp() {
 
 // Load posts from the anonymous platform
 async function loadPosts() {
-    try {
+    try { 
         const data = await getPosts();
         posts = data;
         renderPosts();
@@ -92,7 +92,7 @@ async function handlePostSubmit() {
     const message = postContent.value.trim();
     if (!message) return;
 
-    try {
+    try { 
         showLoading();
 
         await createPost(message);

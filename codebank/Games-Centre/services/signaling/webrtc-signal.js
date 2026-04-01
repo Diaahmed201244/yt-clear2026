@@ -25,7 +25,7 @@ class WebRTCSignaling {
     this.playerId = playerId;
 
     return new Promise((resolve, reject) => {
-      try {
+      try { 
         // Create WebSocket connection
         this.socket = new WebSocket(signalingServerUrl);
 
@@ -85,7 +85,7 @@ class WebRTCSignaling {
    * Handle incoming signaling messages
    */
   handleSignalingMessage(message) {
-    try {
+    try { 
       const data = JSON.parse(message);
 
       switch (data.type) {
@@ -169,7 +169,7 @@ class WebRTCSignaling {
 
     const pc = this.createPeerConnection(targetPlayerId);
 
-    try {
+    try { 
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
 
@@ -196,7 +196,7 @@ class WebRTCSignaling {
     const { from: senderId, sdp } = data;
     const pc = this.createPeerConnection(senderId);
 
-    try {
+    try { 
       await pc.setRemoteDescription(new RTCSessionDescription({
         type: 'offer',
         sdp
@@ -227,7 +227,7 @@ class WebRTCSignaling {
     const pc = this.peerConnections.get(senderId);
 
     if (pc) {
-      try {
+      try { 
         await pc.setRemoteDescription(new RTCSessionDescription({
           type: 'answer',
           sdp
@@ -261,7 +261,7 @@ class WebRTCSignaling {
     const pc = this.peerConnections.get(senderId);
 
     if (pc) {
-      try {
+      try { 
         await pc.addIceCandidate(new RTCIceCandidate(candidate));
       } catch (error) {
         console.error('[WebRTCSignaling] Error adding ICE candidate:', error);

@@ -69,7 +69,7 @@ class BattaloodaApp {
         window.BattaloodaCore = this;
         
         // Initialize modules
-        try {
+        try { 
             this.audioEngine = new KaraokeAudioEngine();
             this.musicLibrary = new JamendoLibrary();
             this.socialFeatures = new SocialFeatures();
@@ -83,7 +83,7 @@ class BattaloodaApp {
         }
         
         // Initialize security engine
-        try {
+        try { 
             this.securityEngine = new BattaloodaSecurityEngine();
             await this.securityEngine.initialize();
             window.SecurityEngine = this.securityEngine; // 🔧 Bridge access
@@ -103,7 +103,7 @@ class BattaloodaApp {
         this.requestUserData();
         
         // Load initial feed
-        try {
+        try { 
             await this.loadFeed();
         } catch (e) {
             console.warn('Initial feed load failed, continuing anyway...');
@@ -342,7 +342,7 @@ class BattaloodaApp {
         if (loadingIndicator) loadingIndicator.style.display = 'flex';
         if (mainFeed) mainFeed.innerHTML = '';
 
-        try {
+        try { 
             const response = await fetch(`/api/battalooda/feed?category=${this.currentCategory}&page=1`);
             if (response.ok) {
                 const data = await response.json();
@@ -546,7 +546,7 @@ class BattaloodaApp {
 
         const isLiked = button.dataset.liked === 'true';
         
-        try {
+        try { 
             const response = await fetch('/api/battalooda/like', {
                 method: 'POST',
                 headers: {
@@ -579,7 +579,7 @@ class BattaloodaApp {
     async loadComments(recordingId) {
         const commentList = document.getElementById(`comment-list-${recordingId}`);
         
-        try {
+        try { 
             const response = await fetch(`/api/battalooda/comments?recordingId=${recordingId}`);
             const data = await response.json();
             
@@ -611,7 +611,7 @@ class BattaloodaApp {
             return;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/comment', {
                 method: 'POST',
                 headers: {
@@ -641,7 +641,7 @@ class BattaloodaApp {
             return;
         }
 
-        try {
+        try { 
             // Request microphone permission
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             
@@ -659,7 +659,7 @@ class BattaloodaApp {
             // Initialize security session if available
             let securitySession = null;
             if (this.securityEngine) {
-                try {
+                try { 
                     securitySession = await this.securityEngine.startSecureRecording(this.recordingMode);
                     console.log('Security session started:', securitySession.sessionId);
                 } catch (error) {
@@ -686,7 +686,7 @@ class BattaloodaApp {
     }
 
     async runSecurityAnalysis(stream, securitySession) {
-        try {
+        try { 
             // Run security analysis in parallel with recording
             const securityResult = await this.securityEngine.analyzeStream(stream, 5000);
             
@@ -837,7 +837,7 @@ class BattaloodaApp {
             return;
         }
 
-        try {
+        try { 
             // Create FormData
             const formData = new FormData();
             const blob = await fetch(previewAudio.src).then(r => r.blob());
@@ -885,7 +885,7 @@ class BattaloodaApp {
     }
 
     async loadPopularTracks(category) {
-        try {
+        try { 
             const tracks = await this.musicLibrary.getPopularTracks(category);
             this.renderMusicGrid(tracks);
         } catch (error) {
@@ -897,7 +897,7 @@ class BattaloodaApp {
     async searchMusic(query) {
         if (!query.trim()) return;
 
-        try {
+        try { 
             const tracks = await this.musicLibrary.searchTracks(query);
             this.renderMusicGrid(tracks);
         } catch (error) {

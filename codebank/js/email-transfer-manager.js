@@ -8,7 +8,7 @@ export class EmailTransferManager {
     async initialize() {
         if (this.initialized) return;
 
-        try {
+        try { 
             this.client = window.__SUPABASE_CLIENT__ || (window.Auth && window.Auth.client);
             if (!this.client) {
                 console.warn('EmailTransferManager: Supabase client not available');
@@ -24,7 +24,7 @@ export class EmailTransferManager {
 
     // Check URL for verification tokens and process them
     checkUrlForVerification() {
-        try {
+        try { 
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('verification_token');
             const transferId = urlParams.get('transfer_id');
@@ -39,7 +39,7 @@ export class EmailTransferManager {
 
     // Process email verification for transfers
     async processEmailVerification(token, transferId) {
-        try {
+        try { 
             if (!this.client) {
                 throw new Error('EmailTransferManager not initialized');
             }
@@ -86,7 +86,7 @@ export class EmailTransferManager {
 
     // Execute the actual transfer after verification
     async executeTransfer(transferData) {
-        try {
+        try { 
             // Get recipient user by username (now stored in transferData)
             const { data: recipient, error: recipientError } = await this.client
                 .from('profiles')
@@ -143,7 +143,7 @@ export class EmailTransferManager {
 
     // Clean URL by removing verification parameters
     cleanUrl() {
-        try {
+        try { 
             const url = new URL(window.location);
             url.searchParams.delete('verification_token');
             url.searchParams.delete('transfer_id');
@@ -155,7 +155,7 @@ export class EmailTransferManager {
 
     // Send transfer email with verification link (now using username)
     async sendTransferEmail(recipientUsername, amount, transferId) {
-        try {
+        try { 
             // Lookup recipient user by username
             const { data: recipient, error: recipientError } = await this.firebase
                 .from('profiles')
@@ -213,7 +213,7 @@ export class EmailTransferManager {
 
     // Get current user ID
     getCurrentUserId() {
-        try {
+        try { 
             const userData = JSON.parse(localStorage.getItem('userData') || '{}');
             return userData.id || userData.uid || userData.firebaseId;
         } catch (error) {

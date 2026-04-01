@@ -9,4 +9,4 @@ window.__LOCAL_COUNTER__ = {
   }
 };
 
-try { window.__DISABLE_ASSET_PERIODIC_SYNC = true; } catch (_) {}
+try {  window.__DISABLE_ASSET_PERIODIC_SYNC = true; } catch (_) {}

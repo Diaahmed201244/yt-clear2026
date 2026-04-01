@@ -13,7 +13,7 @@ export function getAllCountries() {
   
   return countryCodes
     .map(code => {
-      try { 
+      try {   
         const phoneCode = getCountryCallingCode(code);
         const countryData = getCountryData(code);
         
@@ -40,7 +40,7 @@ export function getAllCountries() {
 export function getCountryByCode(code) {
   if (!isSupportedCountry(code)) return null;
   
-  try { 
+  try {   
     const phoneCode = getCountryCallingCode(code);
     const countryData = getCountryData(code);
     
@@ -63,7 +63,7 @@ export function getCountryByCode(code) {
  * Get phone code for a country
  */
 export function getPhoneCode(countryCode) {
-  try { 
+  try {   
     return `+${getCountryCallingCode(countryCode)}`;
   } catch (e) {
     return null;
@@ -74,7 +74,7 @@ export function getPhoneCode(countryCode) {
  * Validate phone number format
  */
 export async function validatePhoneNumber(phoneNumber, countryCode) {
-  try { 
+  try {   
     const { parsePhoneNumber } = await import('libphonenumber-js');
     const phone = parsePhoneNumber(phoneNumber, countryCode);
     return phone?.isValid() || false;
@@ -87,7 +87,7 @@ export async function validatePhoneNumber(phoneNumber, countryCode) {
  * Format phone number to E.164
  */
 export async function formatPhoneNumberE164(phoneNumber, countryCode) {
-  try { 
+  try {   
     const { parsePhoneNumber } = await import('libphonenumber-js');
     const phone = parsePhoneNumber(phoneNumber, countryCode);
     return phone?.format('E.164') || phoneNumber;

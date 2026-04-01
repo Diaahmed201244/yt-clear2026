@@ -49,7 +49,7 @@ export async function registerRoutes(httpServer, app) {
         res.json({ message: "Logged out successfully" });
     });
     app.get("/api/videos", async (req, res) => {
-        try {
+        try { 
             const { category, search, status } = req.query;
             const videos = await storage.getVideos({
                 category: category,
@@ -66,7 +66,7 @@ export async function registerRoutes(httpServer, app) {
 
     // Recommendation API endpoints
     app.get("/api/recommendations/trending", async (req, res) => {
-        try {
+        try { 
             const limit = parseInt(req.query.limit) || 20;
             const trending = await recommendationService.getTrendingVideos(limit);
             res.json(trending);
@@ -77,7 +77,7 @@ export async function registerRoutes(httpServer, app) {
     });
 
     app.get("/api/recommendations/for-you", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             const userId = req.user?.claims?.sub || "guest_user";
             const limit = parseInt(req.query.limit) || 20;
             const forYou = await recommendationService.getForYouFeed(userId, limit);
@@ -89,7 +89,7 @@ export async function registerRoutes(httpServer, app) {
     });
 
     app.get("/api/recommendations/related/:videoId", async (req, res) => {
-        try {
+        try { 
             const videoId = parseInt(req.params.videoId);
             const limit = parseInt(req.query.limit) || 10;
             const related = await recommendationService.getRelatedVideos(videoId, limit);
@@ -101,7 +101,7 @@ export async function registerRoutes(httpServer, app) {
     });
 
     app.get("/api/recommendations/recommended", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             const userId = req.user?.claims?.sub || "guest_user";
             const limit = parseInt(req.query.limit) || 20;
             const recommended = await recommendationService.getRecommendedVideos(userId, limit);
@@ -134,7 +134,7 @@ export async function registerRoutes(httpServer, app) {
         res.json(files);
     });
     app.get("/api/videos/pending", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -147,7 +147,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.get("/api/videos/:id", async (req, res) => {
-        try {
+        try { 
             const id = parseInt(req.params.id);
             const video = await storage.getVideoById(id);
             if (!video) {
@@ -161,12 +161,12 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.post("/api/videos", async (req, res) => {
-        try {
+        try { 
         }
     });
     // ✅ CLOUDFLARE STREAM UPLOAD - Modern video platform integration
     app.post("/api/videos/cloudflare-upload", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             // Get authenticated user or use guest
             const userId = req.user?.claims?.sub || "guest_user";
 
@@ -208,7 +208,7 @@ export async function registerRoutes(httpServer, app) {
 
     // Cloudflare webhook for video status updates
     app.post("/api/videos/cloudflare-webhook", async (req, res) => {
-        try {
+        try { 
             // Verify webhook signature
             const signature = req.headers['cf-stream-signature'];
             const body = req.rawBody.toString();
@@ -265,7 +265,7 @@ export async function registerRoutes(httpServer, app) {
         res.json(files);
     });
     app.patch("/api/videos/:id/moderate", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -286,7 +286,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.delete("/api/videos/:id", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -308,7 +308,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.post("/api/videos/:id/view", async (req, res) => {
-        try {
+        try { 
             const id = parseInt(req.params.id);
             await storage.incrementVideoViews(id);
             res.status(204).send();
@@ -319,7 +319,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.get("/api/videos/:id/engagement", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -334,7 +334,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.post("/api/videos/:id/engagement", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -359,7 +359,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.delete("/api/videos/:id/engagement", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -382,7 +382,7 @@ export async function registerRoutes(httpServer, app) {
         res.json([]);
     });
     app.get("/api/videos/:id/favorite", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.json({ isFavorite: false });
             }
@@ -397,7 +397,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.post("/api/videos/:id/favorite", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }
@@ -416,7 +416,7 @@ export async function registerRoutes(httpServer, app) {
         }
     });
     app.delete("/api/videos/:id/favorite", isAuthenticated, async (req, res) => {
-        try {
+        try { 
             if (!req.user) {
                 return res.status(401).json({ message: "Authentication required" });
             }

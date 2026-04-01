@@ -7,7 +7,7 @@ const router = express.Router();
 // Get player's home location
 router.get('/home', async (req, res) => {
     const userId = req.headers['user-id'] || 'guest';
-    try { 
+    try {   
         const result = await query('SELECT * FROM yahood_homes WHERE user_id = $1', [userId]);
         res.json({ home: result.rows[0] || null });
     } catch (e) { res.status(500).json({ error: e.message }); }
@@ -18,7 +18,7 @@ router.post('/home/set', async (req, res) => {
     const userId = req.headers['user-id'] || 'guest';
     const { lat, lng } = req.body;
     
-    try { 
+    try {   
         // Validate distance from treasure zones
         // Simplified check: at least 5km from 0,0
         const distFromCenter = calculateDistance(lat, lng, 0, 0);
@@ -40,7 +40,7 @@ router.post('/mine', async (req, res) => {
     const userId = req.headers['user-id'] || 'guest';
     const { lat, lng, type, amount } = req.body;
     
-    try { 
+    try {   
         // Anti-cheat validation
         const validation = await YahoodAntiCheat.validateTreasureClaim(
             userId, lat, lng, type, amount
@@ -70,7 +70,7 @@ router.post('/mine', async (req, res) => {
 // Get pending treasures
 router.get('/treasures/pending', async (req, res) => {
     const userId = req.headers['user-id'] || 'guest';
-    try { 
+    try {   
         const result = await query('SELECT * FROM yahood_pending_treasures WHERE user_id = $1 AND status = \'pending\'', [userId]);
         res.json({ treasures: result.rows });
     } catch (e) { res.status(500).json({ error: e.message }); }
@@ -80,7 +80,7 @@ router.get('/treasures/pending', async (req, res) => {
 router.post('/treasures/claim', async (req, res) => {
     const userId = req.headers['user-id'] || 'guest';
     
-    try { 
+    try {   
         // Verify player is at home location
         const homeResult = await query('SELECT lat, lng FROM yahood_homes WHERE user_id = $1', [userId]);
         const playerResult = await query('SELECT lat, lng FROM yahood_player_locations WHERE user_id = $1', [userId]);
@@ -115,7 +115,7 @@ router.post('/location', async (req, res) => {
     const userId = req.headers['user-id'] || 'guest';
     const { lat, lng } = req.body;
     
-    try { 
+    try {   
         const validSpeed = await YahoodAntiCheat.checkSpeedHack(userId, lat, lng);
         if (!validSpeed) {
             return res.status(400).json({ error: 'Speed anomaly detected' });

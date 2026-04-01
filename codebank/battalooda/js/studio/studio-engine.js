@@ -277,7 +277,7 @@ class BattaloodaStudio {
         };
 
         for (const [name, url] of Object.entries(sampleUrls)) {
-            try {
+            try { 
                 const response = await fetch(url);
                 const arrayBuffer = await response.arrayBuffer();
                 const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);

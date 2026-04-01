@@ -111,7 +111,7 @@ class FFmpegLoader {
 
         console.log('🚀 Starting FFmpeg load sequence with multi-tiered fallback strategy');
 
-        try {
+        try { 
             // Attempt 1: Primary CDN
             this.state.currentAttempt = 1;
             this.state.activeSource = 'primary_cdn';
@@ -172,7 +172,7 @@ class FFmpegLoader {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-        try {
+        try { 
             console.log(`📡 Loading FFmpeg from: ${source}`);
 
             // Create script element for dynamic loading
@@ -187,7 +187,7 @@ class FFmpegLoader {
 
                     // Check if FFmpeg is available globally
                     if (typeof FFmpeg !== 'undefined') {
-                        try {
+                        try { 
                             const ffmpegInstance = this.initializeFFmpeg();
                             resolve({
                                 success: true,
@@ -247,7 +247,7 @@ class FFmpegLoader {
      * Initialize FFmpeg instance with proper configuration
      */
     initializeFFmpeg() {
-        try {
+        try { 
             console.log('🛠️ Initializing FFmpeg instance...');
 
             // Create FFmpeg instance with optimized configuration
@@ -982,7 +982,7 @@ class FFmpegLoader {
      * Store logs locally for debugging
      */
     storeLocalLog(logEntry) {
-        try {
+        try { 
             const logs = JSON.parse(localStorage.getItem('ffmpegLoadLogs') || '[]');
             logs.push(logEntry);
 

@@ -42,7 +42,7 @@ async function refreshBalances(userId) {
       return;
     }
 
-    try {
+    try { 
       const freshBalance = await errorHandler.executeWithRetry(async () => {
         const { data, error } = await client.from('balances').select('codes, silver_bars, gold_bars').eq('user_id', userId).single();
         if (error) {
@@ -95,7 +95,7 @@ async function createBalanceRecord(userId) {
    const client = getSupabaseClient();
    if (!client) return;
 
-   try {
+   try { 
      // Get current localStorage values
      const codes = parseInt(safeStorage.get('asset-codes') || '0', 10);
      const silverBars = parseInt(safeStorage.get('asset-silver') || '0', 10);
@@ -137,7 +137,7 @@ export async function handleTransfer() {
 
    const startTime = Date.now();
 
-   try {
+   try { 
      // Set loading state
      const originalText = sendButton.innerHTML;
      sendButton.disabled = true;
@@ -217,7 +217,7 @@ export async function handleTransfer() {
     }
 
     // Also verify with Supabase to ensure consistency
-    try {
+    try { 
       const client = getSupabaseClient();
       if (client) {
         const result = await errorHandler.executeWithRetry(async () => {
@@ -247,7 +247,7 @@ export async function handleTransfer() {
     let emailTransferManager;
     let simpleTransferManager;
     
-    try {
+    try { 
       emailTransferManager = new EmailTransferManager();
       await emailTransferManager.initialize();
       console.log('EmailTransferManager initialized successfully');
@@ -256,7 +256,7 @@ export async function handleTransfer() {
       emailTransferManager = null;
     }
     
-    try {
+    try { 
       simpleTransferManager = new SimpleTransferManager();
       await simpleTransferManager.initialize();
       console.log('SimpleTransferManager initialized successfully');
@@ -272,7 +272,7 @@ export async function handleTransfer() {
     // Always use email transfer manager for now (safer approach)
     if (emailTransferManager) {
       // Use new username-based transfer system
-      try {
+      try { 
         const result = await emailTransferManager.sendTransferEmail(recipientUsername, amount, transferId);
 
         // Record successful transaction in audit trail
@@ -342,7 +342,7 @@ export async function handleTransfer() {
       // Try RPC function first, then fallback to direct operations
       let transferResult;
 
-      try {
+      try { 
         // Try RPC function with retry logic
         transferResult = await errorHandler.executeWithRetry(async () => {
           const { data, error } = await client.rpc('transfer_codes_by_username', {
@@ -364,7 +364,7 @@ export async function handleTransfer() {
         });
 
         if (simpleTransferManager) {
-          try {
+          try { 
             // Use direct database operations with retry logic
             transferResult = await errorHandler.executeWithRetry(async () => {
               return await simpleTransferManager.transferCodesByUsername(userData.id, recipientUsername, amount);
@@ -408,7 +408,7 @@ export async function handleTransfer() {
       transactionMonitor.recordTransactionComplete(transactionId, true, null, { method: 'rpc', amount, recipientUsername });
 
       // Sync updated balances to Supabase
-      try {
+      try { 
         const client = getSupabaseClient();
         if (client) {
           const codes = parseInt(safeStorage.get('asset-codes') || '0', 10);
@@ -532,7 +532,7 @@ export function initializeTransactionSystem() {
 function updateBalancesAfterTransfer(userId, amount, assetType = 'codes') {
   console.log('🔄 Transaction: Updating balances after transfer...');
 
-  try {
+  try { 
     // Update localStorage based on asset type
     if (assetType === 'codes') {
       const currentBalance = parseInt(safeStorage.get('asset-codes') || '0', 10);

@@ -52,7 +52,7 @@ export const AssetTransactions = {
         // If inserting new, base is 0 + delta. If updating, it's existing + delta.
         // Note: For the INSERT case, we pass 'delta' as the initial balance.
         // Wait, if delta is negative (spend) and row doesn't exist (0), this tries to insert negative balance -> DB Error. Correct.
-        try {
+        try { 
             const res = await client.query(sql, [userId, assetType, delta, delta]);
             return Number(res.rows[0].balance);
         } catch (err) {

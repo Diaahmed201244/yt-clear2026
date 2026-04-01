@@ -38,7 +38,7 @@ class PassiveAudioAnalyzer {
     }
 
     async initialize() {
-        try {
+        try { 
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
             this.analyser = this.audioContext.createAnalyser();
             this.analyser.fftSize = this.analysisConfig.fftSize;

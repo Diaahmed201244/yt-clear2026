@@ -24,7 +24,7 @@ export class VideoChat {
     async init() {
         if (!this.isEnabled) return;
         
-        try {
+        try { 
             // Request camera and microphone permissions
             this.localStream = await navigator.mediaDevices.getUserMedia({ 
                 video: true, 
@@ -95,7 +95,7 @@ export class VideoChat {
 
         // Handle negotiation needed
         this.peerConnection.onnegotiationneeded = async () => {
-            try {
+            try { 
                 await this.peerConnection.setLocalDescription(await this.peerConnection.createOffer());
                 this.ws.send({
                     type: 'OFFER',
@@ -124,7 +124,7 @@ export class VideoChat {
     async handleSignaling(data) {
         if (!this.isEnabled || !this.peerConnection) return;
 
-        try {
+        try { 
             if (data.type === 'OFFER') {
                 await this.peerConnection.setRemoteDescription(new RTCSessionDescription(data.sdp));
                 const answer = await this.peerConnection.createAnswer();

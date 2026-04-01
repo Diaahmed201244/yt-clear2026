@@ -98,7 +98,7 @@ SelfHealing.registerRule(
 SelfHealing.registerRule(
   "reload-loop",
   async () => {
-    try { 
+    try {   
         const navigation = performance.getEntriesByType("navigation")[0];
         return navigation && navigation.type === 'reload';
     } catch (e) {
@@ -290,7 +290,7 @@ AppLifecycleManager.register("bankode", {
       if (isFetching) return;
       isFetching = true;
 
-      try { 
+      try {   
         window.__LAST_FETCH__ = Date.now();
         await safeFetch("/api/sqlite/codes", { credentials: 'include' });
         // Reset API errors on success
@@ -319,7 +319,7 @@ if (!window.__APP_STARTED__) {
   };
 
   async function boot() {
-    try { 
+    try {   
         // Listen for authentication to initialize ACC
         window.addEventListener('auth:authenticated', async (e) => {
             const { userId, token } = e.detail;

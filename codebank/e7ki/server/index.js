@@ -6,7 +6,7 @@ const app = express();
 const httpServer = createServer(app);
 app.use(express.json({
     verify: (req, _res, buf) => {
-        try {
+        try { 
             req.rawBody = buf;
         } catch (error) {
             console.error("Error setting rawBody:", error);

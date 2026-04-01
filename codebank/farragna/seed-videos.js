@@ -20,7 +20,7 @@ class VideoSeeder {
 
     this.isSeeding = true;
 
-    try {
+    try { 
       // Try Pexels API first
       const pexelsVideos = await this.fetchPexelsVideos();
       if (pexelsVideos.length > 0) {
@@ -58,7 +58,7 @@ class VideoSeeder {
   }
 
   async fetchPexelsVideos() {
-    try {
+    try { 
       const response = await fetch('https://api.pexels.com/videos/popular?per_page=20', {
         headers: {
           'Authorization': PEXELS_API_KEY
@@ -85,7 +85,7 @@ class VideoSeeder {
   }
 
   async fetchPixabayVideos() {
-    try {
+    try { 
       const response = await fetch('https://pixabay.com/api/videos/?key=YOUR_PIXABAY_API_KEY&q=popular&per_page=20');
       
       if (!response.ok) {
@@ -132,7 +132,7 @@ class VideoSeeder {
   }
 
   async importVideos(videos, source) {
-    try {
+    try { 
       const response = await fetch(`${FARRAGNA_API_BASE}/import-samples`, {
         method: 'POST',
         headers: {
@@ -160,7 +160,7 @@ class VideoSeeder {
   }
 
   async checkAndSeed() {
-    try {
+    try { 
       // Check if feed is empty
       const feedResponse = await fetch('/api/farragna/feed');
       const feedData = await feedResponse.json().catch(() => ({ videos: [] }));

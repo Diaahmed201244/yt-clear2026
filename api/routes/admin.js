@@ -23,14 +23,14 @@ const requireAdmin = (req, res, next) => {
 };
 
 router.post('/deposit', requireAuth, requireAdmin, async (req, res) => {
-  try { 
+  try {   
     const { email, code, type, amount } = req.body || {};
     if (!email || !code || !type || !amount) return res.status(400).json({ ok: false, error: 'missing_fields' });
     
     const kind = (type === 'silver' || type === 'gold') ? type : 'codes';
     const client = await pool.connect();
     
-    try { 
+    try {   
       await client.query('BEGIN');
       const u = await client.query('SELECT id FROM users WHERE email=$1 LIMIT 1', [String(email).trim()]);
       if (!u.rows[0]) {

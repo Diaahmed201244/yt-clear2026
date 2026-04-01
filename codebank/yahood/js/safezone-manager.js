@@ -7,7 +7,7 @@ class SafeZoneManager {
     }
     
     async loadHome() {
-        try {
+        try { 
             const response = await fetch('/api/yahood/home', {
                 headers: { 'user-id': localStorage.getItem('user_id') || 'guest' }
             });
@@ -25,7 +25,7 @@ class SafeZoneManager {
     }
     
     async setHome(lat, lng) {
-        try {
+        try { 
             const response = await fetch('/api/yahood/home/set', {
                 method: 'POST',
                 headers: {
@@ -64,7 +64,7 @@ class SafeZoneManager {
             throw new Error('No home set');
         }
         
-        try {
+        try { 
             const response = await fetch('/api/yahood/treasures/claim', {
                 method: 'POST',
                 headers: {

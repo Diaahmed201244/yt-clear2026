@@ -36,7 +36,7 @@ export function getFile(id) {
 
 export function registerFileRoutes(app) {
   app.post("/api/upload", async (req, res) => {
-    try {
+    try { 
       const contentType = req.headers["content-type"] || "";
       let buffer;
       let mimeType;

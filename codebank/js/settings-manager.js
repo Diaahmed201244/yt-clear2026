@@ -12,7 +12,7 @@ export class SettingsManager {
     async initialize() {
         if (this.initialized) return;
 
-        try {
+        try { 
             console.log('⚙️ Initializing settings system...');
 
             // Load saved settings
@@ -156,7 +156,7 @@ export class SettingsManager {
 
     async handleSignIn() {
         // Disable Google Sign-In paths completely; rely on internal Auth only
-        try {
+        try { 
             const btn = document.getElementById('signin-btn');
             if (btn) { btn.style.display = 'none'; btn.disabled = true; }
             window.dispatchEvent(new CustomEvent('auth:changed', { detail: { status: 'authenticated' } }));
@@ -164,7 +164,7 @@ export class SettingsManager {
     }
 
     async handleSignOut() {
-        try {
+        try { 
             signoutBtn.disabled = true;
             signoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing out...';
 
@@ -254,7 +254,7 @@ export class SettingsManager {
     }
 
     exportData() {
-        try {
+        try { 
             const data = {
                 settings: Object.fromEntries(this.settings),
                 assets: {

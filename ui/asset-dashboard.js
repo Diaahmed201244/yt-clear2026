@@ -17,7 +17,7 @@
     return container;
   }
 
-  function resetContainer(c){ try { c.innerHTML = ''; } catch(_){} }
+  function resetContainer(c){ try {  c.innerHTML = ''; } catch(_){} }
 
   function render(){
     const c = ensureContainer();
@@ -35,7 +35,7 @@
     if (ts <= (last.ts[type] || 0) && value === last.values[type]) return;
     last.values[type] = value;
     last.ts[type] = ts;
-    try { console.log('[ASSET DASHBOARD] render', type, value); } catch(_){}
+    try {  console.log('[ASSET DASHBOARD] render', type, value); } catch(_){}
     render();
   }
 
@@ -49,7 +49,7 @@
     if (type === 'transactions') return;
   }, { once: false });
 
-  try {
+  try { 
     if (window.AssetBus && typeof window.AssetBus.getState === 'function') {
       const s = window.AssetBus.getState();
       last.values.likes = typeof s.likes==='number' ? s.likes : last.values.likes;

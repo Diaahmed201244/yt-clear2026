@@ -4,7 +4,7 @@ import crypto from 'crypto';
 export async function applyNeonCompressionDDL() {
   // 🛡️ Ensure columns exist (Fix for "duplicate column name" warnings)
   const addColumnIfNotExists = async (table, column, type) => {
-    try { 
+    try {   
       await query(`ALTER TABLE ${table} ADD COLUMN ${column} ${type}`);
       console.log(`[DB] Added missing column: ${column}`);
     } catch (e) {
@@ -16,7 +16,7 @@ export async function applyNeonCompressionDDL() {
     }
   };
 
-  try { 
+  try {   
     await addColumnIfNotExists('users', 'religion', 'TEXT');
     await addColumnIfNotExists('users', 'country', 'TEXT');
     await addColumnIfNotExists('users', 'phone', 'TEXT');
@@ -180,16 +180,16 @@ export async function applyNeonCompressionDDL() {
     "INSERT INTO event_offsets (key, last_id) VALUES ('default', 0) ON CONFLICT (key) DO NOTHING"
   ];
   
-  try { 
+  try {   
     for (const sql of statements) {
-      try {  await query(sql) } catch (e) { console.warn('[DB DDL] stmt failed:', e.message) }
+      try {    await query(sql) } catch (e) { console.warn('[DB DDL] stmt failed:', e.message) }
     }
     console.log('✅ [DB] Schema Verified on startup');
   } catch(e) { console.warn('[DB DDL] apply failed:', e.message) }
 }
 
 export async function ensureQarsanVirtualUsers() {
-  try { 
+  try {   
     const r = await query('SELECT COUNT(*) AS c FROM qarsan_virtual_users')
     const c = parseInt(r.rows[0]?.c || 0, 10)
     if (c === 0) {
@@ -199,7 +199,7 @@ export async function ensureQarsanVirtualUsers() {
 }
 
 async function generateVirtualUsers() {
-  try { 
+  try {   
     const bots = [
       { email: 'bot1@qarsan.ai', name: 'Qarsan Bot 1', dog_state: 'SLEEPING', qarsan_mode: 'RANGED', balance: 150, qarsan_wallet: 50 },
       { email: 'bot2@qarsan.ai', name: 'Qarsan Bot 2', dog_state: 'ACTIVE', qarsan_mode: 'OFF', balance: 200, qarsan_wallet: 0 },

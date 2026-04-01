@@ -4,7 +4,7 @@
    * Direct reading of parent state (window.top.__APP__)
    */
   function syncFromParent(){
-    try { 
+    try {   
       const app = window.top.__APP__;
       if (app && app.auth) {
         // Source of Truth injection

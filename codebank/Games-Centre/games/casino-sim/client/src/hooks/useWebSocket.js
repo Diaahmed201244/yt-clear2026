@@ -9,7 +9,7 @@ function useWebSocket() {
     const reconnectAttemptsRef = (0, react_1.useRef)(0);
     const maxReconnectAttempts = 5;
     const connect = (0, react_1.useCallback)(() => {
-        try { 
+        try {   
             const wsUrl = 'ws://localhost:3000/ws';
             const ws = new WebSocket(wsUrl);
             ws.onopen = () => {

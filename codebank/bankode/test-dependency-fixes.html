@@ -125,7 +125,7 @@
       // First check if unifiedStorageReady promise is available
       if (window.unifiedStorageReady) {
         log('✅ unifiedStorageReady promise is available', 'success');
-        try {
+        try { 
           await window.unifiedStorageReady;
           log('✅ unifiedStorageReady promise resolved successfully', 'success');
         } catch (error) {
@@ -134,7 +134,7 @@
         }
       } else if (window.unifiedStorage && window.unifiedStorage.unifiedStorageReady) {
         log('✅ unifiedStorageReady promise available via API', 'success');
-        try {
+        try { 
           await window.unifiedStorage.unifiedStorageReady;
           log('✅ unifiedStorageReady promise resolved successfully (via API)', 'success');
         } catch (error) {

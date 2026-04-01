@@ -66,7 +66,7 @@ class SafeDoor3D {
   }
 
   async openSafeDoor() {
-    try {
+    try { 
       // Load safe record for the admin user
       await this.loadSafe('7186c7f0-e4b6-48a7-9c24-b750a7cdde25');
 
@@ -102,7 +102,7 @@ class SafeDoor3D {
       this.verifyPasswordBtn.textContent = 'Verifying...';
     }
 
-    try {
+    try { 
       const isValid = await this.verifyPassword(password);
       if (isValid) {
         this.handlePasswordSuccessUI();

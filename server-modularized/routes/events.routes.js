@@ -28,7 +28,7 @@ const router = Router();
  * via the shared SSE client map (emitSSE / broadcastSSE).
  */
 router.get('/stream', (req, res) => {
-  try { 
+  try {   
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) {
       return res.status(401).end();
@@ -45,7 +45,7 @@ router.get('/stream', (req, res) => {
     // Register client — keep-alive ping + auto-cleanup on close handled by service
     addClient(String(s.userId), res, req);
   } catch (err) {
-    try { 
+    try {   
       res.status(500).end();
     } catch (_) {}
   }
@@ -56,7 +56,7 @@ router.get('/stream', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/inbox', async (req, res) => {
-  try { 
+  try {   
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) {
       return res.status(401).json({ ok: false, error: 'unauthorized' });
@@ -88,7 +88,7 @@ router.get('/inbox', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/ack', async (req, res) => {
-  try { 
+  try {   
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) {
       return res.status(401).json({ ok: false, error: 'unauthorized' });
@@ -122,7 +122,7 @@ router.post('/ack', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/', (req, res) => {
-  try { 
+  try {   
     return res.json({
       status: 'success',
       events: globalThis.__eventVaultMem || [],

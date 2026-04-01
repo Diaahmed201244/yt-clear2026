@@ -20,7 +20,7 @@ export function useWebSocket(onMessage) {
             setIsConnected(false);
         };
         ws.current.onmessage = (event) => {
-            try {
+            try { 
                 const message = JSON.parse(event.data);
                 setLastMessage(message);
                 onMessage?.(message);

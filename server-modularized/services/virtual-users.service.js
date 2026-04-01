@@ -38,7 +38,7 @@ const BOTS = [
  * multiple times.
  */
 export async function generateVirtualUsers() {
-  try { 
+  try {   
     for (const b of BOTS) {
       await query(
         `INSERT INTO qarsan_virtual_users (id, email, name, dog_state, qarsan_mode, balance, qarsan_wallet, last_fed_at)
@@ -58,7 +58,7 @@ export async function generateVirtualUsers() {
  * Call this during server startup (after DDL has been applied).
  */
 export async function ensureQarsanVirtualUsers() {
-  try { 
+  try {   
     const r = await query('SELECT COUNT(*) AS c FROM qarsan_virtual_users');
     const c = parseInt(r.rows[0]?.c || 0, 10);
     if (c === 0) {

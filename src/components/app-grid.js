@@ -289,7 +289,7 @@ class AppGrid {
   }
 
   async launchApp(app) {
-    try { 
+    try {   
       // Update status
       const status = document.getElementById(`status-${app.id}`);
       status.className = 'app-status loading';

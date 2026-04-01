@@ -106,7 +106,7 @@ class PrayerAlertSystem {
     }
 
     async fetchCurrentPrayerTimes() {
-        try {
+        try { 
             // Try to get coordinates from localStorage (same as azan-clock.html)
             const savedLat = localStorage.getItem('userLat');
             const savedLng = localStorage.getItem('userLng');
@@ -138,7 +138,7 @@ class PrayerAlertSystem {
     }
 
     async fetchPrayerTimesFromAPI(lat, lon) {
-        try {
+        try { 
             const data = await response.json();
             const timings = data.data.timings;
 
@@ -237,7 +237,7 @@ class PrayerAlertSystem {
     }
 
     playAzan(index) {
-        try {
+        try { 
             // Stop any existing audio
             this.stopAzan();
 
@@ -293,7 +293,7 @@ class PrayerAlertSystem {
     }
 
     muteVideo() {
-        try {
+        try { 
             // Mute YouTube video
             if (window.player && typeof player.mute === 'function') {
                 if (!player.isMuted()) {
@@ -318,7 +318,7 @@ class PrayerAlertSystem {
 
         // Send mute messages to all components
         components.forEach(component => {
-            try {
+            try { 
                 window.postMessage({
                     type: 'MUTE_AUDIO',
                     component: component,
@@ -335,7 +335,7 @@ class PrayerAlertSystem {
         
         // Send unmute messages to all components
         components.forEach(component => {
-            try {
+            try { 
                 window.postMessage({
                     type: 'UNMUTE_AUDIO',
                     component: component,
@@ -348,7 +348,7 @@ class PrayerAlertSystem {
     }
 
     unmuteVideo() {
-        try {
+        try { 
             // Unmute YouTube video if it wasn't muted before
             if (window.player && typeof player.unMute === 'function') {
                 if (!this.videoWasMuted) {

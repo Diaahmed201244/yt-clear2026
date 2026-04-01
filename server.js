@@ -124,7 +124,7 @@ app.set('trust proxy', 1);
 
 // Get all countries with phone codes
 app.get('/api/countries', (req, res) => {
-  try {
+  try { 
     const countries = getAllCountries();
     res.json({ 
       success: true, 
@@ -139,7 +139,7 @@ app.get('/api/countries', (req, res) => {
 
 // Get countries grouped by continent
 app.get('/api/countries/by-continent', (req, res) => {
-  try {
+  try { 
     const grouped = getCountriesByContinent();
     res.json({ success: true, continents: grouped });
   } catch (err) {
@@ -149,7 +149,7 @@ app.get('/api/countries/by-continent', (req, res) => {
 
 // Search countries
 app.get('/api/countries/search', (req, res) => {
-  try {
+  try { 
     const { q } = req.query;
     if (!q) {
       return res.status(400).json({ success: false, error: 'Query parameter required' });
@@ -163,7 +163,7 @@ app.get('/api/countries/search', (req, res) => {
 
 // Get single country details
 app.get('/api/countries/:code', (req, res) => {
-  try {
+  try { 
     const { code } = req.params;
     const country = getCountryByCode(code.toUpperCase());
     if (!country) {
@@ -177,7 +177,7 @@ app.get('/api/countries/:code', (req, res) => {
 
 // Get all religions
 app.get('/api/religions', (req, res) => {
-  try {
+  try { 
     const religions = getReligions();
     res.json({ success: true, count: religions.length, religions });
   } catch (err) {
@@ -187,7 +187,7 @@ app.get('/api/religions', (req, res) => {
 
 // Get phone code for a country
 app.get('/api/phone-code/:countryCode', (req, res) => {
-  try {
+  try { 
     const { countryCode } = req.params;
     const phoneCode = getPhoneCode(countryCode.toUpperCase());
     if (!phoneCode) {
@@ -201,27 +201,27 @@ app.get('/api/phone-code/:countryCode', (req, res) => {
 
 const server = http.createServer(app);
 let wss = null;
-try {
+try { 
   const { WebSocketServer } = await import('ws');
   wss = new WebSocketServer({ server });
   const wsClients = new Map(); // userId -> ws
   wss.on('connection', ws => {
-    try { console.log('[WS] Client connected'); } catch(err){ console.error('[WS] Connection error:', err) }
+    try {  console.log('[WS] Client connected'); } catch(err){ console.error('[WS] Connection error:', err) }
     ws.on('message', msg => {
-      try {
+      try { 
         const data = JSON.parse(msg.toString());
         if (data && data.type === 'AUTH' && data.userId) {
           ws.userId = String(data.userId);
           wsClients.set(ws.userId, ws);
-          try { console.log('[WS] Authenticated:', ws.userId); } catch(err){ console.error('[WS] Auth error:', err) }
+          try {  console.log('[WS] Authenticated:', ws.userId); } catch(err){ console.error('[WS] Auth error:', err) }
         }
-      } catch(e) { try { console.error('[WS ERROR]', e && e.message ? e.message : e); } catch(err){ console.error('[WS] Error handling error:', err) } }
+      } catch(e) { try {  console.error('[WS ERROR]', e && e.message ? e.message : e); } catch(err){ console.error('[WS] Error handling error:', err) } }
     });
-    ws.on('close', () => { try { if (ws.userId) wsClients.delete(ws.userId); } catch(err){ console.error('[WS] Close error:', err) } });
+    ws.on('close', () => { try {  if (ws.userId) wsClients.delete(ws.userId); } catch(err){ console.error('[WS] Close error:', err) } });
   });
   // WebSocket emit function removed - Using SSE only
 } catch (e) {
-    try { console.warn('[WS] WebSocket unavailable:', e && e.message); } catch(err){ console.error('[WS] WebSocket error handling error:', err) }
+    try {  console.warn('[WS] WebSocket unavailable:', e && e.message); } catch(err){ console.error('[WS] WebSocket error handling error:', err) }
   }
 
 // WebSocket emit helpers removed - Using SSE only for all real-time updates
@@ -239,7 +239,7 @@ const io = new Server(server, {
 io.use((socket, next) => {
   const token = socket.handshake.auth.token;
   if (!token) return next(new Error('Authentication required'));
-  try {
+  try { 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret-demo');
     socket.user = decoded;
     next();
@@ -396,7 +396,7 @@ app.use('/api/pebalaash', pebalaashMod.default || pebalaashMod);
 app.use('/api/battalooda', battaloodaRouter);
 
 app.get('/api/rewards/balance', async (req, res) => {
-  try {
+  try { 
     const s = (req.cookies && req.cookies.session_token) || null;
     if (!s) return res.status(401).json({ error: 'unauthorized' });
     const session = devSessions.get(s);
@@ -426,7 +426,7 @@ app.get('/api/rewards/balance', async (req, res) => {
 });
 
 app.get('/api/watchdog/status', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const { getWatchDogState, updateDogStateByTime } = await import('./shared/watch-dog-guardian.js');
     
@@ -448,7 +448,7 @@ app.get('/api/watchdog/status', requireAuth, async (req, res) => {
 });
 
 function readSessionFromCookie(req, res) {
-  try {
+  try { 
     const token = (req.cookies && req.cookies.session_token) || null;
     if (!token) return null;
     const s = devSessions.get(token);
@@ -467,11 +467,11 @@ function readSessionFromCookie(req, res) {
 
 const JWT_SECRET = 'secret-demo';
 function signJwt(userId, email) { return jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: '7d' }) }
-function requireJwtAuth(req, res, next) { try { const h = req.headers.authorization || ''; const parts = h.split(' '); if (parts[0] !== 'Bearer' || !parts[1]) return res.status(401).json({ status: 'failed', error: 'Unauthorized' }); const decoded = jwt.verify(parts[1], JWT_SECRET); req.auth = { userId: decoded.userId, email: decoded.email }; next() } catch (e) { return res.status(401).json({ status: 'failed', error: 'Unauthorized' }) } }
+function requireJwtAuth(req, res, next) { try {  const h = req.headers.authorization || ''; const parts = h.split(' '); if (parts[0] !== 'Bearer' || !parts[1]) return res.status(401).json({ status: 'failed', error: 'Unauthorized' }); const decoded = jwt.verify(parts[1], JWT_SECRET); req.auth = { userId: decoded.userId, email: decoded.email }; next() } catch (e) { return res.status(401).json({ status: 'failed', error: 'Unauthorized' }) } }
 const __authUsers = new Map(); // email -> { id, email, username, password_hash }
 let __USER_SEQ = 1000;
 async function sqliteFindUserByEmail(email){
-  try {
+  try { 
     // Normalize email
     const normalizedEmail = String(email).toLowerCase().trim();
 
@@ -497,7 +497,7 @@ async function memCreateUser(email, username, password, profile = {}){
 
   let id = crypto.randomUUID();
 
-  try {
+  try { 
     if (process.env.DATABASE_URL) {
       // Check if user exists first
       const existing = await query('SELECT id, password_hash FROM users WHERE LOWER(email)=$1', [normalizedEmail]);
@@ -536,7 +536,7 @@ async function memCreateUser(email, username, password, profile = {}){
       }
 
       // Initialize default assets
-      try {
+      try { 
         await query('INSERT INTO user_assets(user_id, asset_id) VALUES($1,$2) ON CONFLICT DO NOTHING', [id, 'init']);
       } catch(err){
         console.error('[SIGNUP] User assets insert error:', err.message);
@@ -564,15 +564,15 @@ async function memCreateUser(email, username, password, profile = {}){
 
 const __sseClients = new Map();
 function __sseEmit(userId, payload) {
-  try {
+  try { 
     const set = __sseClients.get(String(userId));
     if (!set) return;
     const data = `data: ${JSON.stringify(payload)}\n\n`;
-    for (const res of set) { try { res.write(data) } catch(err){ console.error('[SSE] Write error:', err) } }
+    for (const res of set) { try {  res.write(data) } catch(err){ console.error('[SSE] Write error:', err) } }
   } catch(err){ console.error('[SSE] Broadcast error:', err) }
 }
 app.get('/events', (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) return res.status(401).end();
     res.setHeader('Content-Type', 'text/event-stream');
@@ -583,17 +583,17 @@ app.get('/events', (req, res) => {
     const uid = String(s.userId);
     if (!__sseClients.has(uid)) __sseClients.set(uid, new Set());
     __sseClients.get(uid).add(res);
-    const keep = setInterval(() => { try { res.write(':\n\n') } catch(err){ console.error('[SSE] Keep-alive error:', err) } }, 15000);
-    req.on('close', () => { try { clearInterval(keep); __sseClients.get(uid)?.delete(res) } catch(err){ console.error('[SSE] Close cleanup error:', err) } });
-  } catch(err) { try { res.status(500).end() } catch(err2){ console.error('[SSE] Error response error:', err2) } }
+    const keep = setInterval(() => { try {  res.write(':\n\n') } catch(err){ console.error('[SSE] Keep-alive error:', err) } }, 15000);
+    req.on('close', () => { try {  clearInterval(keep); __sseClients.get(uid)?.delete(res) } catch(err){ console.error('[SSE] Close cleanup error:', err) } });
+  } catch(err) { try {  res.status(500).end() } catch(err2){ console.error('[SSE] Error response error:', err2) } }
 });
 
 async function __startEventProcessor() {
-  try {
+  try { 
     if (process.env.EVENT_PROCESSOR_DISABLED === '1') return;
 
     // 🛡️ Ensure event_store table exists before starting processor
-    try {
+    try { 
       await query(`
         CREATE TABLE IF NOT EXISTS event_store (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -609,7 +609,7 @@ async function __startEventProcessor() {
     }
 
     let lastId = 0;
-    try {
+    try { 
       const r = await query("SELECT last_id FROM event_offsets WHERE key='default'");
       lastId = (r.rows && r.rows[0] && Number(r.rows[0].last_id)) || 0;
     } catch(err) { 
@@ -618,12 +618,12 @@ async function __startEventProcessor() {
     }
     ;(async function loop(){
       for(;;) {
-        try {
+        try { 
           const { rows } = await query('SELECT id, event_type, payload FROM event_store WHERE id > $1 ORDER BY id ASC LIMIT 50', [lastId]);
           if (!rows || rows.length === 0) { await new Promise(r => setTimeout(r, 150)); continue }
           for (const ev of rows) {
             const client = await pool.connect();
-            try {
+            try { 
               await client.query('BEGIN');
               // SQLite: use INSERT OR IGNORE since ON CONFLICT ... DO NOTHING might not work with RETURNING in all SQLite versions
               // Actually, better-sqlite3 handles it if defined. Let's stick to standard SQLite for max compatibility.
@@ -654,7 +654,7 @@ async function __startEventProcessor() {
                   );
                 }
 
-                try {
+                try { 
                   if (assetType === 'codes') {
                     const codesRes = await client.query(
                       'SELECT code FROM codes WHERE id IN (SELECT id FROM codes WHERE user_id = $1 ORDER BY created_at DESC LIMIT $2)',
@@ -673,11 +673,11 @@ async function __startEventProcessor() {
               await client.query('COMMIT');
             } catch(e) {
               console.error('[PROCESSOR ERROR]', e.message);
-              try { await client.query('ROLLBACK') } catch(err){ }
-            } finally { try { client.release() } catch(err){ } }
+              try {  await client.query('ROLLBACK') } catch(err){ }
+            } finally { try {  client.release() } catch(err){ } }
             lastId = ev.id;
           }
-          try { await query("UPDATE event_offsets SET last_id=$1, updated_at=CURRENT_TIMESTAMP WHERE key='default'", [lastId]) } catch(_){ }
+          try {  await query("UPDATE event_offsets SET last_id=$1, updated_at=CURRENT_TIMESTAMP WHERE key='default'", [lastId]) } catch(_){ }
         } catch(_) { await new Promise(r => setTimeout(r, 300)) }
       }
     })();
@@ -708,7 +708,7 @@ let transactionManager = { executeTransaction: async () => {} };
 const policyEngine = { register: () => {}, run: async () => {} };
 
 async function ensureQarsanVirtualUsers() {
-  try {
+  try { 
     // SQLite schema already ensured in applyNeonCompressionDDL
     const r = await query('SELECT COUNT(*) AS c FROM qarsan_virtual_users')
     const c = parseInt(r.rows[0]?.c || 0, 10)
@@ -719,7 +719,7 @@ async function ensureQarsanVirtualUsers() {
 }
 
 async function generateVirtualUsers() {
-  try {
+  try { 
     const bots = [
       { email: 'bot1@qarsan.ai', name: 'Qarsan Bot 1', dog_state: 'SLEEPING', qarsan_mode: 'RANGED', balance: 150, qarsan_wallet: 50 },
       { email: 'bot2@qarsan.ai', name: 'Qarsan Bot 2', dog_state: 'ACTIVE', qarsan_mode: 'OFF', balance: 200, qarsan_wallet: 0 },
@@ -741,7 +741,7 @@ async function generateVirtualUsers() {
 // Optionally bind SQLite repositories for atomic DB writes
 // DISABLED due to persistent startup crashes - will use in-memory only
 let repos = null;
-try {
+try { 
   // const { SQLiteClient } = await import('./transaction-core/persistence/SQLiteClient.js')
   // const sqlite = new SQLiteClient()
   // const { EventVaultRepository } = await import('./transaction-core/persistence/EventVaultRepository.js')
@@ -768,7 +768,7 @@ try {
 
 // DEV auth endpoints (must precede any /api catch-all)
 app.post('/api/auth/dev-login', (req, res) => {
-  try {
+  try { 
     const sessionId = (crypto && typeof crypto.randomUUID === 'function')
       ? crypto.randomUUID()
       : Math.random().toString(36).slice(2);
@@ -783,8 +783,8 @@ app.post('/api/auth/dev-login', (req, res) => {
       secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
-    try { console.log('[AUTH] dev login success'); } catch(err){ console.error('[AUTH] Login success log error:', err) }
-    try {
+    try {  console.log('[AUTH] dev login success'); } catch(err){ console.error('[AUTH] Login success log error:', err) }
+    try { 
       const insertUser = async () => {
         await query(
           'INSERT INTO users (id, status, created_at) VALUES ($1, $2, NOW()) ON CONFLICT (id) DO NOTHING',
@@ -800,11 +800,11 @@ app.post('/api/auth/dev-login', (req, res) => {
 });
 
 app.post('/api/auth/logout', (req, res) => {
-  try {
+  try { 
     const token = req.cookies && req.cookies.session_token;
     if (token) devSessions.delete(token);
     res.clearCookie('session_token', { path: '/' });
-    try { console.log('[AUTH] logout success'); } catch(err){ console.error('[AUTH] Logout success log error:', err) }
+    try {  console.log('[AUTH] logout success'); } catch(err){ console.error('[AUTH] Logout success log error:', err) }
   } catch(err){ console.error('[AUTH] Logout error:', err) }
   return res.status(200).json({ ok: true });
 });
@@ -815,7 +815,7 @@ app.post('/api/auth/logout', (req, res) => {
 
 // Step 1: Send Hybrid OTP (Email + Phone)
 app.post('/api/auth/send-hybrid-otp', async (req, res) => {
-  try {
+  try { 
     const { email, phone, countryCode } = req.body;
     
     if (!email || !phone || !countryCode) {
@@ -864,7 +864,7 @@ app.post('/api/auth/send-hybrid-otp', async (req, res) => {
 
 // Step 2: Verify OTP (Email or Phone)
 app.post('/api/auth/verify-hybrid-otp', async (req, res) => {
-  try {
+  try { 
     const { sessionId, otp, channel } = req.body;
     
     if (!sessionId || !otp || !channel) {
@@ -903,7 +903,7 @@ app.post('/api/auth/verify-hybrid-otp', async (req, res) => {
 
 // Step 3: Resend OTP
 app.post('/api/auth/resend-otp', async (req, res) => {
-  try {
+  try { 
     const { sessionId, channel } = req.body;
     
     if (!sessionId || !channel) {
@@ -938,7 +938,7 @@ app.post('/api/auth/resend-otp', async (req, res) => {
 
 // Updated signup without OTP verification
 app.post('/api/auth/signup', async (req, res) => {
-  try {
+  try { 
     const { 
       email, 
       username, 
@@ -994,7 +994,7 @@ app.post('/api/auth/signup', async (req, res) => {
     }
 
     // 🛡️ MODIFIED: Ensure user is registered in the UsersManager/Ledger if needed
-    try {
+    try { 
       if (global.UsersManager && typeof global.UsersManager.registerUser === 'function') {
         await global.UsersManager.registerUser(created);
         console.log(`[Signup] Registered user ${created.id} in UsersManager`);
@@ -1054,7 +1054,7 @@ app.post('/api/auth/signup', async (req, res) => {
 });
 
 app.post('/api/auth/login', async (req, res) => {
-  try {
+  try { 
     console.log("🔥 [LOGIN ATTEMPT] BODY:", req.body);
     const { email, password } = req.body || {};
     if (!email || !password) return res.status(400).json({ status: 'failed', error: 'Email and password required' });
@@ -1129,7 +1129,7 @@ app.post('/api/auth/login', async (req, res) => {
 
 // Dev auth: whoami
 app.get('/api/auth/me', requireAuth, (req, res) => {
-  try {
+  try { 
     return res.json({ 
       success: true,
       user: { 
@@ -1146,7 +1146,7 @@ app.get('/api/auth/me', requireAuth, (req, res) => {
 
 // Alias: session info
 app.get('/api/me', (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s) return res.json({ success: false, user: null });
     return res.json({ 
@@ -1164,7 +1164,7 @@ app.get('/api/me', (req, res) => {
 });
 
 app.get('/api/users/resolve', async (req, res) => {
-  try {
+  try { 
     const email = (req.query.email || '').trim()
     if (!email) return res.status(400).json({ status: 'failed', error: 'Email required' })
     const u = process.env.DATABASE_URL ? await sqliteFindUserByEmail(email) : memFindUserByEmail(email)
@@ -1176,7 +1176,7 @@ app.get('/api/users/resolve', async (req, res) => {
 })
 
 app.get('/api/users/state', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = (req.query.userId || '').trim()
     if (!userId) return res.status(400).json({ status: 'failed', error: 'UserId required' })
     
@@ -1193,12 +1193,12 @@ app.get('/api/users/state', requireAuth, async (req, res) => {
   }
 })
 
-app.get('/api/ledger', (req, res) => { try { return res.json({ status: 'success', ledger: ledger.getAll() }) } catch(e) { return res.status(500).json({ status: 'failed', error: e.message }) } })
-app.get('/api/events', (req, res) => { try { return res.json({ status: 'success', events: (globalThis.__eventVaultMem || []) }) } catch(e) { return res.status(500).json({ status: 'failed', error: e.message }) } })
+app.get('/api/ledger', (req, res) => { try {  return res.json({ status: 'success', ledger: ledger.getAll() }) } catch(e) { return res.status(500).json({ status: 'failed', error: e.message }) } })
+app.get('/api/events', (req, res) => { try {  return res.json({ status: 'success', events: (globalThis.__eventVaultMem || []) }) } catch(e) { return res.status(500).json({ status: 'failed', error: e.message }) } })
 
 // Verification endpoints (SQLite)
 app.get('/api/sqlite/vault', requireAuth, async (req, res) => {
-  try {
+  try { 
     const uid = (req.query.userId || '').trim()
     if (!uid) return res.status(400).json({ status: 'failed', error: 'userId required' })
     
@@ -1213,7 +1213,7 @@ app.get('/api/sqlite/vault', requireAuth, async (req, res) => {
 })
 
 app.get('/api/sqlite/ledger', requireAuth, async (req, res) => {
-  try {
+  try { 
     const uid = (req.query.userId || '').trim()
     if (!uid) return res.status(400).json({ status: 'failed', error: 'userId required' })
     
@@ -1236,13 +1236,13 @@ app.get('/api/sqlite/balances', async (req, res) => {
 
 // Legacy CodeBank codes endpoint (renamed to avoid collision)
 app.post('/api/sqlite/codes-legacy', async (req, res) => {
-  try {
+  try { 
     const body = req.body || {}
     const code = body.code || ''
     if (!code || typeof code !== 'string') return res.status(400).json({ status: 'failed', error: 'Invalid code' })
-    if (/_PP$/.test(code)) { try { console.warn('[PP-FILTER] codes-legacy rejected PP payload') } catch(_){}; return res.json({ status: 'success', ignored: true, reason: 'guest PP' }) }
+    if (/_PP$/.test(code)) { try {  console.warn('[PP-FILTER] codes-legacy rejected PP payload') } catch(_){}; return res.json({ status: 'success', ignored: true, reason: 'guest PP' }) }
     let userId = null
-    try { const token = req.cookies && req.cookies.session_token; const s = token && devSessions.get(token); if (s && s.userId) userId = s.userId; } catch(_){}
+    try {  const token = req.cookies && req.cookies.session_token; const s = token && devSessions.get(token); if (s && s.userId) userId = s.userId; } catch(_){}
     if (!userId) return res.status(401).json({ status: 'failed', error: 'Unauthorized' })
     // Accept and acknowledge; persistence handled elsewhere
     return res.json({ status: 'success', code, userId });
@@ -1253,7 +1253,7 @@ app.post('/api/sqlite/codes-legacy', async (req, res) => {
 
 // Unified Action Endpoint
 app.post('/api/action', async (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res)
     if (!s || !s.userId) return res.status(401).json({ status: 'failed', error: 'Unauthorized' })
     req.auth = { userId: s.userId }
@@ -1268,11 +1268,11 @@ app.post('/api/action', async (req, res) => {
     
     // Check all string fields in the payload for guest _PP suffix
     for (const [key, value] of Object.entries(body)) {
-      if (hasGuestSuffix(value)) { try { console.warn('[PP-FILTER] action rejected key:', key) } catch(_){}; return res.json({ status: 'success', ignored: true, reason: 'guest PP' }) }
+      if (hasGuestSuffix(value)) { try {  console.warn('[PP-FILTER] action rejected key:', key) } catch(_){}; return res.json({ status: 'success', ignored: true, reason: 'guest PP' }) }
     }
 
     // Ensure virtual users exist in UsersManager for demo; in real system syncs from Neon
-    try {
+    try { 
       const uid = req.auth.userId
       if (!usersManager.getUser(uid)) usersManager.addUser({ id: uid, balance: 100, assets: [] })
     } catch (_) {}
@@ -1313,7 +1313,7 @@ app.post('/api/action', async (req, res) => {
 
     const entries = ledger.getAll()
     const last = entries[entries.length - 1] || null
-    try {
+    try { 
       const { serializeEvent } = await import('./transaction-core/event-vault/VaultSerializer.js')
       const eventObj = { eventId: last?.id || crypto.randomUUID(), version: '1.0', type: last?.type || type, status: last?.status || 'success', from: last?.from || req.auth.userId, to: last?.to || toUser || null, amount: last?.amount || body.amount || null, assetId: last?.assetId || body.assetId || null, reason: last?.error || null }
       const serialized = serializeEvent(eventObj)
@@ -1368,7 +1368,7 @@ app.use('/codebank', express.static(path.join(__dirname, 'codebank'), {
 app.use('/uploads/images', express.static(path.join(__dirname, 'codebank', 'setta', 'server', 'uploads', 'images')))
 app.use('/uploads/piccarboon', express.static(path.join(__dirname, 'codebank', 'setta', 'server', 'uploads', 'piccarboon')))
 
-try {
+try { 
   const dirs = [
     path.join(__dirname, 'codebank', 'setta', 'server', 'uploads', 'images'),
     path.join(__dirname, 'codebank', 'setta', 'server', 'uploads', 'piccarboon'),
@@ -1411,7 +1411,7 @@ app.use('/src', express.static(path.join(__dirname, 'services/codebank/src'), {
 // PWA Entry Point - Serve yt-new-clear.html directly (no auth redirect for tunnel access)
 app.get(['/', '/yt-new-clear.html'], (req, res) => {
   console.log(`[route] ${req.path} → yt-new-clear.html`);
-  try {
+  try { 
     res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.set('Pragma', 'no-cache');
     res.set('Expires', '0');
@@ -1490,7 +1490,7 @@ app.get(['/yt-simple', '/yt-new', '/yt-new.html'], (req, res) => {
     return res.redirect('/login.html');
   }
   console.log(`[route] ${req.path} → yt-new-clear.html (Session: ${session.userId})`);
-  try {
+  try { 
     res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.set('Pragma', 'no-cache');
     res.set('Expires', '0');
@@ -1501,7 +1501,7 @@ app.get(['/yt-simple', '/yt-new', '/yt-new.html'], (req, res) => {
 // Explicit route for canonical file path
 app.get('/yt-clear/yt-new-clear.html', (req, res) => {
   console.log('[route] /yt-clear/yt-new-clear.html → yt-new-clear.html');
-  try {
+  try { 
     res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.set('Pragma', 'no-cache');
     res.set('Expires', '0');
@@ -1545,7 +1545,7 @@ function formatAsCompressedCode(hash, suffix) {
  * Perform automatic compression for a user's codes in Neon
  */
 async function autoCompressUserCodes(userId) {
-  try {
+  try { 
     const client = await pool.connect();
 
     // 1. Compress Normal -> Silver (100 -> 1)
@@ -1563,7 +1563,7 @@ async function autoCompressUserCodes(userId) {
       const silverCode = formatAsCompressedCode(silverHash, 'S1'); // S1 suffix for Silver
 
       await client.query('BEGIN');
-      try {
+      try { 
         // Delete original 100 codes
         const placeholders = ids.map(() => '?').join(',');
         await client.query(`DELETE FROM codes WHERE id IN (${placeholders})`, ids);
@@ -1598,7 +1598,7 @@ async function autoCompressUserCodes(userId) {
       const goldCode = formatAsCompressedCode(goldHash, 'G1'); // G1 suffix for Gold
 
       await client.query('BEGIN');
-      try {
+      try { 
         // Delete original 10 silver bars
         const placeholders = ids.map(() => '?').join(',');
         await client.query(`DELETE FROM codes WHERE id IN (${placeholders})`, ids);
@@ -1624,7 +1624,7 @@ async function autoCompressUserCodes(userId) {
 // ------------------------------------------------------------------
 
 app.post('/api/sync', requireAuth, async (req, res) => {
-  try {
+  try { 
     const { delta_codes, delta_silver, delta_gold, sync_id } = req.body || {}
     const userId = req.user.id;
 
@@ -1665,7 +1665,7 @@ app.post('/api/sync', requireAuth, async (req, res) => {
 
     // 3. Atomic Transaction: Record Event + Update Balances
     await client.query('BEGIN');
-    try {
+    try { 
       // Store sync event for idempotency
       await client.query(
         "INSERT INTO sync_events (id, user_id, delta_codes, delta_silver, delta_gold) VALUES ($1, $2, $3, $4, $5)",
@@ -1730,7 +1730,7 @@ app.post('/api/sync', requireAuth, async (req, res) => {
 });
 
 app.get('/api/ledger/verify', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const result = await query(
       "SELECT COALESCE(codes_count, 0) as codes, COALESCE(silver_count, 0) as silver, COALESCE(gold_count, 0) as gold FROM users WHERE id = $1",
@@ -1751,7 +1751,7 @@ app.get('/api/ledger/verify', requireAuth, async (req, res) => {
 
 // Assets API (Read Only)
 app.get('/api/assets/balance', requireAuth, async (req, res) => {
-  try {
+  try { 
     const balances = await AssetReadonly.getAllBalances(req.user.id);
     res.json(balances);
   } catch (e) {
@@ -2034,7 +2034,7 @@ const nostagliaClients = new Set();
 function nostagliaBroadcast(event, payload) {
   const data = `event: ${event}\n` + `data: ${JSON.stringify(payload)}\n\n`;
   for (const res of nostagliaClients) {
-    try { res.write(data); } catch (e) { }
+    try {  res.write(data); } catch (e) { }
   }
 }
 // AUTH REMOVED — CLEAN RESET
@@ -2106,7 +2106,7 @@ app.get('/api/users/:id', (req, res) => { res.status(404).end() })
 app.get('/api/user-assets', (req, res) => { res.status(404).end() })
 
 app.get('/api/rewards/balance', requireAuth, async (req, res) => {
-  try {
+  try { 
     const session = readSessionFromCookie(req, res);
     if (!session || !session.userId) return res.status(401).json({ error: 'unauthorized' });
 
@@ -2144,12 +2144,12 @@ app.get('/api/rewards/balance', requireAuth, async (req, res) => {
 app.get('/api/rewards', (req, res) => { res.status(404).end() })
 
 app.post('/api/telemetry', (req, res) => {
-  try { console.error('📡 TELEMETRY', req.body) } catch (_) { }
+  try {  console.error('📡 TELEMETRY', req.body) } catch (_) { }
   res.sendStatus(204)
 })
 
 app.post('/api/balloon/pop', async (req, res) => {
-  try {
+  try { 
     const body = req.body || {}
     const p = Number(body.points || 0)
     const ts = Number(body.timestamp || Date.now())
@@ -2168,7 +2168,7 @@ app.post('/api/balloon/pop', async (req, res) => {
     if (recent.length >= 20) return res.status(429).json({ ok: false, error: 'rate_limit' })
     recent.push(now)
     global.__balloonClicks.set(uid, recent)
-    try { console.log('[BALLOON POP]', { userId: uid, points: p }) } catch (_){}
+    try {  console.log('[BALLOON POP]', { userId: uid, points: p }) } catch (_){}
     return res.json({ ok: true })
   } catch (e) {
     return res.status(500).json({ ok: false, error: 'internal_error' })
@@ -2177,7 +2177,7 @@ app.post('/api/balloon/pop', async (req, res) => {
 
 // Neon codes persistence endpoint
 app.post('/api/sqlite/codes', async (req, res) => {
-  try {
+  try { 
     const { code } = req.body || {};
     const session = readSessionFromCookie(req, res);
 
@@ -2201,7 +2201,7 @@ app.post('/api/sqlite/codes', async (req, res) => {
     const userId = session.userId;
 
     await query('BEGIN');
-    try {
+    try { 
       // Check if hash already used
       const used = await query("INSERT INTO used_codes (code_hash, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING", [hash, userId]);
       if (used.rowCount === 0) {
@@ -2288,7 +2288,7 @@ app.post('/api/transfer', requireAuth, transferLimiter, enforceFinancialSecurity
     });
   }
 
-  try {
+  try { 
     const receiver = await sqliteFindUserByEmail(receiverEmail);
     if (!receiver || !receiver.id) {
       console.warn(`[AUDIT] [FAIL] [RECEIVER_NOT_FOUND] sender=${fromUserId} receiverEmail=${receiverEmail}`);
@@ -2305,7 +2305,7 @@ app.post('/api/transfer', requireAuth, transferLimiter, enforceFinancialSecurity
 
     // 2. ATOMIC LOCKING & TRANSACTION
     await client.query('BEGIN');
-    try {
+    try { 
       // 🛡️ STEP 1: IDEMPOTENCY BINDING (Inside transaction)
       const idempRes = await client.query(
         "INSERT INTO processed_transactions (tx_id) VALUES ($1) ON CONFLICT DO NOTHING",
@@ -2426,10 +2426,10 @@ app.post('/api/transfer', requireAuth, transferLimiter, enforceFinancialSecurity
 
 // Admin-only manual deposit endpoint
 app.post('/api/admin/deposit', async (req, res) => {
-  try {
+  try { 
     const session = readSessionFromCookie(req, res);
     let authEmail = null;
-    try {
+    try { 
       const h = req.headers && req.headers.authorization || '';
       const parts = h.split(' ');
       if (parts[0] === 'Bearer' && parts[1]) {
@@ -2453,14 +2453,14 @@ app.post('/api/admin/deposit', async (req, res) => {
     const kind = (t==='silver' || t==='gold') ? t : 'codes';
 
     const client = await pool.connect();
-    try {
+    try { 
       await client.query('BEGIN');
       const u = await client.query('SELECT id FROM users WHERE email=$1 LIMIT 1', [String(email).trim()]);
       if (!u.rows[0]) { await client.query('ROLLBACK'); return res.status(404).json({ ok: false, error: 'user_not_found' }); }
       const userId = u.rows[0].id;
 
       // Ensure type column exists
-      try { await client.query("ALTER TABLE codes ADD COLUMN IF NOT EXISTS type VARCHAR(20) DEFAULT 'codes'"); } catch(e) { if (!e.message.includes('duplicate column name')) throw e; }
+      try {  await client.query("ALTER TABLE codes ADD COLUMN IF NOT EXISTS type VARCHAR(20) DEFAULT 'codes'"); } catch(e) { if (!e.message.includes('duplicate column name')) throw e; }
 
       // Attempt N inserts; unique(code) prevents duplicates
       const amt = Math.max(1, parseInt(amount, 10) || 1);
@@ -2471,7 +2471,7 @@ app.post('/api/admin/deposit', async (req, res) => {
       );
 
       await client.query('COMMIT');
-      try {
+      try { 
         if (wss) {
           const count = Math.max(1, parseInt(amt, 10) || 1);
           const codesPayload = Array(count).fill(String(code).trim());
@@ -2480,7 +2480,7 @@ app.post('/api/admin/deposit', async (req, res) => {
             wss.__emitToUser(userId, payload);
           } else if (wss.clients) {
             const s = JSON.stringify(payload);
-            wss.clients.forEach(ws => { try { if (ws && ws.readyState === 1 && ws.userId === String(userId)) ws.send(s); } catch(_){} });
+            wss.clients.forEach(ws => { try {  if (ws && ws.readyState === 1 && ws.userId === String(userId)) ws.send(s); } catch(_){} });
           }
         }
       } catch(_){ }
@@ -2504,11 +2504,11 @@ app.post('/api/admin/deposit', async (req, res) => {
         balances: balances
       });
     } catch (e) {
-      try { await client.query('ROLLBACK'); } catch(_){ }
-      try { console.error('[Admin Deposit]', e); } catch(_){ }
+      try {  await client.query('ROLLBACK'); } catch(_){ }
+      try {  console.error('[Admin Deposit]', e); } catch(_){ }
       return res.status(500).json({ ok: false, error: e && e.message || 'deposit_failed' });
     } finally {
-      try { client.release(); } catch(_){ }
+      try {  client.release(); } catch(_){ }
     }
   } catch (e) {
     return res.status(500).json({ ok: false, error: e && e.message || 'internal_error' });
@@ -2516,11 +2516,11 @@ app.post('/api/admin/deposit', async (req, res) => {
 });
 
 app.get('/api/sqlite/diag', async (req, res) => {
-    try {
+    try { 
       const tables = ['users','codes','ledger','rewards','events','transactions','vault'];
       const columns = [];
       for (const t of tables) {
-        try {
+        try { 
           const { rows } = await query(`PRAGMA table_info(${t})`);
           rows.forEach(r => columns.push({ column_name: r.name, table_name: t }));
         } catch (_) {}
@@ -2542,7 +2542,7 @@ console.log('[INIT] Tables will be created on first use')
 
 // POST /api/watchdog/feed - Feed the watchdog (costs 10 codes) - Enhanced Security
 app.post('/api/watchdog/feed', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     
@@ -2590,7 +2590,7 @@ console.log('[QARSAN] Tables auto-created on first use')
 
 // GET /api/qarsan/status - Get Qarsan status for current user
 app.get('/api/qarsan/status', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     
@@ -2649,7 +2649,7 @@ app.get('/api/qarsan/status', requireAuth, async (req, res) => {
 })
 
 app.post('/api/qarsan/mode', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     const { mode, depositAmount } = req.body || {}
@@ -2657,7 +2657,7 @@ app.post('/api/qarsan/mode', requireAuth, enforceFinancialSecurity, async (req, 
       return res.status(400).json({ success: false, error: 'invalid_mode' })
     }
     const client = await pool.connect()
-    try {
+    try { 
       await client.query('BEGIN')
       const dogResult = await client.query(
         'SELECT dog_state, last_fed_at FROM watchdog_state WHERE user_id = $1::uuid',
@@ -2737,7 +2737,7 @@ app.post('/api/qarsan/mode', requireAuth, enforceFinancialSecurity, async (req, 
 
 // POST /api/qarsan/activate - legacy alias
 app.post('/api/qarsan/activate', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     
@@ -2748,7 +2748,7 @@ app.post('/api/qarsan/activate', requireAuth, enforceFinancialSecurity, async (r
     
     const client = await pool.connect()
     
-    try {
+    try { 
       await client.query('BEGIN')
       
       // Check Watch-Dog state
@@ -2845,13 +2845,13 @@ app.post('/api/qarsan/activate', requireAuth, enforceFinancialSecurity, async (r
 
 // POST /api/qarsan/deactivate - Deactivate Qarsan
 app.post('/api/qarsan/deactivate', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     
     const client = await pool.connect()
     
-    try {
+    try { 
       await client.query('BEGIN')
       
       // Get current Qarsan state
@@ -2896,7 +2896,7 @@ app.post('/api/qarsan/deactivate', requireAuth, enforceFinancialSecurity, async 
 
 // POST /api/qarsan/attack - Execute theft (THE CRITICAL SECURITY OPERATION)
 app.post('/api/qarsan/attack', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const attackerId = req.user && req.user.id
     if (!attackerId) return res.status(401).json({ success: false, error: 'unauthorized' })
     
@@ -2910,7 +2910,7 @@ app.post('/api/qarsan/attack', requireAuth, enforceFinancialSecurity, async (req
     
     const client = await pool.connect()
     
-    try {
+    try { 
       await client.query('BEGIN')
       // SQLite doesn't need advisory locks as it's single-write
       // await client.query("SELECT pg_advisory_xact_lock((('x'||substr(md5($1||$2),1,16))::bit(64))::bigint)", [attackerId, targetUserId])
@@ -3033,7 +3033,7 @@ app.post('/api/qarsan/attack', requireAuth, enforceFinancialSecurity, async (req
 
 // GET /api/qarsan/users - Get virtual users for attack targets
 app.get('/api/qarsan/users', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     
@@ -3122,7 +3122,7 @@ app.get('/api/qarsan/users', requireAuth, async (req, res) => {
 })
 
 app.post('/api/qarsan/feed-dog', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const userId = req.user && req.user.id
     if (!userId) return res.status(401).json({ success: false, error: 'unauthorized' })
     const idempotencyKey = req.headers['x-idempotency-key'] || req.body.idempotencyKey || null
@@ -3151,7 +3151,7 @@ app.post('/api/qarsan/feed-dog', requireAuth, enforceFinancialSecurity, async (r
 
 // Smart Compression Logic (normal -> silver -> gold)
 async function compressToSilver(userId) {
-  try {
+  try { 
     const r = await query(
       'SELECT codes_count FROM balances WHERE user_id=$1',
       [userId]
@@ -3170,7 +3170,7 @@ async function compressToSilver(userId) {
 }
 
 async function compressToGold(userId) {
-  try {
+  try { 
     const r = await query(
       'SELECT silver_count FROM balances WHERE user_id=$1',
       [userId]
@@ -3190,7 +3190,7 @@ async function compressToGold(userId) {
 
 // Mint endpoint - Server generates codes only when requested
 app.post('/api/mint', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const amount = 5;
     const codes = [];
@@ -3234,7 +3234,7 @@ app.post('/api/mint', requireAuth, async (req, res) => {
 });
 
 app.post('/api/rewards/claim', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const { type } = req.body; // 'silver' or 'gold'
 
@@ -3259,7 +3259,7 @@ app.post('/api/rewards/claim', requireAuth, async (req, res) => {
 });
 
 setInterval(async () => {
-  try {
+  try { 
     const users = await query('SELECT id FROM users');
 
     for (const u of users.rows) {
@@ -3272,7 +3272,7 @@ setInterval(async () => {
 }, 30000);
 
 app.get('/api/balances', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const r = await query(
       'SELECT codes_count, silver_count, gold_count FROM balances WHERE user_id=$1',
@@ -3293,7 +3293,7 @@ app.get('/api/balances', requireAuth, async (req, res) => {
 
 
 app.get('/api/diag/ledger-schema', async (req, res) => {
-  try {
+  try { 
     const { rows } = await query("PRAGMA table_info(ledger)");
     return res.json({ columns: rows.map(r => r.name) });
   } catch (e) {
@@ -3303,7 +3303,7 @@ app.get('/api/diag/ledger-schema', async (req, res) => {
 
 // Diagnostic endpoints (REMOVED balances view dependency)
 app.get('/api/diag/neon-sync', async (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) {
       return res.json({ ok: false, reason: 'no_session' });
@@ -3316,7 +3316,7 @@ app.get('/api/diag/neon-sync', async (req, res) => {
 
 // Neon codes diagnostic endpoint (session required)
 app.get('/api/diag/sqlite-codes', async (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) {
       return res.json({ ok: false, reason: 'no_session' });
@@ -3337,7 +3337,7 @@ app.get('/api/diag/sqlite-codes', async (req, res) => {
 
 // Rewards transfer (codes) — atomic Neon transaction - Enhanced Security
 app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try {
+  try { 
     const session = readSessionFromCookie(req, res);
     if (!session || !session.userId) {
       return res.status(401).json({ error: 'unauthorized' });
@@ -3365,7 +3365,7 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
     let attempt = 0;
     while (true) {
       attempt++;
-      try {
+      try { 
         await client.query('BEGIN');
         // SQLite doesn't need advisory locks as it's single-write
       // await client.query("SELECT pg_advisory_xact_lock((('x'||substr(md5($1||$2),1,16))::bit(64))::bigint)", [fromUserId, toUserId]);
@@ -3374,7 +3374,7 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
           "SELECT COALESCE(SUM(CASE WHEN direction='credit' THEN amount ELSE -amount END),0) AS amount FROM ledger WHERE user_id=$1 AND asset_type='codes'",
           [fromUserId]
         );
-        try { console.log('[TRANSFER] lock sender amount =', (lockRes.rows[0] && Number(lockRes.rows[0].amount)) || 0) } catch(_){ }
+        try {  console.log('[TRANSFER] lock sender amount =', (lockRes.rows[0] && Number(lockRes.rows[0].amount)) || 0) } catch(_){ }
         const fromAmount = (lockRes.rows[0] && Number(lockRes.rows[0].amount)) || 0;
         if (fromAmount < amount) {
           await client.query('ROLLBACK');
@@ -3386,24 +3386,24 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
           "INSERT INTO ledger (id, tx_id, user_id, direction, asset_type, amount, reference) VALUES ($1, $2, $3, 'debit', 'codes', $4, 'reward_transfer')",
           [crypto.randomUUID(), txId2, fromUserId, amount]
         );
-        try { console.log('[TRANSFER] deducted', amount, 'from', fromUserId) } catch(_){ }
+        try {  console.log('[TRANSFER] deducted', amount, 'from', fromUserId) } catch(_){ }
 
         await client.query(
           "INSERT INTO ledger (id, tx_id, user_id, direction, asset_type, amount, reference) VALUES ($1, $2, $3, 'credit', 'codes', $4, 'reward_transfer')",
           [crypto.randomUUID(), txId2, toUserId, amount]
         );
-        try { console.log('[TRANSFER] credited', amount, 'to', toUserId) } catch(_){ }
+        try {  console.log('[TRANSFER] credited', amount, 'to', toUserId) } catch(_){ }
 
         const finalBal = await client.query(
           "SELECT COALESCE(SUM(CASE WHEN direction='credit' THEN amount ELSE -amount END),0) AS amount FROM ledger WHERE user_id=$1 AND asset_type='codes'",
           [fromUserId]
         );
-        try { console.log('[TRANSFER] final sender amount =', (finalBal.rows[0] && Number(finalBal.rows[0].amount)) || 0) } catch(_){ }
+        try {  console.log('[TRANSFER] final sender amount =', (finalBal.rows[0] && Number(finalBal.rows[0].amount)) || 0) } catch(_){ }
         const finalBalB = await client.query(
           "SELECT COALESCE(SUM(CASE WHEN direction='credit' THEN amount ELSE -amount END),0) AS amount FROM ledger WHERE user_id=$1 AND asset_type='codes'",
           [toUserId]
         );
-        try { console.log('[TRANSFER] commit sender->receiver', { from: fromUserId, to: toUserId, amount, sender_final: (finalBal.rows[0] && Number(finalBal.rows[0].amount)) || 0, receiver_final: (finalBalB.rows[0] && Number(finalBalB.rows[0].amount)) || 0, attempt }) } catch(_){}
+        try {  console.log('[TRANSFER] commit sender->receiver', { from: fromUserId, to: toUserId, amount, sender_final: (finalBal.rows[0] && Number(finalBal.rows[0].amount)) || 0, receiver_final: (finalBalB.rows[0] && Number(finalBalB.rows[0].amount)) || 0, attempt }) } catch(_){}
 
         await client.query('COMMIT');
 
@@ -3414,15 +3414,15 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
           }
         });
       } catch (e) {
-        try { await client.query('ROLLBACK') } catch(_){}
+        try {  await client.query('ROLLBACK') } catch(_){}
         const code = e && e.code || '';
         const retriable = code === '40001' || code === '40P01';
-        try { console.warn('[REWARD TX RETRY]', { attempt, code, message: e && e.message }) } catch(_){}
+        try {  console.warn('[REWARD TX RETRY]', { attempt, code, message: e && e.message }) } catch(_){}
         if (retriable && attempt < MAX_RETRIES) { await new Promise(r => setTimeout(r, 80 * attempt)); continue; }
         console.error('[REWARD TX ERROR]', e);
         return res.status(500).json({ error: 'tx_failed' });
       } finally {
-        if (attempt >= MAX_RETRIES) { try { client.release() } catch(_){ } }
+        if (attempt >= MAX_RETRIES) { try {  client.release() } catch(_){ } }
       }
     }
   } catch (e) {
@@ -3433,7 +3433,7 @@ app.post('/api/rewards/transfer', requireAuth, enforceFinancialSecurity, async (
 
 // Events inbox for the current user (last 24h or unseen)
 app.get('/api/events/inbox', async (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) return res.status(401).json({ ok: false, error: 'unauthorized' });
     if (!process.env.DATABASE_URL) return res.json({ ok: true, events: [] });
@@ -3454,7 +3454,7 @@ app.get('/api/events/inbox', async (req, res) => {
 
 // Acknowledge events (mark seen)
 app.post('/api/events/ack', async (req, res) => {
-  try {
+  try { 
     const s = readSessionFromCookie(req, res);
     if (!s || !s.userId) return res.status(401).json({ ok: false, error: 'unauthorized' });
     const ids = Array.isArray((req.body||{}).ids) ? (req.body.ids) : [];
@@ -3473,7 +3473,7 @@ app.post('/api/events/ack', async (req, res) => {
 
 // Balances endpoint (Unified)
 app.get('/api/balances', requireAuth, async (req, res) => {
-  try {
+  try { 
     const userId = req.user.id;
     const r = await query(
       'SELECT codes_count, silver_count, gold_count FROM balances WHERE user_id=$1',
@@ -3500,12 +3500,12 @@ app.get('/api/balances', requireAuth, async (req, res) => {
 });
 
 app.get('/api/games', requireAuth, async (req, res) => {
-  try {
+  try { 
     let userId = req.query.userId || null
     if (!userId) {
       const email = (req.query?.email || '').toString().trim()
       if (email) {
-        try {
+        try { 
           const found = await query('SELECT id FROM users WHERE email=$1 LIMIT 1', [email])
           userId = found?.rows?.[0]?.id || null
         } catch (err) { 
@@ -3536,7 +3536,7 @@ app.get('/api/games', requireAuth, async (req, res) => {
 })
 
 app.post('/api/transactions', async (req, res) => {
-  try {
+  try { 
     const { sender_id, receiver_id, asset_name, amount } = req.body || {}
     if (!sender_id || !receiver_id || !asset_name || typeof amount !== 'number') {
       return res.status(400).json({ message: 'Invalid payload' })
@@ -3552,7 +3552,7 @@ app.post('/api/transactions', async (req, res) => {
 })
 
 // Ensure Neon schema compatibility for auth sessions
-// try {
+// try { 
 //   await query('ALTER TABLE IF EXISTS auth_sessions ADD COLUMN IF NOT EXISTS token TEXT');
 //   await query('ALTER TABLE IF EXISTS auth_sessions ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ DEFAULT (NOW() + interval \'7 days\')');
 //   await query('ALTER TABLE IF EXISTS auth_sessions ALTER COLUMN token DROP NOT NULL');
@@ -3563,7 +3563,7 @@ app.post('/api/transactions', async (req, res) => {
 
 // New endpoint for Samma3ny with direct Cloudinary fetch
 app.get('/api/samma3ny/list', async (req, res) => {
-  try {
+  try { 
     console.log('🔄 Fetching Samma3ny songs with direct Cloudinary API call...');
 
     const CLOUDINARY_CLOUD = process.env.CLOUDINARY_CLOUD_NAME || 'dhpyneqgk';
@@ -3602,7 +3602,7 @@ app.get('/api/samma3ny/songs', handleSamma3nySongs);
 
 // Enhanced bulk upload endpoint for Samma3ny with metadata extraction
 app.post('/api/samma3ny/upload', upload.any(), async (req, res) => {
-  try {
+  try { 
     const files = req.files;
     if (!files || files.length === 0) {
       return res.status(400).json({
@@ -3623,7 +3623,7 @@ app.post('/api/samma3ny/upload', upload.any(), async (req, res) => {
       const file = files[i];
       const fileIndex = i + 1;
 
-      try {
+      try { 
         console.log(`📤 Processing file ${fileIndex}/${files.length}: ${file.originalname}`);
 
         // Validate file type
@@ -3667,7 +3667,7 @@ app.post('/api/samma3ny/upload', upload.any(), async (req, res) => {
         const randomId = Math.random().toString(36).substr(2, 9);
         const publicId = `media-player/audio_${timestamp}_${randomId}`;
 
-        try {
+        try { 
           // Upload to Cloudinary
           const result = await cloudinary.v2.uploader.upload(file.path, {
             resource_type: 'video', // Cloudinary uses 'video' for audio
@@ -3716,7 +3716,7 @@ app.post('/api/samma3ny/upload', upload.any(), async (req, res) => {
           console.error(`❌ Cloudinary upload failed for ${file.originalname}:`, uploadError.message);
 
           // Fallback to local storage
-          try {
+          try { 
             const localPath = path.join(__dirname, 'services/codebank/samma3ny/uploads');
             if (!fs.existsSync(localPath)) {
               fs.mkdirSync(localPath, { recursive: true });
@@ -3863,7 +3863,7 @@ function formatFileSize(bytes) {
 
 // Enhanced bulk upload endpoint for Farragna with metadata extraction
 app.post('/api/farragna/upload', upload.any(), async (req, res) => {
-  try {
+  try { 
     const files = req.files;
     if (!files || files.length === 0) {
       return res.status(400).json({
@@ -3884,7 +3884,7 @@ app.post('/api/farragna/upload', upload.any(), async (req, res) => {
       const file = files[i];
       const fileIndex = i + 1;
 
-      try {
+      try { 
         console.log(`📤 Processing file ${fileIndex}/${files.length}: ${file.originalname}`);
 
         // Validate file type
@@ -3928,7 +3928,7 @@ app.post('/api/farragna/upload', upload.any(), async (req, res) => {
         const randomId = Math.random().toString(36).substr(2, 9);
         const publicId = `farragna/video_${timestamp}_${randomId}`;
 
-        try {
+        try { 
           // Upload to Cloudinary
           const result = await cloudinary.v2.uploader.upload(file.path, {
             resource_type: 'video',
@@ -3977,7 +3977,7 @@ app.post('/api/farragna/upload', upload.any(), async (req, res) => {
           console.error(`❌ Cloudinary upload failed for ${file.originalname}:`, uploadError.message);
 
           // Fallback to local storage
-          try {
+          try { 
             const localPath = path.join(__dirname, 'services/codebank/farragna/uploads');
             if (!fs.existsSync(localPath)) {
               fs.mkdirSync(localPath, { recursive: true });
@@ -4090,13 +4090,13 @@ app.post('/api/samma3ny/order', (req, res) => { res.status(404).end() });
 app.post('/api/samma3ny/rename', (req, res) => { res.status(404).end() });
 
 app.post('/api/samma3ny/rename-bulk', async (req, res) => {
-  try {
+  try { 
     const ids = Array.isArray(req.body?.ids) ? req.body.ids : [];
     const name = (req.body?.name || '').trim();
     if (ids.length === 0 || !name) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' });
     let updated = 0;
     for (const id of ids) {
-      try {
+      try { 
         await cloudinary.v2.api.update(id, { context: { title: name, display_name: name } });
         updated++;
       } catch (_) { }
@@ -4187,14 +4187,14 @@ server.once('listening', async () => {
   console.log(`🚀 [SERVER] Ledger Absolutism active on http://localhost:${PORT}`);
   
   // Apply DDL and start event processor
-  try {
+  try { 
     await applyNeonCompressionDDL();
     
   // Enable WAL mode for SQLite ONLY if not using Turso
   if (process.env.TURSO_URL || process.env.TURSO_DATABASE_URL) {
     console.log('ℹ️ [DB] Turso detected, skipping WAL PRAGMA commands');
   } else {
-    try {
+    try { 
       await query('PRAGMA journal_mode = WAL;');
       await query('PRAGMA synchronous = NORMAL;');
       console.log('✅ [SQLITE] WAL mode enabled for high concurrency');
@@ -4219,7 +4219,7 @@ server.once('listening', async () => {
       if (global.isWatchdogRunning) return;
       global.isWatchdogRunning = true;
 
-      try {
+      try { 
         const result = await watchdog.verifySystemIntegrity();
         if (result.status === 'alert') {
           await watchdog.autoHeal(result.issues);
@@ -4292,11 +4292,11 @@ apiRouter.get('/health', (req, res) => res.json({ ok: true }));
 apiRouter.get('/version', (req, res) => res.json({ version: process.env.APP_VERSION || 'dev' }));
 
 apiRouter.get('/youtube/status', async (req, res) => {
-  try {
+  try { 
     const channelId = process.env.YOUTUBE_CHANNEL_ID || 'UCZ5heNyv3s5dIw9mtjsAGsg';
     const apiKey = process.env.YOUTUBE_API_KEY;
     if (apiKey) {
-      try {
+      try { 
         const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
         if (r.ok) {
           const j = await r.json();
@@ -4337,10 +4337,10 @@ apiRouter.use('/admin', adminRouter);
 apiRouter.use('/balloon', balloonRouter);
 
 apiRouter.post('/identity/sync', async (req, res) => {
-  try {
+  try { 
     const { name, country, religion, telephone, email, userId } = req.body || {};
     if (!email && !userId) return res.json({ ok: true });
-    try {
+    try { 
       const col = userId ? 'id' : 'email';
       await query(`UPDATE users SET name = $1, country = $2, religion = $3, phone = $4 WHERE ${col} = $5`, [name || null, country || null, religion || null, telephone || null, userId || email]);
     } catch (_) {}
@@ -4351,7 +4351,7 @@ apiRouter.post('/identity/sync', async (req, res) => {
 });
 
 apiRouter.post('/sqlite/assets/sync', async (req, res) => {
-  try {
+  try { 
     const { userId, code, codes, rewards, source, ts, meta } = req.body || {}
     if (!userId) return res.status(400).json({ error: 'Missing userId' })
     const u = await query('SELECT id FROM users WHERE id=$1 LIMIT 1', [userId])
@@ -4367,7 +4367,7 @@ apiRouter.post('/sqlite/assets/sync', async (req, res) => {
       const dup = await query('SELECT id FROM codes WHERE code=$1', [codeStr])
       if (dup?.rows?.length) continue
       
-      try {
+      try { 
         await query(
           'INSERT INTO codes (id, user_id, code, type, metadata, created_at) VALUES ($1,$2,$3,$4,$5,CURRENT_TIMESTAMP)',
           [crypto.randomUUID(), userId, codeStr, 'codes', JSON.stringify({ source: source || 'sqlite', ts, ...(meta || {}) })]
@@ -4393,7 +4393,7 @@ apiRouter.post('/sqlite/assets/sync', async (req, res) => {
 });
 
 apiRouter.get('/sqlite/assets/sync', async (req, res) => {
-  try {
+  try { 
     const { userId } = req.query
     if (!userId) return res.status(400).json({ error: 'Missing userId' })
     
@@ -4426,10 +4426,10 @@ app.use((err, req, res, next) => {
 // Apply DDL (Unified Schema Verification)
 async function applyNeonCompressionDDL(){
   // 🛡️ Ensure columns exist (Fix for "no column named religion")
-  try {
+  try { 
     const columns = ['religion', 'country', 'phone'];
     for (const col of columns) {
-      try {
+      try { 
         await query(`ALTER TABLE users ADD COLUMN ${col} TEXT`);
         console.log(`[DB] Added missing column: ${col}`);
       } catch (e) {
@@ -4574,9 +4574,9 @@ async function applyNeonCompressionDDL(){
     "INSERT INTO event_offsets (key, last_id) VALUES ('default', 0) ON CONFLICT (key) DO NOTHING"
   ];
   
-  try {
+  try { 
     for (const sql of statements) {
-      try { await query(sql) } catch (e) { console.warn('[DB DDL] stmt failed:', e.message) }
+      try {  await query(sql) } catch (e) { console.warn('[DB DDL] stmt failed:', e.message) }
     }
     console.log('✅ [DB] Schema Verified on startup');
   } catch(e) { console.warn('[DB DDL] apply failed:', e.message) }
@@ -4584,7 +4584,7 @@ async function applyNeonCompressionDDL(){
 
 // 🛡️ API Endpoints for YT-Clear & Bankode (from actly.md) - FIXED
 app.get(['/api/sqlite/codes', '/api/codes/list', '/api/sync/list', '/api/diag/sqlite-codes'], requireAuth, async (req, res) => {
-    try {
+    try { 
         const userId = req.user.id || req.user.userId;
         // Fetch actual codes from the codes table
         const codesResult = await query(

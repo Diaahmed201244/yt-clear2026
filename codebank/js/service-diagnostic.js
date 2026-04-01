@@ -49,7 +49,7 @@ export class ServiceDiagnostic {
 
         // Try each possible path
         for (const path of service.paths) {
-            try {
+            try { 
                 const startTime = performance.now();
                 const response = await fetch(path, { method: 'HEAD' });
                 const loadTime = performance.now() - startTime;
@@ -81,7 +81,7 @@ export class ServiceDiagnostic {
     }
 
     async fetchContent(path) {
-        try {
+        try { 
             const response = await fetch(path);
             if (!response.ok) return null;
             return await response.text();

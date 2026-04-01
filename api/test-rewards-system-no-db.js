@@ -33,14 +33,14 @@ async function makeRequest(endpoint, options = {}) {
     headers.Authorization = `Bearer ${MOCK_JWT}`
   }
   
-  try { 
+  try {   
     const response = await fetch(url, {
       ...options,
       headers
     })
     
     let data = null
-    try { 
+    try {   
       data = await response.json()
     } catch (e) {
       // If response is not JSON, try text

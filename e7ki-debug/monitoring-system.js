@@ -431,7 +431,7 @@ class E7kiMonitoringSystem {
   }
 
   getLogFiles() {
-    try {
+    try { 
       return fs.readdirSync(this.logDir);
     } catch (error) {
       this.log('ERROR', 'DIAGNOSTICS', 'Failed to read log files', { error: error.message });

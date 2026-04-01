@@ -5,12 +5,12 @@ import { query } from '../config/db.js'
 const router = Router()
 
 router.post('/setup-admin', async (req, res) => {
-  try { 
+  try {   
     const { email, password } = req.body || {}
     if (!email || !password) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' })
     const hash = await bcrypt.hash(password, 10)
     let user
-    try { 
+    try {   
       const ins = await query(
       )
       user = ins.rows[0]
@@ -20,7 +20,7 @@ router.post('/setup-admin', async (req, res) => {
     if (!user) {
       return res.status(500).json({ ok: false, error: 'USER_SETUP_FAILED' })
     }
-    try {  await query('UPDATE users SET user_type=$2 WHERE id=$1', [user.id, 'admin']) } catch (_) {}
+    try {    await query('UPDATE users SET user_type=$2 WHERE id=$1', [user.id, 'admin']) } catch (_) {}
     res.json({ ok: true, user })
   } catch (e) {
     res.status(500).json({ ok: false, error: 'TEST_SETUP_ERROR' })
@@ -28,19 +28,19 @@ router.post('/setup-admin', async (req, res) => {
 })
 
 router.post('/reset-user', async (req, res) => {
-  try { 
+  try {   
     const { email } = req.body || {}
     if (!email) return res.status(400).json({ ok: false, error: 'INVALID_INPUT' })
     let user
-    try { 
+    try {   
       const r = await query('SELECT id, email FROM users WHERE email=$1', [email])
       user = r.rows[0]
     } catch (e) {
       return res.status(500).json({ ok: false, error: 'DB_ERROR' })
     }
     if (!user) return res.json({ ok: true })
-    try {  await query('UPDATE users SET user_type=$2 WHERE id=$1', [user.id, 'normal']) } catch (_) {}
-    try {  await query('DELETE FROM bankode_password_sessions WHERE user_id=$1', [user.id]) } catch (_) {}
+    try {    await query('UPDATE users SET user_type=$2 WHERE id=$1', [user.id, 'normal']) } catch (_) {}
+    try {    await query('DELETE FROM bankode_password_sessions WHERE user_id=$1', [user.id]) } catch (_) {}
     res.json({ ok: true })
   } catch (e) {
     res.status(500).json({ ok: false, error: 'TEST_RESET_ERROR' })

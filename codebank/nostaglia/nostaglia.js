@@ -9,7 +9,7 @@
     const list = await res.json();
     renderFeed(list);
   }
-  function formatDate(d) { try { return new Date(d).toLocaleDateString(); } catch(e){ return d; } }
+  function formatDate(d) { try {  return new Date(d).toLocaleDateString(); } catch(e){ return d; } }
   function renderFeed(items) {
     feedEl.innerHTML = '';
     items.forEach(item => {

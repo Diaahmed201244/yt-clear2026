@@ -26,7 +26,7 @@ class QuestionLoader {
     async loadQuestions() {
         console.log('Loading questions from external APIs...');
         
-        try {
+        try { 
             // Try primary API first (OpenTDB)
             const questions = await this.fetchFromOpenTDB();
             
@@ -60,7 +60,7 @@ class QuestionLoader {
         
         // Fetch 15 questions per category to ensure we have enough
         for (const categoryId of categories) {
-            try {
+            try { 
                 const url = `${this.apiEndpoints.opentdb}?amount=15&category=${categoryId}&type=multiple&encode=url3986`;
                 const response = await fetch(url);
                 
@@ -91,7 +91,7 @@ class QuestionLoader {
     }
 
     async fetchFromTriviaAPI() {
-        try {
+        try { 
             const response = await fetch(`${this.apiEndpoints.triviaApi}?limit=50`);
             
             if (!response.ok) {
@@ -116,7 +116,7 @@ class QuestionLoader {
     }
 
     async fetchFromQuizAPI() {
-        try {
+        try { 
             // Note: QuizAPI requires an API key, so this is a placeholder
             const response = await fetch(`${this.apiEndpoints.quizApi}?limit=50&apiKey=YOUR_API_KEY`);
             
@@ -203,7 +203,7 @@ class QuestionLoader {
     async loadFallbackQuestions() {
         console.log('Loading fallback questions from local data...');
         
-        try {
+        try { 
             const response = await fetch('../data/fallback-questions.json');
             if (!response.ok) {
                 throw new Error(`Failed to fetch fallback questions: ${response.status}`);

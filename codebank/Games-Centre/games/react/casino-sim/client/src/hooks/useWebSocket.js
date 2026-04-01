@@ -6,7 +6,7 @@ export function useWebSocket() {
     const reconnectAttemptsRef = useRef(0);
     const maxReconnectAttempts = 5;
     const connect = useCallback(() => {
-        try {
+        try { 
             const wsUrl = 'ws://localhost:3000/ws';
             const ws = new WebSocket(wsUrl);
             ws.onopen = () => {

@@ -81,7 +81,7 @@ import { gameIntegration } from '../_shared/game-integration.js';
 
 // Initialize Game
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
+    try { 
         // Initialize game runtime and communication
         await initializeGameRuntime();
         
@@ -252,7 +252,7 @@ function updateGridSize(gridSize) {
  * Start Game
  */
 async function startGame() {
-    try {
+    try { 
         // Validate game state
         if (gameState.isRunning && !gameState.isPaused) {
             return; // Game already running
@@ -795,7 +795,7 @@ function handleVisibilityChange() {
  * Start Game Systems
  */
 async function startGameSystems() {
-    try {
+    try { 
         // Start presence detection
         if (presence) {
             await presence.startDetection('cards');
@@ -825,7 +825,7 @@ async function startGameSystems() {
  * Notify Win
  */
 async function notifyWin(score) {
-    try {
+    try { 
         // Update leaderboard
         if (leaderboard) {
             await leaderboard.submitScore('cards', {

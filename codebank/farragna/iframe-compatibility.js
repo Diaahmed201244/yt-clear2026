@@ -43,7 +43,7 @@ class FarragnaIframeBridge {
 
       // Request bridge connection
       if (window.top) {
-        try {
+        try { 
           window.top.postMessage({
             type: 'FARRAGNA_BRIDGE_REQUEST',
             payload: { timestamp: Date.now() }
@@ -128,7 +128,7 @@ class FarragnaIframeBridge {
   }
 
   async getLocalFeed() {
-    try {
+    try { 
       // Use localStorage instead of IndexedDB
       const feedData = localStorage.getItem('farragna_feed');
       if (feedData) {
@@ -142,7 +142,7 @@ class FarragnaIframeBridge {
   }
 
   async setLocalFeed(feed) {
-    try {
+    try { 
       localStorage.setItem('farragna_feed', JSON.stringify(feed));
     } catch (error) {
       console.warn('[Farragna] Could not save local feed:', error);

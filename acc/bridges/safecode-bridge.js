@@ -50,7 +50,7 @@ class SafeCodeBridge extends ServiceBridgeBase {
         if (this.pendingSync) return;
         this.pendingSync = true;
 
-        try { 
+        try {   
             const { codes, silver, gold } = data;
             
             // Send to ACC server
@@ -81,7 +81,7 @@ class SafeCodeBridge extends ServiceBridgeBase {
     async handleTransferRequest(data) {
         const { toUserId, assetType, amount, code } = data;
 
-        try { 
+        try {   
             // Verify in SafeCode first
             const verifyResult = await this.verifyInSafeCode(code);
             
@@ -131,7 +131,7 @@ class SafeCodeBridge extends ServiceBridgeBase {
         const { codes, source } = data;
         
         // Update ACC with new codes count
-        try { 
+        try {   
             await fetch(`${this.acc.httpUrl}/sync`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

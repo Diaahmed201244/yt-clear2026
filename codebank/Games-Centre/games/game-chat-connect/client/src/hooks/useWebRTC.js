@@ -2,8 +2,8 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try {  step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try {  step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function fulfilled(value) { try {    step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try {    step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
@@ -21,7 +21,7 @@ function useWebRTC() {
     const peerConnections = (0, react_1.useRef)(new Map());
     // Get available audio devices
     const getAudioDevices = (0, react_1.useCallback)(() => __awaiter(this, void 0, void 0, function* () {
-        try { 
+        try {   
             const devices = yield navigator.mediaDevices.enumerateDevices();
             const audioDevices = devices
                 .filter(device => device.kind === 'audioinput' || device.kind === 'audiooutput')
@@ -44,7 +44,7 @@ function useWebRTC() {
     }, [getAudioDevices]);
     // Start audio call
     const startCall = (0, react_1.useCallback)(() => __awaiter(this, void 0, void 0, function* () {
-        try { 
+        try {   
             const constraints = {
                 audio: {
                     echoCancellation: true,
@@ -89,7 +89,7 @@ function useWebRTC() {
     // Set audio device
     const setAudioDevice = (0, react_1.useCallback)((deviceId, kind) => __awaiter(this, void 0, void 0, function* () {
         if (kind === 'audioinput' && localStreamRef.current) {
-            try { 
+            try {   
                 // Stop current stream
                 localStreamRef.current.getTracks().forEach(track => track.stop());
                 // Get new stream with selected device

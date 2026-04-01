@@ -62,7 +62,7 @@ class FarragnaApp {
   }
 
   async loadFeed() {
-    try {
+    try { 
       const response = await fetch('/api/farragna/feed');
       const data = await response.json();
       console.log('[Farragna] Feed response:', data);
@@ -135,7 +135,7 @@ class FarragnaApp {
 
   async toggleLike(videoId) {
     if (!this.user) return;
-    try {
+    try { 
       const response = await fetch(`/api/farragna/${videoId}/like`, {
         method: 'POST',
         headers: {

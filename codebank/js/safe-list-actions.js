@@ -39,7 +39,7 @@
         // 🦴 Check status before showing - but don't block if server is down
         // Temporarily disabled status check to force watchdog appearance
         /*
-        try {
+        try { 
             const statusResp = await fetch('/api/watchdog/status', { timeout: 3000 });
             const status = await statusResp.json();
 
@@ -59,7 +59,7 @@
         }
         */
 
-        try {
+        try { 
             console.log('[WatchDog] 🛡️ FORCING 3D ACTIVATION - Loading core from /shared/watchdog-core/watchdog-core.js');
             
             // 🛡️ Pre-clear container to ensure fresh mount
@@ -120,7 +120,7 @@
         } catch (err) {
             console.error('[WatchDog] Failed to load 3D core:', err);
             // Try fallback initialization
-            try {
+            try { 
                 // Check if fallback already exists
                 if (container.querySelector('.fallback-dog')) return;
                 
@@ -171,7 +171,7 @@
                     window.SAFE_PAGE--;
                     console.log('[Pagination] Prev clicked, new page:', window.SAFE_PAGE);
                     if (typeof renderCallback === 'function') {
-                        try {
+                        try { 
                             renderCallback();
                         } catch (err) {
                             console.error('[Pagination] Render callback failed:', err);
@@ -191,7 +191,7 @@
                     window.SAFE_PAGE++;
                     console.log('[Pagination] Next clicked, new page:', window.SAFE_PAGE);
                     if (typeof renderCallback === 'function') {
-                        try {
+                        try { 
                             renderCallback();
                         } catch (err) {
                             console.error('[Pagination] Render callback failed:', err);
@@ -356,7 +356,7 @@
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-            try {
+            try { 
                 // Determine current tab to set asset type
                 const assetType = window.ACTIVE_ASSET_TAB || 'codes';
                 
@@ -499,7 +499,7 @@
         popup.querySelector('#confirm-feed').onclick = async () => {
             popup.innerHTML = `<div style="padding:20px;"><div class="spinner" style="margin:0 auto 20px;"></div><p style="color:#fff;">Feeding Guardian...</p></div>`;
             
-            try {
+            try { 
                 const response = await fetch('/api/watchdog/feed', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

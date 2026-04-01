@@ -13,7 +13,7 @@ const SongList = ({ songs }) => {
 
   const deleteSong = async (id) => {
     if (window.confirm('Are you sure you want to delete this song?')) {
-      try {
+      try { 
         await axios.delete(`http://localhost:8002/api/songs/${id}`);
       } catch (error) {
         alert('Failed to delete song');
@@ -27,7 +27,7 @@ const SongList = ({ songs }) => {
   };
 
   const saveEdit = async () => {
-    try {
+    try { 
       await axios.put(`http://localhost:8002/api/songs/${editing}`, { title: editTitle });
       setEditing(null);
     } catch (error) {
@@ -41,7 +41,7 @@ const SongList = ({ songs }) => {
     newSongs.splice(toIndex, 0, movedSong);
 
     // Update order on server
-    try {
+    try { 
       await axios.put('http://localhost:8002/api/songs/reorder', {
         songs: newSongs.map((song, index) => ({ id: song.id, order: index }))
       });

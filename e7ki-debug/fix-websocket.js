@@ -22,7 +22,7 @@ class E7kiWebSocketManager {
 
   // Generate WebSocket URL with proper fallback
   getWebSocketURL() {
-    try {
+    try { 
       // Method 1: Use environment variables
       if (process.env.VITE_WS_URL) {
         return process.env.VITE_WS_URL;
@@ -58,7 +58,7 @@ class E7kiWebSocketManager {
     this.authToken = authToken;
     this.connectionState = 'connecting';
 
-    try {
+    try { 
       const wsUrl = this.getWebSocketURL();
       console.log('Connecting to WebSocket:', wsUrl);
 
@@ -80,7 +80,7 @@ class E7kiWebSocketManager {
       };
 
       this.ws.onmessage = (event) => {
-        try {
+        try { 
           const message = JSON.parse(event.data);
           this.handleMessage(message);
         } catch (error) {
@@ -197,7 +197,7 @@ class E7kiWebSocketManager {
       return false;
     }
 
-    try {
+    try { 
       this.ws.send(JSON.stringify(message));
       return true;
     } catch (error) {
@@ -268,7 +268,7 @@ class E7kiWebSocketManager {
   emit(event, data) {
     if (this.eventListeners.has(event)) {
       this.eventListeners.get(event).forEach(callback => {
-        try {
+        try { 
           callback(data);
         } catch (error) {
           console.error('Error in event listener:', error);
@@ -312,7 +312,7 @@ export function WebSocketProvider({ children, userId }) {
     
     // Get WebSocket URL with proper fallback
     const getWebSocketURL = useCallback(() => {
-        try {
+        try { 
             // Method 1: Use environment variable
             if (import.meta.env.VITE_WS_URL) {
                 return import.meta.env.VITE_WS_URL;
@@ -369,7 +369,7 @@ export function WebSocketProvider({ children, userId }) {
 
             // Heartbeat
             const heartbeat = setInterval(() => {
-                try {
+                try { 
                     socket.send(JSON.stringify({ 
                         type: "presence", 
                         payload: { status: "online", userId } 
@@ -394,7 +394,7 @@ export function WebSocketProvider({ children, userId }) {
         };
 
         socket.onmessage = (event) => {
-            try {
+            try { 
                 const message = JSON.parse(event.data);
                 setLastMessage(message);
 
@@ -532,7 +532,7 @@ export function handleWebSocketConnection(wss) {
         log("New WebSocket connection", "ws");
         
         ws.on("message", (data) => {
-            try {
+            try { 
                 const message = JSON.parse(data.toString());
                 
                 // Handle authentication

@@ -13,7 +13,7 @@ export class LeaderboardManager {
     }
 
     _load() {
-        try { 
+        try {   
             const raw = localStorage.getItem(STORAGE_KEY);
             return raw ? JSON.parse(raw) : {};
         } catch (e) {

@@ -1,6 +1,6 @@
 // Example transfer test script
 document.addEventListener('DOMContentLoaded', async () => {
-    try { 
+    try {   
         // Initialize transfer manager
         const manager = new TransferManager();
         await manager.initialize();

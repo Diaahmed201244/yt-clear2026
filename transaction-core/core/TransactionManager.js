@@ -11,7 +11,7 @@ export class TransactionManager {
   }
 
   async executeTransaction({ type, from, to, amount, assetId, description, id }) {
-    try { 
+    try {   
       const txId = id || genUuid()
       if (type === "UserToUser" || type === "UserToBankode" || type === "AssetPurchase") {
         if (!canUserDebit(this.usersManager, from, amount)) {
@@ -131,7 +131,7 @@ export class TransactionManager {
       EventVault.record({ eventId: txId, version: "1.0", type, status: "success", from, to, amount, assetId: assetId || null, reason: null })
     } catch (err) {
       // Rollback in-memory state if needed
-      try { 
+      try {   
         switch (type) {
           case "UserToUser":
             this.usersManager.updateBalance(from, amount)

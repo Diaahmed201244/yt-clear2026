@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append("upload_preset", UPLOAD_PRESET);
         formData.append("folder", CLOUD_FOLDER);
 
-        try {
+        try { 
             updateProgressBar(25, file.name, 'Uploading to cloud...');
             
             const response = await fetch(CLOUD_ENDPOINT, {
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function selectFile() {
         if (typeof window !== 'undefined' && window.Capacitor && window.Capacitor.isNativePlatform()) {
             // Mobile: Use Capacitor FilePicker
-            try {
+            try { 
                 const { FilePicker } = await import('@capawesome/capacitor-file-picker');
                 const result = await FilePicker.pickFiles({
                     types: ['audio/*'],

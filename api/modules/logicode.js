@@ -23,7 +23,7 @@ function publish(channel, event, data) {
   if (!set) return
   const line = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`
   for (const res of set) {
-    try {  res.write(line) } catch {}
+    try {    res.write(line) } catch {}
   }
 }
 
@@ -40,7 +40,7 @@ router.get('/events/stream', async (req, res) => {
   subscribe(channel, res)
   res.write(`data: ${JSON.stringify({ ok: true, channel })}\n\n`)
   const interval = setInterval(() => {
-    try {  res.write(`event: ping\ndata: ${Date.now()}\n\n`) } catch {}
+    try {    res.write(`event: ping\ndata: ${Date.now()}\n\n`) } catch {}
   }, 25000)
   req.on('close', () => {
     clearInterval(interval)
@@ -90,7 +90,7 @@ export async function getWealthLeaderboard(limit = 10) {
 
 // Wealth Leaderboard endpoint - JWT protected
 router.get('/wealth-leaderboard', async (req, res) => {
-  try { 
+  try {   
     const limit = Math.max(1, Math.min(100, Number(req.query.limit) || 50))
     const rows = await getWealthLeaderboard(limit)
     res.json(rows)

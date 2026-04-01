@@ -23,7 +23,7 @@ class BankodeCompleteFix {
      * @returns {Promise<Object>} User authentication result
      */
     async ensureAuthenticatedUserID() {
-        try {
+        try { 
             // Get authenticated user with session restoration
             const user = await this.helpers.checkAuth();
 
@@ -55,7 +55,7 @@ class BankodeCompleteFix {
      * @returns {Promise<Object>} Balance fix result
      */
     async fixZeroBalanceIssue() {
-        try {
+        try { 
             const authResult = await this.ensureAuthenticatedUserID();
             if (!authResult.success) {
                 return authResult;
@@ -130,7 +130,7 @@ class BankodeCompleteFix {
      * @returns {Promise<Object>} Table structure result
      */
     async createProperTableStructure() {
-        try {
+        try { 
             // Verify all Bankode tables exist with proper structure
             const tablesToCheck = [
                 'bankode_wallets',
@@ -142,7 +142,7 @@ class BankodeCompleteFix {
             const structureResults = [];
 
             for (const table of tablesToCheck) {
-                try {
+                try { 
                     // Check table structure
                     const structureCheck = await this.supabase
                         .from(table)
@@ -196,7 +196,7 @@ class BankodeCompleteFix {
      * @returns {Object} Foreign key check result
      */
     async checkForeignKeyRelationships() {
-        try {
+        try { 
             // Check wallet-transaction relationship
             const walletCheck = await this.supabase
                 .from('bankode_wallets')
@@ -237,7 +237,7 @@ class BankodeCompleteFix {
      * @returns {Promise<Object>} Dashboard rebuild result
      */
     async rebuildDashboardSummary() {
-        try {
+        try { 
             const authResult = await this.ensureAuthenticatedUserID();
             if (!authResult.success) {
                 return authResult;
@@ -301,7 +301,7 @@ class BankodeCompleteFix {
      * @returns {Promise<Object>} Account health result
      */
     async getAccountHealthMetrics(userId) {
-        try {
+        try { 
             // Get transaction statistics
             const statsResult = await this.supabase
                 .rpc('bankode_account_health', {
@@ -342,7 +342,7 @@ class BankodeCompleteFix {
      * @returns {Promise<boolean>} Update success status
      */
     async updateDashboardUI(summaryData) {
-        try {
+        try { 
             // Update balance displays
             if (window.BankodeDashboard) {
                 window.BankodeDashboard.balances = summaryData.balances;
@@ -379,7 +379,7 @@ class BankodeCompleteFix {
      * @param {string} validationScore - Validation score (e.g., "6/6")
      */
     updateValidationStatusUI(validationScore) {
-        try {
+        try { 
             const validationElement = document.getElementById('bankode-validation-status');
             if (validationElement) {
                 validationElement.textContent = `Validation: ${validationScore} Passed`;
@@ -421,7 +421,7 @@ class BankodeCompleteFix {
      * @param {Object} healthData - Account health data
      */
     updateAccountHealthUI(healthData) {
-        try {
+        try { 
             const healthElements = {
                 transactionCount: document.getElementById('account-transaction-count'),
                 totalVolume: document.getElementById('account-total-volume'),

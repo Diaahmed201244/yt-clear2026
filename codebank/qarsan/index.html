@@ -673,7 +673,7 @@
             }
 
             async loadStatus() {
-                try {
+                try { 
                     const status = await QarsanEngine.getQarsanStatus(this.userId);
                     this.watchDogState = status.watchDogState;
                     this.qarsanMode = status.qarsanMode;
@@ -685,7 +685,7 @@
             }
 
             async loadVirtualUsers() {
-                try {
+                try { 
                     const users = await QarsanEngine.getVirtualUsers();
                     const attackable = await QarsanEngine.getAttackableUsers(this.userId);
                     this.renderVirtualUsers(users, attackable);

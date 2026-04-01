@@ -50,7 +50,7 @@ class FloatingApp {
     }
 
     async requestWindowFeatures() {
-        try {
+        try { 
             // Request permission for Picture-in-Picture if available
             if (document.pictureInPictureEnabled) {
                 const video = this.container.querySelector('video');
@@ -95,7 +95,7 @@ class FloatingApp {
         // Store current window state before modifying
         this.saveWindowState();
         
-        try {
+        try { 
             // Resize and reposition the browser window
             window.resizeTo(floatingSize.width, floatingSize.height);
             window.moveTo(floatingSize.left, floatingSize.top);
@@ -124,7 +124,7 @@ class FloatingApp {
         
         this.isFloating = false;
         
-        try {
+        try { 
             // Restore original window size and position
             window.resizeTo(this.originalWindowState.width, this.originalWindowState.height);
             window.moveTo(this.originalWindowState.left, this.originalWindowState.top);

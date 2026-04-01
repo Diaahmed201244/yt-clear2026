@@ -75,7 +75,7 @@ class BankodeValidationTest {
      */
     async testConfigurationIsolation() {
         const testName = 'Configuration Isolation';
-        try {
+        try { 
             // Check that config only references Bankode tables
             const config = window.BankodeConfig;
 
@@ -115,7 +115,7 @@ class BankodeValidationTest {
      */
     async testRPCFunctionIsolation() {
         const testName = 'RPC Function Isolation';
-        try {
+        try { 
             const rpc = window.BankodeRPC;
 
             // Check that RPC class only calls Bankode functions
@@ -143,7 +143,7 @@ class BankodeValidationTest {
      */
     async testTableStructureIsolation() {
         const testName = 'Table Structure Isolation';
-        try {
+        try { 
             // Verify Bankode tables don't reference community tables
             const hasIsolatedTables = this.bankodeTables.every(table =>
                 table.startsWith('bankode_') && !table.includes('community')
@@ -169,7 +169,7 @@ class BankodeValidationTest {
      */
     async testCodebaseIsolation() {
         const testName = 'Codebase Isolation';
-        try {
+        try { 
             // Check that Bankode files don't import community files
             const bankodeFiles = [
                 'dashboard.js', 'rpc.js', 'safeDoor3D.js',
@@ -181,7 +181,7 @@ class BankodeValidationTest {
             let isolationIssues = [];
 
             for (const file of bankodeFiles) {
-                try {
+                try { 
                     // This would be a real file check in production
                     // For now, we'll assume proper isolation based on structure
                     const filePath = `services/codebank/bankode/${file}`;
@@ -212,7 +212,7 @@ class BankodeValidationTest {
      */
     async testSecurityIsolation() {
         const testName = 'Security Isolation';
-        try {
+        try { 
             // Verify Bankode RLS policies are exclusive
             const config = window.BankodeConfig;
 
@@ -240,7 +240,7 @@ class BankodeValidationTest {
      */
     async testDependencyIsolation() {
         const testName = 'Dependency Isolation';
-        try {
+        try { 
             // Verify Bankode only depends on Bankode-specific utilities
             const helpers = window.BankodeHelpers;
             const validators = window.BankodeValidators;

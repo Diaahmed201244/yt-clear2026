@@ -23,7 +23,7 @@ export class AudioChat {
     async init() {
         if (!this.isEnabled) return;
         
-        try {
+        try { 
             // Request microphone permission
             this.localStream = await navigator.mediaDevices.getUserMedia({ 
                 audio: true 
@@ -74,7 +74,7 @@ export class AudioChat {
 
         // Handle negotiation needed
         this.peerConnection.onnegotiationneeded = async () => {
-            try {
+            try { 
                 await this.peerConnection.setLocalDescription(await this.peerConnection.createOffer());
                 this.ws.send({
                     type: 'OFFER',
@@ -101,7 +101,7 @@ export class AudioChat {
     async handleSignaling(data) {
         if (!this.isEnabled || !this.peerConnection) return;
 
-        try {
+        try { 
             if (data.type === 'OFFER') {
                 await this.peerConnection.setRemoteDescription(new RTCSessionDescription(data.sdp));
                 const answer = await this.peerConnection.createAnswer();

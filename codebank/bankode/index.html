@@ -193,7 +193,7 @@
   <script>
     async function initApp() {
       if (window.BankodeDashboard?.init) {
-        try { await window.BankodeDashboard.init(); } catch (err) { console.error('Dashboard initialization error:', err); }
+        try {  await window.BankodeDashboard.init(); } catch (err) { console.error('Dashboard initialization error:', err); }
       }
     }
     if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initApp); } else { initApp(); }

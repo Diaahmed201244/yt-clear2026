@@ -62,7 +62,7 @@ router.post('/transfer', requireAuth, transferLimiter, enforceFinancialSecurity,
     });
   }
 
-  try { 
+  try {   
     const receiver = await sqliteFindUserByEmail(receiverEmail);
     if (!receiver || !receiver.id) {
       console.warn(`[AUDIT] [FAIL] [RECEIVER_NOT_FOUND] sender=${fromUserId} receiverEmail=${receiverEmail}`);
@@ -79,7 +79,7 @@ router.post('/transfer', requireAuth, transferLimiter, enforceFinancialSecurity,
 
     // 2. ATOMIC LOCKING & TRANSACTION
     await client.query('BEGIN');
-    try { 
+    try {   
       // STEP 1: IDEMPOTENCY BINDING (inside transaction)
       const idempRes = await client.query(
         "INSERT INTO processed_transactions (tx_id) VALUES ($1) ON CONFLICT DO NOTHING",
@@ -206,7 +206,7 @@ router.post('/transfer', requireAuth, transferLimiter, enforceFinancialSecurity,
 // ---------------------------------------------------------------------------
 
 router.post('/rewards/transfer', requireAuth, enforceFinancialSecurity, async (req, res) => {
-  try { 
+  try {   
     const session = readSessionFromCookie(req, res);
     if (!session || !session.userId) {
       return res.status(401).json({ success: false, error: 'unauthorized' });
@@ -233,10 +233,10 @@ router.post('/rewards/transfer', requireAuth, enforceFinancialSecurity, async (r
     const MAX_RETRIES = 3;
     let attempt = 0;
 
-    try { 
+    try {   
       while (true) {
         attempt++;
-        try { 
+        try {   
           await client.query('BEGIN');
 
           const lockRes = await client.query(
@@ -292,7 +292,7 @@ router.post('/rewards/transfer', requireAuth, enforceFinancialSecurity, async (r
             },
           });
         } catch (e) {
-          try {  await client.query('ROLLBACK'); } catch (_) { /* ignore */ }
+          try {    await client.query('ROLLBACK'); } catch (_) { /* ignore */ }
           const code = (e && e.code) || '';
           const retriable = code === '40001' || code === '40P01';
           console.warn('[REWARD TX RETRY]', { attempt, code, message: e && e.message });
@@ -306,7 +306,7 @@ router.post('/rewards/transfer', requireAuth, enforceFinancialSecurity, async (r
       }
     } finally {
       // BUG FIX: ALWAYS release the client — original only released when attempt >= MAX_RETRIES
-      try {  client.release(); } catch (_) { /* ignore */ }
+      try {    client.release(); } catch (_) { /* ignore */ }
     }
   } catch (e) {
     console.error('[REWARD API ERROR]', e);

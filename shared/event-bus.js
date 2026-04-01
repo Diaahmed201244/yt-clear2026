@@ -17,7 +17,7 @@ window.EventBus = {
   emit(event, data) {
     if (this.events[event]) {
       this.events[event].forEach(fn => {
-        try { 
+        try {   
           fn(data);
         } catch (e) {
           console.error(`[EventBus] Error in handler for ${event}:`, e);

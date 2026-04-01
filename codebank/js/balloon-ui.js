@@ -44,7 +44,7 @@ export function renderBalloon(balloon) {
   el.style.top = `${y}px`
   
   el.onclick = async () => {
-    try {
+    try { 
       const res = await fetch('/api/balloon/click', {
         method: 'POST',
         headers: {

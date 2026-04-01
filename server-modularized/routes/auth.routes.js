@@ -50,7 +50,7 @@ const router = Router();
 // ---------------------------------------------------------------------------
 
 router.post('/auth/dev-login', (req, res) => {
-  try { 
+  try {   
     const sessionId = crypto.randomUUID();
     const userId = crypto.randomUUID();
 
@@ -88,7 +88,7 @@ router.post('/auth/dev-login', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/auth/logout', (req, res) => {
-  try { 
+  try {   
     const token = req.cookies && req.cookies.session_token;
     if (token) devSessions.delete(token);
     res.clearCookie('session_token', { path: '/' });
@@ -104,7 +104,7 @@ router.post('/auth/logout', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/auth/send-hybrid-otp', async (req, res) => {
-  try { 
+  try {   
     const { email, phone, countryCode } = req.body;
 
     if (!email || !phone || !countryCode) {
@@ -143,7 +143,7 @@ router.post('/auth/send-hybrid-otp', async (req, res) => {
 });
 
 router.post('/auth/verify-hybrid-otp', async (req, res) => {
-  try { 
+  try {   
     const { sessionId, otp, channel } = req.body;
 
     if (!sessionId || !otp || !channel) {
@@ -174,7 +174,7 @@ router.post('/auth/verify-hybrid-otp', async (req, res) => {
 });
 
 router.post('/auth/resend-otp', async (req, res) => {
-  try { 
+  try {   
     const { sessionId, channel } = req.body;
 
     if (!sessionId || !channel) {
@@ -202,7 +202,7 @@ router.post('/auth/resend-otp', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/auth/signup', async (req, res) => {
-  try { 
+  try {   
     const { email, username, password, religion, country, phone, countryCode } = req.body;
 
     if (!email || !password || !religion || !country || !phone) {
@@ -245,7 +245,7 @@ router.post('/auth/signup', async (req, res) => {
     }
 
     // Register user in UsersManager if available
-    try { 
+    try {   
       if (global.UsersManager && typeof global.UsersManager.registerUser === 'function') {
         await global.UsersManager.registerUser(created);
         console.log(`[Signup] Registered user ${created.id} in UsersManager`);
@@ -304,7 +304,7 @@ router.post('/auth/signup', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/auth/login', async (req, res) => {
-  try { 
+  try {   
     const { email, password } = req.body || {};
     if (!email || !password) {
       return res.status(400).json({ status: 'failed', error: 'Email and password required' });
@@ -366,7 +366,7 @@ router.post('/auth/login', async (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/auth/me', requireAuth, (req, res) => {
-  try { 
+  try {   
     return res.json({
       success: true,
       user: {
@@ -382,7 +382,7 @@ router.get('/auth/me', requireAuth, (req, res) => {
 });
 
 router.get('/me', (req, res) => {
-  try { 
+  try {   
     const s = readSessionFromCookie(req, res);
     if (!s) return res.json({ success: false, user: null });
     return res.json({
@@ -404,7 +404,7 @@ router.get('/me', (req, res) => {
 // ---------------------------------------------------------------------------
 
 router.get('/users/resolve', async (req, res) => {
-  try { 
+  try {   
     const email = (req.query.email || '').trim();
     if (!email) return res.status(400).json({ status: 'failed', error: 'Email required' });
 
@@ -420,7 +420,7 @@ router.get('/users/resolve', async (req, res) => {
 });
 
 router.get('/users/state', requireAuth, async (req, res) => {
-  try { 
+  try {   
     const userId = (req.query.userId || '').trim();
     if (!userId) return res.status(400).json({ status: 'failed', error: 'UserId required' });
 
@@ -451,7 +451,7 @@ router.get('/auth/session', (_req, res) => {
 // ---------------------------------------------------------------------------
 
 router.post('/token/refresh', requireAuth, (req, res) => {
-  try { 
+  try {   
     const token = signJwt(req.user.id, req.user.email);
     return res.json({ success: true, token });
   } catch (err) {

@@ -32,7 +32,7 @@
         const { code } = data;
         console.log(`[Bridge] Syncing code to server: ${code}`);
         
-        try {
+        try { 
             const res = await fetch('/api/codes/sync', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

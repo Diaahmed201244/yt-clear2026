@@ -15,7 +15,7 @@ class ShotsTab {
     }
 
     async init() {
-        try {
+        try { 
             console.log('🎬 Initializing Shots! tab...');
             
             // Initialize database
@@ -173,7 +173,7 @@ class ShotsTab {
     async loadScreenshots() {
         this.showLoading(true);
         
-        try {
+        try { 
             const screenshots = await this.db.getAllScreenshots();
             this.renderScreenshots(screenshots);
             this.updateStats(screenshots);
@@ -243,7 +243,7 @@ class ShotsTab {
     }
 
     async openModal(screenshotId) {
-        try {
+        try { 
             const screenshots = await this.db.getAllScreenshots();
             const screenshot = screenshots.find(s => s.id === screenshotId);
             
@@ -290,7 +290,7 @@ class ShotsTab {
             'Delete Screenshot',
             'Are you sure you want to delete this screenshot?',
             async () => {
-                try {
+                try { 
                     await this.db.deleteScreenshot(screenshotId);
                     await this.loadScreenshots();
                     this.closeModal();
@@ -310,7 +310,7 @@ class ShotsTab {
     }
 
     async downloadShot(screenshotId) {
-        try {
+        try { 
             const screenshots = await this.db.getAllScreenshots();
             const screenshot = screenshots.find(s => s.id === screenshotId);
             
@@ -342,7 +342,7 @@ class ShotsTab {
     async shareCurrentShot() {
         if (!this.currentScreenshot) return;
 
-        try {
+        try { 
             if (navigator.share) {
                 // Convert data URL to blob for sharing
                 const response = await fetch(this.currentScreenshot.dataUrl);
@@ -366,7 +366,7 @@ class ShotsTab {
     }
 
     async clearAllScreenshots() {
-        try {
+        try { 
             const screenshots = await this.db.getAllScreenshots();
             
             for (const screenshot of screenshots) {
@@ -382,7 +382,7 @@ class ShotsTab {
     }
 
     async exportScreenshots() {
-        try {
+        try { 
             const screenshots = await this.db.getAllScreenshots();
             
             if (screenshots.length === 0) {
@@ -424,7 +424,7 @@ class ShotsTab {
     }
 
     async cleanupExpiredScreenshots() {
-        try {
+        try { 
             const deletedIds = await this.db.deleteExpiredScreenshots();
             if (deletedIds.length > 0) {
                 console.log(`🧹 Cleaned up ${deletedIds.length} expired screenshots`);
@@ -601,7 +601,7 @@ function isValidScreenshotTarget(element) {
 
 // Global function to capture screenshot and save to IndexedDB
 async function captureAndSaveScreenshot() {
-    try {
+    try { 
         console.log('📸 Capturing screenshot for Shots! tab...');
         
         // Capture target element instead of full page
@@ -674,7 +674,7 @@ window.addEventListener('message', (ev) => {
     if (!ev.data) return;
     if (ev.data.type === 'shots-init') {
         if (window.shotsTab && typeof window.shotsTab.init === 'function') {
-            try { window.shotsTab.init(); } catch (e) { console.warn('shotsTab.init() error', e); }
+            try {  window.shotsTab.init(); } catch (e) { console.warn('shotsTab.init() error', e); }
         }
     }
 });

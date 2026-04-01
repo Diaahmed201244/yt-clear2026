@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     async function loadCloudinaryTracks() {
         console.log("🔄 Enhanced: Loading Cloudinary tracks from API...");
 
-        try {
+        try { 
             const tracks = await fetchCloudinarySongs();
             if (Array.isArray(tracks) && tracks.length > 0) {
                 console.log(`✅ Loaded ${tracks.length} tracks from API`);
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Initialize player
     async function initPlayer() {
         showLoading(true);
-        try {
+        try { 
             // Enhanced track loading with comprehensive pagination
             console.log("🔄 ENHANCED: Loading tracks with improved Cloudinary pagination...");
             
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Fetch tracks from Cloudinary API with caching
     async function fetchCloudinarySongs() {
-        try {
+        try { 
             // Check cache first
             const now = Date.now();
             if (songCache.data && (now - songCache.timestamp) < CACHE_DURATION) {
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             console.log('🔄 Fetching songs from Cloudinary API...');
             let response = await fetch(`${API_BASE}/api/samma3ny/songs`, { credentials: 'include' });
             if (!response.ok) {
-                try {
+                try { 
                     const fb = 'http://localhost:3000';
                     if (!API_BASE.includes('localhost:3000')) {
                         response = await fetch(`${fb}/api/samma3ny/songs`, { credentials: 'include' });
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Upload song to unified API
     async function uploadSongToServer(file, folder = 'media-player') {
-        try {
+        try { 
             const formData = new FormData();
             formData.append('file', file);
             formData.append('folder', folder);
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         console.log(`📤 Starting bulk upload of ${files.length} files...`);
 
-        try {
+        try { 
             const formData = new FormData();
 
             // Add all files to FormData - ensure proper field name
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Upload audio to unified API (single file - kept for compatibility)
     async function uploadAudioToCloudinary(file, folder = 'media-player') {
-        try {
+        try { 
             const result = await uploadSongToServer(file, folder);
             if (!result || !result.success) {
                 throw new Error(result?.error || 'Upload failed');
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Save song metadata to server after upload
     async function saveSongToServer(track) {
-        try {
+        try { 
             const response = await fetch(`${API_BASE}/api/samma3ny/songs`, {
                 method: 'POST',
                 headers: {
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // --- Download song and save it locally ---
     async function downloadSong(track, triggerBtn) {
-        try {
+        try { 
             if (triggerBtn) {
                 triggerBtn.classList.add('downloading');
                 triggerBtn.disabled = true;
@@ -727,7 +727,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Check if track is downloaded (using IndexedDB)
     async function isTrackDownloaded(trackId) {
-        try {
+        try { 
             const songs = await getAllSongs();
             return songs.some(song => song.id === trackId);
         } catch (error) {
@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Check storage quota and manage space
     function checkStorageQuota() {
-        try {
+        try { 
             // Estimate current storage usage
             const currentStorage = JSON.stringify(localStorage).length;
             const availableStorage = MAX_STORAGE_SIZE - currentStorage;
@@ -757,7 +757,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Clean up old downloads to free space
     async function cleanupOldDownloads(requiredSpace) {
-        try {
+        try { 
             const tracks = await getAllSongs();
             if (tracks.length === 0) return 0;
 
@@ -812,7 +812,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
     // Get storage usage information
     async function getStorageInfo() {
-        try {
+        try { 
             const tracks = await getAllSongs();
             const totalSize = tracks.reduce((sum, track) => sum + (track.size || 0), 0);
             const trackCount = tracks.length;
@@ -834,7 +834,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
     // Load downloaded tracks into playlist
     async function loadDownloadedTracks() {
-        try {
+        try { 
             const downloadedTrackList = await getAllSongs();
             if (downloadedTrackList.length > 0) {
                 // Add downloaded tracks to the beginning of the playlist
@@ -898,7 +898,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
     function updateCurrentTrackDisplay(track) {
         if (_updatingTrackDisplay) return;
         _updatingTrackDisplay = true;
-        try {
+        try { 
             currentTrackTitle.textContent = (track && track.title) ? track.title : 'Track';
             currentTrackArtist.textContent = 'Dr.D';
             currentTrackDescription.textContent = track && track.description ? track.description : '';
@@ -975,7 +975,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
     // Extract colors from track for dynamic background
     function extractColorsFromTrack(track) {
         if (track.thumbnail && track.thumbnail !== '' && typeof ColorThief !== 'undefined') {
-            try {
+            try { 
                 const img = new Image();
                 img.crossOrigin = 'anonymous';
 
@@ -988,7 +988,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
                 img.onload = function() {
                     clearTimeout(colorThiefTimeout);
 
-                    try {
+                    try { 
                         const colorThief = new ColorThief();
                         const dominantColor = colorThief.getColor(img);
                         const palette = colorThief.getPalette(img, 3);
@@ -1679,7 +1679,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
     // Enhanced refresh playlist with improved loading - Cloudinary only
     async function refreshPlaylist() {
         showLoading(true);
-        try {
+        try { 
             // Save current playback state
             const wasPlaying = isPlaying;
             const currentTime = audioPlayer.currentTime;
@@ -1868,7 +1868,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
         if (!soundEffectsEnabled) return;
 
         // Create enhanced sound effects using Web Audio API
-        try {
+        try { 
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
@@ -2553,7 +2553,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
         uploadBtn.addEventListener('click', async () => {
             if (selectedFiles.length === 0) return;
 
-            try {
+            try { 
                 uploadBtn.disabled = true;
                 uploadBtn.textContent = 'Uploading...';
 
@@ -2623,7 +2623,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
         };
 
         async function loadSongList() {
-            try {
+            try { 
                 const response = await fetch(`${API_BASE}/api/samma3ny/songs`, { credentials: 'include' });
                 const songs = await response.json();
                 manageSongs = songs;
@@ -2740,7 +2740,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
                 const name = (input.value || '').trim();
                 if (!name) return;
                 saveBtn.disabled = true;
-                try {
+                try { 
                     await fetch(`${API_BASE}/api/samma3ny/rename`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -2769,7 +2769,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
             const positions = manageSongs.map((s, i) => ({ id: s.public_id || s.id, position: i }));
             saveOrderBtn.disabled = true;
             saveOrderBtn.textContent = 'Saving...';
-            try {
+            try { 
                 await fetch(`${API_BASE}/api/samma3ny/order`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2785,7 +2785,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
             if (!name) return;
             const ids = Array.from(selectedIds);
             renameSelectedBtn.disabled = true;
-            try {
+            try { 
                 await fetch(`${API_BASE}/api/samma3ny/rename-bulk`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2832,7 +2832,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
         window.deleteSong = async (songId) => {
             if (confirm('Are you sure you want to delete this song?')) {
-                try {
+                try { 
                     // Note: Delete functionality would need to be implemented in the server
                     // For now, just show a message
                     console.log('Delete functionality needs server implementation');
@@ -3035,7 +3035,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
     // Clear all downloaded tracks
     async function clearAllDownloads() {
         if (confirm('Are you sure you want to delete all downloaded tracks? This cannot be undone.')) {
-            try {
+            try { 
                 if (dbInstance) {
                     const tx = dbInstance.transaction("tracks", "readwrite");
                     const store = tx.objectStore("tracks");
@@ -3084,7 +3084,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
     // Main share function
     async function shareSong(track) {
-        try {
+        try { 
             showShareLoading(track);
             
             // Generate share token
@@ -3104,7 +3104,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
     // Generate share token via backend API
     async function generateShareToken(track) {
-        try {
+        try { 
             const response = await fetch(`${API_BASE}/api/share/generate`, {
                 method: 'POST',
                 headers: {
@@ -3615,7 +3615,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
         // Copy URL functionality
         copyBtn.addEventListener('click', async () => {
-            try {
+            try { 
                 await navigator.clipboard.writeText(urlInput.value);
                 copyBtn.textContent = 'Copied!';
                 setTimeout(() => {
@@ -3649,7 +3649,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
         // Confirm share
         confirmBtn.addEventListener('click', async () => {
-            try {
+            try { 
                 confirmBtn.disabled = true;
                 confirmBtn.textContent = 'Sharing...';
 
@@ -3707,7 +3707,7 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
 
     // Track share analytics
     function trackShareEvent(songId, action, data = {}) {
-        try {
+        try { 
             // Store in localStorage for offline tracking
             const analytics = JSON.parse(localStorage.getItem('shareAnalytics') || '[]');
             analytics.push({
@@ -3812,16 +3812,16 @@ console.log(`🗑️ Cleaned up ${tracksToRemove.length} old downloads to free s
     // Build Authorization header from stored tokens (if available)
     function buildAuthHeaders() {
         const headers = {};
-        try { console.log('[Samma3ny] Using cookie-based session (no Authorization header)'); } catch(_){}
+        try {  console.log('[Samma3ny] Using cookie-based session (no Authorization header)'); } catch(_){}
         return headers;
     }
     // Ensure auth by checking session; if missing, prompt for login and set cookies
     async function ensureAuthenticated() {
-        try {
+        try { 
             const sessionRes = await fetch(`${API_BASE}/api/auth/session`, { credentials: 'include' });
             if (sessionRes.ok) return true;
         } catch (_) {}
-        try {
+        try { 
             const email = window.prompt('Sign in required to upload. Enter email:');
             const password = email ? window.prompt('Enter password:') : null;
             if (!email || !password) {

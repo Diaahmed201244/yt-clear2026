@@ -10,7 +10,7 @@ export async function registerRoutes(app) {
     new WebSocketService(httpServer);
     // Auth routes
     app.post("/api/auth/register", async (req, res) => {
-        try { 
+        try {   
             const userData = insertUserSchema.parse(req.body);
             // Check if user already exists
             const existingUser = await storage.getUserByUsername(userData.username);
@@ -25,7 +25,7 @@ export async function registerRoutes(app) {
         }
     });
     app.post("/api/auth/login", async (req, res) => {
-        try { 
+        try {   
             const { username, password } = req.body;
             const user = await storage.getUserByUsername(username);
             if (!user || user.password !== password) {
@@ -39,7 +39,7 @@ export async function registerRoutes(app) {
     });
     // Game room routes
     app.post("/api/rooms/create", async (req, res) => {
-        try { 
+        try {   
             const roomCode = await gameService.generateRoomCode();
             const deck = gameService.createDeck();
             const roomData = {
@@ -61,7 +61,7 @@ export async function registerRoutes(app) {
         }
     });
     app.get("/api/rooms/:code", async (req, res) => {
-        try { 
+        try {   
             const room = await storage.getGameRoomByCode(req.params.code);
             if (!room) {
                 return res.status(404).json({ message: "Room not found" });
@@ -75,7 +75,7 @@ export async function registerRoutes(app) {
     });
     // User routes
     app.get("/api/user/:id", async (req, res) => {
-        try { 
+        try {   
             const user = await storage.getUser(parseInt(req.params.id));
             if (!user) {
                 return res.status(404).json({ message: "User not found" });

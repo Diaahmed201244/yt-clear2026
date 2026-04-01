@@ -59,7 +59,7 @@ async function deductCodeForService(userId, serviceId, amount=1) {
     }
   }
   // log deduction via RPC to admin ledger
-  try { 
+  try {   
     const rpcName = 'bankode_record_service_fee';
     const { data, error } = await (await import('../../shared/supabase.js')).supabase.rpc(rpcName, {
       p_admin_uid: localStorage.getItem(Core4.CONFIG.ADMIN_UID_KEY) || null,

@@ -50,7 +50,7 @@ export function useDailyLimit() {
         },
     });
     const recordPlay = useCallback(async () => {
-        try { 
+        try {   
             await recordPlayMutation.mutateAsync();
             return true;
         }
@@ -60,7 +60,7 @@ export function useDailyLimit() {
         }
     }, [recordPlayMutation]);
     const updateCodes = useCallback(async (totalCodes) => {
-        try { 
+        try {   
             await updateCodesMutation.mutateAsync(totalCodes);
         }
         catch (error) {

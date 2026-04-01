@@ -31,7 +31,7 @@
         }
 
         async _doInitialize() {
-            try { 
+            try {   
                 console.log('🕌 Initializing Enhanced Persistent Prayer System Integration...');
 
                 // Check if already initialized
@@ -188,7 +188,7 @@
 
         // Method to trigger persistent prayer notification
         async triggerPersistentPrayer(prayer, index) {
-            try { 
+            try {   
                 await this.initialize();
                 
                 if (navigator.serviceWorker && navigator.serviceWorker.controller) {

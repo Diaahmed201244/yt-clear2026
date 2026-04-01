@@ -143,7 +143,7 @@ export class GameRuntimeLoader {
         if (this.gameFrame && this.gameFrame.contentWindow) {
             this.gameFrame.contentWindow.postMessage(message, '*');
             var __o;
-            try {  var __s = this.gameFrame.getAttribute('src') || this.gameFrame.src || ''; __o = new URL(__s, window.location.href).origin } catch(_) { __o = window.location.origin }
+            try {    var __s = this.gameFrame.getAttribute('src') || this.gameFrame.src || ''; __o = new URL(__s, window.location.href).origin } catch(_) { __o = window.location.origin }
             this.gameFrame.contentWindow.postMessage(message, __o);
         }
     }

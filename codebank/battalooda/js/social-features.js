@@ -21,7 +21,7 @@ class SocialFeatures {
             return null;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/like', {
                 method: 'POST',
                 headers: {
@@ -55,7 +55,7 @@ class SocialFeatures {
             return null;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/unlike', {
                 method: 'POST',
                 headers: {
@@ -104,7 +104,7 @@ class SocialFeatures {
 
     // Comment functionality
     async getComments(recordingId, page = 1, limit = 10) {
-        try {
+        try { 
             const cacheKey = `${recordingId}_${page}_${limit}`;
             
             if (this.commentCache.has(cacheKey)) {
@@ -140,7 +140,7 @@ class SocialFeatures {
             return null;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/comment', {
                 method: 'POST',
                 headers: {
@@ -178,7 +178,7 @@ class SocialFeatures {
             return false;
         }
 
-        try {
+        try { 
             const response = await fetch(`/api/battalooda/comment/${commentId}`, {
                 method: 'DELETE',
                 headers: {
@@ -225,7 +225,7 @@ class SocialFeatures {
             url: `${window.location.origin}/battalooda/recording/${recordingId}`
         };
 
-        try {
+        try { 
             if (navigator.share && platform === 'native') {
                 await navigator.share(shareData);
                 return true;
@@ -274,7 +274,7 @@ class SocialFeatures {
             return false;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/follow', {
                 method: 'POST',
                 headers: {
@@ -307,7 +307,7 @@ class SocialFeatures {
             return false;
         }
 
-        try {
+        try { 
             const response = await fetch('/api/battalooda/report', {
                 method: 'POST',
                 headers: {
@@ -367,7 +367,7 @@ class SocialFeatures {
             return false;
         }
 
-        try {
+        try { 
             const response = await fetch(`/api/battalooda/recording/${recordingId}`, {
                 method: 'DELETE',
                 headers: {
@@ -440,7 +440,7 @@ class SocialFeatures {
 
     // Utility methods
     async getRecording(recordingId) {
-        try {
+        try { 
             const response = await fetch(`/api/battalooda/recording/${recordingId}`);
             if (response.ok) {
                 return await response.json();

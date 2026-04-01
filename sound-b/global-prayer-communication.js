@@ -185,7 +185,7 @@ class GlobalPrayerCommunication {
     processMessage(message) {
         const { type, component, source } = message;
 
-        try { 
+        try {   
             switch (type) {
                 case 'MUTE_AUDIO':
                     this.handleMuteRequest(message);
@@ -380,7 +380,7 @@ class GlobalPrayerCommunication {
         ];
 
         for (const method of methods) {
-            try { 
+            try {   
                 if (method()) {
                     return true;
                 }
@@ -405,7 +405,7 @@ class GlobalPrayerCommunication {
         });
 
         windows.forEach(win => {
-            try { 
+            try {   
                 win.postMessage(message, '*');
             } catch (error) {
                 // Cross-origin or other error
@@ -431,7 +431,7 @@ class GlobalPrayerCommunication {
             storageKey: storageKey
         };
         
-        try { 
+        try {   
             localStorage.setItem(storageKey, JSON.stringify(messageData));
             
             // Clean up after a short time

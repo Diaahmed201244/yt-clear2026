@@ -26,7 +26,7 @@ async function ensureUserProfile(client, userId) {
 export async function grantReward({ userId, amount, source, meta = {} }) {
   const client = await (await import('../config/db.js')).pool.connect()
   
-  try { 
+  try {   
     await client.query('BEGIN')
     await ensureUserProfile(client, userId)
     
@@ -54,7 +54,7 @@ export async function grantReward({ userId, amount, source, meta = {} }) {
     await client.query('COMMIT')
     
     // Emit real-time SSE event
-    try { 
+    try {   
       publishEvent('wealth', 'balance', {
         user_id: userId,
         delta: Math.floor(amt),
@@ -82,7 +82,7 @@ export async function grantReward({ userId, amount, source, meta = {} }) {
 
 export async function spendCodes({ userId, amount, source, meta = {} }) {
   const client = await (await import('../config/db.js')).pool.connect()
-  try { 
+  try {   
     await client.query('BEGIN')
 
     const amt = Number(amount)
@@ -102,7 +102,7 @@ export async function spendCodes({ userId, amount, source, meta = {} }) {
 
     await client.query('COMMIT')
 
-    try { 
+    try {   
       publishEvent('wealth', 'balance', {
         user_id: userId,
         delta: -Math.floor(amt),
@@ -126,7 +126,7 @@ export async function spendCodes({ userId, amount, source, meta = {} }) {
 
 // Legacy endpoint for backward compatibility
 router.post('/claim', async (req, res) => {
-  try { 
+  try {   
     const { reward_type, amount } = req.body || {}
     
     if (!reward_type || !amount) {
@@ -149,7 +149,7 @@ router.post('/claim', async (req, res) => {
 
 // Get user's reward history
 router.get('/history', async (req, res) => {
-  try { 
+  try {   
     const r = await query(
       'SELECT * FROM reward_events WHERE user_id=$1 ORDER BY created_at DESC',
       [req.user.clerkUserId]
@@ -163,7 +163,7 @@ router.get('/history', async (req, res) => {
 
 // Get user's current balance
 router.get('/balance', async (req, res) => {
-  try { 
+  try {   
     const r = await query(
       'SELECT balance, last_updated FROM user_rewards WHERE user_id=$1',
       [req.user.clerkUserId]
@@ -190,7 +190,7 @@ router.post('/sync', async (req, res) => {
   
   const client = await (await import('../config/db.js')).pool.connect()
   
-  try { 
+  try {   
     await client.query('BEGIN')
     
     let totalDelta = 0
@@ -228,7 +228,7 @@ router.post('/sync', async (req, res) => {
     await client.query('COMMIT')
     
     // Emit batch SSE update
-    try { 
+    try {   
       publishEvent('wealth', 'balance', {
         user_id: req.user.clerkUserId,
         delta: totalDelta,

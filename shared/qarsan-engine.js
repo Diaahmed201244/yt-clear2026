@@ -26,7 +26,7 @@ class QarsanEngine {
    * @returns {Promise<{success: boolean, qarsanMode: string, walletBalance: number, watchDogState: string, stealScope: string, lastFedAt: string}>}
    */
   static async getQarsanStatus(userId) {
-    try { 
+    try {   
       const response = await fetch(`${QARSAN_API_BASE}/status`, {
         credentials: 'include'
       });
@@ -70,7 +70,7 @@ class QarsanEngine {
    * @returns {Promise<{success: boolean, message?: string, error?: string}>}
    */
   static async activateQarsan(userId, mode, depositAmount = 0) {
-    try { 
+    try {   
       const response = await fetch(`${QARSAN_API_BASE}/activate`, {
         method: 'POST',
         headers: {
@@ -120,7 +120,7 @@ class QarsanEngine {
    * @returns {Promise<{success: boolean, message?: string, error?: string}>}
    */
   static async deactivateQarsan(userId) {
-    try { 
+    try {   
       const response = await fetch(`${QARSAN_API_BASE}/deactivate`, {
         method: 'POST',
         headers: {
@@ -168,7 +168,7 @@ class QarsanEngine {
    * @returns {Promise<{success: boolean, amount?: number, scope?: string, error?: string}>}
    */
   static async executeQarsanTheft(targetUserId, attackerId, amount) {
-    try { 
+    try {   
       const txId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : (Math.random().toString(36).slice(2) + Date.now());
       const response = await fetch(`${QARSAN_API_BASE}/attack`, {
         method: 'POST',
@@ -225,7 +225,7 @@ class QarsanEngine {
    * @returns {Promise<Array<{id: string, dogState: string, qarsanMode: string, balance: number, qarsanWallet: number, stealScope: string, canAttack: boolean}>>}
    */
   static async getVirtualUsers() {
-    try { 
+    try {   
       const response = await fetch(`${QARSAN_API_BASE}/users`, {
         credentials: 'include'
       });
@@ -258,7 +258,7 @@ class QarsanEngine {
    * @returns {Promise<{success: boolean, cost?: number, error?: string}>}
    */
   static async feedWatchDog(userId) {
-    try { 
+    try {   
       const response = await fetch('/api/watchdog/feed', {
         method: 'POST',
         headers: {
@@ -304,7 +304,7 @@ class QarsanEngine {
    * @returns {Promise<{dogState: string, lastFedAt: string, isFrozen: boolean}>}
    */
   static async getWatchDogState(userId) {
-    try { 
+    try {   
       const response = await fetch('/api/watchdog/state', {
         credentials: 'include'
       });
@@ -342,7 +342,7 @@ class QarsanEngine {
    * @returns {Promise<number>}
    */
   static async fetchBalanceFromLedger() {
-    try { 
+    try {   
       const response = await fetch('/api/balances', {
         credentials: 'include'
       });

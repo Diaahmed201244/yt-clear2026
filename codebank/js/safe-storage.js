@@ -19,7 +19,7 @@ const safeStorage = {
       return this._isLocalStorageAvailable;
     }
     
-    try {
+    try { 
       // Test localStorage availability
       const testKey = '__codebank_test__';
       localStorage.setItem(testKey, 'test');
@@ -36,12 +36,12 @@ const safeStorage = {
    * @returns {boolean} - Success status
    */
   set: (key, value) => {
-    try {
+    try { 
       if (safeStorage._checkEnvironment()) {
         localStorage.setItem(key, value);
         return true;
       } else {
-        try {
+        try { 
           if (safeStorage._forceLocalKeys && safeStorage._forceLocalKeys.has(key)) {
             localStorage.setItem(key, value);
             return true;
@@ -53,7 +53,7 @@ const safeStorage = {
     } catch (error) {
       console.warn(`⚠️ Storage write failed for key "${key}":`, error);
       // Try fallback even if environment check passed
-      try {
+      try { 
         safeStorage._fallback[key] = value;
         return false;
       } catch (fallbackError) {
@@ -69,11 +69,11 @@ const safeStorage = {
    * @returns {string|null} - The stored value or null
    */
   get: (key) => {
-    try {
+    try { 
       if (safeStorage._checkEnvironment()) {
         return localStorage.getItem(key);
       } else {
-        try {
+        try { 
           if (safeStorage._forceLocalKeys && safeStorage._forceLocalKeys.has(key)) {
             return localStorage.getItem(key);
           }
@@ -83,7 +83,7 @@ const safeStorage = {
     } catch (error) {
       console.warn(`⚠️ Storage read failed for key "${key}":`, error);
       // Try fallback even if environment check passed
-      try {
+      try { 
         return safeStorage._fallback[key] || null;
       } catch (fallbackError) {
         console.error(`❌ Failed to read "${key}" from both localStorage and fallback:`, fallbackError);
@@ -93,7 +93,7 @@ const safeStorage = {
   },
   // Compatibility aliases for legacy code expecting localStorage-style API
   getItem: (key) => {
-    try { return safeStorage.get(key) } catch(_) { return null }
+    try {  return safeStorage.get(key) } catch(_) { return null }
   },
   
   /**
@@ -101,11 +101,11 @@ const safeStorage = {
    * @param {string} key - The storage key
    */
   remove: (key) => {
-    try {
+    try { 
       if (safeStorage._checkEnvironment()) {
         localStorage.removeItem(key);
       } else {
-        try {
+        try { 
           if (safeStorage._forceLocalKeys && safeStorage._forceLocalKeys.has(key)) {
             localStorage.removeItem(key);
             return;
@@ -116,7 +116,7 @@ const safeStorage = {
     } catch (error) {
       console.warn(`⚠️ Storage remove failed for key "${key}":`, error);
       // Try fallback even if environment check passed
-      try {
+      try { 
         delete safeStorage._fallback[key];
       } catch (fallbackError) {
         console.error(`❌ Failed to remove "${key}" from both localStorage and fallback:`, fallbackError);
@@ -125,14 +125,14 @@ const safeStorage = {
   },
   // Compatibility alias
   removeItem: (key) => {
-    try { return safeStorage.remove(key) } catch(_) {}
+    try {  return safeStorage.remove(key) } catch(_) {}
   },
   
   /**
    * Clear all storage (localStorage or fallback)
    */
   clear: () => {
-    try {
+    try { 
       if (safeStorage._checkEnvironment()) {
         localStorage.clear();
       } else {
@@ -142,7 +142,7 @@ const safeStorage = {
     } catch (error) {
       console.warn('⚠️ Storage clear failed:', error);
       // Try fallback even if environment check passed
-      try {
+      try { 
         safeStorage._fallback = {};
       } catch (fallbackError) {
         console.error('❌ Failed to clear both localStorage and fallback:', fallbackError);
@@ -151,7 +151,7 @@ const safeStorage = {
   },
   // Compatibility alias
   setItem: (key, value) => {
-    try { return safeStorage.set(key, value) } catch(_) { return false }
+    try {  return safeStorage.set(key, value) } catch(_) { return false }
   },
   
   /**
@@ -163,7 +163,7 @@ const safeStorage = {
     const fallbackSize = Object.keys(safeStorage._fallback).length;
     
     if (isAvailable) {
-      try {
+      try { 
         const localStorageSize = Object.keys(localStorage).length;
         return {
           type: 'localStorage',
@@ -194,7 +194,7 @@ const safeStorage = {
    * @returns {Array} - Array of storage keys
    */
   getKeys: () => {
-    try {
+    try { 
       if (safeStorage._checkEnvironment()) {
         return Object.keys(localStorage);
       } else {
@@ -212,11 +212,11 @@ const safeStorage = {
    * @returns {boolean} - Key existence status
    */
   has: (key) => {
-    try {
+    try { 
       if (safeStorage._checkEnvironment()) {
         return localStorage.getItem(key) !== null;
       } else {
-        try {
+        try { 
           if (safeStorage._forceLocalKeys && safeStorage._forceLocalKeys.has(key)) {
             return localStorage.getItem(key) !== null;
           }

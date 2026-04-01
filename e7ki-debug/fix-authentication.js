@@ -24,7 +24,7 @@ export function authenticateJWT(req, res, next) {
     });
   }
 
-  try {
+  try { 
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
     next();
@@ -99,7 +99,7 @@ export function generateToken(user) {
 
 // User Registration Handler
 export async function registerUser(req, res) {
-  try {
+  try { 
     const { email, username, password } = req.body;
 
     if (!email || !username || !password) {
@@ -157,7 +157,7 @@ export async function registerUser(req, res) {
 
 // User Login Handler
 export async function loginUser(req, res) {
-  try {
+  try { 
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -283,7 +283,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     if (token) {
-      try {
+      try { 
         const parts = token.split('.');
         if (parts.length === 3) {
           const payloadJson = atob(parts[1].replace(/-/g, '+').replace(/_/g, '/'));

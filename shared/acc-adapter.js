@@ -46,7 +46,7 @@ class ACCAdapter {
             let accToken = sessionToken;
 
             // Fetch a scoped ACC token from the server
-            try { 
+            try {   
                 const res = await fetch('/api/auth/acc-token', {
                     method: 'POST',
                     headers: {

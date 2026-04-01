@@ -66,7 +66,7 @@ export function renderToolbar(el, engine, state) {
     if (engine.isRecording) {
       recBtn.disabled = true;
       recBtn.textContent = '⏳ Finalizing…';
-      try {
+      try { 
         const result = await engine.stopRecording();
         if (result) {
           const { blob, duration } = result;

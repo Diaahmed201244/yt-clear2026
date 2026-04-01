@@ -60,7 +60,7 @@
     
     // Global function to show CodeBank panel (for long press on code display)
     window.showCodeBankPanel = function() {
-        try {  window.AUTH_ALREADY_HANDLED = true; } catch(_) {}
+        try {    window.AUTH_ALREADY_HANDLED = true; } catch(_) {}
         const overlay = document.getElementById('code-popup-overlay');
         const iframe = document.getElementById('code-popup-iframe');
         if (overlay && iframe) {
@@ -73,7 +73,7 @@
 
     // Global alternative dashboard opener
     window.showAlternativeDashboard = function() {
-        try {  window.AUTH_ALREADY_HANDLED = true; } catch(_) {}
+        try {    window.AUTH_ALREADY_HANDLED = true; } catch(_) {}
         const overlay = document.getElementById('code-popup-overlay');
         const iframe = document.getElementById('code-popup-iframe');
         if (overlay && iframe) {
@@ -85,13 +85,13 @@
     }
     
     // Initialize when DOM is ready
-    function initAfterAuth(){ try {  if (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) { window.initCodeBankPanel(); } } catch(_){} }
+    function initAfterAuth(){ try {    if (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) { window.initCodeBankPanel(); } } catch(_){} }
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-            try {  if (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) { window.initCodeBankPanel(); } } catch(_){}
+            try {    if (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) { window.initCodeBankPanel(); } } catch(_){}
         });
     } else {
         initAfterAuth();
     }
-    try {  window.addEventListener('auth:ready', function(e){ try {  var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ window.initCodeBankPanel(); } } catch(_){} }); } catch(_){}
+    try {    window.addEventListener('auth:ready', function(e){ try {    var ok=!!(e&&e.detail&&e.detail.authenticated); if(ok){ window.initCodeBankPanel(); } } catch(_){} }); } catch(_){}
 })();

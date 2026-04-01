@@ -182,7 +182,7 @@ class AdvancedBalloonEngine {
   }
 
   async sendTrustEvent(balloon, dist) {
-    try {
+    try { 
       const radius = balloon.circleRadius || 30;
       const rt = Date.now() - (balloon.spawnedAt || Date.now());
       let type = 'existence';
@@ -261,7 +261,7 @@ class AdvancedBalloonEngine {
   }
 
   async sendPointsToBackend(points) {
-    try {
+    try { 
       await fetch("/api/balloon/pop", {
         method: "POST",
         headers: {

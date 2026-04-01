@@ -10,7 +10,7 @@ export class SimpleTransferManager {
     async initialize() {
         if (this.initialized) return;
 
-        try {
+        try { 
             // Get Supabase client
             this.client = window.__SUPABASE_CLIENT__ || (window.Auth && window.Auth.client);
             if (!this.client) {
@@ -29,7 +29,7 @@ export class SimpleTransferManager {
     async getOrCreateBalance(userId) {
         if (!this.client) throw new Error('Not initialized');
         
-        try {
+        try { 
             // Try to get existing balance
             const { data, error } = await this.client
                 .from('balances')
@@ -68,7 +68,7 @@ export class SimpleTransferManager {
         if (!this.client) throw new Error('Not initialized');
         if (amount <= 0) throw new Error('Amount must be positive');
 
-        try {
+        try { 
             // Get recipient user by username
             const { data: recipient, error: recipientError } = await this.client
                 .from('profiles')
@@ -94,7 +94,7 @@ export class SimpleTransferManager {
             console.log('🔄 Transfer: Recipient balance before transfer:', toBalance);
 
             // Execute transfer atomically using RPC function for better consistency
-            try {
+            try { 
                 const data = await errorHandler.executeWithRetry(async () => {
                     const { data, error } = await this.client.rpc('transfer_codes_by_username', {
                         from_user_id: fromUserId,
@@ -203,7 +203,7 @@ export class SimpleTransferManager {
         if (!this.client) throw new Error('Not initialized');
         if (amount <= 0) throw new Error('Amount must be positive');
 
-        try {
+        try { 
             // Get recipient user by email
             const { data: recipient, error: recipientError } = await this.client
                 .from('profiles')
@@ -229,7 +229,7 @@ export class SimpleTransferManager {
             console.log('🔄 Transfer: Recipient balance before transfer:', toBalance);
 
             // Execute transfer atomically using RPC function for better consistency
-            try {
+            try { 
                 const data = await errorHandler.executeWithRetry(async () => {
                     const { data, error } = await this.client.rpc('transfer_codes', {
                         from_user_id: fromUserId,
@@ -337,7 +337,7 @@ export class SimpleTransferManager {
     async sendTransferEmail(recipientEmail, amount, transferId) {
         if (!this.client) throw new Error('Not initialized');
 
-        try {
+        try { 
             // Create verification token
             const verificationToken = this.generateVerificationToken();
 
@@ -398,7 +398,7 @@ export class SimpleTransferManager {
 
     // Get current user ID
     getCurrentUserId() {
-        try {
+        try { 
             const userData = JSON.parse(localStorage.getItem('userData') || '{}');
             return userData.id || userData.uid || userData.supabaseId;
         } catch (error) {

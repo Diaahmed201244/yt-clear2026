@@ -63,7 +63,7 @@ export class BankingProcessor {
     async _placeOrder(orderData) {
         const orderId = orderData.id || `order_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 
-        try {
+        try { 
             console.log('📋 Placing order:', orderId, orderData);
 
             // Validate order
@@ -138,7 +138,7 @@ export class BankingProcessor {
 
     // Cancel an order
     async cancelOrder(orderId, userId) {
-        try {
+        try { 
             console.log('❌ Cancelling order:', orderId);
 
             let order = null;
@@ -298,7 +298,7 @@ export class BankingProcessor {
 
     // Process market orders (immediate execution)
     async processMarketOrder(orderData) {
-        try {
+        try { 
             console.log('⚡ Processing market order:', orderData);
 
             const assetType = orderData.assetType || 'codes';
@@ -331,7 +331,7 @@ export class BankingProcessor {
 
     // Internal order matching logic
     async _matchOrder(newOrder) {
-        try {
+        try { 
             const oppositeBook = newOrder.type === 'buy' ? this.sellOrders : this.buyOrders;
 
             if (oppositeBook.size === 0) {
@@ -375,7 +375,7 @@ export class BankingProcessor {
 
     // Execute a trade between two orders
     async _executeTrade(order1, order2, quantity) {
-        try {
+        try { 
             const tradeId = `trade_${Date.now()}_${Math.random().toString(36).substring(2)}`;
             const tradePrice = order2.price; // Use the existing order's price
             const tradeValue = quantity * tradePrice;

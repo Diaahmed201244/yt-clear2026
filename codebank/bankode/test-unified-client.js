@@ -7,7 +7,7 @@
 async function testUnifiedClientIntegration() {
     console.log('🧪 Testing Bankode Unified Client Integration...');
 
-    try {
+    try { 
         // Test 1: Check if unified supabase client is available
         if (typeof window.supabase === 'undefined') {
             console.error('❌ Test 1 Failed: Unified Supabase client not found');

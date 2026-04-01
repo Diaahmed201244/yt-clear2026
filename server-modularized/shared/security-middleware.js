@@ -69,7 +69,7 @@ export function getIdempotencyResponse(userId, idempotencyKey) {
  * Passes through if all checks pass; returns 403 if suspicious.
  */
 export function enforceFinancialSecurity(req, res, next) {
-  try { 
+  try {   
     if (!req.user || !req.user.id) {
       return res.status(401).json({ success: false, error: 'unauthorized' });
     }
@@ -90,7 +90,7 @@ export function enforceFinancialSecurity(req, res, next) {
  * before allowing a financial operation.
  */
 export function enforceWatchDog(req, res, next) {
-  try { 
+  try {   
     if (!req.user || !req.user.id) {
       return res.status(401).json({ success: false, error: 'unauthorized' });
     }

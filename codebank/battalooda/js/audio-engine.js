@@ -21,7 +21,7 @@ class KaraokeAudioEngine {
     }
 
     async initAudioContext() {
-        try {
+        try { 
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         } catch (error) {
             console.error('Web Audio API not supported:', error);
@@ -84,7 +84,7 @@ class KaraokeAudioEngine {
         this.musicSource.connect(this.audioContext.destination);
         
         // Start music playback
-        try {
+        try { 
             await this.musicElement.play();
         } catch (error) {
             console.warn('Music playback failed:', error);

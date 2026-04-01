@@ -22,7 +22,7 @@ class GamesCentreTestSuite {
     console.log('[TestSuite] Starting comprehensive test suite...');
     this.testStartTime = Date.now();
 
-    try { 
+    try {   
       // Initialize the system
       await this.initializeSystem();
 
@@ -84,7 +84,7 @@ class GamesCentreTestSuite {
   async initializeSystem() {
     console.log('[TestSuite] Initializing system...');
 
-    try { 
+    try {   
       // Import and initialize the runtime bridge
       const YTRuntimeBridge = (await import('./integrations/yt-runtime-bridge.js')).default;
       const bridge = new YTRuntimeBridge();
@@ -106,7 +106,7 @@ class GamesCentreTestSuite {
   async testGameEngine() {
     console.log('[TestSuite] Testing Game Engine...');
 
-    try { 
+    try {   
       // Test engine initialization
       if (!this.gameEngine) {
         throw new Error('Game engine not initialized');
@@ -147,7 +147,7 @@ class GamesCentreTestSuite {
   async testGameRegistry() {
     console.log('[TestSuite] Testing Game Registry...');
 
-    try { 
+    try {   
       const registry = this.gameEngine.gameRegistry;
 
       // Test initial state
@@ -202,7 +202,7 @@ class GamesCentreTestSuite {
   async testModeRegistry() {
     console.log('[TestSuite] Testing Mode Registry...');
 
-    try { 
+    try {   
       const registry = this.gameEngine.modeRegistry;
 
       // Test initial state
@@ -254,7 +254,7 @@ class GamesCentreTestSuite {
   async testCompetitionEngine() {
     console.log('[TestSuite] Testing Competition Engine...');
 
-    try { 
+    try {   
       const engine = this.gameEngine.competitionEngine;
 
       // Test challenge creation
@@ -295,7 +295,7 @@ class GamesCentreTestSuite {
   async testServiceEngine() {
     console.log('[TestSuite] Testing Service Engine...');
 
-    try { 
+    try {   
       const engine = this.gameEngine.serviceEngine;
 
       // Test service enabling
@@ -333,7 +333,7 @@ class GamesCentreTestSuite {
   async testStateAuthority() {
     console.log('[TestSuite] Testing State Authority...');
 
-    try { 
+    try {   
       const authority = this.gameEngine.stateAuthority;
 
       // Test initial state
@@ -384,7 +384,7 @@ class GamesCentreTestSuite {
   async testGameModes() {
     console.log('[TestSuite] Testing Game Modes...');
 
-    try { 
+    try {   
       const registry = this.gameEngine.modeRegistry;
 
       // Test single player mode
@@ -419,7 +419,7 @@ class GamesCentreTestSuite {
   async testServices() {
     console.log('[TestSuite] Testing Services...');
 
-    try { 
+    try {   
       // Test text chat service
       const TextChatService = (await import('./services/text-chat/chat.js')).default;
       const textChat = new TextChatService();
@@ -453,7 +453,7 @@ class GamesCentreTestSuite {
   async testIntegration() {
     console.log('[TestSuite] Testing Integration...');
 
-    try { 
+    try {   
       // Test game engine integration
       const games = this.gameEngine.gameRegistry.getAllGames();
       if (games.length === 0) {
@@ -486,7 +486,7 @@ class GamesCentreTestSuite {
   async testUIComponents() {
     console.log('[TestSuite] Testing UI Components...');
 
-    try { 
+    try {   
       // Test dashboard creation
       const GamesDashboard = (await import('./ui/games-dashboard.js')).default;
       const dashboard = new GamesDashboard();
@@ -516,7 +516,7 @@ class GamesCentreTestSuite {
   async testGameContracts() {
     console.log('[TestSuite] Testing Game Contracts...');
 
-    try { 
+    try {   
       // Test Snake game contract
       const SnakeGame = (await import('./games/snake/game.js')).default;
 
@@ -557,7 +557,7 @@ class GamesCentreTestSuite {
   async testChallengeSystem() {
     console.log('[TestSuite] Testing Challenge System...');
 
-    try { 
+    try {   
       const engine = this.gameEngine.competitionEngine;
 
       // Create a challenge
@@ -611,9 +611,9 @@ class GamesCentreTestSuite {
   async testErrorHandling() {
     console.log('[TestSuite] Testing Error Handling...');
 
-    try { 
+    try {   
       // Test invalid game start
-      try { 
+      try {   
         await this.gameEngine.startGame('non-existent-game', 'single-player');
         throw new Error('Should have thrown error for non-existent game');
       } catch (error) {
@@ -621,7 +621,7 @@ class GamesCentreTestSuite {
       }
 
       // Test invalid mode
-      try { 
+      try {   
         await this.gameEngine.startGame('snake', 'non-existent-mode');
         throw new Error('Should have thrown error for non-existent mode');
       } catch (error) {
@@ -646,7 +646,7 @@ class GamesCentreTestSuite {
   async testStateRecovery() {
     console.log('[TestSuite] Testing State Recovery...');
 
-    try { 
+    try {   
       const authority = this.gameEngine.stateAuthority;
 
       // Test state history tracking

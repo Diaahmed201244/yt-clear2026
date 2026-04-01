@@ -98,7 +98,7 @@
 
     // Dynamic imports for code splitting
     const loadApp = async () => {
-      try { 
+      try {   
         // Core first
         const [{ serviceManager }, { assetBus }, { watchDog }] = await Promise.all([
           import('./src/core/service-manager-v2.js'),

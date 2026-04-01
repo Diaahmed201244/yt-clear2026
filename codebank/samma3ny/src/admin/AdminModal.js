@@ -14,7 +14,7 @@ const AdminModal = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   const loadSongs = async () => {
-    try {
+    try { 
       const response = await fetch('/api/songs');
       const data = await response.json();
       setSongs(data);

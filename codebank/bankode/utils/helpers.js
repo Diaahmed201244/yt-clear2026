@@ -147,7 +147,7 @@ class BankodeHelpers {
      * @returns {*} Parsed JSON or default value
      */
     static safeJsonParse(jsonString, defaultValue = null) {
-        try {
+        try { 
             return JSON.parse(jsonString);
         } catch (e) {
             console.warn('Failed to parse JSON:', e);

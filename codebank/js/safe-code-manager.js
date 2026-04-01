@@ -95,7 +95,7 @@ export function setupSafeSelect() {
         const sessionId = (window.APP_AUTH?.sessionId) || (window.AUTH?.sessionId) || null;
         const payload = { userId, sessionId, codes, receiverEmail: email, tab: window.ACTIVE_ASSET_TAB || 'codes', timestamp: Date.now() };
 
-        try {
+        try { 
             const res = await fetch('/api/send-codes', { method:'POST', headers:{'Content-Type':'application/json','Idempotency-Key': txId}, credentials:'include', body: JSON.stringify(payload) });
             const data = await res.json().catch(()=>({}));
             if (res.ok && (data.ok || data.success)) {

@@ -27,7 +27,7 @@ export const useSSE = (channel, callback, token = null) => {
     const eventSource = new EventSource(`/api/logicode/events/stream?channel=${encodeURIComponent(channel)}`)
 
     eventSource.onmessage = (event) => {
-      try {
+      try { 
         const data = JSON.parse(event.data)
         if (callback) callback(data)
       } catch (err) {
@@ -71,7 +71,7 @@ export const PendingRewards = {
     const pending = PendingRewards.getAll()
     if (pending.length === 0) return
 
-    try {
+    try { 
       const response = await fetchWithToken('/api/rewards/sync', {
         method: 'POST',
         body: JSON.stringify({
@@ -96,7 +96,7 @@ export const PendingRewards = {
 
 // Reward claiming helper
 export const claimReward = async (rewardData, token = null) => {
-  try {
+  try { 
     const response = await fetchWithToken('/api/rewards/claim', {
       method: 'POST',
       body: JSON.stringify(rewardData)
@@ -111,7 +111,7 @@ export const claimReward = async (rewardData, token = null) => {
 
 // Get user balance
 export const getUserBalance = async (token = null) => {
-  try {
+  try { 
     const response = await fetchWithToken('/api/rewards/balance', {}, token)
     return response
   } catch (error) {
@@ -122,7 +122,7 @@ export const getUserBalance = async (token = null) => {
 
 // Redeem corsa code
 export const redeemCorsaCode = async (code, token = null) => {
-  try {
+  try { 
     const response = await fetchWithToken('/api/corsa/redeem', {
       method: 'POST',
       body: JSON.stringify({ code })
@@ -137,7 +137,7 @@ export const redeemCorsaCode = async (code, token = null) => {
 
 // Submit game score
 export const submitGameScore = async (gameName, score, token = null) => {
-  try {
+  try { 
     const response = await fetchWithToken('/api/games/scores', {
       method: 'POST',
       body: JSON.stringify({ game_name: gameName, score })
@@ -152,7 +152,7 @@ export const submitGameScore = async (gameName, score, token = null) => {
 
 // Asset actions
 export const performAssetAction = async (action, assetId, token = null) => {
-  try {
+  try { 
     const response = await fetchWithToken(`/api/assets/${action}/${assetId}`, {
       method: 'POST'
     }, token)

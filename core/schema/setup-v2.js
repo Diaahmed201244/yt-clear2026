@@ -60,7 +60,7 @@ CREATE INDEX IF NOT EXISTS idx_ledger_type ON ledger_events(event_type);
 
 async function runMigration() {
     console.log('🔌 Connecting to Neon...');
-    try {
+    try { 
             SELECT table_name 
             FROM information_schema.tables 
             WHERE table_schema = 'public' 

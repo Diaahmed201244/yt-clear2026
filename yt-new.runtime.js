@@ -6,9 +6,9 @@
 
 // ===== CODEBANK SIDE PANEL (Lines 1398-2005) =====
 (function () {
-  try { 
+  try {   
     window.addEventListener('auth:ready', function(e){
-      try { 
+      try {   
         var ok = !!(e && e.detail && e.detail.authenticated);
         if (ok && typeof window.initCodeBank === 'function') { window.initCodeBank(); }
       } catch(_){}
@@ -295,7 +295,7 @@
             const content = this.panel.querySelector('#codebank-content');
             content.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
 
-            try { 
+            try {   
                 await this.loadTabContent(tabName);
             } catch (error) {
                 console.error('Failed to load tab content:', error);
@@ -520,7 +520,7 @@ Are you sure you want to continue?`);
 
             if (!confirmed) return;
 
-            try { 
+            try {   
                 // Call reset API
                 const jwt = null;
                 const response = await fetch('/api/auth/reset-account', {
@@ -751,7 +751,7 @@ let lastPlaybackTime = 0; // Initialize lastPlaybackTime variable (will be loade
         'afra7': 'fUehe82E5yU' // Afra7 (Single Video ID)
     };
 
-    try { 
+    try {   
         let savedData = { time: 0, index: 0 };
         // Mirror-only: do not use AuthSyncManager
         const localData = localStorage.getItem(`video_${videoIds.home}`);
@@ -841,7 +841,7 @@ function createPlayer(videoIdOrPlaylistId) {
 
         // Check if player already exists and destroy it
         if (window.player && typeof window.player.destroy === 'function') {
-            try { 
+            try {   
                 window.player.destroy();
                 console.log('[YouTube Player] Destroyed existing player');
             } catch (e) {
@@ -854,7 +854,7 @@ function createPlayer(videoIdOrPlaylistId) {
 
         console.log('[YouTube Player] Creating player with', isPlaylist ? 'playlist' : 'video', ':', videoIdOrPlaylistId);
 
-        try { 
+        try {   
             const playerConfig = {
                 height: '100%',
                 width: '100%',
@@ -925,8 +925,8 @@ function onPlayerReady(event) {
     }
 
     // Start playing
-    try { 
-        try {  event.target.mute(); } catch (_) { }
+    try {   
+        try {    event.target.mute(); } catch (_) { }
         event.target.playVideo();
         console.log('[YouTube Player] Video playback started');
     } catch (error) {
@@ -945,7 +945,7 @@ function onPlayerReady(event) {
     setupVideoChangeDetection(event.target);
 
     // Hide recommended videos on pause (with error handling)
-    try { 
+    try {   
         const iframe = (player && typeof player.getIframe === 'function') ? player.getIframe() : null;
         if (iframe && iframe.contentWindow && iframe.contentWindow.document) {
             const video = iframe.contentWindow.document.querySelector('video');
@@ -1116,7 +1116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const extraSwitch = document.getElementById('extra-switch-container');
     if (extraSwitch) {
         extraSwitch.addEventListener('click', () => {
-            try { 
+            try {   
                 if (window.ExtraMode.isActive()) {
                     window.ExtraMode.deactivate();
                 } else {
@@ -1131,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mirror-only mode: no local generation
 
     // Start counter regardless of auth
-    try {  resumeCounter(); } catch (_) { }
+    try {    resumeCounter(); } catch (_) { }
 
     // Also generate code immediately when player starts playing (backup)
     let initialCodeGenerated = false;
@@ -1156,7 +1156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function onPlayerStateChange(event) {
     // ENHANCED: Track video changes for screenshot optimization
     let previousVideoId = null;
-    try { 
+    try {   
         if (player && typeof player.getVideoData === 'function') {
             previousVideoId = player.getVideoData()?.video_id;
         }
@@ -1171,7 +1171,7 @@ function onPlayerStateChange(event) {
 
         // ENHANCED: Check for video changes shortly after playback starts
         setTimeout(() => {
-            try { 
+            try {   
                 if (player && typeof player.getVideoData === 'function') {
                     const currentVideoId = player.getVideoData()?.video_id;
                     if (currentVideoId && currentVideoId !== previousVideoId) {
@@ -1194,7 +1194,7 @@ function onPlayerStateChange(event) {
 
         // ENHANCED: Preload next video thumbnail for better screenshots
         setTimeout(() => {
-            try { 
+            try {   
                 if (player && typeof player.getVideoData === 'function') {
                     const nextVideoData = player.getVideoData();
                     if (nextVideoData?.video_id) {
@@ -1381,7 +1381,7 @@ function updateCounterDisplay() {
 
 // Function to safely set session data using access control
 function safeSetSessionData(key, value) {
-    try { 
+    try {   
         if (window.YTSOLAAccessControl) {
             window.YTSOLAAccessControl.setSessionData(key, value);
         } else {
@@ -1392,7 +1392,7 @@ function safeSetSessionData(key, value) {
         if (isQuotaExceededError(error)) {
             console.warn("Session storage is full. Cleaning up old data...");
             cleanupOldData();
-            try { 
+            try {   
                 if (window.YTSOLAAccessControl) {
                     window.YTSOLAAccessControl.setSessionData(key, value);
                 } else {
@@ -1436,7 +1436,7 @@ function cleanupOldData() {
     const oneMonthAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
     for (let i = localStorage.length - 1; i >= 0; i--) {
         const key = localStorage.key(i);
-        try { 
+        try {   
             const item = JSON.parse(localStorage.getItem(key));
             if (item.timestamp && item.timestamp < oneMonthAgo) {
                 localStorage.removeItem(key);
@@ -1551,7 +1551,7 @@ window.pauseCounter = pauseCounter;
 
 // Function to hide recommended videos
 function hideRecommendedVideos() {
-    try { 
+    try {   
         if (player && typeof player.getIframe === 'function') {
             const iframe = player.getIframe();
             if (iframe && iframe.contentWindow && iframe.contentWindow.document) {
@@ -1571,7 +1571,7 @@ window.addEventListener('scroll', () => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    try { 
+    try {   
         if (player && typeof player.getIframe === 'function') {
             const iframe = player.getIframe();
             if (iframe && iframe.contentWindow && iframe.contentWindow.document) {
@@ -1593,7 +1593,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('load', function () {
-        try { 
+        try {   
             if (!window.player && typeof window.initYouTubePlayer === 'function' && !window.__YT_PLAYER_INIT__) {
                 setTimeout(function(){ if (!window.__YT_PLAYER_INIT__) window.initYouTubePlayer(); }, 1000);
             }
@@ -1725,7 +1725,7 @@ function updatePopupContent() {
 
     // Update Hijri date using hijri-date library or fallback calculation
     if (typeof HijriDate !== 'undefined') {
-        try { 
+        try {   
             const hijri = new HijriDate(now);
             // HijriDate months are 0-indexed (0 = Muharram, 11 = Dhu al-Hijjah)
             const monthNames = [
@@ -1754,7 +1754,7 @@ function updatePopupContent() {
         // Wait a bit for library to load, then retry
         setTimeout(() => {
             if (typeof HijriDate !== 'undefined') {
-                try { 
+                try {   
                     const hijri = new HijriDate(now);
                     const monthNames = [
                         'Muharram', 'Safar', 'Rabi\' al-awwal', 'Rabi\' al-thani',
@@ -1949,7 +1949,7 @@ function openCodeBankPanel() {
     closeBtn.textContent = '✖';
     closeBtn.style.cssText = 'position:absolute;top:8px;left:8px;background:transparent;color:#bbb;border:none;font-size:20px;cursor:pointer;';
     closeBtn.addEventListener('click', () => {
-        try { 
+        try {   
             container.remove();
             window.codebankPanel = null;
         } catch (_) { }
@@ -2167,7 +2167,7 @@ window.showExtraModeBlockedPopup = function () {
 window.saveCurrentSectionTime = async function (sectionId) {
     if (!player || !sectionId) return;
 
-    try { 
+    try {   
         const currentTime = player.getCurrentTime ? player.getCurrentTime() : 0;
         const playlistIndex = player.getPlaylistIndex ? player.getPlaylistIndex() : 0;
 
@@ -2246,7 +2246,7 @@ window.showHomeSection = async function () {
     // Load saved playback time for Home (continues from last position)
     let savedData = { time: 0, index: 0 };
     if (window.AuthSyncManager && window.AuthSyncManager.getUserData) {
-        try { 
+        try {   
             const savedDataStr = null;
             if (savedDataStr && typeof savedDataStr === 'string') {
                 savedData = JSON.parse(savedDataStr);
@@ -2256,14 +2256,14 @@ window.showHomeSection = async function () {
         } catch (e) {
             console.warn('[Section Switch] Error loading saved data for Home:', e);
             // Try localStorage fallback
-            try { 
+            try {   
                 const localData = localStorage.getItem(`video_${videoIds.home}`);
                 if (localData) savedData = JSON.parse(localData);
             } catch (e2) { }
         }
     } else {
         // Fallback to localStorage
-        try { 
+        try {   
             const localData = localStorage.getItem(`video_${videoIds.home}`);
             if (localData) savedData = JSON.parse(localData);
         } catch (e) { }
@@ -2272,7 +2272,7 @@ window.showHomeSection = async function () {
     const startSeconds = savedData.time || 0;
     const startIndex = savedData.index || 0;
 
-    try { 
+    try {   
         // OPTIMIZED: Use player content update instead of recreation
         if (window.YouTubeAPIManager && typeof window.YouTubeAPIManager.updatePlayerContent === 'function') {
             console.log('[Section Switch] Using optimized player content update for Home');
@@ -2280,7 +2280,7 @@ window.showHomeSection = async function () {
 
             // Seek to saved position after content loads
             setTimeout(() => {
-                try { 
+                try {   
                     if (player && startSeconds > 0 && typeof player.seekTo === 'function') {
                         player.seekTo(startSeconds, true);
                     }
@@ -2301,7 +2301,7 @@ window.showHomeSection = async function () {
             }
 
             // Stop current playback before switching to playlist
-            try { 
+            try {   
                 if (player && typeof player.stopVideo === 'function') {
                     player.stopVideo();
                 }
@@ -2311,7 +2311,7 @@ window.showHomeSection = async function () {
 
             // Small delay to ensure player is ready for new content
             setTimeout(() => {
-                try { 
+                try {   
                     // Use loadPlaylist with proper parameters
                     if (player && typeof player.loadPlaylist === 'function') player.loadPlaylist({
                         listType: 'playlist',
@@ -2323,7 +2323,7 @@ window.showHomeSection = async function () {
                 } catch (loadError) {
                     console.warn('[Section Switch] Error with loadPlaylist, trying alternative method:', loadError);
                     // Alternative: cue playlist first, then load
-                    try { 
+                    try {   
                         if (player && typeof player.cuePlaylist === 'function') player.cuePlaylist({
                             listType: 'playlist',
                             list: videoIds.home,
@@ -2332,7 +2332,7 @@ window.showHomeSection = async function () {
 
                         // Wait for playlist to cue, then seek and play
                         setTimeout(() => {
-                            try { 
+                            try {   
                                 if (player && startSeconds > 0 && typeof player.seekTo === 'function') {
                                     player.seekTo(startSeconds, true);
                                 }
@@ -2411,7 +2411,7 @@ window.showNourSection = async function () {
     // Load saved playback time for Nour (continues from last position)
     let savedData = { time: 0 };
     if (window.AuthSyncManager && window.AuthSyncManager.getUserData) {
-        try { 
+        try {   
             const savedDataStr = null;
             if (savedDataStr && typeof savedDataStr === 'string') {
                 savedData = JSON.parse(savedDataStr);
@@ -2421,14 +2421,14 @@ window.showNourSection = async function () {
         } catch (e) {
             console.warn('[Section Switch] Error loading saved data for Nour:', e);
             // Try localStorage fallback
-            try { 
+            try {   
                 const localData = localStorage.getItem(`video_${videoIds.nour}`);
                 if (localData) savedData = JSON.parse(localData);
             } catch (e2) { }
         }
     } else {
         // Fallback to localStorage
-        try { 
+        try {   
             const localData = localStorage.getItem(`video_${videoIds.nour}`);
             if (localData) savedData = JSON.parse(localData);
         } catch (e) { }
@@ -2436,7 +2436,7 @@ window.showNourSection = async function () {
 
     const startSeconds = savedData.time || 0;
 
-    try { 
+    try {   
         if (player && typeof player.loadVideoById === 'function') {
             player.loadVideoById({
                 videoId: videoIds.nour,
@@ -2501,7 +2501,7 @@ window.showAfra7Section = async function () {
     // Afra7 always starts from beginning (no saved time)
     const startSeconds = 0;
 
-    try { 
+    try {   
         if (player && typeof player.loadVideoById === 'function') {
             player.loadVideoById({
                 videoId: videoIds.afra7,
@@ -2525,7 +2525,7 @@ const TOGGLE_LONG_PRESS_DURATION = 2000; // 2 seconds
 
 // Function to handle secure action (accessing codebank)
 async function accessCodebank() {
-    try { 
+    try {   
         // Use AuthSyncManager to require authentication for codebank access
 
         if (typeof window.showAlternativeDashboard === 'function') {
@@ -2582,7 +2582,7 @@ if (toggleButton) {
         const nextVideoIndex = (currentVideoIndex + 1) % videoIds.length;
 
         // Save playback time and index locally (mirror-only, no auth)
-        try { 
+        try {   
             const key = `video_${videoIds[currentVideoIndex]}`;
             const data = {
                 time: currentTime,
@@ -2632,10 +2632,10 @@ if (toggleButton) {
 document.addEventListener('DOMContentLoaded', function () {
     // Function to update the monthly screenshot indicator
     function updateScreenshotIndicator() {
-        try { 
+        try {   
             const raw = localStorage.getItem("user_screenshots");
             const data = (function () {
-                try {  return raw ? JSON.parse(raw) : { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() }; }
+                try {    return raw ? JSON.parse(raw) : { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() }; }
                 catch (_) { return { count: 0, month: new Date().getMonth(), year: new Date().getFullYear() }; }
             })();
 
@@ -2749,7 +2749,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document._iframeProtectionInstalled = true;
             eventsToBlock.forEach(evt => {
                 document.addEventListener(evt, function (e) {
-                    try { 
+                    try {   
                         const iframe = document.querySelector('#video-container iframe, .theatre-mode iframe, iframe.theatre-mode');
                         if (iframe && (e.target === iframe || iframe.contains && iframe.contains(e.target))) {
                             e.preventDefault();
@@ -2810,7 +2810,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Function to check current video and update thumbnail
         function checkVideoChange() {
-            try { 
+            try {   
                 if (player && typeof player.getVideoData === 'function') {
                     const videoData = player.getVideoData();
                     const currentVideoId = videoData?.video_id;

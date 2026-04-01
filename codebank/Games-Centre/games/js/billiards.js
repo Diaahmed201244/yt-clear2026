@@ -316,7 +316,7 @@ class BilliardsGame {
         this.gameOver = true;
         
         // Award prizes based on score
-        try { 
+        try {   
             const currentRewards = window.getRewards ? window.getRewards() : { codes: 0, silverBars: 0, goldBars: 0 };
             
             // Calculate prize based on score

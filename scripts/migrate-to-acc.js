@@ -84,7 +84,7 @@ async function migrateHistoricalTransactions() {
     console.log('[Migration] Phase 2: Migrating historical transactions...');
 
     let oldLedger = [];
-    try { 
+    try {   
         const res = await query(`
             SELECT id, user_id, direction, asset_type, amount, reference, created_at
             FROM ledger
@@ -99,7 +99,7 @@ async function migrateHistoricalTransactions() {
     console.log(`[Migration] Found ${oldLedger.length} historical transactions.`);
 
     for (const tx of oldLedger) {
-        try { 
+        try {   
             await accDb.execute({
                 sql: `
                     INSERT OR IGNORE INTO asset_transactions 
@@ -128,7 +128,7 @@ async function migrateHistoricalTransactions() {
 async function migrate() {
     console.log('🚀 [Migration] Starting migration to ACC...');
 
-    try { 
+    try {   
         await ensureACCTables();
         await migrateUserBalances();
         await migrateHistoricalTransactions();

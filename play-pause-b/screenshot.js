@@ -46,7 +46,7 @@ async function captureScreenshot() {
         return;
     }
     
-    try { 
+    try {   
         // Flash effect
         const flash = document.getElementById('screenshot-flash');
         flash.style.opacity = '1';
@@ -85,7 +85,7 @@ async function captureScreenshot() {
             localStorage.setItem('screenshotCount', (count + 1).toString());
             
             // Also save to CodeBank Shots (IndexedDB)
-            try { 
+            try {   
                 if (!window.shotsDB) {
                     await new Promise((resolve) => {
                         const s = document.createElement('script');

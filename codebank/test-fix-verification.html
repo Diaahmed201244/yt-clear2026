@@ -125,7 +125,7 @@
         // Test functions
         function testInitialization() {
             const result = document.getElementById('init-test');
-            try {
+            try { 
                 if (window.SafeAssetList && typeof window.SafeAssetList.render === 'function') {
                     result.className = 'test-result pass';
                     result.innerHTML = `
@@ -154,7 +154,7 @@
 
         function testEventListeners() {
             const result = document.getElementById('event-test');
-            try {
+            try { 
                 // Check if the component is listening to assets:updated
                 const hasRenderFunction = typeof window.__renderSafeList__ === 'function' || 
                                         (window.SafeAssetList && typeof window.SafeAssetList.render === 'function');
@@ -186,7 +186,7 @@
 
         function testAssetRendering() {
             const result = document.getElementById('render-test');
-            try {
+            try { 
                 if (window.AssetBus && typeof window.AssetBus.snapshot === 'function') {
                     const snapshot = window.AssetBus.snapshot();
                     if (snapshot) {

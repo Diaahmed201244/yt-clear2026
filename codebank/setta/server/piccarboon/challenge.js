@@ -35,7 +35,7 @@ function seedDaily() {
 export function getCurrentChallenge() {
   ensureDirs()
   seedDaily()
-  try {
+  try { 
     const raw = fs.readFileSync(DAILY, 'utf-8')
     return JSON.parse(raw)
   } catch {

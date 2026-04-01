@@ -47,7 +47,7 @@ class MobileSensorAnalyzer {
             return false;
         }
 
-        try {
+        try { 
             // Check for DeviceMotionEvent (accelerometer)
             if ('DeviceMotionEvent' in window) {
                 this.sensors.accelerometer = true;
@@ -311,7 +311,7 @@ class MobileSensorAnalyzer {
             return { score: 0.5, reason: 'NO_AUDIO_ROUTE_DATA' };
         }
 
-        try {
+        try { 
             // Create audio context to detect available devices
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             

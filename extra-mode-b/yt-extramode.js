@@ -50,7 +50,7 @@ let extraModePauseStart = null;
 const EXTRA_MODE_GRACE_MS = 5 * 60 * 1000;
 
 const __safeTranslate = (key, vars) => {
-  try { 
+  try {   
     if (typeof window.translate === 'function') {
       return window.translate(key, vars);
     }
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
             toggle: () => { return extraModeActive ? window.ExtraMode.deactivate() : window.ExtraMode.activate(); },
             getState: () => getExtraModeState(),
             hasPendingReward: () => {
-                try { 
+                try {   
                     if (activeReward && !activeReward.claimed) return true;
                     return Array.isArray(activeRewards) && activeRewards.some(r => !r.claimed);
                 } catch(_) { return false }
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * Periodic check for continuous watching state
  */
 function checkContinuousWatching() {
-    try { 
+    try {   
         // If Extra Mode is active and reward not ready, ensure timer is running
         if (extraModeActive && !rewardReady && !extraTimerInterval) {
             startExtraTimer();
@@ -345,7 +345,7 @@ async function activateExtraMode(mode) {
     extraBarMode = mode;
     console.log('Activating Extra Mode:', mode);
     
-    try {  createWatchSession(); } catch(_) {}
+    try {    createWatchSession(); } catch(_) {}
     extraModeActive = true;
     window.extraModeActive = true;
     extraWatchStartTime = Date.now();
@@ -377,10 +377,10 @@ async function activateExtraMode(mode) {
 
     // Update UI
     updateExtraModeUI(true);
-    try {  document.body.classList.add('extra-mode'); } catch(_){}
-    try {  window.dispatchEvent(new CustomEvent('extra-mode:changed', { detail: { active: true } })); } catch(_){}
+    try {    document.body.classList.add('extra-mode'); } catch(_){}
+    try {    window.dispatchEvent(new CustomEvent('extra-mode:changed', { detail: { active: true } })); } catch(_){}
 
-    try {  window.handleExtraModeChange && window.handleExtraModeChange(true); } catch (_) {}
+    try {    window.handleExtraModeChange && window.handleExtraModeChange(true); } catch (_) {}
 
     // Watch session already created as guard
     
@@ -415,7 +415,7 @@ async function activateExtraMode(mode) {
  * Deactivate Extra Mode
  */
 function deactivateExtraMode() {
-    try { 
+    try {   
         console.log('Deactivating Extra Mode');
         extraModeActive = false;
         window.extraModeActive = false;
@@ -433,9 +433,9 @@ function deactivateExtraMode() {
         stopExtraTimer();
         resetSwitchToCenter();
         updateExtraModeUI(false);
-        try {  document.body.classList.remove('extra-mode'); } catch(_){}
-        try {  window.dispatchEvent(new CustomEvent('extra-mode:changed', { detail: { active: false } })); } catch(_){}
-        try {  window.handleExtraModeChange && window.handleExtraModeChange(false); } catch (_) {}
+        try {    document.body.classList.remove('extra-mode'); } catch(_){}
+        try {    window.dispatchEvent(new CustomEvent('extra-mode:changed', { detail: { active: false } })); } catch(_){}
+        try {    window.handleExtraModeChange && window.handleExtraModeChange(false); } catch (_) {}
          // Resume normal code generation
         if (window.Bankode && typeof window.Bankode.resumeNormalGeneration === 'function') {
             window.Bankode.resumeNormalGeneration();
@@ -652,13 +652,13 @@ function resetExtraProgress() {
  * Set reward lock
  */
 function setRewardLock(lockKey) {
-    try { 
+    try {   
         const ss = window.safeStorage || null;
         if (ss) {
             const regKey = 'reward_registry';
             const tempId = `extra:${lockKey.split(':')[2]}`;
             let registry = [];
-            try {  registry = JSON.parse(ss.get(regKey) || '[]'); } catch(_) { registry = []; }
+            try {    registry = JSON.parse(ss.get(regKey) || '[]'); } catch(_) { registry = []; }
             if (!registry.includes(tempId)) { 
                 registry.push(tempId); 
                 ss.set(regKey, JSON.stringify(registry)); 
@@ -672,7 +672,7 @@ function setRewardLock(lockKey) {
  * Stop watchdog (challenge system)
  */
 function stopWatchDog() {
-    try { 
+    try {   
         if (challengeTimeout) {
             clearTimeout(challengeTimeout);
             challengeTimeout = null;
@@ -694,7 +694,7 @@ function stopWatchDog() {
  * Disable reward UI during claiming
  */
 function disableRewardUI() {
-    try { 
+    try {   
         const claimBtn = document.getElementById('extra-claim-btn');
         if (claimBtn) {
             claimBtn.disabled = true;
@@ -714,7 +714,7 @@ function disableRewardUI() {
  * Cleanup extra mode UI after reward is done
  */
 function cleanupExtraModeUI() {
-    try { 
+    try {   
         const claimBtn = document.getElementById('extra-claim-btn');
         if (claimBtn) {
             claimBtn.style.display = 'none';
@@ -889,7 +889,7 @@ function showFailedClaimNotification(reward) {
  * Create watch session in backend
  */
 async function createWatchSession() {
-    try { 
+    try {   
         const base = window.APP_BACKEND_BASE_URL || '';
         if (!base) {
             return true;
@@ -921,7 +921,7 @@ async function createWatchSession() {
 
 function showNoInternetMessage() {
     const msg = 'لا يمكنك لأن لا يوجد إنترنت';
-    try { 
+    try {   
         const existing = document.getElementById('extra-mode-toast');
         const toast = existing || document.createElement('div');
         toast.id = 'extra-mode-toast';
@@ -963,7 +963,7 @@ function setupTabVisibilityDetection() {
 }
 
 function handleVisibilityChange() {
-    try { 
+    try {   
         if (document.hidden) {
             // Deactivate extra mode when tab is hidden/switched
             if (extraModeActive) {
@@ -979,7 +979,7 @@ function handleVisibilityChange() {
 }
 
 function handleWindowBlur() {
-    try { 
+    try {   
         // Deactivate extra mode when window loses focus (user switches to another app)
         if (extraModeActive) {
             console.log('[ExtraMode] Window lost focus - deactivating extra mode');
@@ -989,7 +989,7 @@ function handleWindowBlur() {
 }
 
 function handleWindowFocus() {
-    try { 
+    try {   
         // When window regains focus, do NOT reactivate extra mode
         // User must manually activate it again
         console.log('[ExtraMode] Window focused - extra mode remains inactive');
@@ -997,11 +997,11 @@ function handleWindowFocus() {
 }
 
 function handleBeforeUnload() {
-    try {  if (extraModeActive) deactivateExtraMode(); } catch(_) {}
+    try {    if (extraModeActive) deactivateExtraMode(); } catch(_) {}
 }
 
 function handleUnload() {
-    try {  if (extraModeActive) deactivateExtraMode(); } catch(_) {}
+    try {    if (extraModeActive) deactivateExtraMode(); } catch(_) {}
 }
 
 /**
@@ -1027,7 +1027,7 @@ async function claimReward(reward) {
         return false;
     }
     
-    try { 
+    try {   
         // STATE TRANSITION: READY -> CLAIMING
         rewardState = 'CLAIMING';
         console.log('[Reward] State: READY -> CLAIMING');
@@ -1063,7 +1063,7 @@ async function claimReward(reward) {
         reward.claimedAt = Date.now();
         
         // Clear expiry timer
-        try {  if (reward._expiryTimer) { clearTimeout(reward._expiryTimer); } } catch(_) {}
+        try {    if (reward._expiryTimer) { clearTimeout(reward._expiryTimer); } } catch(_) {}
         
         // Set reward lock
         setRewardLock(`reward_lock:extra:${type}`);
@@ -1189,7 +1189,7 @@ function showRewardMessage(type, code = null) {
     
     // Auto-expire reward message after 60s if not claimed
     if (!code) {
-        try { 
+        try {   
             if (activeReward) {
                 activeReward._expiryTimer = setTimeout(() => {
                     if (!activeReward || activeReward.claimed) return;
@@ -1213,7 +1213,7 @@ function showRewardMessage(type, code = null) {
             resetExtraProgress();
             deactivateExtraMode();
         };
-        try { 
+        try {   
             if (activeReward) {
                 if (window.TimerManager) {
                     activeReward._expiryTimer = window.TimerManager.setTimeout(expireFn, 60000);
@@ -1231,7 +1231,7 @@ function showRewardMessage(type, code = null) {
     }
 }
 function hideRewardNotification() {
-    try { 
+    try {   
         const notification = document.getElementById('reward-notification');
         const claimBtn = document.getElementById('extra-claim-btn');
         if (claimBtn) claimBtn.style.display = 'none';
@@ -1242,11 +1242,11 @@ function hideRewardNotification() {
             delete notification.dataset.rewardId;
         }
     } catch(_) {}
-    try {  if (typeof hideRewardMessage === 'function') hideRewardMessage(); } catch(_) {}
+    try {    if (typeof hideRewardMessage === 'function') hideRewardMessage(); } catch(_) {}
 }
 
 function showRewardSuccess(code){
-    try { 
+    try {   
         const type = (activeReward && activeReward.type) || extraBarMode || 'silver';
         const notification = document.getElementById('reward-notification');
         const icon = document.getElementById('reward-icon');
@@ -1265,7 +1265,7 @@ function showRewardSuccess(code){
 }
 
 function showRewardFailed(){
-    try {  showRewardFailedMessage(); } catch(_) {}
+    try {    showRewardFailedMessage(); } catch(_) {}
 }
 
 /**
@@ -1319,7 +1319,7 @@ function initializeChallengeSystem() {
     console.log('Initializing challenge system');
     
     // Create audio for alarm
-    try { 
+    try {   
         challengeAudio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+D2u2ceBSl+y/DadCtPq+PxtmQcBjiR1vLNeywGI3bE8N2QQAoUXrPo66hVFAlFnt7wsmQEOITH6dWdQw');
         challengeAudio.volume = 0.3;
         watchDogAudio = new Audio('/services/yt-clear/extra-mode-b/watch-dog.mp3');
@@ -1380,7 +1380,7 @@ function startChallenge() {
 
     // Play watch-dog sound (force unmute and full volume)
     if (watchDogAudio) {
-        try { 
+        try {   
             watchDogAudio.muted = false; // Ensure not muted
             watchDogAudio.volume = 1.0; // Ensure full volume
             watchDogAudio.currentTime = 0;
@@ -1412,7 +1412,7 @@ function startChallenge() {
  * Show challenge message in the UI
  */
 function showChallengeMessage(message) {
-    try { 
+    try {   
         const text = __safeTranslate(message || 'extraMode.challengePress');
         const codeDisplay = document.getElementById('code-display');
         if (!codeDisplay) return;
@@ -2014,7 +2014,7 @@ window.ExtraMode = {
 
             // Rewards object (legacy summary)
             var r = {};
-            try {  r = JSON.parse(ss.get('codebank_rewards') || '{}'); } catch(_) { r = {}; }
+            try {    r = JSON.parse(ss.get('codebank_rewards') || '{}'); } catch(_) { r = {}; }
             if (reward.type === 'silver') r.silverBars = (parseInt(r.silverBars||'0',10) + 1);
             if (reward.type === 'gold') r.goldBars = (parseInt(r.goldBars||'0',10) + 1);
             r.lastUpdated = new Date().toISOString();

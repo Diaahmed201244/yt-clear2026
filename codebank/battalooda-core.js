@@ -94,7 +94,7 @@
         const statusEl = document.getElementById('studio-status');
 
         if (!Battalooda.studio.recording) {
-            try {
+            try { 
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 Battalooda.studio.mediaRecorder = new MediaRecorder(stream);
                 Battalooda.studio.audioChunks = [];

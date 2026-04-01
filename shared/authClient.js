@@ -19,13 +19,13 @@ export async function register(email, password, fullName) {
 }
 
 async function emit() {
-  try { 
+  try {   
     _session = await getSession();
   } catch (_) {
     _session = null;
   }
   listeners.forEach(fn => {
-    try {  fn(_session); } catch (_) {}
+    try {    fn(_session); } catch (_) {}
   });
 }
 

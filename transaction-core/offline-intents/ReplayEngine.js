@@ -7,11 +7,11 @@ export class ReplayEngine {
   async replayAll() {
     const intents = this.intentQueue.load()
     for (const intent of intents) {
-      try { 
+      try {   
         await this.policyEngine.run(intent.type, intent.payload)
         this.intentQueue.clear(intent.intentId)
       } catch (e) {
-        try {  this.intentQueue.markFailed(intent.intentId, e.message) } catch(_){}
+        try {    this.intentQueue.markFailed(intent.intentId, e.message) } catch(_){}
         console.error("Intent failed:", intent.intentId, e.message)
       }
     }

@@ -10,7 +10,7 @@ export async function requireAuth(req, res, next) {
     if (!token) {
         return res.status(401).json({ error: 'Unauthorized', message: 'No session token provided' });
     }
-    try {
+    try { 
         const user = await AuthService.validateSession(token);
         if (!user) {
             res.clearCookie('session_token', { path: '/' });
@@ -30,7 +30,7 @@ export async function requireAuth(req, res, next) {
 export async function optionalAuth(req, res, next) {
     const token = req.cookies?.session_token || null;
     if (!token) return next();
-    try {
+    try { 
         const user = await AuthService.validateSession(token);
         if (user) req.user = user;
     } catch (ignore) { }

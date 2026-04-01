@@ -72,7 +72,7 @@ class YTRuntimeBridge {
    * Register sample games
    */
   async registerSampleGames() {
-    try { 
+    try {   
       // Import and register Snake game
       const SnakeGame = (await import('../games/snake/game.js')).default;
       this.gameEngine.gameRegistry.register('snake', SnakeGame, {

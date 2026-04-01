@@ -24,7 +24,7 @@ class AssetBusV2 {
 
   setupNativeBridge() {
     if (window.Capacitor) {
-      try { 
+      try {   
         const { App } = require('@capacitor/app');
         this.nativeBridge = App;
         
@@ -145,7 +145,7 @@ class AssetBusV2 {
     // Use setTimeout for non-blocking
     setTimeout(() => {
       for (const listener of sorted) {
-        try { 
+        try {   
           // Check if ref is still valid (for WeakRefs)
           if (listener.ref instanceof WeakRef) {
             const target = listener.ref.deref();

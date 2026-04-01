@@ -1,7 +1,7 @@
 // index.js — Browser Local Mode (NO StorageLord, NO UI Adapter)
 
 function __boot(){
-  try { console.log('INDEXJS_VERSION:2'); } catch(_){}
+  try {  console.log('INDEXJS_VERSION:2'); } catch(_){}
 
   console.warn("🟢 CodeBank index.js running in TRUE Browser Local Mode");
 
@@ -190,4 +190,4 @@ function __boot(){
   console.log("✅ CodeBank index.js ready (Browser Local Mode)");
 }
 
-try { window.initCodeBank = __boot } catch(_){}
+try {  window.initCodeBank = __boot } catch(_){}

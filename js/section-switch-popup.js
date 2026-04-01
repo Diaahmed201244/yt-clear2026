@@ -1,11 +1,11 @@
 let lastPopup = null;
 
 export function showSectionPopup(title) {
-  try {
+  try { 
     const text = typeof title === 'string' ? title : (title && title.text) || '';
     if (!text) return;
     if (lastPopup) {
-      try { lastPopup.remove(); } catch (_) {}
+      try {  lastPopup.remove(); } catch (_) {}
       lastPopup = null;
     }
 
@@ -23,7 +23,7 @@ export function showSectionPopup(title) {
       el.classList.remove('in');
       el.classList.add('out');
       setTimeout(() => {
-        try { el.remove(); } catch (_) {}
+        try {  el.remove(); } catch (_) {}
         if (lastPopup === el) lastPopup = null;
       }, 250);
     }, 700);

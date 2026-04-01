@@ -6,12 +6,12 @@ export class UsersRepository extends BaseRepository {
     const res = await c.query("SELECT id, email FROM users WHERE id=$1", [id])
     const user = res.rows[0] || null
     let balance = 0
-    try { 
+    try {   
       const b = await c.query("SELECT balance FROM balances WHERE user_id=$1", [id])
       balance = (b.rows[0] && b.rows[0].balance) || 0
     } catch(_) {}
     let assets = []
-    try { 
+    try {   
       const ares = await c.query("SELECT asset_id FROM user_assets WHERE user_id=$1", [id])
       assets = ares.rows.map(r => r.asset_id)
     } catch (_) {}

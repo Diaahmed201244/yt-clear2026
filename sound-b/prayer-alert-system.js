@@ -48,7 +48,7 @@ class PrayerAlertSystem {
     }
 
     async init() {
-        try { 
+        try {   
             console.log('🕌 Initializing Prayer Alert System...');
             
             await this.initializeLocation();
@@ -72,7 +72,7 @@ class PrayerAlertSystem {
     }
 
     async initializeLocation() {
-        try { 
+        try {   
             const savedLocation = this.getSavedLocation();
             if (savedLocation) {
                 this.location = savedLocation;
@@ -117,7 +117,7 @@ class PrayerAlertSystem {
     }
 
     async loadPrayerTimes() {
-        try { 
+        try {   
             if (!this.location) {
                 throw new Error('Location not available');
             }
@@ -264,7 +264,7 @@ class PrayerAlertSystem {
     }
 
     playAzanSound(prayerName) {
-        try { 
+        try {   
             const prayerInfo = this.prayerNames[prayerName];
             const azanUrl = this.getAzanUrl(prayerInfo.azanFile);
             
@@ -376,7 +376,7 @@ class PrayerAlertSystem {
     }
 
     async getHijriDate() {
-        try { 
+        try {   
             const today = new Date().toISOString().split('T')[0];
             const response = await fetch(`${this.apiEndpoints.hijriDate}/${today}`);
             const data = await response.json();
@@ -395,7 +395,7 @@ class PrayerAlertSystem {
 
     // Offline Support
     savePrayerTimesOffline() {
-        try { 
+        try {   
             const offlineData = {
                 prayerTimes: this.prayerTimes,
                 location: this.location,
@@ -408,7 +408,7 @@ class PrayerAlertSystem {
     }
 
     async loadOfflinePrayerTimes() {
-        try { 
+        try {   
             const offlineData = localStorage.getItem('offline_prayer_times');
             if (offlineData) {
                 const data = JSON.parse(offlineData);
@@ -429,7 +429,7 @@ class PrayerAlertSystem {
 
     // Preferences Management
     loadSavedPreferences() {
-        try { 
+        try {   
             const saved = localStorage.getItem('prayer_alert_preferences');
             if (saved) {
                 const preferences = JSON.parse(saved);
@@ -441,7 +441,7 @@ class PrayerAlertSystem {
     }
 
     savePreferences() {
-        try { 
+        try {   
             const preferences = {
                 autoAlertEnabled: this.options.autoAlertEnabled,
                 alertBeforePrayer: this.options.alertBeforePrayer,
@@ -456,7 +456,7 @@ class PrayerAlertSystem {
 
     // Utility Methods
     getSavedLocation() {
-        try { 
+        try {   
             const saved = localStorage.getItem('user_location');
             return saved ? JSON.parse(saved) : null;
         } catch (error) {
@@ -465,7 +465,7 @@ class PrayerAlertSystem {
     }
 
     saveLocation() {
-        try { 
+        try {   
             localStorage.setItem('user_location', JSON.stringify(this.location));
             localStorage.setItem('location_saved', 'true');
         } catch (error) {

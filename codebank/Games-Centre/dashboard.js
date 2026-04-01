@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Load manifest
   async function loadManifest() {
-    try { 
+    try {   
       loadingState.classList.remove('hidden');
       const response = await fetch('./core/dashboard-manifest.json');
 
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log('Game frame loaded:', game.title);
 
       // Inject game loader into the iframe
-      try { 
+      try {   
         const gameDoc = gameFrame.contentDocument || gameFrame.contentWindow.document;
         const loaderScript = gameDoc.createElement('script');
         loaderScript.src = './core/js/game-loader.js';
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!voiceChat) return;
 
       if (!voiceChat.localStream) {
-        try { 
+        try {   
           await voiceChat.startLocalStream(true);
           addVideoStream('local', voiceChat.localStream);
           videoOverlay.classList.remove('hidden');

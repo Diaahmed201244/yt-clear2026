@@ -96,7 +96,7 @@
     },
 
     startRecording: async function() {
-      try {
+      try { 
         this.recordedChunks = [];
         this.isRecording = true;
         this.recordingStartTime = Date.now();
@@ -215,7 +215,7 @@
         return;
       }
 
-      try {
+      try { 
         this.updateUI('uploading');
 
         const formData = new FormData();
@@ -367,7 +367,7 @@
       await this.startRecording();
       
       if (this.studioWaveSurfer && this.audioStream) {
-        try {
+        try { 
           const audioContext = new (window.AudioContext || window.webkitAudioContext)();
           const source = audioContext.createMediaStreamSource(this.audioStream);
           const analyser = audioContext.createAnalyser();

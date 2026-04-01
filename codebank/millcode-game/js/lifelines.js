@@ -225,7 +225,7 @@ class LifelinesSystem {
         footer.style.display = 'none';
         modal.style.display = 'flex';
 
-        try {
+        try { 
             // Simulate API call delay
             await this.delay(2000);
             

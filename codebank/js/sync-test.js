@@ -29,7 +29,7 @@ async function runSafeCodeSyncTest() {
 
     // 🛡️ PERSIST TO LOCAL STORAGE FOR IFRAME VISIBILITY
     const ss = window.safeStorage || {
-        set: (k, v) => { try { localStorage.setItem(k, v) } catch(_) {} }
+        set: (k, v) => { try {  localStorage.setItem(k, v) } catch(_) {} }
     };
     ss.set('codebank_assets', JSON.stringify(AssetBus.snapshot()));
     

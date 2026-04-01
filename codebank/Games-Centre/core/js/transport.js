@@ -45,7 +45,7 @@ class TransportLayer {
         }
 
         return new Promise((resolve, reject) => {
-            try { 
+            try {   
                 this.ws = new WebSocket(this.serverUrl);
 
                 this.ws.onopen = () => {
@@ -128,7 +128,7 @@ class TransportLayer {
             return;
         }
 
-        try { 
+        try {   
             this.ws.send(JSON.stringify(message));
         } catch (error) {
             console.error('[Transport] Send failed:', error);
@@ -140,7 +140,7 @@ class TransportLayer {
      * Handle incoming message
      */
     handleMessage(data) {
-        try { 
+        try {   
             const message = JSON.parse(data);
             const { type, payload } = message;
 
@@ -192,7 +192,7 @@ class TransportLayer {
     emit(event, data) {
         const handlers = this.eventHandlers.get(event) || [];
         handlers.forEach(handler => {
-            try { 
+            try {   
                 handler(data);
             } catch (error) {
                 console.error(`[Transport] Handler error for ${event}:`, error);

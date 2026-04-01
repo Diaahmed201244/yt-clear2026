@@ -9,7 +9,7 @@ console.log('🧪 Testing Bankode Admin Dashboard Integration...');
 window.unifiedStorageReady.then(async () => {
   console.log('✅ unifiedStorage is ready');
 
-  try {
+  try { 
     // Test 1: Check if AdminStorage is available
     if (!window.unifiedStorage) {
       throw new Error('AdminStorage not available');
@@ -59,7 +59,7 @@ window.unifiedStorageReady.then(async () => {
 
 // Test BankodeDashboard initialization
 document.addEventListener('DOMContentLoaded', async () => {
-  try {
+  try { 
     // Wait a bit for dashboard to initialize
     await new Promise(resolve => setTimeout(resolve, 2000));
 
