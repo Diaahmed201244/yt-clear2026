@@ -2050,13 +2050,6 @@
     <!-- Inline orchestration removed per integration rules -->
 
     <!-- Screenshot Module removed (migrated above) -->
-            try { window.__UV_TRACE__ = Array.isArray(window.__UV_TRACE__) ? window.__UV_TRACE__ : []; } catch(_){}
-            function __uvlog__(type, data, source){ try { var rec = { type: String(type||''), data: data||{}, source: String(source||'unknown'), ts: Date.now() }; window.__UV_TRACE__.push(rec); console.log('[UV]', rec); } catch(_){} }
-            try { window.UVLog = __uvlog__ } catch(_){}
-            try { window.dumpUVTrace = function(){ try { return (window.__UV_TRACE__||[]).slice() } catch(_){ return [] } } } catch(_){}
-            try { window.addEventListener('auth:ready', function(e){ try { __uvlog__('auth:ready', e&&e.detail||{}, 'auth-core') } catch(_){} }); } catch(_){}
-            try { window.addEventListener('assets:updated', function(e){ try { __uvlog__('assets:updated', e&&e.detail||{}, 'assetbus') } catch(_){} }); } catch(_){}
-
     <!-- CodeBank Bridge -->
     <script type="module" src="/code-display-bar/codebank-bridge.js"></script>
     <script type="module" src="/code-display-bar/codebank-panel.js"></script>
