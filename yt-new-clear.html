@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="/codebank/css/safe-asset-list.css">
 
     <script>
-        console.warn("🟢 YT-Clear TRUE Browser Local Mode");
-
         const realLocalStorage = window.__proto__.localStorage || window.localStorage;
 
         // Force restore native localStorage
@@ -35,8 +33,8 @@
 
     <script>
         try { window.__AUTH_OVERLAY_DISABLED__ = true; } catch(_){}
-        try { window.showAuthOverlay = function(){ try { console.warn('[AUTH OVERLAY BLOCKED]'); } catch(_){} }; } catch(_){}
-        try { window.openLoginModal = function(){ try { console.warn('[LOGIN MODAL BLOCKED]'); } catch(_){} }; } catch(_){}
+        try { window.showAuthOverlay = function(){ try { } catch(_){} }; } catch(_){}
+        try { window.openLoginModal = function(){ try { } catch(_){} }; } catch(_){}
         try {
             document.addEventListener('DOMContentLoaded', function(){
                 try {
@@ -1828,6 +1826,9 @@
     </script>
     <script>
 (function(){
+            function checkSomething() {
+                try {
+                    if (typeof window !== 'undefined' && window.YT && window.YT.loading === 0 && window.YT.loaded === 1) {
                         return true;
                     }
                     return false;
@@ -1891,11 +1892,11 @@
                                 uiSnap = sanitizeUISnapshot(uiSnap);
                                 writeSnap(uiSnap);
                             } catch(_){ } }); } catch(_){ } }); } catch (_) { }
-            try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_ASSETS_HANDSHAKE') { try { var snap = AssetBus.snapshot(); if (snap && ev.source) { try { var out = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out && out.count === 0) { console.warn('[UI SNAPSHOT] zero-count snapshot blocked', out); }
-            try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_INTENT') { try { var intent = data.intent || ''; var detail = data.detail || {}; console.log('[CODEBANK INTENT]', intent, detail); if (intent === 'compress') { window.dispatchEvent(new CustomEvent('intent:compress', { detail: detail })); } else if (intent === 'convert') { window.dispatchEvent(new CustomEvent('intent:convert', { detail: detail })); } else if (intent === 'grind') { window.dispatchEvent(new CustomEvent('intent:grind', { detail: detail })); } } catch(_){} } } catch(_){} }); } catch(_){}
-            try { var frame = document.getElementById('code-popup-iframe'); if (frame) { frame.addEventListener('load', function () { try { var snap = AssetBus.snapshot(); if (snap && frame.contentWindow) { try { var out2 = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out2 && out2.count === 0) { console.warn('[UI SNAPSHOT] zero-count snapshot blocked', out2); }
+            try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_ASSETS_HANDSHAKE') { try { var snap = AssetBus.snapshot(); if (snap && ev.source) { try { var out = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out && out.count === 0) { } } catch(_){} } } catch(_){} } } catch(_){} }); } catch(_){}
+            try { window.addEventListener('message', function (ev) { try { var data = ev && ev.data || {}; if (data && data.type === 'CODEBANK_INTENT') { try { var intent = data.intent || ''; var detail = data.detail || {}; if (intent === 'compress') { window.dispatchEvent(new CustomEvent('intent:compress', { detail: detail })); } else if (intent === 'convert') { window.dispatchEvent(new CustomEvent('intent:convert', { detail: detail })); } else if (intent === 'grind') { window.dispatchEvent(new CustomEvent('intent:grind', { detail: detail })); } } catch(_){} } } catch(_){} }); } catch(_){}
+            try { var frame = document.getElementById('code-popup-iframe'); if (frame) { frame.addEventListener('load', function () { try { var snap = AssetBus.snapshot(); if (snap && frame.contentWindow) { try { var out2 = sanitizeUISnapshot(Object.assign({}, snap, { source: 'ui' })); if (out2 && out2.count === 0) { }
                         var authed2 = false; try { authed2 = (window.Auth && typeof window.Auth.isAuthenticated==='function' && window.Auth.isAuthenticated()) || (window.AuthCore && typeof window.AuthCore.isAuthenticated==='function' && window.AuthCore.isAuthenticated()) || (!!window.__AUTH_READY__ && !!(window.APP_AUTH && window.APP_AUTH.user)); } catch(_){ authed2 = false }
-                        if (!authed2) { console.warn('[SNAPSHOT BLOCKED] not authenticated (frame load)'); return; }
+                        if (!authed2) { return; }
                         frame.contentWindow.postMessage({ type: 'CODEBANK_ASSETS_SYNC', payload: out2 }, window.location.origin); } catch (_) { } } } catch (_) { } }); } } catch (_) { }
         })();
     </script>
@@ -2075,7 +2076,6 @@
             // Function to switch between asset tabs
             window.switchAssetTab = function(tab) {
                 if (tab !== 'normal' && tab !== 'silver' && tab !== 'gold') {
-                    console.warn('[UI] Invalid asset tab:', tab);
                     return;
                 }
                 window.ACTIVE_ASSET_TAB = tab;
@@ -2094,7 +2094,7 @@
                         window.setWatchDogActive(!!active);
                     } else {
                         window.watchDogActive = !!active;
-                        try { console.log('Watch-dog (fallback) active:', !!active); } catch (_) { }
+                        try { } catch (_) { }
                         try { document.body.classList.toggle('watch-dog-active', !!active); } catch (_) { }
                     }
                 } catch (_) { }
